@@ -1,0 +1,102 @@
+TOUR INTELLIGENCE PLAN
+
+Origin: Badulla
+Destination: Colombo
+Route ID: route_1
+Distance: 331.8 km in 5h 44m
+Drive time: 5h 44m
+Trip dates: 2026-06-06 to 2026-06-08
+Road risk: low
+Travel pressure: medium
+Weather stress: medium
+
+DAY SUMMARY
+
+Day 1
+- Segment distance: 110.6 km
+- Segment duration: 1h 54m
+- Weather risk: low
+- Attractions:
+  - Nine Arch Bridge (Badulla)
+  - Ella Rock (Badulla)
+  - Little Adam's Peak (Badulla)
+  - Diyaluma Falls (Badulla)
+  - Ravana Falls (Badulla)
+- Accommodation:
+  - HOTEL STAR (stay)
+  - Kumbuk Sewana (කුඹුක් සෙවණ) (stay)
+  - Akash Rest House (stay)
+
+Day 2
+- Segment distance: 110.6 km
+- Segment duration: 1h 54m
+- Weather risk: medium
+- Attractions:
+  - Galle Fort (Galle)
+  - Mirissa Beach (Matara)
+  - Unawatuna Beach (Galle)
+  - Tangalle Beach (Hambantota)
+  - Weligama Bay (Matara)
+- Accommodation:
+  - Heritage Samanthanna (stay)
+  - Ligness Green Odyssey (stay)
+  - Owinmo Hotel & Reception Hall (stay)
+
+Day 3
+- Segment distance: 110.6 km
+- Segment duration: 1h 54m
+- Weather risk: medium
+- Attractions:
+  - Gangaramaya Temple (Colombo)
+  - Colombo National Museum (Colombo)
+  - Lotus Tower (Colombo)
+  - Beira Lake (Colombo)
+  - Seema Malaka (Colombo)
+
+FINAL ITINERARY
+
+# Badulla to Colombo itinerary
+
+This route covers approximately **331.8 km** with an estimated drive time of **5h 44m**.
+
+## Trip overview
+- Selected route: **route_1**
+- Road risk: **low**
+- Travel pressure: **medium**
+- Weather stress: **medium**
+
+## Best timing notes
+- 2026-06-08 05:00-06:30 is one of the strongest travel windows.
+- 2026-06-08 09:30-12:30 is one of the strongest travel windows.
+
+## Day 1
+- Travel segment: **110.6 km** over **1h 54m**.
+- Expected pressure: **low weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Nine Arch Bridge** in Badulla — The signature Ella viewpoint for train photography and one of Sri Lanka's most recognizable rail landmarks.
+  - **Ella Rock** in Badulla — A longer and more adventurous Ella-area hike with big ridge and valley views.
+  - **Little Adam's Peak** in Badulla — An easy hike with sweeping views that fits cleanly into most Ella-based itineraries.
+- Overnight stay: **HOTEL STAR** near the day-end anchor.
+
+### Flexibility note
+- If Nine Arch Bridge feels too busy, consider Ella Gap in Badulla instead.
+
+## Day 2
+- Travel segment: **110.6 km** over **1h 54m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Galle Fort** in Galle — Sri Lanka's most atmospheric colonial fort city and a top-tier walking destination.
+  - **Mirissa Beach** in Matara — A marquee south-coast beach destination known for leisure stays and whale-watching access.
+  - **Unawatuna Beach** in Galle — A classic south-coast beach that pairs easily with Galle Fort.
+- Overnight stay: **Heritage Samanthanna** near the day-end anchor.
+
+### Flexibility note
+- If Galle Fort feels too busy, consider Handunugoda Tea Estate in Galle instead.
+
+## Day 3
+- Travel segment: **110.6 km** over **1h 54m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Lotus Tower** in Colombo — Colombo's modern skyline landmark gives the city stronger contemporary-viewpoint coverage.

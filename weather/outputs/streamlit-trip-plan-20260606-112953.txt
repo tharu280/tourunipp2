@@ -1,0 +1,107 @@
+TOUR INTELLIGENCE PLAN
+
+Origin: Kandy
+Destination: Galle
+Route ID: route_2
+Distance: 221.4 km in 4h 46m
+Drive time: 4h 46m
+Trip dates: 2026-06-06 to 2026-06-08
+Road risk: medium
+Travel pressure: high
+Weather stress: high
+
+DAY SUMMARY
+
+Day 1
+- Segment distance: 73.8 km
+- Segment duration: 1h 35m
+- Weather risk: medium
+- Attractions:
+  - Temple of the Sacred Tooth Relic (Kandy)
+  - Royal Botanic Gardens, Peradeniya (Kandy)
+  - Kandy Lake (Kandy)
+  - National Museum of Kandy (Kandy)
+  - Royal Palace of Kandy (Kandy)
+- Accommodation:
+  - The Pharo (stay)
+  - PARADISE INN (stay)
+  - Hotel Chance Palace (stay)
+
+Day 2
+- Segment distance: 73.8 km
+- Segment duration: 1h 35m
+- Weather risk: high
+- Attractions:
+  - Henarathgoda Botanical Garden (Gampaha)
+  - Colombo National Museum (Colombo)
+  - Gangaramaya Temple (Colombo)
+  - Kelaniya Raja Maha Vihara (Gampaha)
+  - Kalutara Bodhiya (Kalutara)
+- Accommodation:
+  - Resolve Garden Hotel (stay)
+  - Earth house sri lanka (stay)
+  - Ranketha Resort Thudugala (stay)
+
+Day 3
+- Segment distance: 73.8 km
+- Segment duration: 1h 35m
+- Weather risk: medium
+- Attractions:
+  - Galle Fort (Galle)
+  - Unawatuna Beach (Galle)
+  - Galle Lighthouse (Galle)
+  - Lunuganga (Kalutara)
+  - Groote Kerk, Galle (Galle)
+
+FINAL ITINERARY
+
+# Kandy to Galle itinerary
+
+This route covers approximately **221.4 km** with an estimated drive time of **4h 46m**.
+
+## Trip overview
+- Selected route: **route_2**
+- Road risk: **medium**
+- Travel pressure: **high**
+- Weather stress: **high**
+
+## Best timing notes
+- 2026-06-08 05:00-06:30 is one of the strongest travel windows.
+- 2026-06-08 09:30-12:30 is one of the strongest travel windows.
+
+## Day 1
+- Travel segment: **73.8 km** over **1h 35m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Temple of the Sacred Tooth Relic** in Kandy — Sri Lanka's most important Buddhist shrine and the central cultural draw in Kandy.
+  - **Royal Botanic Gardens, Peradeniya** in Kandy — The island's most important botanic garden and a dependable half-day Kandy outing.
+  - **Kandy Lake** in Kandy — A central scenic element that improves walkable Kandy itineraries and evening pacing.
+- Overnight stay: **The Pharo** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the Hill Country Corridor. Start around late morning to reduce route friction and attraction crowding.
+- If Temple of the Sacred Tooth Relic feels too busy, consider Udawattakele Forest Reserve in Kandy instead.
+
+## Day 2
+- Travel segment: **73.8 km** over **1h 35m**.
+- Expected pressure: **high weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Henarathgoda Botanical Garden** in Gampaha — A historic botanic garden in Gampaha that broadens the district beyond Negombo-focused coastal stops.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+- Overnight stay: **Resolve Garden Hotel** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the South Coast Corridor. Start around late morning to reduce route friction and attraction crowding.
+- If Colombo National Museum feels too busy, consider Geoffrey Bawa's Number 11 in Colombo instead.
+
+## Day 3
+- Travel segment: **73.8 km** over **1h 35m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Galle Fort** in Galle — Sri Lanka's most atmospheric colonial fort city and a top-tier walking destination.
+  - **Unawatuna Beach** in Galle — A classic south-coast beach that pairs easily with Galle Fort.
+  - **Galle Lighthouse** in Galle — The fort's photogenic lighthouse is one of the district's most recognizable supporting landmarks.
+
+### Flexibility note
+- If Galle Fort feels too busy, consider National Museum of Galle in Galle instead.

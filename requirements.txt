@@ -1,0 +1,10 @@
+requests==2.32.3
+python-dotenv
+pydantic
+fastapi
+uvicorn[standard]
+langchain-core
+langchain-google-genai
+langgraph
+streamlit
+pydeck

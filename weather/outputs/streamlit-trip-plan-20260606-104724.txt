@@ -1,0 +1,131 @@
+TOUR INTELLIGENCE PLAN
+
+Origin: Colombo
+Destination: Nuwara Eliya
+Route ID: route_2
+Distance: 155.5 km in 5h 5m
+Drive time: 5h 5m
+Trip dates: 2026-06-06 to 2026-06-09
+Road risk: low
+Travel pressure: high
+Weather stress: high
+
+DAY SUMMARY
+
+Day 1
+- Segment distance: 38.9 km
+- Segment duration: 1h 16m
+- Weather risk: medium
+- Attractions:
+  - Gangaramaya Temple (Colombo)
+  - Colombo National Museum (Colombo)
+  - Lotus Tower (Colombo)
+  - Beira Lake (Colombo)
+  - Seema Malaka (Colombo)
+- Accommodation: none selected
+
+Day 2
+- Segment distance: 38.9 km
+- Segment duration: 1h 16m
+- Weather risk: high
+- Attractions:
+  - Pinnawala Elephant Orphanage (Kegalle)
+  - Belilena Cave (Kegalle)
+  - Attanagalla Rajamaha Viharaya (Gampaha)
+  - Bopath Ella Falls (Ratnapura)
+  - Saradiel Village (Kegalle)
+- Accommodation:
+  - Castlereagh Bungalow (luxury)
+  - Dunkeld Bungalow (luxury)
+  - Goatfell (luxury)
+
+Day 3
+- Segment distance: 38.9 km
+- Segment duration: 1h 16m
+- Weather risk: high
+- Attractions:
+  - Adam's Peak (Sri Pada) (Ratnapura)
+  - Kitulgala (Kegalle)
+  - Bathalegala (Bible Rock) (Kegalle)
+  - Ambuluwawa Tower (Kandy)
+  - Embekka Devalaya (Kandy)
+- Accommodation:
+  - Castlereagh Bungalow (luxury)
+  - Dunkeld Bungalow (luxury)
+  - Goatfell (luxury)
+
+Day 4
+- Segment distance: 38.9 km
+- Segment duration: 1h 16m
+- Weather risk: medium
+- Attractions:
+  - St Clair's Falls (Nuwara Eliya)
+  - Pidurutalagala (Nuwara Eliya)
+  - Seetha Amman Temple (Nuwara Eliya)
+  - Hakgala Botanical Garden (Nuwara Eliya)
+  - Galway's Land National Park (Nuwara Eliya)
+
+FINAL ITINERARY
+
+# Colombo to Nuwara Eliya itinerary
+
+This route covers approximately **155.5 km** with an estimated drive time of **5h 5m**.
+
+## Trip overview
+- Selected route: **route_2**
+- Road risk: **low**
+- Travel pressure: **high**
+- Weather stress: **high**
+
+## Best timing notes
+- 2026-06-09 05:00-06:30 is one of the strongest travel windows.
+- 2026-06-09 09:30-12:30 is one of the strongest travel windows.
+
+## Day 1
+- Travel segment: **38.9 km** over **1h 16m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Lotus Tower** in Colombo — Colombo's modern skyline landmark gives the city stronger contemporary-viewpoint coverage.
+
+### Flexibility note
+- Expected pressure is medium in the South Coast Corridor. Start around late morning to reduce route friction and attraction crowding.
+
+## Day 2
+- Travel segment: **38.9 km** over **1h 16m**.
+- Expected pressure: **high weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Pinnawala Elephant Orphanage** in Kegalle — One of Sri Lanka's most famous family stops, centered on elephant viewing and care routines.
+  - **Belilena Cave** in Kegalle — A prehistoric cave site with archaeological significance and a forested approach.
+  - **Attanagalla Rajamaha Viharaya** in Gampaha — An inland heritage temple that gives Gampaha more depth beyond its Negombo cluster.
+- Overnight stay: **Castlereagh Bungalow** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the Kegalle Corridor. Start around late morning to reduce route friction and attraction crowding.
+
+## Day 3
+- Travel segment: **38.9 km** over **1h 16m**.
+- Expected pressure: **high weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Adam's Peak (Sri Pada)** in Ratnapura — A major pilgrimage mountain and one of Sri Lanka's most memorable summit experiences.
+  - **Kitulgala** in Kegalle — An SLTDA-listed wet-zone adventure base best known for white-water rafting, rainforest scenery, and active day trips.
+  - **Bathalegala (Bible Rock)** in Kegalle — A serious hike and viewpoint that materially improves Kegalle for outdoor-oriented route building.
+- Overnight stay: **Castlereagh Bungalow** near the day-end anchor.
+
+### Flexibility note
+- If Adam's Peak (Sri Pada) feels too busy, consider Asupini Ella in Kegalle instead.
+
+## Day 4
+- Travel segment: **38.9 km** over **1h 16m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **St Clair's Falls** in Nuwara Eliya — A famous tea-country waterfall viewpoint on the western approach to Nuwara Eliya.
+  - **Pidurutalagala** in Nuwara Eliya — Sri Lanka's highest mountain adds a strong summit-style landscape stop to the district.
+  - **Seetha Amman Temple** in Nuwara Eliya — A well-known Ramayana-linked temple that is widely included in mainstream Nuwara Eliya sightseeing.
+
+### Flexibility note
+- If Hakgala Botanical Garden feels too busy, consider Holy Trinity Church, Nuwara Eliya in Nuwara Eliya instead.
+
+## Route fallback ideas
+- Keep this route in reserve if conditions tighten around the selected corridor.

@@ -1,0 +1,75 @@
+TOUR INTELLIGENCE PLAN
+
+Origin: Colombo
+Destination: Badulla
+Route ID: route_2
+Distance: 223.5 km in 6h 33m
+Drive time: 6h 33m
+Trip dates: 2026-06-06 to 2026-06-07
+Road risk: low
+Travel pressure: medium
+Weather stress: medium
+
+DAY SUMMARY
+
+Day 1
+- Segment distance: 111.7 km
+- Segment duration: 3h 16m
+- Weather risk: medium
+- Attractions:
+  - Gangaramaya Temple (Colombo)
+  - Colombo National Museum (Colombo)
+  - Lotus Tower (Colombo)
+  - Beira Lake (Colombo)
+  - Seema Malaka (Colombo)
+- Accommodation:
+  - Terrace Cinnamon View (stay)
+  - Akoya Pearl Hotel (stay)
+  - The Estate 1920 (stay)
+
+Day 2
+- Segment distance: 111.7 km
+- Segment duration: 3h 16m
+- Weather risk: medium
+- Attractions:
+  - Nine Arch Bridge (Badulla)
+  - Horton Plains National Park (Nuwara Eliya)
+  - Bambarakanda Falls (Badulla)
+  - Little Adam's Peak (Badulla)
+  - Ella Rock (Badulla)
+
+FINAL ITINERARY
+
+# Colombo to Badulla itinerary
+
+This route covers approximately **223.5 km** with an estimated drive time of **6h 33m**.
+
+## Trip overview
+- Selected route: **route_2**
+- Road risk: **low**
+- Travel pressure: **medium**
+- Weather stress: **medium**
+
+## Best timing notes
+- 2026-06-06 05:00-06:30 is one of the strongest travel windows.
+- 2026-06-06 09:30-12:30 is one of the strongest travel windows.
+
+## Day 1
+- Travel segment: **111.7 km** over **3h 16m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Lotus Tower** in Colombo — Colombo's modern skyline landmark gives the city stronger contemporary-viewpoint coverage.
+- Overnight stay: **Terrace Cinnamon View** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the South Coast Corridor. Start around late morning to reduce route friction and attraction crowding.
+
+## Day 2
+- Travel segment: **111.7 km** over **3h 16m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Nine Arch Bridge** in Badulla — The signature Ella viewpoint for train photography and one of Sri Lanka's most recognizable rail landmarks.
+  - **Horton Plains National Park** in Nuwara Eliya — A highland plateau park famed for World's End, cloud forest scenery, and cool-climate trekking.
+  - **Bambarakanda Falls** in Badulla — Sri Lanka's tallest waterfall is a high-value addition for southern hill-country route planning.

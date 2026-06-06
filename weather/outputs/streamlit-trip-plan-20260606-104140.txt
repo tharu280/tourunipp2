@@ -1,0 +1,127 @@
+TOUR INTELLIGENCE PLAN
+
+Origin: Kandy
+Destination: Colombo
+Route ID: route_1
+Distance: 144.5 km in 3h 31m
+Drive time: 3h 31m
+Trip dates: 2026-06-06 to 2026-06-09
+Road risk: high
+Travel pressure: high
+Weather stress: high
+
+DAY SUMMARY
+
+Day 1
+- Segment distance: 36.1 km
+- Segment duration: 0h 52m
+- Weather risk: medium
+- Attractions:
+  - Temple of the Sacred Tooth Relic (Kandy)
+  - Royal Botanic Gardens, Peradeniya (Kandy)
+  - Kandy Lake (Kandy)
+  - National Museum of Kandy (Kandy)
+  - Royal Palace of Kandy (Kandy)
+- Accommodation:
+  - Kandyan Reach Hotel (midrange)
+  - White Rose Hotel (midrange)
+  - Hotel Blue Sky (budget)
+
+Day 2
+- Segment distance: 36.1 km
+- Segment duration: 0h 52m
+- Weather risk: medium
+- Attractions:
+  - Dambadeniya Archaeological Site (Kurunegala)
+  - Dambadeniya Kingdom (Kurunegala)
+  - Athugala Rock (Kurunegala)
+  - Athugala Viharaya (Kurunegala)
+  - Kurunegala Lake (Kurunegala)
+- Accommodation:
+  - Elepath Lodge (budget)
+  - Hotel Elephant Bay (midrange)
+  - Hotel Pinnalanda (midrange)
+
+Day 3
+- Segment distance: 36.1 km
+- Segment duration: 0h 52m
+- Weather risk: medium
+- Attractions:
+  - Gangaramaya Temple (Colombo)
+  - Colombo National Museum (Colombo)
+  - Lotus Tower (Colombo)
+  - Beira Lake (Colombo)
+  - Seema Malaka (Colombo)
+- Accommodation:
+  - The Wallawwa (luxury)
+  - Vivanta Colombo, Airport Garden (premium)
+  - Airport Green View Resort (budget)
+
+Day 4
+- Segment distance: 36.1 km
+- Segment duration: 0h 52m
+- Weather risk: medium
+- Attractions:
+  - Gangaramaya Temple (Colombo)
+  - Colombo National Museum (Colombo)
+  - Lotus Tower (Colombo)
+  - Beira Lake (Colombo)
+  - Seema Malaka (Colombo)
+
+FINAL ITINERARY
+
+# Kandy to Colombo itinerary
+
+This route covers approximately **144.5 km** with an estimated drive time of **3h 31m**.
+
+## Trip overview
+- Selected route: **route_1**
+- Road risk: **high**
+- Travel pressure: **high**
+- Weather stress: **high**
+
+## Best timing notes
+- 2026-06-08 05:00-06:30 is one of the strongest travel windows.
+- 2026-06-09 05:00-06:30 is one of the strongest travel windows.
+
+## Day 1
+- Travel segment: **36.1 km** over **0h 52m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Temple of the Sacred Tooth Relic** in Kandy — Sri Lanka's most important Buddhist shrine and the central cultural draw in Kandy.
+  - **Royal Botanic Gardens, Peradeniya** in Kandy — The island's most important botanic garden and a dependable half-day Kandy outing.
+  - **Kandy Lake** in Kandy — A central scenic element that improves walkable Kandy itineraries and evening pacing.
+- Overnight stay: **Kandyan Reach Hotel** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the Hill Country Corridor. Start around late morning to reduce route friction and attraction crowding.
+- If Temple of the Sacred Tooth Relic feels too busy, consider Udawattakele Forest Reserve in Kandy instead.
+
+## Day 2
+- Travel segment: **36.1 km** over **0h 52m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Dambadeniya Archaeological Site** in Kurunegala — The core ruins area gives Dambadeniya stronger standalone visitor value within the district.
+  - **Dambadeniya Kingdom** in Kurunegala — Another historic capital site that adds depth for culture-focused inland itineraries.
+  - **Athugala Rock** in Kurunegala — The defining lookout above Kurunegala town and a practical short stop on transit days.
+- Overnight stay: **Elepath Lodge** near the day-end anchor.
+
+### Flexibility note
+- Expected pressure is medium in the Cultural Triangle Corridor. Start around late morning to reduce route friction and attraction crowding.
+
+## Day 3
+- Travel segment: **36.1 km** over **0h 52m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Lotus Tower** in Colombo — Colombo's modern skyline landmark gives the city stronger contemporary-viewpoint coverage.
+- Overnight stay: **The Wallawwa** near the day-end anchor.
+
+## Day 4
+- Travel segment: **36.1 km** over **0h 52m**.
+- Expected pressure: **medium weather risk** with route crowd guidance layered in.
+- Suggested attractions:
+  - **Gangaramaya Temple** in Colombo — One of Colombo's best-known temples and an easy cultural stop in the city center.
+  - **Colombo National Museum** in Colombo — Sri Lanka's flagship museum for archaeology, royal regalia, and national history.
+  - **Lotus Tower** in Colombo — Colombo's modern skyline landmark gives the city stronger contemporary-viewpoint coverage.
