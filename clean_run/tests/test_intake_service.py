@@ -510,6 +510,25 @@ class TravelIntakeServiceTests(unittest.TestCase):
         self.assertEqual(response.session.trip_requirements.destination, "Badulla")
         self.assertEqual(response.session.trip_requirements.duration, "4 days")
 
+    def test_full_brief_trip_starts_and_ends_wording_completes(self) -> None:
+        service = TravelIntakeService(chain=None, use_llm=False)
+
+        response = service.process_turn(
+            "I am flying from Dubai on 2026-07-20, 1 traveller, economy, total budget 500000 LKR. "
+            "Trip starts in Colombo, ends in Badulla, for 4 days."
+        )
+
+        self.assertTrue(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "complete")
+        self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
+        self.assertEqual(response.session.trip_requirements.flight_departure_date, "2026-07-20")
+        self.assertEqual(response.session.trip_requirements.flight_passengers, 1)
+        self.assertEqual(response.session.trip_requirements.flight_cabin_class, "economy")
+        self.assertEqual(response.session.trip_requirements.total_budget_lkr, 500000.0)
+        self.assertEqual(response.session.trip_requirements.origin, "Colombo")
+        self.assertEqual(response.session.trip_requirements.destination, "Badulla")
+        self.assertEqual(response.session.trip_requirements.duration, "4 days")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -554,6 +554,12 @@ def _clean_place_fragment(value: str | None) -> str | None:
 
 def _extract_route_pair(text: str, *, allow_generic_from_to: bool) -> tuple[str | None, str | None]:
     explicit_patterns = [
+        r"\b(?:trip|journey|route|itinerary)\s+(?:starts?|begins?)\s+(?:in|at|from)\s+"
+        r"(?P<origin>.+?)(?:\s*,\s*|\s+and\s+)(?:ends?|finishes?)\s+(?:in|at|to)\s+"
+        r"(?P<destination>.+?)(?:\s*,?\s+for\s+|\s*,?\s+in\s+|[.!?]|$)",
+        r"\b(?:starts?|begins?|starting|beginning)\s+(?:in|at|from)\s+"
+        r"(?P<origin>.+?)(?:\s*,\s*|\s+and\s+)(?:ends?|ending|finishes?|finishing)\s+(?:in|at|to)\s+"
+        r"(?P<destination>.+?)(?:\s*,?\s+for\s+|\s*,?\s+in\s+|[.!?]|$)",
         r"\btrip\s+from\s+(?P<origin>.+?)\s+to\s+(?P<destination>.+?)(?:\s+for\s+|\s+in\s+|[.!?]|$)",
         r"\bitinerary\s+from\s+(?P<origin>.+?)\s+to\s+(?P<destination>.+?)(?:\s+for\s+|\s+in\s+|[.!?]|$)",
         r"\btravel(?:ling)?\s+from\s+(?P<origin>.+?)\s+to\s+(?P<destination>.+?)(?:\s+for\s+|\s+in\s+|[.!?]|$)",
