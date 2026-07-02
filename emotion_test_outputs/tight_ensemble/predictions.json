@@ -1,0 +1,119 @@
+[
+  {
+    "image_path": "/Users/dilshantharushika/Downloads/images.jpeg",
+    "status": "ok",
+    "rotation_used_degrees": 0.0,
+    "crop_center_y": 0.5,
+    "crop_scales_used": [
+      0.95,
+      1.0,
+      1.05
+    ],
+    "scale_results": [
+      {
+        "crop_scale": 0.95,
+        "saved_crop_path": "/Users/dilshantharushika/Desktop/routemvp/tourunipp2/emotion_test_outputs/tight_ensemble/images_crop_scale_0_95.jpg",
+        "predicted_class": "happy",
+        "confidence": 0.9697998762130737,
+        "top_predictions": [
+          {
+            "class_name": "happy",
+            "probability": 0.9697998762130737
+          },
+          {
+            "class_name": "anger",
+            "probability": 0.015225790441036224
+          },
+          {
+            "class_name": "sad",
+            "probability": 0.006132577080279589
+          }
+        ],
+        "all_scores": {
+          "anger": 0.015225790441036224,
+          "happy": 0.9697998762130737,
+          "neutral": 0.0046296375803649426,
+          "sad": 0.006132577080279589,
+          "surprise": 0.004212110303342342
+        }
+      },
+      {
+        "crop_scale": 1.0,
+        "saved_crop_path": "/Users/dilshantharushika/Desktop/routemvp/tourunipp2/emotion_test_outputs/tight_ensemble/images_crop_scale_1_00.jpg",
+        "predicted_class": "happy",
+        "confidence": 0.9374721050262451,
+        "top_predictions": [
+          {
+            "class_name": "happy",
+            "probability": 0.9374721050262451
+          },
+          {
+            "class_name": "anger",
+            "probability": 0.03737025335431099
+          },
+          {
+            "class_name": "sad",
+            "probability": 0.011450525373220444
+          }
+        ],
+        "all_scores": {
+          "anger": 0.03737025335431099,
+          "happy": 0.9374721050262451,
+          "neutral": 0.004680418875068426,
+          "sad": 0.011450525373220444,
+          "surprise": 0.00902671366930008
+        }
+      },
+      {
+        "crop_scale": 1.05,
+        "saved_crop_path": "/Users/dilshantharushika/Desktop/routemvp/tourunipp2/emotion_test_outputs/tight_ensemble/images_crop_scale_1_05.jpg",
+        "predicted_class": "happy",
+        "confidence": 0.8115898966789246,
+        "top_predictions": [
+          {
+            "class_name": "happy",
+            "probability": 0.8115898966789246
+          },
+          {
+            "class_name": "anger",
+            "probability": 0.12003806233406067
+          },
+          {
+            "class_name": "surprise",
+            "probability": 0.033625368028879166
+          }
+        ],
+        "all_scores": {
+          "anger": 0.12003806233406067,
+          "happy": 0.8115898966789246,
+          "neutral": 0.01069607026875019,
+          "sad": 0.024050598964095116,
+          "surprise": 0.033625368028879166
+        }
+      }
+    ],
+    "predicted_class": "happy",
+    "confidence": 0.9062872529029846,
+    "top_predictions": [
+      {
+        "class_name": "happy",
+        "probability": 0.9062872529029846
+      },
+      {
+        "class_name": "anger",
+        "probability": 0.05754470452666283
+      },
+      {
+        "class_name": "surprise",
+        "probability": 0.015621397644281387
+      }
+    ],
+    "all_scores": {
+      "anger": 0.05754470452666283,
+      "happy": 0.9062872529029846,
+      "neutral": 0.006668709218502045,
+      "sad": 0.013877901248633862,
+      "surprise": 0.015621397644281387
+    }
+  }
+]

@@ -52,14 +52,14 @@ Notes:
 
 ## Local Setup
 
-1. Create a `.env` file in the project root:
+1. Create a `.env` file in the project root. You can start from `.env.example`:
 
 ```env
 GOOGLE_MAPS_API_KEY=your_demo_or_regular_maps_key_here
 GEMINI_API_KEY=your_gemini_key_here
 ```
 
-2. Install the Python dependency:
+2. Install the Python dependencies:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -68,7 +68,7 @@ python3 -m pip install -r requirements.txt
 ## Run the FastAPI backend
 
 ```bash
-uvicorn api:app --host 0.0.0.0 --port 7860
+python3 -m uvicorn api:app --host 0.0.0.0 --port 7860
 ```
 
 API endpoints:
@@ -88,7 +88,7 @@ The chatbot reads `GEMINI_API_KEY` from the project root `.env` or
 ## Run the Streamlit dashboard
 
 ```bash
-streamlit run streamlit_app.py
+python3 -m streamlit run streamlit_app.py
 ```
 
 The dashboard uses:

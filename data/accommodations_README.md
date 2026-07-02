@@ -1,98 +1,56 @@
-# Sri Lanka Curated Accommodations Dataset
+# Sri Lanka Accommodation Dataset
 
-This folder contains a broad but still curated Sri Lanka accommodation dataset for route-based and multi-day itinerary planning.
+This dataset is intentionally minimal.
 
-The goal is to reduce dependence on live hotel/place APIs while still keeping the inventory useful, geographically broad, and practical for overnight-stop recommendations.
+The planner only needs accommodation data for two ranking inputs:
+
+- distance from the overnight anchor
+- estimated nightly cost in LKR
+
+Everything else was removed so the file is easier to maintain by hand.
 
 ## Files
 
-- `sri_lanka_accommodations.json`: Main district-grouped accommodation dataset.
-- `build_sri_lanka_accommodations.py`: Source-of-truth builder and validator.
-- `accommodations_summary.md`: Coverage summary with district, type, price-band, and corridor counts.
+- `sri_lanka_accommodations.json`: Main accommodation dataset.
+- `build_sri_lanka_accommodations.py`: Validator and normalizer for the minimal dataset.
+- `accommodations_summary.md`: Simple count summary by district.
 
-## Current Shape
+## Final Record Schema
 
-This version is intentionally broader than the attractions dataset, but still curated rather than exhaustive.
-
-- It favors nationally important tourism corridors and real overnight hubs.
-- It includes a mix of luxury, premium, mid-range, and budget inventory.
-- It avoids turning into a generic scrape of every lodging listing.
-- It is especially strong where itinerary planners most often need overnight recommendations:
-  - Colombo and the airport gateway
-  - southwest coast
-  - cultural triangle
-  - hill country
-  - Yala / south
-  - east coast
-  - Jaffna corridor
-
-## Schema
-
-Each accommodation record includes:
+Each accommodation record contains only:
 
 - `id`
 - `name`
 - `district`
-- `province`
 - `latitude`
 - `longitude`
-- `accommodation_type`
-- `price_band`
-- `rating_band`
-- `tags`
-- `ideal_for`
-- `summary`
-- `source_urls`
-- `nearby_area`
-- `corridor`
-- `notable_location_context`
+- `estimated_nightly_cost_lkr`
 
-## Field Notes
+Example:
 
-- `price_band`: One of `budget`, `midrange`, `premium`, `luxury`.
-- `rating_band`: Heuristic quality band: `basic`, `good`, `very_good`, `excellent`.
-- `tags`: Lightweight routing and traveler-fit hints such as `beachfront`, `wildlife_access`, `city_stay`, or `surf_access`.
-- `ideal_for`: Traveler-fit grouping such as `family`, `couples`, `backpackers`, or `wildlife_lovers`.
-- `nearby_area`: Useful local anchor for routing and overnight matching.
-- `corridor`: High-level travel corridor the stay most naturally belongs to.
+```json
+{
+  "id": "lk_acc_kandy_example_hotel_abc123",
+  "name": "Example Hotel",
+  "district": "Kandy",
+  "latitude": 7.2906,
+  "longitude": 80.6337,
+  "estimated_nightly_cost_lkr": 25000
+}
+```
 
-## Coordinate Strategy
+## Structure
 
-Coordinates are stored for every accommodation, but they should be treated as **planning coordinates** rather than exact booking-grade geocodes.
+The JSON is stored as a flat list:
 
-- For many major properties, the location is close to the recognized property zone.
-- For some accommodations, especially where exact property-level verification was less practical, the coordinate is the nearby tourism area or accommodation-cluster anchor.
-- This is intentional for route planning, where district, corridor, and overnight proximity are more important than front-gate precision.
+```json
+{
+  "metadata": {},
+  "accommodations": []
+}
+```
 
-## Source Strategy
-
-`source_urls` are included for every record, but they are best understood as **research anchors** rather than full booking metadata.
-
-Priority was given to:
-
-- official hotel or brand sites where practical
-- Sri Lanka tourism references
-- high-recognition property/area references
-- area-level verification pages where the property is strongly associated with a known tourism cluster
-
-Because this dataset is for itinerary planning rather than direct reservation handling, source links are used primarily to support accommodation relevance, area fit, and discoverability.
-
-## Curation Strategy
-
-This dataset is not an exhaustive lodging directory.
-
-It intentionally prefers:
-
-- well-known or repeatedly surfaced tourism properties
-- accommodations with clear route-planning usefulness
-- properties in major overnight corridors
-- a balanced mix of high-end, mainstream, and budget-useful stays
-
-It intentionally avoids:
-
-- dumping every small map listing
-- obvious duplicates
-- low-signal lodging inventory with little tourism relevance
+This keeps manual editing simpler than nested district sections while still preserving the `district` field for filtering and organization.
 
 ## Validation
 
@@ -102,31 +60,26 @@ Run:
 python3 data/build_sri_lanka_accommodations.py
 ```
 
-The builder validates:
+The builder:
 
-- required fields
-- ID uniqueness
-- district/province consistency
-- accommodation type validity
-- price band validity
-- rating band validity
-- tag validity
-- `ideal_for` validity
-- source presence
+- reads the current dataset
+- keeps only the minimal fields
+- validates IDs, coordinates, and nightly costs
+- rewrites the JSON in normalized order
+- regenerates `accommodations_summary.md`
 
-The same script regenerates:
+## Ranking Use
 
-- `data/sri_lanka_accommodations.json`
-- `data/accommodations_summary.md`
+Lodging ranking code uses only:
 
-## Important Caveat
+- `estimated_nightly_cost_lkr`
+- distance from the day-end or overnight anchor
 
-The user requested a very broad 400-700 accommodation inventory. This version deliberately stops short of a low-quality scrape and instead provides a curated nationwide foundation that is broader than the attractions dataset while staying route-useful.
+No accommodation ratings, tags, types, summaries, review counts, or source metadata are required anymore.
 
-If needed, this can be expanded further in future passes by deepening specific corridor inventories such as:
+## Manual Editing Notes
 
-- southwest coast
-- Ella / hill country
-- cultural triangle
-- east coast
-- safari belts
+- Keep IDs stable once they are in use.
+- Use real property coordinates.
+- Fill `estimated_nightly_cost_lkr` with the value you want the planner to rank against.
+- After manual edits, rerun the builder to catch duplicates or invalid values.

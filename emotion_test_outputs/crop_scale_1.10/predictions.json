@@ -1,0 +1,33 @@
+[
+  {
+    "image_path": "/Users/dilshantharushika/Downloads/images.jpeg",
+    "status": "ok",
+    "saved_crop_path": "/Users/dilshantharushika/Desktop/routemvp/tourunipp2/emotion_test_outputs/crop_scale_1.10/images_crop.jpg",
+    "rotation_used_degrees": 0.0,
+    "crop_scale": 1.1,
+    "crop_center_y": 0.5,
+    "predicted_class": "happy",
+    "confidence": 0.4481244683265686,
+    "top_predictions": [
+      {
+        "class_name": "happy",
+        "probability": 0.4481244683265686
+      },
+      {
+        "class_name": "anger",
+        "probability": 0.4452677369117737
+      },
+      {
+        "class_name": "surprise",
+        "probability": 0.050400737673044205
+      }
+    ],
+    "all_scores": {
+      "anger": 0.4452677369117737,
+      "happy": 0.4481244683265686,
+      "neutral": 0.0208965502679348,
+      "sad": 0.035310521721839905,
+      "surprise": 0.050400737673044205
+    }
+  }
+]

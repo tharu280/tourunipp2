@@ -1,81 +1,48 @@
-# Accommodations Summary
+# Accommodation Summary
 
-- Total accommodation count: **266**
+- Total accommodation count: **1578**
 - Districts covered: **25**
 
-## Counts by District
+## Minimal Record Schema
 
-- `Ampara`: 8
-- `Anuradhapura`: 12
-- `Badulla`: 16
-- `Batticaloa`: 6
-- `Colombo`: 18
-- `Galle`: 18
-- `Gampaha`: 16
-- `Hambantota`: 14
-- `Jaffna`: 10
-- `Kalutara`: 15
-- `Kandy`: 18
-- `Kegalle`: 4
-- `Kilinochchi`: 1
-- `Kurunegala`: 5
-- `Mannar`: 3
-- `Matale`: 20
-- `Matara`: 16
-- `Monaragala`: 3
-- `Mullaitivu`: 1
-- `Nuwara Eliya`: 20
-- `Polonnaruwa`: 10
-- `Puttalam`: 10
-- `Ratnapura`: 8
-- `Trincomalee`: 12
-- `Vavuniya`: 2
+- `id`
+- `name`
+- `district`
+- `latitude`
+- `longitude`
+- `estimated_nightly_cost_lkr`
 
-## Counts by Accommodation Type
+## Accommodation Count by District
 
-- `boutique_hotel`: 43
-- `bungalow`: 9
-- `eco_lodge`: 10
-- `guesthouse`: 13
-- `hostel`: 2
-- `hotel`: 108
-- `resort`: 63
-- `safari_lodge`: 9
-- `villa`: 9
+- `Puttalam`: 76
+- `Colombo`: 75
+- `Gampaha`: 75
+- `Hambantota`: 75
+- `Jaffna`: 75
+- `Kalutara`: 75
+- `Kandy`: 75
+- `Matale`: 75
+- `Matara`: 75
+- `Monaragala`: 75
+- `Ratnapura`: 75
+- `Trincomalee`: 75
+- `Galle`: 74
+- `Kegalle`: 74
+- `Nuwara Eliya`: 74
+- `Polonnaruwa`: 74
+- `Ampara`: 73
+- `Anuradhapura`: 73
+- `Badulla`: 73
+- `Batticaloa`: 72
+- `Kurunegala`: 54
+- `Mannar`: 16
+- `Kilinochchi`: 9
+- `Vavuniya`: 6
+- `Mullaitivu`: 5
 
-## Counts by Price Band
+## Maintenance Notes
 
-- `budget`: 27
-- `luxury`: 59
-- `midrange`: 79
-- `premium`: 101
-
-## Districts with Strongest Coverage
-
-- `Matale`: 20
-- `Nuwara Eliya`: 20
-- `Colombo`: 18
-- `Galle`: 18
-- `Kandy`: 18
-- `Badulla`: 16
-- `Gampaha`: 16
-- `Matara`: 16
-- `Kalutara`: 15
-- `Hambantota`: 14
-
-## Corridors with Strongest Coverage
-
-- `Colombo -> Galle -> Matara -> Hambantota`: 66
-- `Kandy -> Nuwara Eliya -> Ella -> Badulla`: 54
-- `Dambulla -> Polonnaruwa -> Anuradhapura`: 42
-- `Kandy -> Matale -> Dambulla -> Sigiriya`: 38
-- `Negombo / airport gateway`: 34
-- `Colombo -> Kalutara -> Bentota/Beruwala side`: 33
-- `Trincomalee -> Batticaloa -> Ampara`: 26
-- `Jaffna -> Mannar`: 13
-
-## Intentionally Sparse Districts
-
-- `Kilinochchi`: Kept intentionally sparse because the district has limited established leisure accommodation inventory with broad tourism pull.
-- `Mullaitivu`: Kept intentionally sparse because the district remains a light overnight market for mainstream itineraries.
-- `Vavuniya`: Kept intentionally sparse because it is more commonly used as a transit overnight than as a destination base.
+- This dataset is intentionally minimal so nightly costs can be filled and maintained by hand.
+- Ranking logic uses only `estimated_nightly_cost_lkr` and distance from the overnight anchor.
+- `estimated_nightly_cost_lkr` may be an integer or the literal string `unavailable` during manual price review.
+- Keep IDs stable once the new dataset is rebuilt from your Booking-based district inputs.
