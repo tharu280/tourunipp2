@@ -1,6 +1,10 @@
 .env
 .env.*
 !.env.example
+*.env
+!*.env.example
+atlas-credentials.env
+**/atlas-credentials.env
 
 __pycache__/
 *.py[cod]
