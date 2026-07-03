@@ -20,7 +20,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
     <div id="section-crowd">
       {/* Risk level row */}
       <div className="crowd-risk-row">
-        <span className="crowd-risk-label">Crowd risk level</span>
+        <span className="crowd-risk-label">Overall crowd risk</span>
         <span className={`crowd-risk-badge ${cls}`}>
           {titleCase(risk)}
           {signalScore != null ? ` · ${Number(signalScore).toFixed(0)}` : ""}
@@ -36,8 +36,10 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
       {recommendations.length > 0 && (
         <div className="crowd-suggestions">
           {recommendations.slice(0, 4).map((rec, i) => (
-            <div key={i} className="suggestion-item">
-              <div className="suggestion-message">{typeof rec === "string" ? rec : rec.message || rec.text || JSON.stringify(rec)}</div>
+            <div key={`rec-${i}`} className="suggestion-item">
+              <div className="suggestion-message">
+                {typeof rec === "string" ? rec : rec.message || rec.text || JSON.stringify(rec)}
+              </div>
             </div>
           ))}
         </div>
@@ -47,7 +49,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
       {redistributionSuggestions.length > 0 && (
         <div className="crowd-suggestions">
           {redistributionSuggestions.slice(0, 4).map((item, i) => (
-            <div key={i} className="suggestion-item">
+            <div key={`sug-${i}`} className="suggestion-item">
               {item.title && <div className="suggestion-title">{item.title}</div>}
               <div className="suggestion-message">{item.message || item.text || ""}</div>
               {item.day && (

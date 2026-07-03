@@ -15,7 +15,7 @@ import {
 /* ── SVG Icons ─────────────────────────────────────────────────── */
 function IconBack() {
   return (
-    <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" stroke="currentColor" fill="none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M15 18l-6-6 6-6" />
     </svg>
   );
@@ -23,17 +23,15 @@ function IconBack() {
 
 function IconShare() {
   return (
-    <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" stroke="currentColor" fill="none">
-      <circle cx="18" cy="5" r="3" />
-      <circle cx="6" cy="12" r="3" />
-      <circle cx="18" cy="19" r="3" />
-      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
+      <polyline points="16 6 12 2 8 6" />
+      <line x1="12" y1="2" x2="12" y2="15" />
     </svg>
   );
 }
 
-/* ── Condition dot ──────────────────────────────────────────────── */
+/* ── Condition level helpers ──────────────────────────────────────── */
 function conditionClass(level) {
   if (!level) return "unknown";
   const l = String(level).toLowerCase();
@@ -51,7 +49,7 @@ function overallClass(label) {
   return "";
 }
 
-/* ── Section wrapper ─────────────────────────────────────────────── */
+/* ── Section card wrapper ─────────────────────────────────────────── */
 function Section({ title, linkText, children, id }) {
   return (
     <section className="d-card" id={id} aria-labelledby={`${id}-title`}>
@@ -59,7 +57,7 @@ function Section({ title, linkText, children, id }) {
         <h2 className="d-card-title" id={`${id}-title`}>{title}</h2>
         {linkText && <span className="d-card-link">{linkText}</span>}
       </div>
-      <div className="d-card-body" style={{ padding: 0 }}>
+      <div className="d-card-body">
         {children}
       </div>
     </section>
@@ -111,7 +109,8 @@ export default function PlanDashboard({
 
   return (
     <div className="dashboard-screen" id="screen-dashboard">
-      {/* Navigation */}
+
+      {/* ── Navigation ── */}
       <nav className="dashboard-nav">
         <button
           className="dashboard-nav-back"
@@ -121,6 +120,7 @@ export default function PlanDashboard({
         >
           <IconBack />
         </button>
+
         <div className="dashboard-nav-center">
           <div className="dashboard-nav-title">Your trip to Sri Lanka</div>
           {(durationLabel || dateRange) && (
@@ -129,10 +129,11 @@ export default function PlanDashboard({
             </div>
           )}
         </div>
+
         <button
           className="dashboard-nav-share"
           type="button"
-          aria-label="Share"
+          aria-label="Share trip"
           onClick={() => {
             if (navigator.share) {
               navigator.share({
@@ -148,15 +149,16 @@ export default function PlanDashboard({
       </nav>
 
       <div className="dashboard-content">
-        {/* Route Map */}
+
+        {/* ── Route Map ── */}
         <RouteMap plan={viewPlan} />
 
-        {/* Overall Conditions */}
+        {/* ── Overall Conditions pill row ── */}
         <div className="conditions-card">
           <div className="conditions-header">
-            <span className="conditions-title">Overall conditions</span>
+            <span className="conditions-title">Travel conditions</span>
             <span className={`conditions-overall ${overallClass(conditions.overall)}`}>
-              {conditions.overall}
+              {conditions.overall || "Good"}
             </span>
           </div>
           <div className="conditions-row">
@@ -165,26 +167,26 @@ export default function PlanDashboard({
               { label: "Weather", value: conditions.weather },
               { label: "Roads", value: conditions.roads },
             ].map((c) => (
-              <div key={c.label} className="condition-item">
+              <div key={c.label} className="condition-pill">
                 <div className={`condition-dot ${conditionClass(c.value)}`} aria-hidden="true" />
                 <span className="condition-label">{c.label}</span>
-                <span className="condition-value">{titleCase(c.value)}</span>
+                <span className="condition-value">{titleCase(c.value) || "—"}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Itinerary */}
-        <Section title="Itinerary" linkText="View full itinerary" id="itinerary-section">
+        {/* ── Itinerary ── */}
+        <Section title="Itinerary" id="itinerary-section">
           <ItinerarySection plan={viewPlan} />
         </Section>
 
-        {/* Accommodation */}
-        <Section title="Accommodation" linkText="View all" id="accommodation-section">
+        {/* ── Accommodation ── */}
+        <Section title="Where to stay" id="accommodation-section">
           <AccommodationSection plan={viewPlan} />
         </Section>
 
-        {/* Flight */}
+        {/* ── Flight ── */}
         <Section title="Flight" id="flight-section">
           <FlightSummary
             flight={selectedFlight}
@@ -193,8 +195,8 @@ export default function PlanDashboard({
           />
         </Section>
 
-        {/* Budget */}
-        <Section title="Budget summary" id="budget-section">
+        {/* ── Budget ── */}
+        <Section title="Budget" id="budget-section">
           <BudgetSummary
             plan={viewPlan}
             selectedFlight={selectedFlight}
@@ -202,20 +204,21 @@ export default function PlanDashboard({
           />
         </Section>
 
-        {/* Crowd Intelligence */}
+        {/* ── Crowd Intelligence ── */}
         <Section title="Crowd intelligence" id="crowd-section">
           <CrowdIntelligenceSection plan={viewPlan} dashboardData={dashboardData} />
         </Section>
 
-        {/* Heatmaps */}
+        {/* ── Heatmaps ── */}
         <Section title="Pressure heatmaps" id="heatmap-section">
           <HeatmapSection plan={viewPlan} dashboardData={dashboardData} />
         </Section>
 
-        {/* Alerts */}
+        {/* ── Alerts ── */}
         <Section title="Alerts &amp; advisories" id="alerts-section">
           <AlertsSection plan={viewPlan} />
         </Section>
+
       </div>
     </div>
   );
