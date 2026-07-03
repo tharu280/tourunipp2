@@ -42,50 +42,40 @@ UNKNOWN_VALUES = {
 }
 
 FLIGHT_EXTRACTION_SYSTEM_PROMPT = """
-You are the Flight Intake Extractor for a Sri Lanka travel planner.
+You are the Gatekeeper and Flight Intake Extractor for a Sri Lanka travel planner.
+Your job is to filter out conversational chatter and extract flight-phase fields.
 
-Your only job is to extract flight-phase fields from the latest user message and
-conversation history. Do not write a chatbot reply. Do not ask questions.
+RULES FOR GATEKEEPING (is_valid_input):
+1. If the user says "Hi", "Hello", "Hey", or makes a conversational statement without travel details, set is_valid_input = False.
+2. If the user gives a vague update like "change it to 4 days" but misses key info required for the prompt, set is_valid_input = False.
+3. If is_valid_input = False, you MUST provide a friendly conversational_reply asking for the missing info (e.g. "Hi there! I'm your AI Sri Lanka guide. 🇱🇰 Where are you flying from?").
+4. If the user provides valid flight information (origin, date, passengers, budget, cabin), set is_valid_input = True.
 
-Extract only:
-1. flight_origin_input
-2. flight_origin
-3. flight_departure_date
-4. flight_passengers
-5. flight_cabin_class
-6. total_budget_lkr
-
-Rules:
-- The flight destination is fixed to Colombo / CMB. Never ask for or extract a flight destination.
-- If the user says Dubai, Doha, DXB, etc., capture the raw text in flight_origin_input.
-- Map obvious city/airport names to likely IATA codes in flight_origin.
-- If the latest message is short, use the assistant's previous question and chat history to decide
-  which flight field it answers.
-- Ignore Sri Lanka route details such as Colombo to Badulla. Those belong to the trip phase.
-- Leave unclear or missing values null. Do not invent.
+RULES FOR EXTRACTION (if is_valid_input is True):
+1. Extract flight_origin_input, flight_origin, flight_departure_date, flight_passengers, flight_cabin_class, total_budget_lkr.
+2. The flight destination is fixed to Colombo / CMB. Never extract it.
+3. Map obvious city/airport names to likely IATA codes in flight_origin.
+4. If the latest message is short, use the chat history to decide which flight field it answers.
+5. Leave unclear or missing values null. Do not invent.
 """
 
 TRIP_EXTRACTION_SYSTEM_PROMPT = """
-You are the Sri Lanka Trip Intake Extractor for a travel planner.
+You are the Gatekeeper and Trip Intake Extractor for a Sri Lanka travel planner.
+Your job is to filter out conversational chatter and extract trip-phase fields.
 
-Your only job is to extract Sri Lanka route fields from the latest user message and
-conversation history. Do not write a chatbot reply. Do not ask questions.
+RULES FOR GATEKEEPING (is_valid_input):
+1. If the user says "Hi", "Hello", "Hey", or makes a conversational statement without travel details, set is_valid_input = False.
+2. If the user gives a vague update like "I want to go" without a destination, set is_valid_input = False.
+3. If is_valid_input = False, you MUST provide a friendly conversational_reply asking for the missing info (e.g. "I'd love to help! Where in Sri Lanka do you want to go?").
+4. If the user provides valid trip information (origin, destination, duration), set is_valid_input = True.
 
-Extract only:
-1. origin
-2. destination
-3. duration
-
-Rules:
-- origin means the Sri Lanka trip start location, not the international flight origin.
-- destination means the Sri Lanka trip destination, not the flight destination.
-- The flight destination is fixed to Colombo / CMB and should not appear here.
-- Understand route phrases like "Colombo to Badulla", "from Colombo to Badulla",
-  "Kandy -> Galle", and "start in Colombo and go to Badulla".
-- If the latest message is short, use the assistant's previous question and chat history to decide
-  which trip field it answers.
-- Ignore flight details such as Dubai, passengers, cabin class, and flight date.
-- Leave unclear or missing values null. Do not invent.
+RULES FOR EXTRACTION (if is_valid_input is True):
+1. Extract origin, destination, duration.
+2. origin means the Sri Lanka trip start location, not the international flight origin.
+3. destination means the Sri Lanka trip destination.
+4. Understand route phrases like "Colombo to Badulla", "from Colombo to Badulla".
+5. Ignore flight details such as Dubai, passengers, cabin class, and flight date.
+6. Leave unclear or missing values null. Do not invent.
 """
 
 YES_HINTS = {
@@ -1059,20 +1049,21 @@ class FlightIntakeBot(IntakeBot):
         user_message: str,
         details: TripRequirements,
         history: list[ConversationTurn],
-    ) -> TripRequirements:
-        heuristic_requirements = self.extract_local(user_message=user_message, details=details)
-        if _has_flight_info(heuristic_requirements):
-            return heuristic_requirements
-        if not _find_flight_missing_fields(_merge_trip_requirements(details, heuristic_requirements)):
-            return heuristic_requirements
-
+    ) -> tuple[TripRequirements, object | None]:
         payload = self._build_chain_payload(
             details=details,
             history=history,
             user_message=user_message,
         )
-        llm_requirements = _flight_output_to_requirements(self._invoke_chain(payload))
-        return _merge_trip_requirements(llm_requirements, heuristic_requirements)
+        llm_output = self._invoke_chain(payload)
+        heuristic_requirements = self.extract_local(user_message=user_message, details=details)
+        
+        if llm_output:
+            llm_requirements = _flight_output_to_requirements(llm_output)
+            merged = _merge_trip_requirements(llm_requirements, heuristic_requirements)
+            return merged, llm_output
+            
+        return heuristic_requirements, None
 
 
 class TripIntakeBot(IntakeBot):
@@ -1098,20 +1089,21 @@ class TripIntakeBot(IntakeBot):
         user_message: str,
         details: TripRequirements,
         history: list[ConversationTurn],
-    ) -> TripRequirements:
-        heuristic_requirements = self.extract_local(user_message=user_message, details=details)
-        if _has_trip_info(heuristic_requirements):
-            return heuristic_requirements
-        if not _find_trip_missing_fields(_merge_trip_requirements(details, heuristic_requirements)):
-            return heuristic_requirements
-
+    ) -> tuple[TripRequirements, object | None]:
         payload = self._build_chain_payload(
             details=details,
             history=history,
             user_message=user_message,
         )
-        llm_requirements = _trip_output_to_requirements(self._invoke_chain(payload))
-        return _merge_trip_requirements(llm_requirements, heuristic_requirements)
+        llm_output = self._invoke_chain(payload)
+        heuristic_requirements = self.extract_local(user_message=user_message, details=details)
+        
+        if llm_output:
+            llm_requirements = _trip_output_to_requirements(llm_output)
+            merged = _merge_trip_requirements(llm_requirements, heuristic_requirements)
+            return merged, llm_output
+            
+        return heuristic_requirements, None
 
 
 class TravelIntakeService:
@@ -1174,53 +1166,64 @@ class TravelIntakeService:
         current_missing_fields = _find_missing_fields(active_session.trip_requirements)
         current_phase = _current_intake_stage(active_session.trip_requirements)
 
-        if _looks_like_greeting(user_message) and not active_session.history:
-            assistant_reply = _format_greeting_reply()
-            turn = ChatTurnResult(
-                assistant_reply=assistant_reply,
-                extracted_trip_requirements=active_session.trip_requirements,
-                active_phase=current_phase,
-                missing_fields=current_missing_fields,
-                is_complete=not current_missing_fields,
-            )
-            updated_session = ChatSessionState(
-                trip_requirements=active_session.trip_requirements,
-                history=[
-                    *active_session.history,
-                    ConversationTurn(role="user", content=user_message),
-                    ConversationTurn(role="assistant", content=assistant_reply),
-                ],
-                active_phase=current_phase,
-            )
-            return ChatResponse(session=updated_session, turn=turn)
-
         merged_requirements = active_session.trip_requirements
         started_phase = current_phase
 
         if _find_flight_missing_fields(merged_requirements):
-            flight_requirements = self._flight_bot.extract(
+            flight_requirements, flight_llm_out = self._flight_bot.extract(
                 user_message=user_message,
                 details=merged_requirements,
                 history=active_session.history,
             )
+            if flight_llm_out and not getattr(flight_llm_out, "is_valid_input", True):
+                assistant_reply = getattr(flight_llm_out, "conversational_reply", "I need a bit more info!") or "I need a bit more info!"
+                return ChatResponse(
+                    session=ChatSessionState(
+                        trip_requirements=active_session.trip_requirements,
+                        history=[
+                            *active_session.history,
+                            ConversationTurn(role="user", content=user_message),
+                            ConversationTurn(role="assistant", content=assistant_reply),
+                        ],
+                        active_phase=current_phase,
+                    ),
+                    turn=ChatTurnResult(
+                        assistant_reply=assistant_reply,
+                        extracted_trip_requirements=active_session.trip_requirements,
+                        active_phase=current_phase,
+                        missing_fields=current_missing_fields,
+                        is_complete=not current_missing_fields,
+                    )
+                )
             merged_requirements = _merge_trip_requirements(merged_requirements, flight_requirements)
 
-        trip_hint = self._trip_bot.extract_local(
-            user_message=user_message,
-            details=merged_requirements,
-        )
-        if _has_trip_info(trip_hint):
-            merged_requirements = _merge_trip_requirements(merged_requirements, trip_hint)
-        elif (
-            started_phase != "flight"
-            and not _find_flight_missing_fields(merged_requirements)
-            and _find_trip_missing_fields(merged_requirements)
-        ):
-            trip_requirements = self._trip_bot.extract(
+        # Check trip info if flight is complete or bypassed
+        if not _find_flight_missing_fields(merged_requirements) and _find_trip_missing_fields(merged_requirements):
+            trip_requirements, trip_llm_out = self._trip_bot.extract(
                 user_message=user_message,
                 details=merged_requirements,
                 history=active_session.history,
             )
+            if trip_llm_out and not getattr(trip_llm_out, "is_valid_input", True):
+                assistant_reply = getattr(trip_llm_out, "conversational_reply", "I need a bit more info!") or "I need a bit more info!"
+                return ChatResponse(
+                    session=ChatSessionState(
+                        trip_requirements=active_session.trip_requirements,
+                        history=[
+                            *active_session.history,
+                            ConversationTurn(role="user", content=user_message),
+                            ConversationTurn(role="assistant", content=assistant_reply),
+                        ],
+                        active_phase=current_phase,
+                    ),
+                    turn=ChatTurnResult(
+                        assistant_reply=assistant_reply,
+                        extracted_trip_requirements=active_session.trip_requirements,
+                        active_phase=current_phase,
+                        missing_fields=current_missing_fields,
+                        is_complete=not current_missing_fields,
+                    )
+                )
             merged_requirements = _merge_trip_requirements(merged_requirements, trip_requirements)
 
         merged_requirements = _require_flights(merged_requirements)

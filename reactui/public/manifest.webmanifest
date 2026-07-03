@@ -1,12 +1,12 @@
 {
-  "name": "RouteUni — Sri Lanka Trip Planner",
-  "short_name": "RouteUni",
-  "description": "AI-powered Sri Lanka trip planner with flights, routes, crowd intelligence, and emotion check-ins.",
+  "name": "TourUni — Sri Lanka AI Travel Planner",
+  "short_name": "TourUni",
+  "description": "Your AI travel assistant for Sri Lanka. Flights, routes, stays, crowd intelligence and weather.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080e1a",
-  "theme_color": "#080e1a",
-  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#075F55",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/pwa-icon.svg",
@@ -14,5 +14,7 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["travel", "lifestyle"],
+  "lang": "en"
 }

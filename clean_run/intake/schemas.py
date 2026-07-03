@@ -23,6 +23,14 @@ class TripRequirements(BaseModel):
 
 
 class FlightIntakeOutput(BaseModel):
+    is_valid_input: bool = Field(
+        default=True,
+        description="True if the user provided travel details or answered a question. False if the user just said a greeting (like 'hi', 'hey') or made a vague statement.",
+    )
+    conversational_reply: str | None = Field(
+        default=None,
+        description="If is_valid_input is False, write a polite conversational response asking for the missing information.",
+    )
     flight_origin_input: str | None = Field(
         default=None,
         description="The city or airport the user will fly from, e.g. Dubai or DXB.",
@@ -48,6 +56,14 @@ class FlightIntakeOutput(BaseModel):
 
 
 class TripIntakeOutput(BaseModel):
+    is_valid_input: bool = Field(
+        default=True,
+        description="True if the user provided travel details or answered a question. False if the user just said a greeting (like 'hi', 'hey') or made a vague statement.",
+    )
+    conversational_reply: str | None = Field(
+        default=None,
+        description="If is_valid_input is False, write a polite conversational response asking for the missing information.",
+    )
     origin: str | None = Field(default=None, description="Sri Lanka trip start location.")
     destination: str | None = Field(default=None, description="Sri Lanka trip destination.")
     duration: str | None = Field(default=None, description="Trip duration, e.g. 4 days.")
