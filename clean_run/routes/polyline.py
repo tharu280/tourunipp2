@@ -123,3 +123,55 @@ def summarize_geometry(encoded_polyline: str) -> dict[str, Any]:
         "decoded_points": decoded_points,
         "cumulative_distances_m": cumulative,
     }
+
+
+# Approximate metres per degree at Sri Lanka's latitude (~7°N).
+# Used only for corridor deviation; haversine_meters is used for exact distances.
+_M_PER_DEG_LAT: float = 111_320.0
+_M_PER_DEG_LNG: float = 96_050.0  # 111_320 * cos(7°)
+
+
+def max_corridor_deviation_m(
+    route_points: list[dict[str, float]],
+    *,
+    origin: dict[str, float],
+    destination: dict[str, float],
+) -> float:
+    """Return the maximum perpendicular deviation (metres) of any route point
+    from the direct origin-destination corridor.
+
+    Uses a 2D approximation in scaled lat/lng space, which is accurate enough
+    for Sri Lanka (error < 2 % for distances under 500 km).
+
+    Returns 0.0 if fewer than 2 points are given or origin == destination.
+    """
+    if not route_points or not origin or not destination:
+        return 0.0
+
+    # Convert to approximate metres in a flat 2D plane.
+    ax = origin["lat"] * _M_PER_DEG_LAT
+    ay = origin["lng"] * _M_PER_DEG_LNG
+    bx = destination["lat"] * _M_PER_DEG_LAT
+    by = destination["lng"] * _M_PER_DEG_LNG
+
+    dx = bx - ax
+    dy = by - ay
+    segment_len_sq = dx * dx + dy * dy
+
+    if segment_len_sq < 1.0:
+        # Origin and destination are essentially the same point.
+        return 0.0
+
+    max_deviation = 0.0
+    for pt in route_points:
+        px = pt["lat"] * _M_PER_DEG_LAT
+        py = pt["lng"] * _M_PER_DEG_LNG
+
+        # Perpendicular distance from point P to the infinite line through A→B.
+        cross = abs(dx * (ay - py) - dy * (ax - px))
+        perp_dist = cross / math.sqrt(segment_len_sq)
+
+        if perp_dist > max_deviation:
+            max_deviation = perp_dist
+
+    return max_deviation
