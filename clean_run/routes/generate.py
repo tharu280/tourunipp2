@@ -8,6 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from clean_run.integrations.google_routes_client import build_route_profiles, compute_routes
 from clean_run.routes.polyline import haversine_meters
+from clean_run.routes.polyline import max_corridor_deviation_m
 from clean_run.routes.polyline import summarize_geometry
 from clean_run.routes.segments import build_day_segments
 
@@ -123,31 +124,83 @@ def _route_duration_seconds(route: RouteProfile) -> int:
     return _parse_duration_seconds(route.duration) or 0
 
 
+def _corridor_deviation_m(
+    route: RouteProfile,
+    *,
+    origin: dict[str, float],
+    destination: dict[str, float],
+) -> float:
+    """Return the maximum perpendicular deviation (metres) of this route's
+    sampled points from the direct origin-destination corridor.
+    Returns 0.0 when no sampled points are available.
+    """
+    if not route.sampled_points:
+        return 0.0
+    return max_corridor_deviation_m(
+        route.sampled_points,
+        origin=origin,
+        destination=destination,
+    )
+
+
 def _select_recommended_route(
     routes: list[RouteProfile],
     *,
     origin: dict[str, float],
     destination: dict[str, float],
 ) -> RouteProfile | None:
+    """Select the shortest sane Google driving route.
+
+    Sanity filters (applied in order):
+    1. Distance relative cap  – reject routes > 20% longer than the shortest
+       returned option (protects when multiple routes are available).
+    2. Distance absolute cap  – reject routes > 1.80× the straight-line
+       origin-destination distance (protects when only one route is returned
+       and it's a huge detour).
+    3. Corridor geometry cap  – reject routes whose points stray further than
+       max(80 km, straight_line * 55%) sideways from the O→D corridor
+       (catches routes that go in the physically wrong direction, e.g.
+       Colombo→Badulla via Galle).
+
+    If every route is rejected by all three filters, fall back to the globally
+    shortest route so we always return something.
+
+    Duration is only used as a tie-breaker when distances are equal.
+    """
     if not routes:
         return None
 
     straight_line_m = haversine_meters(origin, destination) if origin and destination else 0.0
     distances = [float(route.distance_meters or route.geometry_distance_m or 0.0) for route in routes]
-    positive_distances = [distance for distance in distances if distance > 0]
+    positive_distances = [d for d in distances if d > 0]
     shortest_distance = min(positive_distances) if positive_distances else 0.0
 
-    # Google can return a faster highway-heavy route that makes a huge geographic detour.
-    # For a tourist itinerary, prefer the shortest sane corridor, then use duration as a tiebreaker.
-    sane_distance_cap = shortest_distance * 1.22 if shortest_distance else float("inf")
-    if straight_line_m:
-        sane_distance_cap = min(sane_distance_cap, straight_line_m * 1.85)
+    # --- Filter 1 & 2: distance caps ---
+    # Relative cap: within 20% of the shortest returned route.
+    relative_cap = shortest_distance * 1.20 if shortest_distance else float("inf")
+    # Absolute cap: no more than 1.80× the straight-line distance.
+    absolute_cap = straight_line_m * 1.80 if straight_line_m else float("inf")
+    # Use the stricter of the two caps.
+    distance_cap = min(relative_cap, absolute_cap)
 
-    candidates = [
-        route
-        for route in routes
-        if float(route.distance_meters or route.geometry_distance_m or 0.0) <= sane_distance_cap
-    ] or routes
+    # --- Filter 3: corridor geometry cap ---
+    # Allow up to 55% of the straight-line distance as perpendicular deviation,
+    # with a floor of 80 km so short trips are not overly restricted.
+    corridor_cap_m = max(80_000.0, straight_line_m * 0.55) if straight_line_m else float("inf")
+
+    def _is_sane(route: RouteProfile) -> bool:
+        dist = float(route.distance_meters or route.geometry_distance_m or 0.0)
+        if dist > distance_cap:
+            return False
+        if _corridor_deviation_m(route, origin=origin, destination=destination) > corridor_cap_m:
+            return False
+        return True
+
+    candidates = [route for route in routes if _is_sane(route)]
+
+    # Fallback: if all routes fail the filters, pick the shortest overall.
+    if not candidates:
+        candidates = routes
 
     return min(
         candidates,
