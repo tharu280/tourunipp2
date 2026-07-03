@@ -6,7 +6,11 @@ import BudgetSummary from "./BudgetSummary";
 import CrowdIntelligenceSection from "./CrowdIntelligenceSection";
 import HeatmapSection from "./HeatmapSection";
 import AlertsSection from "./AlertsSection";
-import { getOverallConditions, titleCase } from "../helpers";
+import {
+  getOverallConditions,
+  mergePlanWithDashboard,
+  titleCase,
+} from "../helpers";
 
 /* ── SVG Icons ─────────────────────────────────────────────────── */
 function IconBack() {
@@ -71,20 +75,39 @@ export default function PlanDashboard({
   onReset,
 }) {
   const req = session?.trip_requirements || {};
+  const viewPlan = mergePlanWithDashboard(plan, dashboardData);
+  const viewReq = viewPlan?.trip_requirements || req;
   const passengers = Number(req.flight_passengers || 1);
-  const totalBudget = req.total_budget_lkr;
+  const totalBudget =
+    viewReq.total_budget_lkr ||
+    viewPlan?.budget_summary?.total_budget_lkr ||
+    req.total_budget_lkr;
 
   // Trip header info
-  const origin = plan?.origin_resolved?.name || req.origin || "Start";
-  const destination = plan?.destination_resolved?.name || req.destination || "Destination";
-  const duration = plan?.trip_dates?.length || req.duration || "—";
-  const startDate = req.flight_departure_date || plan?.start_date;
+  const origin = viewPlan?.origin_resolved?.name || viewReq.origin || "Start";
+  const destination =
+    viewPlan?.destination_resolved?.name || viewReq.destination || "Destination";
+  const tripDates = viewPlan?.trip_dates || viewPlan?.plan_overview?.trip_dates || [];
+  const durationValue =
+    viewPlan?.plan_overview?.trip_days ||
+    (Array.isArray(tripDates) && tripDates.length ? tripDates.length : null);
+  const durationLabel =
+    durationValue ? `${durationValue} days` : viewReq.duration || "—";
+  const startDate =
+    tripDates[0] ||
+    viewReq.flight_departure_date ||
+    viewPlan?.start_date;
+  const endDate = tripDates.length > 1 ? tripDates[tripDates.length - 1] : null;
   const dateRange = startDate
-    ? `${new Date(startDate).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}`
+    ? `${new Date(startDate).toLocaleDateString("en-US", { day: "numeric", month: "short" })}${
+        endDate
+          ? ` – ${new Date(endDate).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}`
+          : ` ${new Date(startDate).getFullYear()}`
+      }`
     : "";
 
   // Conditions
-  const conditions = getOverallConditions(plan);
+  const conditions = getOverallConditions(viewPlan);
 
   return (
     <div className="dashboard-screen" id="screen-dashboard">
@@ -100,9 +123,9 @@ export default function PlanDashboard({
         </button>
         <div className="dashboard-nav-center">
           <div className="dashboard-nav-title">Your trip to Sri Lanka</div>
-          {(duration || dateRange) && (
+          {(durationLabel || dateRange) && (
             <div className="dashboard-nav-sub">
-              {duration && `${duration} days`}{duration && dateRange ? " · " : ""}{dateRange}
+              {durationLabel}{durationLabel && dateRange ? " · " : ""}{dateRange}
             </div>
           )}
         </div>
@@ -114,7 +137,7 @@ export default function PlanDashboard({
             if (navigator.share) {
               navigator.share({
                 title: "My Sri Lanka Trip — TourUni",
-                text: `${origin} → ${destination}, ${duration} days`,
+                text: `${origin} → ${destination}, ${durationLabel}`,
                 url: window.location.href,
               }).catch(() => {});
             }
@@ -126,7 +149,7 @@ export default function PlanDashboard({
 
       <div className="dashboard-content">
         {/* Route Map */}
-        <RouteMap plan={plan} />
+        <RouteMap plan={viewPlan} />
 
         {/* Overall Conditions */}
         <div className="conditions-card">
@@ -153,23 +176,27 @@ export default function PlanDashboard({
 
         {/* Itinerary */}
         <Section title="Itinerary" linkText="View full itinerary" id="itinerary-section">
-          <ItinerarySection plan={plan} />
+          <ItinerarySection plan={viewPlan} />
         </Section>
 
         {/* Accommodation */}
         <Section title="Accommodation" linkText="View all" id="accommodation-section">
-          <AccommodationSection plan={plan} />
+          <AccommodationSection plan={viewPlan} />
         </Section>
 
         {/* Flight */}
         <Section title="Flight" id="flight-section">
-          <FlightSummary flight={selectedFlight} passengers={passengers} />
+          <FlightSummary
+            flight={selectedFlight}
+            passengers={passengers}
+            plan={viewPlan}
+          />
         </Section>
 
         {/* Budget */}
         <Section title="Budget summary" id="budget-section">
           <BudgetSummary
-            plan={plan}
+            plan={viewPlan}
             selectedFlight={selectedFlight}
             totalBudgetLkr={totalBudget}
           />
@@ -177,17 +204,17 @@ export default function PlanDashboard({
 
         {/* Crowd Intelligence */}
         <Section title="Crowd intelligence" id="crowd-section">
-          <CrowdIntelligenceSection plan={plan} dashboardData={dashboardData} />
+          <CrowdIntelligenceSection plan={viewPlan} dashboardData={dashboardData} />
         </Section>
 
         {/* Heatmaps */}
         <Section title="Pressure heatmaps" id="heatmap-section">
-          <HeatmapSection plan={plan} dashboardData={dashboardData} />
+          <HeatmapSection plan={viewPlan} dashboardData={dashboardData} />
         </Section>
 
         {/* Alerts */}
         <Section title="Alerts &amp; advisories" id="alerts-section">
-          <AlertsSection plan={plan} />
+          <AlertsSection plan={viewPlan} />
         </Section>
       </div>
     </div>

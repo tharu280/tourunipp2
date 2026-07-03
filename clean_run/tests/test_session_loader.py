@@ -56,6 +56,14 @@ def _sample_document() -> dict:
                 "route_labels": ["DEFAULT_ROUTE"],
                 "distance_meters": 115000,
                 "duration": "10800s",
+                "polyline": "encoded-road-polyline",
+                "geometry_point_count": 42,
+                "geometry_distance_m": 116000.0,
+                "sampled_points": [
+                    {"lat": 6.9271, "lng": 79.8612},
+                    {"lat": 7.1282, "lng": 80.0124},
+                    {"lat": 7.2906, "lng": 80.6337},
+                ],
                 "road_alerts": {"risk_level": "medium"},
                 "weather_summary": {"risk_level": "high"},
                 "crowd_signals": {"risk_level": "high"},
@@ -66,6 +74,11 @@ def _sample_document() -> dict:
                         "day_label": "Day 1",
                         "segment_distance_m": 50000,
                         "segment_duration_seconds": 3600,
+                        "segment_path_points": [
+                            {"lat": 6.9271, "lng": 79.8612},
+                            {"lat": 7.0, "lng": 80.1},
+                        ],
+                        "start_point": {"lat": 6.9271, "lng": 79.8612},
                         "mid_point": {"lat": 6.9, "lng": 79.9},
                         "end_point": {"lat": 7.0, "lng": 80.1},
                         "top_attractions": [{"display_name": "Gangaramaya Temple"}],
@@ -123,6 +136,12 @@ class SessionLoaderTests(unittest.TestCase):
         assert payload is not None
         self.assertEqual(payload["session_id"], "session-123")
         self.assertEqual(payload["route"]["recommended_route"]["route_id"], "route-1")
+        self.assertEqual(payload["route"]["recommended_route"]["geometry_point_count"], 42)
+        self.assertEqual(len(payload["route"]["recommended_route"]["sampled_points"]), 3)
+        self.assertEqual(
+            payload["route"]["recommended_route"]["segments"][0]["segment_path_points"][0]["lat"],
+            6.9271,
+        )
         self.assertEqual(payload["budget"]["total_budget_lkr"], 300000)
         self.assertEqual(payload["transport_cost"]["estimated_total_lkr"], 560)
         self.assertEqual(payload["flight"]["cheapest_result"]["price"], 303)

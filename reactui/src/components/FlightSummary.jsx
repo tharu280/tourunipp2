@@ -1,4 +1,4 @@
-import { getBookingLink } from "../helpers";
+import { formatMoney, getBookingLink } from "../helpers";
 
 function IconExternalLink() {
   return (
@@ -10,8 +10,48 @@ function IconExternalLink() {
   );
 }
 
-export default function FlightSummary({ flight, passengers }) {
-  if (!flight) return null;
+export default function FlightSummary({ flight, passengers, plan }) {
+  if (!flight) {
+    const budget = plan?.budget_summary || {};
+    const estimate =
+      budget.selected_flight_budget_lkr_estimated ||
+      budget.flight_budget_lkr ||
+      budget.flight_estimate_lkr;
+    const sourcePrice = budget.selected_flight_price;
+    const sourceCurrency = budget.selected_flight_currency;
+
+    if (!estimate && !sourcePrice) return null;
+
+    return (
+      <div className="flight-summary-card" id="section-flight-summary">
+        <div className="fs-route-row">
+          <div>
+            <div className="fs-airline">Selected flight estimate</div>
+            <div className="fs-route">Dubai → Colombo</div>
+            <div className="fs-date">Saved from the trip budget handoff</div>
+          </div>
+          <div className="fs-price-col">
+            {sourcePrice && sourceCurrency ? (
+              <div className="fs-price">{sourceCurrency} {Number(sourcePrice).toLocaleString()}</div>
+            ) : null}
+            {estimate ? (
+              <div className="fs-price-note">{formatMoney(estimate)}</div>
+            ) : null}
+          </div>
+        </div>
+        <button
+          className="fs-view-btn"
+          type="button"
+          disabled
+          style={{ opacity: 0.5 }}
+          aria-label="No booking link available"
+        >
+          Booking link unavailable
+          <IconExternalLink />
+        </button>
+      </div>
+    );
+  }
 
   const airline = flight.airline || flight.airline_code || "Flight";
   const price = flight.price;

@@ -159,39 +159,151 @@ export function getSessionId(plan) {
   return plan?.session_id || plan?.session_storage?.session_id || null;
 }
 
+export function mergePlanWithDashboard(plan, dashboardData) {
+  if (!dashboardData) return plan || {};
+
+  const route = dashboardData.route || {};
+  const recommendedRoute = route.recommended_route || {};
+
+  return {
+    ...(plan || {}),
+    dashboard: dashboardData,
+    session_id: dashboardData.session_id || plan?.session_id,
+    trip_requirements:
+      dashboardData.trip_requirements || plan?.trip_requirements,
+    plan_overview: dashboardData.plan_overview || plan?.plan_overview,
+    trip_dates:
+      dashboardData.plan_overview?.trip_dates ||
+      plan?.trip_dates,
+    budget_summary:
+      dashboardData.budget ||
+      plan?.budget_summary,
+    package_explanation:
+      dashboardData.package_explanation ||
+      plan?.package_explanation,
+    transport_cost:
+      dashboardData.transport_cost ||
+      plan?.transport_cost,
+    route_data:
+      route.route_data ||
+      recommendedRoute.route_data ||
+      plan?.route_data,
+    recommended_route:
+      recommendedRoute ||
+      plan?.recommended_route,
+    origin_resolved:
+      route.origin_resolved ||
+      plan?.origin_resolved,
+    destination_resolved:
+      route.destination_resolved ||
+      plan?.destination_resolved,
+    crowd:
+      dashboardData.crowd ||
+      plan?.crowd,
+    crowd_signals:
+      dashboardData.crowd ||
+      recommendedRoute.crowd_signals ||
+      plan?.crowd_signals,
+    weather_summary:
+      recommendedRoute.weather_summary ||
+      plan?.weather_summary,
+    weather_data:
+      dashboardData.weather_data ||
+      recommendedRoute.weather_data ||
+      plan?.weather_data,
+    road_alerts:
+      dashboardData.road_alerts ||
+      recommendedRoute.road_alerts ||
+      plan?.road_alerts,
+    itinerary:
+      dashboardData.itinerary ||
+      plan?.itinerary,
+    dashboard_cache:
+      dashboardData.dashboard_cache ||
+      plan?.dashboard_cache,
+  };
+}
+
 /* ── Route / Map data ────────────────────────────────────────────── */
 
 export function getRouteSegments(plan) {
   return (
     plan?.route_data?.segments ||
+    plan?.route?.route_data?.segments ||
     plan?.recommended_route?.segments ||
     plan?.recommended_route?.route_data?.segments ||
+    plan?.route?.recommended_route?.segments ||
+    plan?.route?.recommended_route?.route_data?.segments ||
     []
   );
 }
 
+function toLatLng(point) {
+  const lat = Number(point?.lat ?? point?.latitude);
+  const lng = Number(point?.lng ?? point?.longitude);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  return [lat, lng];
+}
+
+function pushUniquePoint(points, point) {
+  const latLng = toLatLng(point);
+  if (!latLng) return;
+  const previous = points[points.length - 1];
+  if (previous && previous[0] === latLng[0] && previous[1] === latLng[1]) {
+    return;
+  }
+  points.push(latLng);
+}
+
+function collectPath(points, path) {
+  if (!Array.isArray(path)) return;
+  for (const point of path) {
+    pushUniquePoint(points, point);
+  }
+}
+
 export function getPolyline(plan) {
+  const realRouteCandidates = [
+    plan?.route_data?.sampled_points,
+    plan?.recommended_route?.sampled_points,
+    plan?.recommended_route?.route_data?.sampled_points,
+    plan?.route?.route_data?.sampled_points,
+    plan?.route?.recommended_route?.sampled_points,
+    plan?.route?.recommended_route?.route_data?.sampled_points,
+  ];
+
+  for (const candidate of realRouteCandidates) {
+    const routePoints = [];
+    collectPath(routePoints, candidate);
+    if (routePoints.length > 1) return routePoints;
+  }
+
   const points = [];
   for (const segment of getRouteSegments(plan)) {
+    collectPath(points, segment?.segment_path_points);
+  }
+  if (points.length > 1) return points;
+
+  for (const segment of getRouteSegments(plan)) {
     for (const key of ["start_point", "mid_point", "end_point"]) {
-      const point = segment?.[key];
-      if (point?.lat && point?.lng) points.push([point.lat, point.lng]);
+      pushUniquePoint(points, segment?.[key]);
     }
   }
   if (!points.length) {
-    const origin = plan?.origin_resolved;
-    const destination = plan?.destination_resolved;
-    if (origin?.lat && origin?.lng) points.push([origin.lat, origin.lng]);
-    if (destination?.lat && destination?.lng)
-      points.push([destination.lat, destination.lng]);
+    const origin = plan?.origin_resolved || plan?.route?.origin_resolved;
+    const destination =
+      plan?.destination_resolved || plan?.route?.destination_resolved;
+    pushUniquePoint(points, origin);
+    pushUniquePoint(points, destination);
   }
   return points;
 }
 
 export function getStops(plan) {
   const stops = [];
-  const origin = plan?.origin_resolved;
-  const destination = plan?.destination_resolved;
+  const origin = plan?.origin_resolved || plan?.route?.origin_resolved;
+  const destination =
+    plan?.destination_resolved || plan?.route?.destination_resolved;
   if (origin?.lat && origin?.lng)
     stops.push({ name: origin.name || "Start", point: origin });
   for (const segment of getRouteSegments(plan)) {
@@ -320,6 +432,7 @@ export function getBudgetSummary(plan, selectedFlight, totalBudgetLkr) {
   const handoff = estimateFlightHandoff(selectedFlight, totalBudgetLkr);
 
   const flightLkr =
+    budget.selected_flight_budget_lkr_estimated ||
     budget.flight_budget_lkr ||
     budget.flight_estimate_lkr ||
     handoff.estimatedFlightLkr;
@@ -398,6 +511,7 @@ export function getLocationHeatmap(plan, dashboardData) {
 export function getCrowdSummary(plan, dashboardData) {
   const crowd =
     dashboardData?.crowd ||
+    plan?.crowd ||
     plan?.crowd_signals ||
     {};
   return {
@@ -427,6 +541,10 @@ export function getRoadTrafficSummary(plan) {
 
 export function getWarnings(plan) {
   const warnings = [];
+  for (const item of plan?.plan_overview?.warnings || []) {
+    const text = String(item);
+    warnings.push({ title: "Planning note", body: text.slice(0, 220) });
+  }
   for (const item of plan?.warnings || []) {
     const text = String(item);
     if (
@@ -438,7 +556,8 @@ export function getWarnings(plan) {
     warnings.push({ title: "Notice", body: text.slice(0, 220) });
   }
   const weather = plan?.weather_data || {};
-  if (weather.summary || weather.risk_level) {
+  const weatherSummary = plan?.weather_summary || weather.summary || {};
+  if (weatherSummary || weather.risk_level) {
     const summary = weather.summary;
     const unavailable =
       summary?.risk_level === "unknown" &&
@@ -449,7 +568,11 @@ export function getWarnings(plan) {
       title: "Weather",
       body: unavailable
         ? "Live forecast is outside provider range for some trip dates."
-        : summary?.text || summary?.risk_level || "Weather data available.",
+        : weatherSummary?.text ||
+          weatherSummary?.summary ||
+          weatherSummary?.risk_level ||
+          weather.risk_level ||
+          "Weather data available.",
       details: (weather.locations || [])
         .slice(0, 3)
         .map(
@@ -467,7 +590,7 @@ export function getWarnings(plan) {
         `${titleCase(road.risk_level || "unknown")} road conditions. ${road.total_near_route ?? 0} route-side alerts.`,
     });
   }
-  const crowd = plan?.crowd_signals || {};
+  const crowd = plan?.crowd || plan?.crowd_signals || {};
   if (crowd.helper_summary || crowd.risk_level) {
     warnings.push({
       title: "Crowd",
@@ -483,12 +606,18 @@ export function getWarnings(plan) {
 /* ── Overall Conditions ──────────────────────────────────────────── */
 
 export function getOverallConditions(plan) {
-  const crowd = plan?.crowd_signals || {};
-  const weather = plan?.weather_data?.summary || {};
+  const crowd = plan?.crowd || plan?.crowd_signals || {};
+  const weather =
+    plan?.weather_summary ||
+    plan?.weather_data?.summary ||
+    {};
   const road = plan?.road_alerts || {};
   return {
     crowd: crowd.risk_level || "unknown",
-    weather: weather.risk_level || plan?.weather_data?.risk_level || "unknown",
+    weather:
+      weather.risk_level ||
+      plan?.weather_data?.risk_level ||
+      "unknown",
     roads: road.risk_level || "unknown",
     overall:
       crowd.risk_level === "low" &&

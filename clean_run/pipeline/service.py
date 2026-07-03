@@ -181,6 +181,10 @@ class CleanRunPipelineService:
         route_data = dict(refreshed_plan.get("route_data") or {})
         route_data["segments"] = recommended_route.get("segments", [])
         route_data["traffic_data"] = recommended_route.get("traffic_data", {})
+        route_data["polyline"] = recommended_route.get("polyline")
+        route_data["geometry_point_count"] = recommended_route.get("geometry_point_count", 0)
+        route_data["geometry_distance_m"] = recommended_route.get("geometry_distance_m", 0.0)
+        route_data["sampled_points"] = recommended_route.get("sampled_points", [])
         refreshed_plan["route_data"] = route_data
         refreshed_plan["package_explanation"] = build_package_explanation(refreshed_plan)
 

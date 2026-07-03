@@ -3,9 +3,9 @@ import { getTimeHeatmap, getLocationHeatmap, titleCase, pressureLevel } from "..
 function levelClass(level) {
   if (!level) return "unknown";
   const l = String(level).toLowerCase();
-  if (l === "low") return "low";
-  if (l === "medium" || l === "moderate") return "medium";
-  if (l === "high") return "high";
+  if (l === "low" || l === "best") return "low";
+  if (l === "medium" || l === "moderate" || l === "good") return "medium";
+  if (l === "high" || l === "bad") return "high";
   return "unknown";
 }
 
@@ -22,6 +22,16 @@ export default function HeatmapSection({ plan, dashboardData }) {
           {timeRows.map((row, i) => {
             const cls = levelClass(row.level || pressureLevel(row.score));
             const score = row.score != null ? Number(row.score).toFixed(0) : null;
+            const windowLabel =
+              row.window ||
+              row.slot_label ||
+              row.bestWindow?.label ||
+              row.best_window?.label ||
+              null;
+            const metaParts = [
+              windowLabel ? titleCase(windowLabel) : null,
+              row.corridor || "Route",
+            ].filter(Boolean);
             return (
               <div
                 key={`time-${i}`}
@@ -32,11 +42,15 @@ export default function HeatmapSection({ plan, dashboardData }) {
                   {row.date ? new Date(row.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : `Day ${row.day}`}
                 </div>
                 <div className="heat-info">
-                  <div className="heat-corridor">{row.corridor || "Route"}</div>
-                  {(row.bestWindow || row.avoidWindow) && (
+                  <div className="heat-corridor">{metaParts.join(" · ")}</div>
+                  {(row.bestWindow || row.avoidWindow || row.best_window || row.avoid_window) && (
                     <div className="heat-windows">
-                      {row.bestWindow?.label ? `Best: ${titleCase(row.bestWindow.label)}` : ""}
-                      {row.avoidWindow?.label ? ` · Avoid: ${titleCase(row.avoidWindow.label)}` : ""}
+                      {(row.bestWindow || row.best_window)?.label
+                        ? `Best: ${titleCase((row.bestWindow || row.best_window).label)}`
+                        : ""}
+                      {(row.avoidWindow || row.avoid_window)?.label
+                        ? ` · Avoid: ${titleCase((row.avoidWindow || row.avoid_window).label)}`
+                        : ""}
                     </div>
                   )}
                 </div>

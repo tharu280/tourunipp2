@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import GetStarted from "./components/GetStarted";
 import ChatIntake from "./components/ChatIntake";
@@ -63,6 +63,38 @@ export default function App() {
     const opts = normalizeFlightOptions(flightPlan);
     return opts[selectedFlightIdx] || opts[0] || null;
   }, [flightPlan, selectedFlightIdx]);
+
+  useEffect(() => {
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    if (!sessionId) return;
+
+    let cancelled = false;
+    async function loadDashboardSession() {
+      setScreen("sessionLoading");
+      setError("");
+      try {
+        const dash = await dashboardApi(sessionId);
+        if (cancelled) return;
+        setDashboardData(dash);
+        setSession({ trip_requirements: dash.trip_requirements || {} });
+        setPlan({
+          session_id: dash.session_id,
+          trip_requirements: dash.trip_requirements || {},
+          plan_overview: dash.plan_overview || {},
+        });
+        setScreen("results");
+      } catch (err) {
+        if (cancelled) return;
+        setError(err.message);
+        setScreen("welcome");
+      }
+    }
+
+    loadDashboardSession();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   /* ── Helpers ────────────────────────────────────────────────── */
   function reset() {
@@ -250,6 +282,16 @@ export default function App() {
         title="Building your route plan…"
         detail="Selecting routes, stays, crowd windows, weather signals, and budget split."
         steps={["Route selection", "Hotel ranking", "Crowd heatmaps", "Itinerary"]}
+      />
+    );
+  }
+
+  if (screen === "sessionLoading") {
+    return (
+      <LoadingState
+        title="Opening your saved route…"
+        detail="Loading the itinerary, crowd signals, map, and budget dashboard."
+        steps={["Session", "Route", "Crowd", "Map"]}
       />
     );
   }

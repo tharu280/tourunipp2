@@ -703,6 +703,44 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   gap: 24px; /* More spacing between sections */
 }
 
+/* Route Map */
+.map-card {
+  position: relative;
+  height: clamp(260px, 42dvh, 380px);
+  min-height: 260px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: linear-gradient(135deg, #dcefe8, #eef7f3);
+  box-shadow: var(--shadow-card);
+  isolation: isolate;
+}
+
+.map-card .leaflet-container {
+  height: 100%;
+  width: 100%;
+  font-family: inherit;
+  background: transparent;
+}
+
+.map-card .leaflet-control-container {
+  display: none;
+}
+
+.map-card .leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
+}
+
+.map-pin {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 999px;
+  background: var(--brand-primary);
+  border: 3px solid white;
+  box-shadow: 0 6px 16px rgba(7, 95, 85, 0.35);
+}
+
 /* Dashboard Grouped Cards */
 .d-card {
   background: var(--ios-surface);
@@ -940,6 +978,101 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 }
 .fs-view-btn:active { transform: scale(0.97); }
 
+/* Crowd Intelligence */
+#section-crowd {
+  padding: 0 20px 20px;
+}
+
+.crowd-risk-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--ios-bg);
+  margin-bottom: 14px;
+}
+
+.crowd-risk-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.crowd-risk-badge {
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--text-secondary);
+  background: rgba(107, 114, 128, 0.1);
+}
+
+.crowd-risk-badge.low {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.crowd-risk-badge.medium {
+  color: #B45309;
+  background: rgba(245, 158, 11, 0.14);
+}
+
+.crowd-risk-badge.high {
+  color: #B91C1C;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.crowd-helper {
+  margin: 0 0 16px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.crowd-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.suggestion-item {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(7, 95, 85, 0.08), rgba(7, 95, 85, 0.04));
+  border: 0.5px solid rgba(7, 95, 85, 0.14);
+}
+
+.suggestion-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
+}
+
+.suggestion-message {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.suggestion-tag {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  color: var(--brand-primary);
+  background: var(--brand-light);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 /* Alerts / Advisories */
 .alerts-list { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 12px; }
 .alert-item {
@@ -985,7 +1118,11 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   display: flex;
   align-items: center;
   gap: 16px;
+  border: 0.5px solid transparent;
 }
+.heat-cell[data-level="low"] { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.12); }
+.heat-cell[data-level="medium"] { background: rgba(245, 158, 11, 0.09); border-color: rgba(245, 158, 11, 0.14); }
+.heat-cell[data-level="high"] { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.12); }
 .heat-day { font-size: 14px; font-weight: 700; min-width: 48px; }
 .heat-corridor { font-size: 14px; font-weight: 600; }
 .heat-windows { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
