@@ -72,7 +72,7 @@ export default function StartOfDayCheckin({ plan, session }) {
       <div className="d-card-header">
         <h2 className="d-card-title">Start-of-day mood check</h2>
       </div>
-      <div className="d-card-body">
+      <div className="d-card-body" style={{ padding: "16px 20px 20px" }}>
         
         {status === "idle" && (
           <div className="mood-checkin-idle">
