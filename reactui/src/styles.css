@@ -2008,6 +2008,10 @@ vercel-live-feedback,
 .mood-checkin-card {
   margin-top: 8px;
 }
+.mood-checkin-idle,
+.mood-checkin-result {
+  padding: 16px 20px 20px;
+}
 .mood-checkin-desc {
   font-size: 14px;
   color: var(--text-2);

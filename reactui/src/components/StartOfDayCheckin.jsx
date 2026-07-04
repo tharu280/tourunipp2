@@ -95,7 +95,6 @@ export default function StartOfDayCheckin({ plan, session }) {
               <input 
                 type="file" 
                 accept="image/*" 
-                capture="user" 
                 ref={fileInputRef} 
                 onChange={handlePhotoSelect} 
                 style={{ display: "none" }} 
