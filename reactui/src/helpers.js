@@ -448,26 +448,52 @@ export function getItineraryRows(plan) {
     plan?.trip_requirements?.destination ||
     plan?.dashboard?.trip_requirements?.destination ||
     "the destination";
+    
+  const seenAttractions = new Set();
 
   for (const segment of getRouteSegments(plan)) {
     const day = segment.day || rows.length + 1;
-    const names = selectedAttractionsForSegment(segment)
-      .slice(0, 3)
-      .map(attractionName);
+    
+    const candidates = [
+      ...(segment?.ranked_places || []),
+      ...(segment?.top_attractions || []),
+      ...(segment?.selected_attractions || []),
+      ...(segment?.gemini_selected_attractions || []),
+      ...(segment?.nearby_attractions || []),
+      ...(segment?.route_attractions || [])
+    ].filter(Boolean);
+
+    const uniqueNames = [];
+    
+    for (const item of candidates) {
+      const name = attractionName(item);
+      if (!name || name === "Attraction") continue;
+      const key = item.place_id || item.id || name.trim().toLowerCase();
+      
+      if (!seenAttractions.has(key)) {
+        seenAttractions.add(key);
+        uniqueNames.push(name);
+        if (uniqueNames.length === 3) break;
+      }
+    }
+
     const fallbackName =
       segment?.end_point?.name ||
       segment?.mid_point?.name ||
       destination ||
       "next stop";
 
+    const distLabel = segmentDistanceLabel(segment) || (segment?.segment_duration_seconds ? formatDuration(segment.segment_duration_seconds) : "");
+    const distSuffix = distLabel ? ` (${distLabel})` : "";
+
     rows.push({
       segment,
       day,
       label: segment.day_label || `Day ${day}`,
-      highlights: names.length > 0
-        ? names
-        : [`Travel day toward ${fallbackName}`],
-      isFallback: names.length === 0,
+      highlights: uniqueNames.length > 0
+        ? uniqueNames
+        : [`Scenic transfer toward ${fallbackName}${distSuffix} with rest stops recommended`],
+      isFallback: uniqueNames.length === 0,
     });
   }
 

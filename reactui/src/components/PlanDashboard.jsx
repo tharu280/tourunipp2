@@ -1,4 +1,5 @@
 import TripMapModule from "./TripMapModule";
+import StartOfDayCheckin from "./StartOfDayCheckin";
 import ItinerarySection from "./ItinerarySection";
 import AccommodationSection from "./AccommodationSection";
 import FlightSummary from "./FlightSummary";
@@ -155,6 +156,9 @@ export default function PlanDashboard({
 
         {/* ── Trip Map Module (Route / Crowd / Weather / Roads) ── */}
         <TripMapModule plan={viewPlan} dashboardData={dashboardData} />
+
+        {/* ── Start of Day Mood Checkin ── */}
+        <StartOfDayCheckin plan={viewPlan} session={session} />
 
         {/* ── Overall Conditions pill row ── */}
         <div className="conditions-card">

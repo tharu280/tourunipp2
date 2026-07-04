@@ -2003,3 +2003,116 @@ vercel-live-feedback,
 [data-vercel-toolbar] {
   display: none !important;
 }
+
+/* ── Start of Day Mood Checkin ── */
+.mood-checkin-card {
+  margin-top: 8px;
+}
+.mood-checkin-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.mood-checkin-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.mood-day-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-1);
+}
+.mood-day-select select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--separator);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font-size: 14px;
+}
+.mood-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: var(--brand-primary);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.mood-upload-btn:active {
+  opacity: 0.8;
+}
+.mood-checkin-privacy {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 8px;
+  font-style: italic;
+}
+.mood-checkin-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 12px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+.mood-checkin-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  color: #EF4444;
+  font-size: 14px;
+}
+.mood-checkin-result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mood-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mood-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-2);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.mood-risk-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+.risk-low { background: #dcfce7; color: #166534; }
+.risk-medium { background: #fef08a; color: #854d0e; }
+.risk-high { background: #fee2e2; color: #991b1b; }
+.mood-day-ahead, .mood-recommendation {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+  background: var(--bg-2);
+  padding: 12px;
+  border-radius: 8px;
+}
+.mt-3 { margin-top: 12px; }
