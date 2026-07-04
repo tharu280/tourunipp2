@@ -143,16 +143,11 @@ export function buildPlanRequest(session, selectedFlight, flightPlan) {
 }
 
 export function isTripHandoff(turn) {
-  const reply = String(turn?.assistant_reply || "").toLowerCase();
-  return (
-    turn?.active_phase === "trip" ||
-    turn?.is_complete ||
-    reply.includes("where should the trip start") ||
-    reply.includes("where in sri lanka") ||
-    reply.includes("how many days") ||
-    reply.includes("start location") ||
-    reply.includes("starting point")
-  );
+  // Only hand off once the backend says all flight fields are fully collected.
+  // active_phase transitions to "trip" only after every flight field is satisfied,
+  // but we also require is_complete or that every flight field check passes.
+  // Never trigger on partial trip-phase questions like "Where should the trip start?".
+  return turn?.is_complete === true;
 }
 
 export function getSessionId(plan) {

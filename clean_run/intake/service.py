@@ -138,6 +138,105 @@ AIRPORT_ALIASES = {
     "male": "MLE",
     "malé": "MLE",
     "mle": "MLE",
+    # Asia Pacific
+    "tokyo": "NRT",
+    "narita": "NRT",
+    "haneda": "HND",
+    "tokyo japan": "NRT",
+    "japan": "NRT",
+    "nrt": "NRT",
+    "hnd": "HND",
+    "osaka": "KIX",
+    "kansai": "KIX",
+    "kix": "KIX",
+    "beijing": "PEK",
+    "pek": "PEK",
+    "shanghai": "PVG",
+    "pvg": "PVG",
+    "hong kong": "HKG",
+    "hkg": "HKG",
+    "seoul": "ICN",
+    "incheon": "ICN",
+    "icn": "ICN",
+    "sydney": "SYD",
+    "syd": "SYD",
+    "melbourne": "MEL",
+    "mel": "MEL",
+    "jakarta": "CGK",
+    "cgk": "CGK",
+    "manila": "MNL",
+    "mnl": "MNL",
+    # Middle East / Africa
+    "abu dhabi": "AUH",
+    "auh": "AUH",
+    "riyadh": "RUH",
+    "ruh": "RUH",
+    "jeddah": "JED",
+    "jed": "JED",
+    "muscat": "MCT",
+    "mct": "MCT",
+    "cairo": "CAI",
+    "cai": "CAI",
+    "johannesburg": "JNB",
+    "jnb": "JNB",
+    "nairobi": "NBO",
+    "nbo": "NBO",
+    # Europe
+    "london": "LHR",
+    "heathrow": "LHR",
+    "lhr": "LHR",
+    "gatwick": "LGW",
+    "lgw": "LGW",
+    "paris": "CDG",
+    "charles de gaulle": "CDG",
+    "cdg": "CDG",
+    "frankfurt": "FRA",
+    "fra": "FRA",
+    "amsterdam": "AMS",
+    "schiphol": "AMS",
+    "ams": "AMS",
+    "zurich": "ZRH",
+    "zrh": "ZRH",
+    "rome": "FCO",
+    "fiumicino": "FCO",
+    "fco": "FCO",
+    "madrid": "MAD",
+    "mad": "MAD",
+    "istanbul": "IST",
+    "ist": "IST",
+    "moscow": "SVO",
+    "svo": "SVO",
+    # North America
+    "new york": "JFK",
+    "jfk": "JFK",
+    "lax": "LAX",
+    "los angeles": "LAX",
+    "chicago": "ORD",
+    "ord": "ORD",
+    "toronto": "YYZ",
+    "yyz": "YYZ",
+    "vancouver": "YVR",
+    "yvr": "YVR",
+    # South Asia
+    "chennai": "MAA",
+    "madras": "MAA",
+    "maa": "MAA",
+    "bangalore": "BLR",
+    "bengaluru": "BLR",
+    "blr": "BLR",
+    "hyderabad": "HYD",
+    "hyd": "HYD",
+    "kolkata": "CCU",
+    "calcutta": "CCU",
+    "ccu": "CCU",
+    "karachi": "KHI",
+    "khi": "KHI",
+    "lahore": "LHE",
+    "lhe": "LHE",
+    "dhaka": "DAC",
+    "dac": "DAC",
+    "kathmandu": "KTM",
+    "ktm": "KTM",
 }
 
 NUMBER_WORDS = {
@@ -268,9 +367,32 @@ def _normalize_airport_code(value: str | None) -> str | None:
     compact = " ".join(normalized.lower().split())
     if compact in YES_HINTS or compact in NO_HINTS or _looks_like_greeting(compact):
         return None
+    # Direct alias lookup (handles multi-word city names like "hong kong")
+    alias = AIRPORT_ALIASES.get(compact)
+    if alias:
+        return alias
+    # Exact 3-letter IATA code
     if re.fullmatch(r"[A-Za-z]{3}", normalized):
-        return normalized.upper()
-    return AIRPORT_ALIASES.get(compact)
+        upper = normalized.upper()
+        if upper in set(AIRPORT_ALIASES.values()):
+            return upper
+    # Partial-word matching only for SHORT inputs (city name + country qualifier, ≤4 words)
+    # e.g. "Tokyo", "Tokyo Japan", "New York City" — but NOT full sentences like
+    # "from colombo to badulla for 4 days"
+    words = compact.split()
+    if len(words) <= 4:
+        for word in words:
+            alias = AIRPORT_ALIASES.get(word)
+            if alias:
+                return alias
+        # Try combinations of adjacent words (for "New York", "Hong Kong", etc.)
+        for length in range(len(words) - 1, 0, -1):
+            for start in range(len(words) - length + 1):
+                phrase = " ".join(words[start:start + length])
+                alias = AIRPORT_ALIASES.get(phrase)
+                if alias:
+                    return alias
+    return None
 
 
 def _looks_like_flight_detail_message(message: str) -> bool:
@@ -932,7 +1054,14 @@ def _format_completion_reply(details: TripRequirements) -> str:
     return reply
 
 
-def _format_missing_reply(details: TripRequirements, missing_fields: list[str]) -> str:
+def _format_missing_reply(
+    details: TripRequirements,
+    missing_fields: list[str],
+    llm_conversational_reply: str | None = None,
+) -> str:
+    """Return the next question to ask. Prefer a conversational LLM reply if provided."""
+    if llm_conversational_reply:
+        return llm_conversational_reply
     next_field = _next_required_field(missing_fields)
     prompts = {
         "flight_origin": "Which city are you flying from?",
@@ -1174,6 +1303,8 @@ class TravelIntakeService:
 
         merged_requirements = active_session.trip_requirements
         started_phase = current_phase
+        flight_llm_out = None
+        trip_llm_out = None
 
         if _find_flight_missing_fields(merged_requirements):
             flight_requirements, flight_llm_out = self._flight_bot.extract(
@@ -1236,11 +1367,27 @@ class TravelIntakeService:
         missing_fields = _find_missing_fields(merged_requirements)
         active_phase = _current_intake_stage(merged_requirements)
         active_phase_missing_fields = _find_active_phase_missing_fields(merged_requirements)
+
+        # Pick up the LLM conversational reply if the LLM ran (prefer it over hardcoded prompts)
+        llm_conv_reply: str | None = None
+        if flight_llm_out is not None:
+            raw = getattr(flight_llm_out, "conversational_reply", None)
+            if raw and str(raw).strip():
+                llm_conv_reply = str(raw).strip()
+        if llm_conv_reply is None and trip_llm_out is not None:
+            raw = getattr(trip_llm_out, "conversational_reply", None)
+            if raw and str(raw).strip():
+                llm_conv_reply = str(raw).strip()
+
         if missing_fields:
             if _looks_like_greeting(user_message) and not active_session.history:
                 assistant_reply = _format_greeting_reply()
             else:
-                assistant_reply = _format_missing_reply(merged_requirements, active_phase_missing_fields or missing_fields)
+                assistant_reply = _format_missing_reply(
+                    merged_requirements,
+                    active_phase_missing_fields or missing_fields,
+                    llm_conversational_reply=llm_conv_reply,
+                )
         else:
             assistant_reply = _format_completion_reply(merged_requirements)
 
