@@ -406,6 +406,9 @@ def _flight_output_to_requirements(output: object) -> TripRequirements:
         flight_origin_input = _normalize_requirement_value(output.flight_origin_input)
         flight_origin = _normalize_airport_code(output.flight_origin or flight_origin_input)
         return TripRequirements(
+            origin=output.origin,
+            destination=output.destination,
+            duration=output.duration,
             needs_flights=True,
             total_budget_lkr=_normalize_budget_value(output.total_budget_lkr),
             flight_origin_input=flight_origin_input,
@@ -1050,6 +1053,9 @@ class FlightIntakeBot(IntakeBot):
         details: TripRequirements,
         history: list[ConversationTurn],
     ) -> tuple[TripRequirements, object | None]:
+        if _looks_like_greeting(user_message):
+            return self.extract_local(user_message=user_message, details=details), None
+
         payload = self._build_chain_payload(
             details=details,
             history=history,
