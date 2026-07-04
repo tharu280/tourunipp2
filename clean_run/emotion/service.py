@@ -698,12 +698,37 @@ def build_start_of_day_mood_recommendation(
     if risk_level == "high":
         day_prediction = "The day ahead may feel tiring unless you slow the pace early."
         recommendation = "Start earlier, keep the first major stop shorter, and add a proper rest or food break before the busiest attraction."
+        timing_adjustment = "Start 30-45 mins earlier than usual to secure uncrowded time."
+        watch_out_for = ["Peak crowd heat around noon", "Travel fatigue stacking up", "Road friction points"]
+        comfort_actions = ["Hydrate frequently", "Keep snacks handy", "Take mini-breaks"]
+        fallback_plan = "If fatigue sets in, drop the lowest-priority attraction and head straight to the accommodation."
     elif risk_level == "medium":
         day_prediction = "The day ahead is manageable, but crowd, weather, or travel friction could affect comfort."
         recommendation = "Keep the route, but use the best visit window and protect one short recovery break."
+        timing_adjustment = "Stick to the plan but shift the busiest stop to the best recommended time."
+        watch_out_for = ["Midday heat", "Sudden weather changes", "Moderate crowding"]
+        comfort_actions = ["Protect lunch break time", "Use a flexible pace"]
+        fallback_plan = "Delay one minor stop if the schedule feels too rushed."
     else:
         day_prediction = "The day ahead should feel comfortable if the plan stays close to the current timing."
         recommendation = "Continue as planned and keep the check-in as a light wellness signal."
+        timing_adjustment = "No major timing changes needed."
+        watch_out_for = ["General travel fatigue later in the day"]
+        comfort_actions = ["Enjoy the sights at a steady pace"]
+        fallback_plan = "None needed, but keep a backup indoor activity if it rains."
+
+    summary_map = {
+        "happy": "You're starting with great energy!",
+        "neutral": "You're starting the day steady.",
+        "surprise": "An energetic start to the day!",
+        "sad": "A slower start today, which is totally okay.",
+        "anger": "A bit tense this morning, let's pace it well.",
+        "fear": "Take it easy today and prioritize comfort.",
+        "disgust": "A slightly off morning, let's keep things smooth."
+    }
+    summary = summary_map.get(label, "A solid start to the travel day.")
+
+    confidence_note = "High confidence read." if confidence > 0.7 else "Moderate confidence read."
 
     reasons = [
         mood_description,
@@ -720,7 +745,14 @@ def build_start_of_day_mood_recommendation(
         "confidence": confidence,
         "day": (day_segment or {}).get("day") or latest_checkin.get("day"),
         "day_label": day_label,
+        "summary": summary,
         "day_ahead_prediction": day_prediction,
+        "recommendation": recommendation,
+        "timing_adjustment": timing_adjustment,
+        "watch_out_for": watch_out_for,
+        "comfort_actions": comfort_actions,
+        "fallback_plan": fallback_plan,
+        "confidence_note": confidence_note,
         "risk_level": risk_level,
         "score": combined_score,
         "components": {
@@ -731,7 +763,6 @@ def build_start_of_day_mood_recommendation(
             "travel_fatigue": fatigue_score,
         },
         "explanation": reasons,
-        "recommendation": recommendation,
         "day_context": {
             "attractions": attractions,
             "crowd_level": crowd_level,

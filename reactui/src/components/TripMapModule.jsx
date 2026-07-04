@@ -333,11 +333,24 @@ function RoadsLayer({ polyline, roadData }) {
             <Popup>
               <div style={{ fontFamily: "Inter, sans-serif" }}>
                 <div style={{ fontWeight: 700, fontSize: 13 }}>
-                  {inc.name || inc.type || "Road alert"}
+                  {inc.title || inc.name || inc.type || "Road alert"}
                 </div>
-                <div style={{ fontSize: 12, color: "#6B7280", marginTop: 2 }}>
-                  {inc.description || inc.status || ""}
+                <div style={{ fontSize: 12, color: "#6B7280", marginTop: 2, marginBottom: 6 }}>
+                  {inc.status || inc.description || ""}
                 </div>
+                <div style={{ display: "inline-block", background: c + "22", color: c, padding: "2px 6px", borderRadius: "4px", fontSize: "11px", fontWeight: 600, marginBottom: 6 }}>
+                  {titleCase(inc.severity || inc.damage_type || "Unknown")} Risk
+                </div>
+                {inc.location && (
+                  <div style={{ fontSize: 11, color: "#4B5563", marginTop: 2 }}>
+                    <strong>Location:</strong> {inc.location}
+                  </div>
+                )}
+                {roadData.lastUpdated && (
+                  <div style={{ fontSize: 10, color: "#9CA3AF", marginTop: 6, fontStyle: "italic" }}>
+                    Updated: {new Date(roadData.lastUpdated).toLocaleDateString()}
+                  </div>
+                )}
               </div>
             </Popup>
           </CircleMarker>
@@ -536,24 +549,34 @@ function RoadsPanel({ roadData }) {
           </p>
           <div className="road-alerts-list">
             {roadData.incidents.slice(0, 5).map((inc, i) => {
-              const c = roadColor(inc.severity || inc.damage_type);
+              const c = roadColor(inc.severity || inc.damage_type || "warning");
+              const hasCoords = (inc.lat != null && inc.lng != null) || (inc.location?.lat != null && inc.location?.lng != null);
               return (
-                <div key={i} className="road-alert-row">
-                  <div className="road-alert-dot" style={{ background: c }} />
-                  <div className="road-alert-info">
-                    <div className="road-alert-name">
-                      {inc.name || inc.type || "Incident"}
+                <div key={i} className="road-alert-row" style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "12px", borderBottom: "1px solid var(--border-color)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                      <div className="road-alert-dot" style={{ background: c, marginTop: "6px", flexShrink: 0 }} />
+                      <div>
+                        <div className="road-alert-name" style={{ fontWeight: 600, fontSize: "14px", lineHeight: 1.3 }}>
+                          {inc.title || inc.name || inc.type || "Incident"}
+                        </div>
+                        <div className="road-alert-meta" style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "2px" }}>
+                          {inc.status || inc.description || "Status unknown"}
+                        </div>
+                      </div>
                     </div>
-                    <div className="road-alert-meta">
-                      {inc.description || inc.status || ""}
-                    </div>
+                    <span
+                      className="road-severity-pill"
+                      style={{ background: c + "22", color: c, padding: "4px 8px", borderRadius: "999px", fontSize: "11px", fontWeight: 600, whiteSpace: "nowrap" }}
+                    >
+                      {titleCase(inc.severity || inc.damage_type || "Unknown")}
+                    </span>
                   </div>
-                  <span
-                    className="road-severity-pill"
-                    style={{ background: c + "22", color: c }}
-                  >
-                    {titleCase(inc.severity || "Unknown")}
-                  </span>
+                  {!hasCoords && (
+                    <div style={{ fontSize: "11px", color: "var(--text-tertiary)", fontStyle: "italic", marginLeft: "18px" }}>
+                      RoadLK did not provide exact coordinates for this alert.
+                    </div>
+                  )}
                 </div>
               );
             })}

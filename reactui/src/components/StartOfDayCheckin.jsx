@@ -146,12 +146,69 @@ export default function StartOfDayCheckin({ plan, session }) {
               </div>
             </div>
 
-            <p className="mood-day-ahead">
-              <strong>Day Ahead:</strong> {result.day_ahead_prediction}
-            </p>
+            <div className="mood-day-ahead" style={{ marginTop: "1rem" }}>
+              <div style={{ fontWeight: 600, fontSize: "16px", marginBottom: "4px" }}>
+                {result.summary || "Day ahead"}
+              </div>
+              <p style={{ margin: 0, color: "var(--text-secondary)", fontSize: "14px" }}>
+                {result.day_ahead_prediction}
+              </p>
+            </div>
             
-            <div className="mood-recommendation">
-              <strong>Recommendation:</strong> {result.recommendation}
+            <div className="mood-recommendation" style={{ marginTop: "1rem", backgroundColor: "var(--bg-secondary)", padding: "1rem", borderRadius: "12px" }}>
+              <div style={{ fontWeight: 600, fontSize: "14px", marginBottom: "8px" }}>Recommended Plan</div>
+              <p style={{ margin: 0, fontSize: "14px" }}>{result.recommendation}</p>
+            </div>
+
+            <div className="mood-chips-container" style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "1rem" }}>
+              {result.timing_adjustment && (
+                <div className="mood-chip" style={{ display: "flex", gap: "12px", alignItems: "flex-start", backgroundColor: "var(--bg-tertiary)", padding: "10px", borderRadius: "8px" }}>
+                  <span style={{ fontSize: "18px" }}>⏱️</span>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "12px", textTransform: "uppercase", color: "var(--text-tertiary)" }}>Timing</div>
+                    <div style={{ fontSize: "14px" }}>{result.timing_adjustment}</div>
+                  </div>
+                </div>
+              )}
+              {result.watch_out_for && result.watch_out_for.length > 0 && (
+                <div className="mood-chip" style={{ display: "flex", gap: "12px", alignItems: "flex-start", backgroundColor: "var(--bg-tertiary)", padding: "10px", borderRadius: "8px" }}>
+                  <span style={{ fontSize: "18px" }}>⚠️</span>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "12px", textTransform: "uppercase", color: "var(--text-tertiary)" }}>Watch out for</div>
+                    <div style={{ fontSize: "14px" }}>
+                      <ul style={{ margin: 0, paddingLeft: "16px" }}>
+                        {result.watch_out_for.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {result.comfort_actions && result.comfort_actions.length > 0 && (
+                <div className="mood-chip" style={{ display: "flex", gap: "12px", alignItems: "flex-start", backgroundColor: "var(--bg-tertiary)", padding: "10px", borderRadius: "8px" }}>
+                  <span style={{ fontSize: "18px" }}>🧘‍♂️</span>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "12px", textTransform: "uppercase", color: "var(--text-tertiary)" }}>Comfort Actions</div>
+                    <div style={{ fontSize: "14px" }}>
+                      <ul style={{ margin: 0, paddingLeft: "16px" }}>
+                        {result.comfort_actions.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {result.fallback_plan && (
+                <div className="mood-chip" style={{ display: "flex", gap: "12px", alignItems: "flex-start", backgroundColor: "var(--bg-tertiary)", padding: "10px", borderRadius: "8px" }}>
+                  <span style={{ fontSize: "18px" }}>🔄</span>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "12px", textTransform: "uppercase", color: "var(--text-tertiary)" }}>Fallback Plan</div>
+                    <div style={{ fontSize: "14px" }}>{result.fallback_plan}</div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <button className="btn-secondary mt-3" onClick={resetState}>Check another day</button>
