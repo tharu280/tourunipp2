@@ -22,8 +22,8 @@ import {
 } from "./helpers";
 
 /* ── Constants ──────────────────────────────────────────────────── */
-const FLIGHT_CHIPS = ["Dubai", "20 July 2026", "2 passengers", "Economy", "500,000 LKR"];
-const TRIP_CHIPS = ["Colombo", "Badulla", "4 days", "Colombo to Galle"];
+const FLIGHT_CHIPS = ["Dubai", "12 July 2026", "1 passenger", "Economy", "500,000 LKR"];
+const TRIP_CHIPS = ["Colombo", "Kandy", "4 days", "Colombo to kandy"];
 
 /* ── Unique message IDs ─────────────────────────────────────────── */
 let _msgId = 0;
