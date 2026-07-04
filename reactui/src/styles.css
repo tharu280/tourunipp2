@@ -1394,3 +1394,509 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 
 /* ── Utilities ── */
 .text-green { color: var(--brand-primary); }
+
+/* =================================================================
+   TRIP MAP MODULE — Segmented map modes
+   ================================================================= */
+
+.trip-map-module {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: springIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
+}
+
+/* Header row: tabs + refresh button */
+.map-module-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Segmented tab control ── */
+.map-mode-tabs {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  background: var(--ios-surface);
+  border-radius: var(--r-lg);
+  padding: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.map-mode-tab {
+  flex: 1;
+  padding: 9px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border-radius: 10px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.2px;
+  line-height: 1;
+}
+
+.map-mode-tab.active {
+  background: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(7, 95, 85, 0.32);
+}
+
+.map-mode-tab:not(.active):active {
+  background: rgba(0,0,0,0.05);
+}
+
+/* ── Refresh button ── */
+.map-refresh-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--ios-surface);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  position: relative;
+}
+.map-refresh-btn svg { width: 18px; height: 18px; }
+.map-refresh-btn:active:not(:disabled) { transform: scale(0.92); }
+.map-refresh-btn.spinning svg {
+  animation: spinRefresh 0.8s linear infinite;
+}
+.map-refresh-btn.done  { color: #059669; background: rgba(16, 185, 129, 0.1); }
+.map-refresh-btn.err   { color: #DC2626; background: rgba(239, 68, 68, 0.08); }
+.map-refresh-label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: inherit;
+  opacity: 0.9;
+}
+
+@keyframes spinRefresh {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Map card stays as-is but also fits in the module ── */
+.trip-map-module .map-card {
+  animation: none; /* parent animates the whole module */
+}
+
+/* ── Crowd legend overlay (bottom-left of map) ── */
+.map-crowd-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 7px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+.map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+}
+.map-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── No-data overlay ── */
+.map-no-data-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BELOW-MAP PANELS
+   ══════════════════════════════════════════════════════════════════ */
+
+.map-panel {
+  background: var(--ios-surface);
+  border-radius: var(--r-xl);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+  padding: 16px 18px 18px;
+}
+
+/* Panel header */
+.map-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.map-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.45px;
+}
+
+/* Badge variants */
+.map-panel-badge {
+  flex-shrink: 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: var(--r-pill);
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  letter-spacing: 0.05px;
+  text-transform: capitalize;
+}
+.map-panel-badge.medium  { background: rgba(245, 158, 11, 0.12);  color: #D97706; }
+.map-panel-badge.high    { background: rgba(239, 68, 68, 0.10);   color: #DC2626; }
+.map-panel-badge.unknown { background: rgba(107, 114, 128, 0.10); color: #6B7280; }
+
+/* Panel body text */
+.map-panel-body {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.57;
+  margin-bottom: 14px;
+}
+
+/* Disclaimer */
+.map-panel-disclaimer {
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ── Crowd intelligence grid ── */
+.crowd-intel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.crowd-intel-cell {
+  background: var(--ios-bg);
+  border-radius: 12px;
+  padding: 11px 13px;
+}
+
+.crowd-intel-cell-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.crowd-intel-cell-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+}
+
+.crowd-intel-cell-value--sm {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+/* ── Reason chips ── */
+.crowd-reason-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.crowd-reason-chip {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-primary);
+  background: var(--brand-light);
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  letter-spacing: -0.1px;
+}
+
+/* ── Suggestion items in panel ── */
+.map-panel-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.map-panel-suggestion-item {
+  background: rgba(7, 95, 85, 0.05);
+  border: 0.5px solid rgba(7, 95, 85, 0.1);
+  border-radius: 10px;
+  padding: 10px 13px;
+}
+
+.map-panel-suggestion-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+  margin-bottom: 2px;
+}
+
+.map-panel-suggestion-body {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Weather panel ── */
+.weather-seg-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.weather-seg-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--ios-bg);
+  border-radius: 10px;
+}
+
+.weather-seg-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.weather-seg-info { flex: 1; min-width: 0; }
+
+.weather-seg-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.weather-seg-status {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.weather-seg-temp {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+/* ── Roads panel ── */
+.road-alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.road-alert-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--ios-bg);
+  border-radius: 10px;
+}
+
+.road-alert-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.road-alert-info { flex: 1; min-width: 0; }
+
+.road-alert-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.road-alert-meta {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.road-severity-pill {
+  flex-shrink: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.05px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HEATMAP — Improved grid layout (day × time window)
+   ══════════════════════════════════════════════════════════════════ */
+
+.time-heatmap-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.thm-row {
+  display: flex;
+  gap: 5px;
+  align-items: stretch;
+}
+
+.thm-day-label {
+  width: 46px;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1px;
+}
+
+.thm-cells {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.thm-cell {
+  border-radius: 8px;
+  padding: 7px 5px 6px;
+  text-align: center;
+  background: rgba(107, 114, 128, 0.07);
+  border: 0.5px solid transparent;
+  transition: transform 0.15s;
+  cursor: default;
+}
+
+.thm-cell[data-level="best"] {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+.thm-cell[data-level="good"] {
+  background: rgba(245, 158, 11, 0.09);
+  border-color: rgba(245, 158, 11, 0.14);
+}
+.thm-cell[data-level="bad"] {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.12);
+}
+
+.thm-cell-window {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thm-cell-score {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.thm-cell[data-level="best"] .thm-cell-score { color: #059669; }
+.thm-cell[data-level="good"] .thm-cell-score { color: #D97706; }
+.thm-cell[data-level="bad"]  .thm-cell-score { color: #DC2626; }
+.thm-cell[data-level=""]     .thm-cell-score { color: #9CA3AF; }
+
+.thm-cell-label {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: capitalize;
+  margin-top: 1px;
+}
+
+/* ── Crowd Intelligence enhanced section ── */
+.crowd-intensity-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--ios-bg);
+  border-radius: 13px;
+  margin-bottom: 14px;
+}
+
+.crowd-intensity-label-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.crowd-intensity-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+

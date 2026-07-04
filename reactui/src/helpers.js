@@ -761,3 +761,199 @@ export function getOverallConditions(plan) {
         : "Moderate",
   };
 }
+
+/* ── Map Intelligence Helpers ────────────────────────────────────── */
+
+/**
+ * Joins crowd.attraction_pressure[] with lat/lng from route segment ranked_places
+ * by place_id. Returns map-ready points with full crowd pressure data + coordinates.
+ */
+export function getCrowdAttractionMapPoints(plan, dashboardData) {
+  // Build a place_id → { lat, lng } lookup from all segment place lists
+  const locationLookup = {};
+
+  const buildLookup = (items) => {
+    for (const item of items || []) {
+      if (item.place_id && item.location?.lat && item.location?.lng) {
+        if (!locationLookup[item.place_id]) {
+          locationLookup[item.place_id] = {
+            lat: item.location.lat,
+            lng: item.location.lng,
+          };
+        }
+      }
+    }
+  };
+
+  const collectFromSegments = (segs) => {
+    for (const seg of segs || []) {
+      buildLookup(seg.ranked_places);
+      buildLookup(seg.top_attractions);
+      buildLookup(seg.selected_attractions);
+      buildLookup(seg.gemini_selected_attractions);
+    }
+  };
+
+  // Try primary route segments
+  collectFromSegments(getRouteSegments(plan));
+
+  // Also try recommended_route.segments (may differ from route_data.segments)
+  collectFromSegments(plan?.recommended_route?.segments);
+  collectFromSegments(plan?.route?.recommended_route?.segments);
+
+  const crowd =
+    dashboardData?.crowd ||
+    plan?.crowd ||
+    plan?.crowd_signals ||
+    {};
+  const pressureList = crowd.attraction_pressure || [];
+
+  const points = [];
+  const seen = new Set();
+
+  for (const item of pressureList) {
+    if (!item.place_id || seen.has(item.place_id)) continue;
+    const loc = locationLookup[item.place_id];
+    if (!loc) continue;
+
+    seen.add(item.place_id);
+    points.push({
+      place_id: item.place_id,
+      name: item.name || "Attraction",
+      day: item.day,
+      date: item.date,
+      pressure_score: item.pressure_score,
+      pressure_level: item.pressure_level,
+      combined_pressure: item.combined_pressure || {},
+      preferred_visit_window: item.preferred_visit_window,
+      best_visit_window: item.best_visit_window,
+      wiki_interest: item.wiki_interest,
+      reasons: item.reasons || [],
+      lat: loc.lat,
+      lng: loc.lng,
+    });
+  }
+
+  return points;
+}
+
+/** Maps a crowd pressure score to a visitor intensity label. */
+export function getVisitorIntensityLabel(score) {
+  const n = Number(score);
+  if (!Number.isFinite(n)) return "Unknown";
+  if (n >= 68) return "Very Busy";
+  if (n >= 36) return "Busy";
+  if (n >= 15) return "Normal";
+  return "Quiet";
+}
+
+/** Builds structured data for the Crowd Intelligence map panel. */
+export function getCrowdIntelPanel(plan, dashboardData) {
+  const crowd =
+    dashboardData?.crowd ||
+    plan?.crowd ||
+    plan?.crowd_signals ||
+    {};
+
+  const forecastWindows = crowd.forecast_windows || [];
+  const zoneDays = crowd.zone_pressure?.days || [];
+  const components = crowd.components || {};
+
+  // Highest-pressure day by zone score
+  let highestDay = null;
+  let highestDayScore = -1;
+  for (const day of zoneDays) {
+    const s = day.pressure_score ?? -1;
+    if (s > highestDayScore) {
+      highestDayScore = s;
+      highestDay = day;
+    }
+  }
+
+  // Highest-pressure attraction
+  const attractionList = crowd.attraction_pressure || [];
+  let highestAttraction = null;
+  let highestAttrScore = -1;
+  for (const a of attractionList) {
+    const s = a.pressure_score ?? -1;
+    if (s > highestAttrScore) {
+      highestAttrScore = s;
+      highestAttraction = a;
+    }
+  }
+
+  // Best single time window across all days
+  let bestWindow = null;
+  let bestWindowScore = Infinity;
+  for (const fw of forecastWindows) {
+    if (fw.best_window && (fw.best_window.score ?? Infinity) < bestWindowScore) {
+      bestWindowScore = fw.best_window.score;
+      bestWindow = { day: fw.day, date: fw.date, corridor: fw.corridor, ...fw.best_window };
+    }
+  }
+
+  // Reason chips (which signals contributed)
+  const chips = [];
+  if (components.tourism_demand_pressure?.level) chips.push("SLTDA arrivals");
+  chips.push("Wikipedia interest");
+  if ((components.holiday_pressure?.score ?? 0) > 0) chips.push("Holiday effect");
+  if ((components.weather_pressure?.score ?? 0) > 0) chips.push("Weather effect");
+  if ((components.road_pressure?.score ?? 0) > 2) chips.push("Road pressure");
+
+  return {
+    overallLevel: crowd.risk_level || null,
+    overallScore: crowd.signal_score || null,
+    helperSummary: crowd.helper_summary || null,
+    highestDay,
+    highestAttraction,
+    bestWindow,
+    chips: chips.slice(0, 4),
+    recommendations: crowd.recommendations || [],
+    redistributionSuggestions: crowd.redistribution_suggestions || [],
+  };
+}
+
+/** Extracts per-segment weather data for map markers. */
+export function getWeatherSegmentPoints(plan) {
+  const segments = getRouteSegments(plan);
+  return segments.map((seg, i) => {
+    const weather = seg.weather || {};
+    const forecast = weather.forecast || {};
+    const risk = weather.risk || {};
+    return {
+      day: seg.day || i + 1,
+      date: seg.day_label || `Day ${seg.day || i + 1}`,
+      point: seg.mid_point || seg.end_point || null,
+      status: forecast.status || "unknown",
+      riskLevel: risk.risk_level || "unknown",
+      riskScore: risk.score ?? null,
+      reason: (risk.reasons || [])[0] || null,
+      condition: forecast.condition || null,
+      precipMm: forecast.precip_mm ?? null,
+      tempC: forecast.avg_temp_c ?? null,
+      windKph: forecast.max_wind_kph ?? null,
+    };
+  });
+}
+
+/** Normalises road alert data for the roads map mode. */
+export function getRoadAlertsForMap(plan) {
+  const road =
+    plan?.road_alerts ||
+    plan?.recommended_route?.road_alerts ||
+    plan?.route?.recommended_route?.road_alerts ||
+    {};
+
+  return {
+    riskLevel: road.risk_level || "low",
+    summary: road.summary || null,
+    totalNearRoute: road.total_near_route ?? 0,
+    criticalCount: road.critical_count ?? 0,
+    incidents: [
+      ...(road.critical_incidents || []),
+      ...(road.incidents || []),
+    ].filter(Boolean),
+    lastUpdated: road.last_updated || null,
+  };
+}
+

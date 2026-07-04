@@ -1,4 +1,4 @@
-import { getCrowdSummary, titleCase } from "../helpers";
+import { getCrowdSummary, getVisitorIntensityLabel, titleCase } from "../helpers";
 
 function riskClass(level) {
   if (!level) return "unknown";
@@ -13,17 +13,29 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
   const { riskLevel, signalScore, helperSummary, recommendations, redistributionSuggestions } =
     getCrowdSummary(plan, dashboardData);
 
-  const risk = riskLevel || "unknown";
-  const cls = riskClass(risk);
+  const risk    = riskLevel || "unknown";
+  const cls     = riskClass(risk);
+  const visitor = getVisitorIntensityLabel(signalScore);
 
   return (
     <div id="section-crowd">
+      {/* Estimated intensity banner */}
+      <div className="crowd-intensity-banner">
+        <div>
+          <div className="crowd-intensity-label-text">Estimated visitor intensity</div>
+          <div style={{ fontSize: 10, color: "var(--text-tertiary)", marginTop: 2 }}>
+            Based on SLTDA arrivals · Wikipedia interest · route context
+          </div>
+        </div>
+        <div className="crowd-intensity-value">{visitor}</div>
+      </div>
+
       {/* Risk level row */}
       <div className="crowd-risk-row">
-        <span className="crowd-risk-label">Overall crowd risk</span>
+        <span className="crowd-risk-label">Relative crowd index</span>
         <span className={`crowd-risk-badge ${cls}`}>
           {titleCase(risk)}
-          {signalScore != null ? ` · ${Number(signalScore).toFixed(0)}` : ""}
+          {signalScore != null ? ` · ${Number(signalScore).toFixed(0)}/100` : ""}
         </span>
       </div>
 
@@ -53,7 +65,9 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
               {item.title && <div className="suggestion-title">{item.title}</div>}
               <div className="suggestion-message">{item.message || item.text || ""}</div>
               {item.day && (
-                <div className="suggestion-tag">Day {item.day}{item.priority ? ` · ${titleCase(item.priority)}` : ""}</div>
+                <div className="suggestion-tag">
+                  Day {item.day}{item.priority ? ` · ${titleCase(item.priority)}` : ""}
+                </div>
               )}
             </div>
           ))}

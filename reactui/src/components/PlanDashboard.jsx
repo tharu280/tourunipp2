@@ -1,4 +1,4 @@
-import RouteMap from "./RouteMap";
+import TripMapModule from "./TripMapModule";
 import ItinerarySection from "./ItinerarySection";
 import AccommodationSection from "./AccommodationSection";
 import FlightSummary from "./FlightSummary";
@@ -150,8 +150,8 @@ export default function PlanDashboard({
 
       <div className="dashboard-content">
 
-        {/* ── Route Map ── */}
-        <RouteMap plan={viewPlan} />
+        {/* ── Trip Map Module (Route / Crowd / Weather / Roads) ── */}
+        <TripMapModule plan={viewPlan} dashboardData={dashboardData} />
 
         {/* ── Overall Conditions pill row ── */}
         <div className="conditions-card">
