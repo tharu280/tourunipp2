@@ -266,7 +266,7 @@ def _normalize_airport_code(value: str | None) -> str | None:
         return None
 
     compact = " ".join(normalized.lower().split())
-    if compact in YES_HINTS or compact in NO_HINTS:
+    if compact in YES_HINTS or compact in NO_HINTS or _looks_like_greeting(compact):
         return None
     if re.fullmatch(r"[A-Za-z]{3}", normalized):
         return normalized.upper()

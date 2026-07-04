@@ -98,6 +98,12 @@ export default function App() {
 
   /* ── Helpers ────────────────────────────────────────────────── */
   function reset() {
+    const url = new URL(window.location);
+    url.searchParams.delete("session_id");
+    window.history.replaceState({}, document.title, url);
+    sessionStorage.clear();
+    localStorage.clear();
+
     setScreen("welcome");
     setFlightMessages([]);
     setTripMessages([]);
