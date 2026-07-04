@@ -110,81 +110,174 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   to { transform: scale(1.08); }
 }
 
-.gs-overlay {
+.gs-overlay-top {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.1) 0%,
-    rgba(0,0,0,0.0) 40%,
-    rgba(0,0,0,0.6) 80%,
-    rgba(0,0,0,0.9) 100%
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.1) 40%,
+    rgba(0,0,0,0.0) 100%
   );
-}
-
-.gs-content {
-  position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-  padding: calc(max(48px, var(--safe-top)) + 20px) 32px calc(max(40px, var(--safe-bottom)) + 32px);
-  justify-content: flex-end;
 }
 
-.gs-wordmark {
-  font-size: 56px;
-  font-weight: 800;
-  letter-spacing: -2px;
-  color: #ffffff;
-  line-height: 1;
-  margin-bottom: 8px;
+.gs-overlay-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.95) 0%,
+    rgba(0,0,0,0.7) 40%,
+    rgba(0,0,0,0.0) 100%
+  );
+  z-index: 1;
+}
+
+/* Top Nav */
+.gs-top-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: calc(max(16px, var(--safe-top)) + 12px) 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
   opacity: 0;
   animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
-.gs-subtitle {
-  font-size: 20px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 48px;
-  line-height: 1.3;
+.gs-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.9);
+  transition: all 0.2s;
+}
+
+.gs-icon-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.gs-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding: 0 32px calc(max(32px, var(--safe-bottom)) + 24px);
+  justify-content: flex-end;
+}
+
+.gs-text-container {
+  margin-bottom: 40px;
+}
+
+.gs-pre-title {
+  font-size: 38px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: -4px;
   letter-spacing: -0.5px;
   opacity: 0;
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.gs-title {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  opacity: 0;
   animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.gs-subtitle {
+  font-size: 19px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  opacity: 0;
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.gs-highlight {
+  color: #f7e6ca; /* Warm gold/cream */
+  font-weight: 600;
 }
 
 .gs-cta {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 64px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.25);
   color: #ffffff;
-  font-size: 19px;
-  font-weight: 600;
   border-radius: var(--r-pill);
-  letter-spacing: -0.4px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   margin-bottom: 24px;
   opacity: 0;
   animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
 .gs-cta:active {
   transform: scale(0.96);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255,255,255,0.4);
 }
 
-.gs-footer {
+.gs-cta-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  flex: 1;
+  text-align: center;
+}
+
+.gs-cta-icon-left, .gs-cta-icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  width: 24px;
+}
+.gs-cta-icon-left {
+  color: #f7e6ca; /* Tie into the highlight color for the sparkle */
+}
+
+.gs-trust-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255,255,255,0.4);
-  text-align: center;
+  color: rgba(255,255,255,0.5);
   letter-spacing: 0;
   opacity: 0;
   animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
