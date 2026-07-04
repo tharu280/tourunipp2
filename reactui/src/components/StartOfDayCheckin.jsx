@@ -25,7 +25,7 @@ export default function StartOfDayCheckin({ plan, session }) {
   const [result, setResult] = useState(null);
   const fileInputRef = useRef(null);
 
-  const sessionId = session?.session_id;
+  const sessionId = session?.session_id || plan?.session_id || plan?.session_storage?.session_id;
   const tripDates = plan?.trip_dates || plan?.plan_overview?.trip_dates || [];
   const totalDays = tripDates.length || plan?.plan_overview?.trip_days || plan?.trip_requirements?.duration_days || 1;
   const daysArray = Array.from({ length: totalDays }, (_, i) => i + 1);
