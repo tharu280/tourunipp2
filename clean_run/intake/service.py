@@ -1237,7 +1237,10 @@ class TravelIntakeService:
         active_phase = _current_intake_stage(merged_requirements)
         active_phase_missing_fields = _find_active_phase_missing_fields(merged_requirements)
         if missing_fields:
-            assistant_reply = _format_missing_reply(merged_requirements, active_phase_missing_fields or missing_fields)
+            if _looks_like_greeting(user_message) and not active_session.history:
+                assistant_reply = _format_greeting_reply()
+            else:
+                assistant_reply = _format_missing_reply(merged_requirements, active_phase_missing_fields or missing_fields)
         else:
             assistant_reply = _format_completion_reply(merged_requirements)
 
