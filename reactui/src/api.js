@@ -50,3 +50,16 @@ export const emotionCheckinApi = (sessionId, body) =>
 
 export const startOfDayMoodCheckinApi = (sessionId, body) =>
   emotionCheckinApi(sessionId, { ...body, checkin_type: "start_of_day" });
+
+export const startOfDayMoodCheckinImageApi = async (sessionId, formData) => {
+  const res = await fetch(`${API_BASE}/sessions/${sessionId}/emotion-checkins/image`, {
+    method: "POST",
+    body: formData,
+  });
+  const payload = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const detail = payload?.detail || res.statusText || "Request failed";
+    throw new Error(typeof detail === "string" ? detail : JSON.stringify(detail));
+  }
+  return payload;
+};

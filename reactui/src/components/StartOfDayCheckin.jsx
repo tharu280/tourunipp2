@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
-import { startOfDayMoodCheckinApi } from '../api';
-import { classifyEmotion } from '../emotion/realEmotionClassifier';
+import { startOfDayMoodCheckinImageApi } from '../api';
 
 function IconCamera() {
   return (
@@ -40,21 +39,22 @@ export default function StartOfDayCheckin({ plan, session }) {
     setResult(null);
 
     try {
-      // 1. Local browser classification. The raw photo is not uploaded.
-      const classification = await classifyEmotion(file);
-      
-      // 2. Call backend API
-      const response = await startOfDayMoodCheckinApi(sessionId, {
-        day: selectedDay,
-        ...classification,
-        model_version: classification.model_version || "rafdb5_browser_tflite",
-        local_inference: true
-      });
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("day", selectedDay);
+      // checkin_type is handled by the api helper or server default
 
+      const response = await startOfDayMoodCheckinImageApi(sessionId, formData);
       setResult(response.recommendation);
       setStatus("success");
     } catch (err) {
       console.error("Mood check failed:", err);
+      // specific error if no face is detected
+      if (err.message && err.message.toLowerCase().includes("face")) {
+        setResult("I couldn’t find a face clearly. Try a brighter front-facing photo.");
+      } else {
+        setResult("Mood check failed. Please try again.");
+      }
       setStatus("error");
     }
   };
@@ -107,7 +107,7 @@ export default function StartOfDayCheckin({ plan, session }) {
               </button>
             </div>
             <p className="mood-checkin-privacy">
-              Your photo stays on this device. Only the mood result is saved.
+              Photo is sent securely to the backend for emotion inference and is not stored. Only the emotion result is saved.
             </p>
           </div>
         )}
@@ -121,7 +121,7 @@ export default function StartOfDayCheckin({ plan, session }) {
 
         {status === "error" && (
           <div className="mood-checkin-error">
-            <p>Mood check failed. Please try again.</p>
+            <p>{result || "Mood check failed. Please try again."}</p>
             <button className="btn-secondary" onClick={resetState}>Retry</button>
           </div>
         )}

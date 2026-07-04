@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -21,6 +21,7 @@ from clean_run.emotion import (
     build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
 )
+from clean_run.emotion.inference import classify_image_bytes
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
@@ -564,6 +565,88 @@ async def add_emotion_checkin(session_id: str, req: EmotionCheckinRequest) -> di
             "raw_image_stored": False,
             "identity_recognition": False,
             "local_inference_required": True,
+        },
+    }
+
+
+@app.post("/sessions/{session_id}/emotion-checkins/image")
+async def add_emotion_checkin_image(
+    session_id: str,
+    image: UploadFile,
+    day: int = Form(...),
+    checkin_type: str = Form("start_of_day"),
+) -> dict[str, Any]:
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+
+    session_document = repository.get_session(session_id)
+    if session_document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+
+    image_bytes = await image.read()
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="Empty image file.")
+
+    try:
+        classification = await asyncio.to_thread(classify_image_bytes, image_bytes)
+    except Exception as exc:
+        if "face detected" in str(exc).lower():
+            raise HTTPException(status_code=400, detail="No face detected. Try a brighter front-facing photo.")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Emotion inference failed: {safe_error_detail(exc, feature='Emotion inference')}",
+        ) from exc
+
+    checkin_data = {
+        "checkin_type": checkin_type,
+        "day": day,
+        **classification,
+        "local_inference": False,
+    }
+
+    checkin = sanitize_emotion_checkin(checkin_data)
+    checkin = attach_location_context(
+        checkin=checkin,
+        session_document=session_document,
+    )
+    if checkin.get("checkin_type") == "start_of_day":
+        recommendation = build_start_of_day_mood_recommendation(
+            checkin=checkin,
+            session_document=session_document,
+        )
+    else:
+        recommendation = build_emotion_recommendation(
+            checkin=checkin,
+            session_document=session_document,
+        )
+    
+    emotion_checkins = list(session_document.get("emotion_checkins") or [])
+    emotion_checkins.append(checkin)
+    emotion_summary = build_emotion_summary(
+        checkins=emotion_checkins,
+        latest_recommendation=recommendation,
+    )
+    
+    saved = repository.add_emotion_checkin(
+        session_id=session_id,
+        checkin=checkin,
+        recommendation=recommendation,
+        emotion_summary=emotion_summary,
+    )
+    if not saved:
+        raise HTTPException(status_code=404, detail="Session not found.")
+
+    return {
+        "session_id": session_id,
+        "checkin": checkin,
+        "recommendation": recommendation,
+        "emotion_summary": emotion_summary,
+        "privacy": {
+            "raw_image_received_by_backend": True,
+            "raw_image_stored": False,
+            "identity_recognition": False,
+            "local_inference_required": False,
         },
     }
 
