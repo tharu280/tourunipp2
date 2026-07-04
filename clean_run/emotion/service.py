@@ -9,6 +9,7 @@ NEGATIVE_EMOTIONS = {"anger", "sad"}
 POSITIVE_EMOTIONS = {"happy", "surprise"}
 NEUTRAL_EMOTIONS = {"neutral"}
 DEFAULT_CHECKIN_RADIUS_METERS = 200
+CHECKIN_TYPES = {"attraction", "start_of_day"}
 
 
 def _now_iso() -> str:
@@ -233,6 +234,12 @@ def attach_location_context(
         "checkin_radius_meters": None,
     }
 
+    if checkin.get("checkin_type") == "start_of_day":
+        location_context["matched_planned_attraction"] = False
+        location_context["mode"] = "start_of_day"
+        enriched["location_context"] = location_context
+        return enriched
+
     if target:
         enriched["attraction_id"] = enriched.get("attraction_id") or target.get("attraction_id")
         enriched["attraction_name"] = enriched.get("attraction_name") or target.get("attraction_name")
@@ -304,6 +311,28 @@ def _extract_next_segment(plan: dict[str, Any], attraction_name: str | None) -> 
     return segments[0]
 
 
+def _extract_day_segment(plan: dict[str, Any], day: Any) -> dict[str, Any] | None:
+    recommended_route = plan.get("recommended_route") or {}
+    segments = recommended_route.get("segments") or []
+    if not segments:
+        return None
+
+    try:
+        day_number = int(day)
+    except (TypeError, ValueError):
+        day_number = None
+
+    if day_number is not None:
+        for segment in segments:
+            try:
+                if int(segment.get("day")) == day_number:
+                    return segment
+            except (TypeError, ValueError):
+                continue
+
+    return segments[0]
+
+
 def _crowd_score(plan: dict[str, Any], next_segment: dict[str, Any] | None) -> tuple[int, str | None]:
     segment_signals = (next_segment or {}).get("crowd_signals") or {}
     plan_signals = plan.get("crowd_signals") or {}
@@ -351,6 +380,40 @@ def _fatigue_score(next_segment: dict[str, Any] | None) -> tuple[int, float | No
     return 10, hours
 
 
+def _road_score(plan: dict[str, Any]) -> tuple[int, str | None, str | None]:
+    recommended_route = plan.get("recommended_route") or {}
+    road_alerts = plan.get("road_alerts") or recommended_route.get("road_alerts") or {}
+    risk_level = road_alerts.get("risk_level")
+    critical_count = int(road_alerts.get("critical_count", 0) or 0)
+    incident_count = int(
+        road_alerts.get("total_deduplicated")
+        or road_alerts.get("total_near_route")
+        or len(road_alerts.get("incidents") or [])
+        or 0
+    )
+
+    if critical_count > 0:
+        return 75, risk_level or "high", road_alerts.get("summary")
+    if risk_level == "high":
+        return 65, risk_level, road_alerts.get("summary")
+    if risk_level == "medium" or incident_count > 0:
+        return 40, risk_level or "medium", road_alerts.get("summary")
+    if risk_level == "low":
+        return 10, risk_level, road_alerts.get("summary")
+    return 15, risk_level, road_alerts.get("summary")
+
+
+def _segment_attraction_names(segment: dict[str, Any] | None) -> list[str]:
+    names = []
+    for attraction in _segment_attractions(segment or {}):
+        if not isinstance(attraction, dict):
+            continue
+        name = _attraction_name(attraction)
+        if name:
+            names.append(name)
+    return names[:5]
+
+
 def sanitize_emotion_checkin(checkin: dict[str, Any]) -> dict[str, Any]:
     """Keep only structured inference metadata. Raw images never belong here."""
 
@@ -375,6 +438,14 @@ def sanitize_emotion_checkin(checkin: dict[str, Any]) -> dict[str, Any]:
 
     emotion_label = str(checkin.get("emotion_label") or checkin.get("predicted_class") or "").strip().lower()
     confidence = float(checkin.get("emotion_confidence") or checkin.get("confidence") or 0)
+    checkin_type = _normalize_text(checkin.get("checkin_type") or "attraction")
+    if checkin_type not in CHECKIN_TYPES:
+        checkin_type = "attraction"
+
+    try:
+        day = int(checkin.get("day")) if checkin.get("day") is not None else None
+    except (TypeError, ValueError):
+        day = None
 
     user_location = checkin.get("user_location") or {}
     user_lat = _safe_float(user_location.get("latitude") or user_location.get("lat"))
@@ -384,6 +455,8 @@ def sanitize_emotion_checkin(checkin: dict[str, Any]) -> dict[str, Any]:
         "checkin_id": str(checkin.get("checkin_id") or ""),
         "attraction_id": checkin.get("attraction_id"),
         "attraction_name": checkin.get("attraction_name"),
+        "checkin_type": checkin_type,
+        "day": day,
         "timestamp": checkin.get("timestamp") or _now_iso(),
         "emotion_label": emotion_label,
         "emotion_confidence": max(0.0, min(confidence, 1.0)),
@@ -554,5 +627,123 @@ def build_emotion_recommendation(
             "local_inference": True,
             "raw_image_received_by_backend": False,
             "raw_image_stored": False,
+        },
+    }
+
+
+def build_start_of_day_mood_recommendation(
+    *,
+    checkin: dict[str, Any],
+    session_document: dict[str, Any],
+) -> dict[str, Any]:
+    """Build a day-ahead mood interpretation without mutating the trip plan."""
+
+    plan = session_document.get("plan") or {}
+    latest_checkin = sanitize_emotion_checkin({**checkin, "checkin_type": "start_of_day"})
+    day_segment = _extract_day_segment(plan, latest_checkin.get("day"))
+
+    emotion_score = _emotion_stress_score(
+        latest_checkin["emotion_label"],
+        latest_checkin["emotion_confidence"],
+    )
+    crowd_score, crowd_level = _crowd_score(plan, day_segment)
+    weather_score, weather_level = _weather_score(day_segment)
+    fatigue_score, travel_hours = _fatigue_score(day_segment)
+    road_score, road_level, road_summary = _road_score(plan)
+
+    combined_score = round(
+        (emotion_score * 0.34)
+        + (crowd_score * 0.22)
+        + (weather_score * 0.18)
+        + (fatigue_score * 0.16)
+        + (road_score * 0.10)
+    )
+    risk_level = _level_from_score(combined_score)
+
+    label = latest_checkin["emotion_label"]
+    confidence = latest_checkin["emotion_confidence"]
+    day_label = (day_segment or {}).get("day_label") or (
+        f"Day {latest_checkin['day']}" if latest_checkin.get("day") else "Today"
+    )
+    attractions = _segment_attraction_names(day_segment)
+
+    if label in NEGATIVE_EMOTIONS:
+        mood_description = (
+            f"The start-of-day photo suggests a heavier mood ({label}, {confidence:.2f} confidence), "
+            "so the day should be paced more gently."
+        )
+    elif label in POSITIVE_EMOTIONS:
+        mood_description = (
+            f"The start-of-day photo suggests a positive mood ({label}, {confidence:.2f} confidence), "
+            "so the planned day has good emotional momentum."
+        )
+    elif label in NEUTRAL_EMOTIONS:
+        mood_description = (
+            f"The start-of-day photo looks neutral ({confidence:.2f} confidence), "
+            "so comfort depends more on crowd, weather, roads, and travel load."
+        )
+    else:
+        mood_description = (
+            "The model is uncertain about the start-of-day mood, so the advice leans on trip conditions."
+        )
+
+    condition_bits = [
+        f"crowd pressure is {crowd_level or 'unknown'}",
+        f"weather risk is {weather_level or 'unknown'}",
+        f"road risk is {road_level or 'unknown'}",
+    ]
+    if travel_hours is not None:
+        condition_bits.append(f"travel load is about {travel_hours:.1f} hours")
+
+    if risk_level == "high":
+        day_prediction = "The day ahead may feel tiring unless you slow the pace early."
+        recommendation = "Start earlier, keep the first major stop shorter, and add a proper rest or food break before the busiest attraction."
+    elif risk_level == "medium":
+        day_prediction = "The day ahead is manageable, but crowd, weather, or travel friction could affect comfort."
+        recommendation = "Keep the route, but use the best visit window and protect one short recovery break."
+    else:
+        day_prediction = "The day ahead should feel comfortable if the plan stays close to the current timing."
+        recommendation = "Continue as planned and keep the check-in as a light wellness signal."
+
+    reasons = [
+        mood_description,
+        f"For {day_label}, " + ", ".join(condition_bits) + ".",
+    ]
+    if attractions:
+        reasons.append("Planned stops considered: " + ", ".join(attractions) + ".")
+    if road_summary:
+        reasons.append(f"Road context: {road_summary}")
+
+    return {
+        "type": "start_of_day",
+        "current_emotion": label,
+        "confidence": confidence,
+        "day": (day_segment or {}).get("day") or latest_checkin.get("day"),
+        "day_label": day_label,
+        "day_ahead_prediction": day_prediction,
+        "risk_level": risk_level,
+        "score": combined_score,
+        "components": {
+            "emotion": emotion_score,
+            "crowd": crowd_score,
+            "weather": weather_score,
+            "roads": road_score,
+            "travel_fatigue": fatigue_score,
+        },
+        "explanation": reasons,
+        "recommendation": recommendation,
+        "day_context": {
+            "attractions": attractions,
+            "crowd_level": crowd_level,
+            "weather_level": weather_level,
+            "road_level": road_level,
+            "segment_duration_seconds": (day_segment or {}).get("segment_duration_seconds"),
+            "segment_distance_km": (day_segment or {}).get("segment_distance_km"),
+        },
+        "privacy": {
+            "local_inference": True,
+            "raw_image_received_by_backend": False,
+            "raw_image_stored": False,
+            "identity_recognition": False,
         },
     }

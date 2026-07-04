@@ -5,6 +5,7 @@ from .service import (
     build_emotion_checkin_targets,
     build_emotion_recommendation,
     build_emotion_summary,
+    build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
 )
 
@@ -13,5 +14,6 @@ __all__ = [
     "build_emotion_checkin_targets",
     "build_emotion_recommendation",
     "build_emotion_summary",
+    "build_start_of_day_mood_recommendation",
     "sanitize_emotion_checkin",
 ]

@@ -18,6 +18,7 @@ from clean_run.emotion import (
     build_emotion_checkin_targets,
     build_emotion_recommendation,
     build_emotion_summary,
+    build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
 )
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
@@ -119,6 +120,8 @@ class EmotionUserLocation(BaseModel):
 class EmotionCheckinRequest(BaseModel):
     attraction_id: str | None = None
     attraction_name: str | None = None
+    checkin_type: str = Field(default="attraction", pattern="^(attraction|start_of_day)$")
+    day: int | None = Field(default=None, ge=1)
     timestamp: str | None = None
     user_location: EmotionUserLocation | None = None
     emotion_label: str = Field(pattern="^(anger|happy|neutral|sad|surprise|uncertain)$")
@@ -526,10 +529,16 @@ async def add_emotion_checkin(session_id: str, req: EmotionCheckinRequest) -> di
         checkin=checkin,
         session_document=session_document,
     )
-    recommendation = build_emotion_recommendation(
-        checkin=checkin,
-        session_document=session_document,
-    )
+    if checkin.get("checkin_type") == "start_of_day":
+        recommendation = build_start_of_day_mood_recommendation(
+            checkin=checkin,
+            session_document=session_document,
+        )
+    else:
+        recommendation = build_emotion_recommendation(
+            checkin=checkin,
+            session_document=session_document,
+        )
     emotion_checkins = list(session_document.get("emotion_checkins") or [])
     emotion_checkins.append(checkin)
     emotion_summary = build_emotion_summary(

@@ -7,6 +7,7 @@ from clean_run.emotion.service import (
     build_emotion_checkin_targets,
     build_emotion_recommendation,
     build_emotion_summary,
+    build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
 )
 
@@ -15,6 +16,7 @@ def _sample_session() -> dict:
     return {
         "session_id": "session-emotion",
         "plan": {
+            "road_alerts": {"risk_level": "medium", "critical_count": 0, "total_deduplicated": 2},
             "crowd_signals": {"risk_level": "medium", "signal_score": 48},
             "recommended_route": {
                 "segments": [
@@ -30,6 +32,21 @@ def _sample_session() -> dict:
                                 "display_name": "Temple of the Sacred Tooth Relic",
                                 "lat": 7.2936,
                                 "lng": 80.6413,
+                            }
+                        ],
+                    },
+                    {
+                        "day": 2,
+                        "day_label": "Day 2",
+                        "segment_duration_seconds": 12600,
+                        "segment_distance_km": 130.0,
+                        "weather": {"risk": {"risk_level": "high", "risk_score": 70}},
+                        "selected_attractions": [
+                            {
+                                "place_id": "ambuluwawa",
+                                "display_name": "Ambuluwawa Tower",
+                                "lat": 7.1618,
+                                "lng": 80.5497,
                             }
                         ],
                     }
@@ -84,7 +101,7 @@ class EmotionServiceTests(unittest.TestCase):
     def test_emotion_targets_expose_planned_attraction_coordinates(self) -> None:
         targets = build_emotion_checkin_targets(_sample_session())
 
-        self.assertEqual(targets["target_count"], 1)
+        self.assertEqual(targets["target_count"], 2)
         target = targets["targets"][0]
         self.assertEqual(target["attraction_id"], "temple-tooth")
         self.assertEqual(target["latitude"], 7.2936)
@@ -121,6 +138,29 @@ class EmotionServiceTests(unittest.TestCase):
         self.assertEqual(summary["trend"], "improving")
         self.assertEqual(summary["recovery_status"], "recovered")
         self.assertEqual(summary["latest_recommendation"]["risk_level"], "low")
+
+    def test_start_of_day_mood_recommendation_uses_requested_day_context(self) -> None:
+        checkin = sanitize_emotion_checkin(
+            {
+                "checkin_type": "start_of_day",
+                "day": 2,
+                "emotion_label": "neutral",
+                "emotion_confidence": 0.76,
+            }
+        )
+
+        recommendation = build_start_of_day_mood_recommendation(
+            checkin=checkin,
+            session_document=_sample_session(),
+        )
+
+        self.assertEqual(recommendation["type"], "start_of_day")
+        self.assertEqual(recommendation["day"], 2)
+        self.assertEqual(recommendation["day_label"], "Day 2")
+        self.assertEqual(recommendation["day_context"]["weather_level"], "high")
+        self.assertIn("Ambuluwawa Tower", recommendation["day_context"]["attractions"])
+        self.assertIn("day ahead", recommendation["day_ahead_prediction"])
+        self.assertFalse(recommendation["privacy"]["raw_image_stored"])
 
 
 if __name__ == "__main__":

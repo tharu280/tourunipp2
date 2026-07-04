@@ -47,3 +47,6 @@ export const refreshIntelApi = (sessionId) =>
 
 export const emotionCheckinApi = (sessionId, body) =>
   request("POST", `/sessions/${sessionId}/emotion-checkins`, body);
+
+export const startOfDayMoodCheckinApi = (sessionId, body) =>
+  emotionCheckinApi(sessionId, { ...body, checkin_type: "start_of_day" });

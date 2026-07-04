@@ -19,6 +19,7 @@ class FakeEmotionRepository:
         return {
             "session_id": session_id,
             "plan": {
+                "road_alerts": {"risk_level": "medium", "critical_count": 0, "total_deduplicated": 1},
                 "crowd_signals": {"risk_level": "medium", "signal_score": 45},
                 "recommended_route": {
                     "segments": [
@@ -33,6 +34,21 @@ class FakeEmotionRepository:
                                     "display_name": "Gangaramaya Temple",
                                     "lat": 6.9167,
                                     "lng": 79.8562,
+                                }
+                            ],
+                        },
+                        {
+                            "day": 2,
+                            "day_label": "Day 2",
+                            "segment_duration_seconds": 7200,
+                            "segment_distance_km": 80.0,
+                            "weather": {"risk": {"risk_level": "medium", "risk_score": 45}},
+                            "selected_attractions": [
+                                {
+                                    "place_id": "peradeniya",
+                                    "display_name": "Royal Botanical Gardens",
+                                    "lat": 7.2710,
+                                    "lng": 80.5950,
                                 }
                             ],
                         }
@@ -160,6 +176,33 @@ class CleanApiTests(unittest.TestCase):
         self.assertIn("emotion_summary", payload)
         self.assertIn("recommendation", payload)
 
+    def test_start_of_day_emotion_checkin_returns_day_ahead_recommendation(self) -> None:
+        repository = FakeEmotionRepository()
+        client = TestClient(app)
+
+        with patch("clean_run.api.get_session_repository", return_value=repository):
+            response = client.post(
+                "/sessions/session-emotion/emotion-checkins",
+                json={
+                    "checkin_type": "start_of_day",
+                    "day": 2,
+                    "emotion_label": "neutral",
+                    "emotion_confidence": 0.74,
+                    "top_predictions": [{"class_name": "neutral", "probability": 0.74}],
+                    "model_version": "rafdb5_local_tflite",
+                    "local_inference": True,
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["checkin"]["checkin_type"], "start_of_day")
+        self.assertEqual(payload["checkin"]["day"], 2)
+        self.assertEqual(payload["recommendation"]["type"], "start_of_day")
+        self.assertEqual(payload["recommendation"]["day_label"], "Day 2")
+        self.assertIn("Royal Botanical Gardens", payload["recommendation"]["day_context"]["attractions"])
+        self.assertFalse(payload["privacy"]["raw_image_stored"])
+
     def test_emotion_targets_endpoint_returns_mobile_geofence_targets(self) -> None:
         repository = FakeEmotionRepository()
         client = TestClient(app)
@@ -169,7 +212,7 @@ class CleanApiTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         payload = response.json()
-        self.assertEqual(payload["target_count"], 1)
+        self.assertEqual(payload["target_count"], 2)
         self.assertEqual(payload["targets"][0]["attraction_id"], "gangaramaya")
         self.assertTrue(payload["mobile_flow"]["local_tflite_inference_required"])
 
