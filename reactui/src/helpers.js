@@ -442,7 +442,6 @@ export function getAttractions(plan) {
 
 export function getItineraryRows(plan) {
   const rows = [];
-  let previousSignature = "";
   const destination =
     plan?.destination_resolved?.name ||
     plan?.route?.destination_resolved?.name ||
@@ -455,25 +454,21 @@ export function getItineraryRows(plan) {
     const names = selectedAttractionsForSegment(segment)
       .slice(0, 3)
       .map(attractionName);
-    const signature = attractionSignature(names);
-    const isRepeated =
-      signature && previousSignature && signature === previousSignature;
     const fallbackName =
-      segment?.recommended_lodging?.display_name ||
+      segment?.end_point?.name ||
+      segment?.mid_point?.name ||
       destination ||
-      "the next stop";
+      "next stop";
 
     rows.push({
       segment,
       day,
       label: segment.day_label || `Day ${day}`,
-      highlights: isRepeated
-        ? [`Travel toward ${fallbackName}`]
-        : names,
-      isRepeated,
+      highlights: names.length > 0
+        ? names
+        : [`Travel day toward ${fallbackName}`],
+      isFallback: names.length === 0,
     });
-
-    if (signature) previousSignature = signature;
   }
 
   return rows;
@@ -557,21 +552,36 @@ export function getBudgetSummary(plan, selectedFlight, totalBudgetLkr) {
   const transport = getTransportCost(plan);
   const handoff = estimateFlightHandoff(selectedFlight, totalBudgetLkr);
 
+  let computedAccomLkr = null;
+  const stays = getLodging(plan);
+  if (stays.length > 0) {
+    let sum = 0;
+    for (const stay of stays) {
+      const val = stay?.total_price_lkr ?? stay?.price_lkr ?? stay?.current_price_lkr ?? stay?.estimated_nightly_cost_lkr ?? stay?.price;
+      if (Number.isFinite(Number(val))) sum += Number(val);
+    }
+    if (sum > 0) computedAccomLkr = sum;
+  }
+
   const flightLkr =
     budget.selected_flight_budget_lkr_estimated ||
     budget.flight_budget_lkr ||
     budget.flight_estimate_lkr ||
     handoff.estimatedFlightLkr;
-  const accomLkr =
-    budget.accommodation_budget_lkr ||
-    budget.remaining_accommodation_budget_lkr;
+  const accomLkr = computedAccomLkr;
   const transportLkr =
     budget.transport_budget_lkr ||
     transport.estimated_total_lkr ||
     transport.total_lkr;
   const activitiesLkr =
     budget.activities_budget_lkr || budget.remaining_budget_lkr;
-  const totalLkr = budget.total_budget_lkr || totalBudgetLkr;
+
+  const grandTotalSpent =
+    (Number(flightLkr) || 0) +
+    (Number(accomLkr) || 0) +
+    (Number(transportLkr) || 0) +
+    (Number(activitiesLkr) || 0);
+  const totalLkr = grandTotalSpent > 0 ? grandTotalSpent : null;
 
   return { flightLkr, accomLkr, transportLkr, activitiesLkr, totalLkr };
 }
@@ -937,15 +947,46 @@ export function getRoadAlertsForMap(plan) {
     plan?.route?.recommended_route?.road_alerts ||
     {};
 
+  const incidents = [
+    ...(road.critical_incidents || []),
+    ...(road.incidents || []),
+  ].filter(Boolean).map(inc => {
+    let sev = inc.severity || inc.damage_type;
+    const lTitle = (inc.name || inc.type || inc.title || "").toLowerCase();
+    const lStatus = (inc.status || inc.description || "").toLowerCase();
+    
+    if (!sev || sev === "unknown" || sev === "Unknown") {
+      if (lStatus.includes("active") || lStatus.includes("verified") || lTitle.includes("critical") || lTitle.includes("block")) {
+        sev = "high";
+      } else if (lStatus.includes("resolved") || lStatus.includes("cleared")) {
+        sev = "low";
+      } else if (lStatus.includes("caution") || lStatus.includes("ongoing")) {
+        sev = "medium";
+      }
+    }
+
+    return {
+      title: inc.name || inc.type || inc.title || (lStatus.includes("resolved") ? "Resolved road incident" : lStatus.includes("verified") ? "Verified road incident" : "Road incident"),
+      location: inc.location_name || inc.road_name || null,
+      status: inc.status || inc.description || null,
+      severity: sev || "unknown",
+      source: inc.source || null,
+      distance: inc.distance_from_route_km || null,
+      lat: inc.lat ?? inc.location?.lat,
+      lng: inc.lng ?? inc.location?.lng,
+    };
+  });
+
+  const activeCount = incidents.filter(i => i.severity === "high" || i.severity === "medium").length;
+  const activeCritical = incidents.filter(i => i.severity === "high").length;
+  const overallRisk = activeCritical > 0 ? "high" : activeCount > 0 ? "medium" : "low";
+
   return {
-    riskLevel: road.risk_level || "low",
+    riskLevel: overallRisk,
     summary: road.summary || null,
-    totalNearRoute: road.total_near_route ?? 0,
-    criticalCount: road.critical_count ?? 0,
-    incidents: [
-      ...(road.critical_incidents || []),
-      ...(road.incidents || []),
-    ].filter(Boolean),
+    totalNearRoute: incidents.length,
+    criticalCount: activeCritical,
+    incidents,
     lastUpdated: road.last_updated || null,
   };
 }

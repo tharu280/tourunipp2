@@ -21,7 +21,7 @@ export default function ItinerarySection({ plan }) {
 
   return (
     <div className="itinerary-list" id="section-itinerary">
-      {rows.map(({ segment: seg, day, label, highlights, isRepeated }, i) => {
+      {rows.map(({ segment: seg, day, label, highlights, isFallback }, i) => {
         const dayNum = day || i + 1;
         const distance = segmentDistanceLabel(seg) || formatDuration(seg.segment_duration_seconds);
 
@@ -38,12 +38,26 @@ export default function ItinerarySection({ plan }) {
               <div className="itinerary-label">{label}</div>
               {(distance || highlights.length > 0) && (
                 <div className="itinerary-meta">
-                  {distance && <span className="itinerary-distance">{distance}</span>}
-                  {distance && highlights.length > 0 && <span className="itinerary-dot-sep" />}
+                  {distance && <div className="itinerary-distance" style={{marginBottom: 6, fontSize: 13, color: "var(--text-3)"}}>{distance}</div>}
                   {highlights.length > 0 && (
-                    <span className={isRepeated ? "itinerary-attrs itinerary-attrs-muted" : "itinerary-attrs"}>
-                      {highlights.join(", ")}
-                    </span>
+                    <ul className={isFallback ? "itinerary-attrs-list fallback" : "itinerary-attrs-list"} style={{
+                      listStyle: "none", margin: 0, padding: 0, 
+                      fontSize: 14, color: isFallback ? "var(--text-3)" : "var(--text-2)",
+                      fontStyle: isFallback ? "italic" : "normal",
+                      lineHeight: 1.4
+                    }}>
+                      {highlights.map((hlt, idx) => (
+                        <li key={idx} style={{ 
+                          display: "flex", alignItems: "flex-start", gap: 6, marginBottom: 4 
+                        }}>
+                          {!isFallback && <span style={{ color: "var(--text-3)", marginTop: -2 }}>•</span>}
+                          <span style={{ 
+                            wordBreak: "break-word", 
+                            overflowWrap: "break-word" 
+                          }}>{hlt}</span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
               )}

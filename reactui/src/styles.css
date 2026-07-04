@@ -824,10 +824,12 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 
 /* Dashboard scrollable body */
 .dashboard-content {
-  padding: 16px 16px calc(max(40px, var(--safe-bottom)) + 20px);
+  padding: 16px 16px calc(120px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* ── Map card ── */
@@ -1993,3 +1995,11 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   letter-spacing: -0.5px;
 }
 
+
+/* Hide Vercel Toolbar */
+vercel-live-feedback,
+.vercel-toolbar,
+#vercel-toolbar,
+[data-vercel-toolbar] {
+  display: none !important;
+}

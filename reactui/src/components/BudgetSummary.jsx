@@ -6,7 +6,7 @@ export default function BudgetSummary({ plan, selectedFlight, totalBudgetLkr }) 
 
   const rows = [
     { label: "Flights", value: flightLkr, show: flightLkr != null, icon: "✈️" },
-    { label: "Accommodation", value: accomLkr, show: accomLkr != null, icon: "🏨" },
+    { label: "Accommodation", value: accomLkr, show: true, fallback: "Accommodation estimate unavailable", icon: "🏨" },
     { label: "Transport", value: transportLkr, show: transportLkr != null, icon: "🚗" },
     { label: "Activities", value: activitiesLkr, show: activitiesLkr != null, icon: "🎫" },
   ].filter((r) => r.show);
@@ -23,7 +23,13 @@ export default function BudgetSummary({ plan, selectedFlight, totalBudgetLkr }) 
             <div className="budget-icon" aria-hidden="true">{row.icon}</div>
             {row.label}
           </span>
-          <span className="budget-amount">{formatMoney(row.value)}</span>
+          {row.value != null ? (
+            <span className="budget-amount">{formatMoney(row.value)}</span>
+          ) : row.fallback ? (
+            <span className="budget-amount" style={{color: "var(--text-3)", fontSize: 13, fontStyle: "italic"}}>{row.fallback}</span>
+          ) : (
+            <span className="budget-amount">—</span>
+          )}
         </div>
       ))}
       {grandTotal && (
