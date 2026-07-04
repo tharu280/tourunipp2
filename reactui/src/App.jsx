@@ -118,14 +118,31 @@ export default function App() {
     setDashboardData(null);
   }
 
-  const FIRST_GREETING = "Hey, happy to help with this trip! ✈️\n\nWhich city are you flying from?";
-
   /* ── 1. Get Started → boot chat ─────────────────────────────── */
   async function handleStart() {
     setScreen("booting");
     setError("");
-    setFlightMessages([makeMsg("assistant", FIRST_GREETING)]);
-    setScreen("flightChat");
+    try {
+      const payload = await chatApi({ message: "hey", session: null });
+      setSession(payload.session);
+      setFlightMessages([
+        makeMsg(
+          "assistant",
+          payload.turn?.assistant_reply ||
+            "Hi, I'm TourUni.\nLet's find the best flight to Sri Lanka.\n\nWhere are you departing from?"
+        ),
+      ]);
+      setScreen("flightChat");
+    } catch (err) {
+      // Even on error, open chat with a fallback greeting
+      setFlightMessages([
+        makeMsg(
+          "assistant",
+          "Hi, I'm TourUni.\nLet's find the best flight to Sri Lanka.\n\nWhere are you departing from?"
+        ),
+      ]);
+      setScreen("flightChat");
+    }
   }
 
   /* ── 2. Flight search ───────────────────────────────────────── */

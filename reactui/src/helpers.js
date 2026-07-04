@@ -73,19 +73,9 @@ export function getBookingLink(flight) {
   );
 }
 
-export const CURRENCY_RATES = {
-  LKR: 1.0,
-  USD: 300,
-  AED: 82,
-  EUR: 325,
-  GBP: 380,
-  SGD: 223,
-  INR: 3.6,
-};
-
-export function estimateFlightHandoff(flight, totalBudgetStr) {
-  const total = _parseNumeric(totalBudgetStr);
-  if (!flight || !flight.price) {
+export function estimateFlightHandoff(flight, totalBudgetLkr) {
+  const total = Number(totalBudgetLkr);
+  if (!flight || !Number.isFinite(total)) {
     return {
       estimatedFlightLkr: null,
       remainingBudgetLkr: Number.isFinite(total) ? total : null,
@@ -95,9 +85,14 @@ export function estimateFlightHandoff(flight, totalBudgetStr) {
   if (!Number.isFinite(price))
     return { estimatedFlightLkr: null, remainingBudgetLkr: total };
   const currency = String(flight.currency || "").toUpperCase();
-  const rate = CURRENCY_RATES[currency];
-  
-  const estimatedFlightLkr = rate ? price * rate : null;
+  const estimatedFlightLkr =
+    currency === "LKR"
+      ? price
+      : currency === "USD"
+      ? price * 300
+      : currency === "AED"
+      ? price * 82
+      : null;
   if (!Number.isFinite(estimatedFlightLkr))
     return { estimatedFlightLkr: null, remainingBudgetLkr: total };
   return {
