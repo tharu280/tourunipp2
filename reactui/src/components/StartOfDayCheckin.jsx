@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { startOfDayMoodCheckinApi } from '../api';
-import { mockClassifyEmotion } from '../emotion/mockEmotionClassifier';
+import { classifyEmotion } from '../emotion/realEmotionClassifier';
 
 function IconCamera() {
   return (
@@ -40,14 +40,14 @@ export default function StartOfDayCheckin({ plan, session }) {
     setResult(null);
 
     try {
-      // 1. Local mock classification
-      const classification = await mockClassifyEmotion(file);
+      // 1. Local browser classification. The raw photo is not uploaded.
+      const classification = await classifyEmotion(file);
       
       // 2. Call backend API
       const response = await startOfDayMoodCheckinApi(sessionId, {
         day: selectedDay,
         ...classification,
-        model_version: "rafdb5_local_tflite",
+        model_version: classification.model_version || "rafdb5_browser_tflite",
         local_inference: true
       });
 
@@ -134,7 +134,8 @@ export default function StartOfDayCheckin({ plan, session }) {
                   {result.current_emotion === "happy" ? "😊" : 
                    result.current_emotion === "neutral" ? "😐" : 
                    result.current_emotion === "sad" ? "😔" : 
-                   result.current_emotion === "surprise" ? "😲" : "😐"}
+                   result.current_emotion === "surprise" ? "😲" :
+                   result.current_emotion === "anger" ? "😠" : "😐"}
                 </span>
                 <span className="mood-label">
                   {result.current_emotion?.charAt(0).toUpperCase() + result.current_emotion?.slice(1)} ({(result.confidence * 100).toFixed(0)}%)
