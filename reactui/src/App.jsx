@@ -341,6 +341,7 @@ export default function App() {
       busy={busy}
       error={error}
       onBack={isTrip ? continueToTrip : reset}
+      onReset={reset}
     />
   );
 }

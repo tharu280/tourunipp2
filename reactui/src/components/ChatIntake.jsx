@@ -46,6 +46,7 @@ export default function ChatIntake({
   busy,
   error,
   onBack,
+  onReset,
 }) {
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -87,9 +88,11 @@ export default function ChatIntake({
           <IconBack />
         </button>
         <span className="chat-nav-title">{title}</span>
-        <div className="chat-nav-info" aria-hidden="true">
-          <IconInfo />
-        </div>
+        {onReset && (
+          <button className="chat-nav-reset" onClick={onReset} type="button" aria-label="Start over" style={{ background: "none", border: "none", fontSize: "0.85rem", fontWeight: "500", color: "var(--primary-color)", cursor: "pointer", padding: "8px" }}>
+            Reset
+          </button>
+        )}
       </nav>
 
       {/* Messages */}
