@@ -11,3 +11,4 @@ opencv-python-headless==4.10.0.84
 tflite-runtime==2.14.0
 python-multipart==0.0.9
 Pillow==10.4.0
+numpy<2
