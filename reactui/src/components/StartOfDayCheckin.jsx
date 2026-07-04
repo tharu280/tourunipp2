@@ -70,7 +70,7 @@ export default function StartOfDayCheckin({ plan, session }) {
   return (
     <section className="d-card mood-checkin-card">
       <div className="d-card-header">
-        <h2 className="d-card-title">Start-of-day mood check</h2>
+        <h2 className="d-card-title">Today's travel readiness</h2>
       </div>
       <div className="d-card-body" style={{ padding: "16px 20px 20px" }}>
         
@@ -209,6 +209,36 @@ export default function StartOfDayCheckin({ plan, session }) {
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Why this advice? Context chips */}
+            <div style={{ marginTop: "1.5rem" }}>
+              <div style={{ fontWeight: 600, fontSize: "12px", textTransform: "uppercase", color: "var(--text-tertiary)", marginBottom: "8px" }}>Why this advice?</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                {result.day_context?.crowd_level && (
+                  <span style={{ fontSize: "11px", padding: "4px 8px", backgroundColor: "var(--bg-tertiary)", borderRadius: "4px", color: "var(--text-secondary)" }}>
+                    Crowd {result.day_context.crowd_level.charAt(0).toUpperCase() + result.day_context.crowd_level.slice(1)}
+                  </span>
+                )}
+                {result.day_context?.weather_level && (
+                  <span style={{ fontSize: "11px", padding: "4px 8px", backgroundColor: "var(--bg-tertiary)", borderRadius: "4px", color: "var(--text-secondary)" }}>
+                    Weather {result.day_context.weather_level.charAt(0).toUpperCase() + result.day_context.weather_level.slice(1)}
+                  </span>
+                )}
+                {result.day_context?.road_level && (
+                  <span style={{ fontSize: "11px", padding: "4px 8px", backgroundColor: "var(--bg-tertiary)", borderRadius: "4px", color: "var(--text-secondary)" }}>
+                    Roads {result.day_context.road_level.charAt(0).toUpperCase() + result.day_context.road_level.slice(1)}
+                  </span>
+                )}
+                {result.day_context?.segment_distance_km != null && (
+                  <span style={{ fontSize: "11px", padding: "4px 8px", backgroundColor: "var(--bg-tertiary)", borderRadius: "4px", color: "var(--text-secondary)" }}>
+                    Travel {Math.round(result.day_context.segment_distance_km)} km
+                  </span>
+                )}
+                <span style={{ fontSize: "11px", padding: "4px 8px", backgroundColor: "var(--bg-tertiary)", borderRadius: "4px", color: "var(--text-secondary)" }}>
+                  {result.current_emotion?.charAt(0).toUpperCase() + result.current_emotion?.slice(1)} {(result.confidence * 100).toFixed(0)}%
+                </span>
+              </div>
             </div>
 
             <button className="btn-secondary mt-3" onClick={resetState}>Check another day</button>

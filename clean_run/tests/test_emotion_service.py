@@ -159,7 +159,7 @@ class EmotionServiceTests(unittest.TestCase):
         self.assertEqual(recommendation["day_label"], "Day 2")
         self.assertEqual(recommendation["day_context"]["weather_level"], "high")
         self.assertIn("Ambuluwawa Tower", recommendation["day_context"]["attractions"])
-        self.assertIn("day ahead", recommendation["day_ahead_prediction"])
+        self.assertIn("steady start", recommendation["day_ahead_prediction"])
         self.assertFalse(recommendation["privacy"]["raw_image_stored"])
 
 

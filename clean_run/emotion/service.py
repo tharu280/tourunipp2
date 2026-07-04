@@ -687,6 +687,91 @@ def build_start_of_day_mood_recommendation(
             "The model is uncertain about the start-of-day mood, so the advice leans on trip conditions."
         )
 
+    # --- New recommendation building logic based on specific rules ---
+    day_prediction_parts = []
+    watch_out_for = []
+    comfort_actions = []
+    fallback_plan_parts = []
+    timing_adj_parts = []
+    recommendation = ""
+    
+    is_happy = label in POSITIVE_EMOTIONS
+    is_neutral = label in NEUTRAL_EMOTIONS
+    is_sad_anger = label in NEGATIVE_EMOTIONS
+    is_surprise = label == "surprise"
+    
+    has_high_crowds = crowd_level in ["high", "severe"]
+    has_high_weather = weather_level in ["high", "severe", "medium", "moderate"]
+    has_high_roads = road_level in ["high", "severe", "medium", "moderate"]
+    is_long_travel = travel_hours is not None and travel_hours >= 2.0
+    
+    # Base emotion logic
+    if is_happy:
+        summary = "You're starting with great energy!"
+        day_prediction_parts.append("You’re starting with strong energy.")
+        recommendation = "Visit the highest-priority attraction first while energy is high."
+        if has_high_crowds or has_high_weather or has_high_roads:
+            day_prediction_parts.append("Conditions require some caution later, so use the morning momentum.")
+        else:
+            day_prediction_parts.append("Conditions look good to carry this momentum through the day.")
+        comfort_actions.append("Keep the afternoon lighter.")
+    
+    elif is_neutral:
+        summary = "You're starting the day steady."
+        day_prediction_parts.append("You have a steady start today.")
+        recommendation = "Keep a balanced pace and avoid overloading the day."
+        comfort_actions.append("Schedule one planned break to maintain energy.")
+    
+    elif is_sad_anger:
+        summary = "A slower start today, which is totally okay."
+        day_prediction_parts.append("A slower start today, which is totally fine.")
+        recommendation = "Reduce intensity. Consider a slower first stop or swapping to an easier attraction."
+        comfort_actions.append("Take a comfort break early on.")
+        fallback_plan_parts.append("Drop the lowest-priority attraction if you feel tired.")
+    
+    elif is_surprise:
+        summary = "An alert start to the day!"
+        day_prediction_parts.append("You seem alert and ready for anything.")
+        recommendation = "Keep the plan flexible to match your energy as the day goes on."
+        comfort_actions.append("Keep your options open.")
+    else:
+        summary = "A solid start to the travel day."
+        day_prediction_parts.append("The day ahead looks manageable.")
+        recommendation = "Pace yourself based on how you feel after the first stop."
+    
+    # Context-specific logic
+    if has_high_crowds:
+        timing_adj_parts.append("Start earlier to beat the crowds, or shift the busiest attraction to the morning.")
+        watch_out_for.append("Peak crowds building near main attractions.")
+    else:
+        if not timing_adj_parts:
+            timing_adj_parts.append("Stick to your planned timing.")
+            
+    if has_high_weather:
+        weather_text = "weather"
+        watch_out_for.append(f"Sudden changes in {weather_text} conditions.")
+        fallback_plan_parts.append("Keep a backup indoor activity ready or limit long outdoor exposure.")
+        
+    if has_high_roads:
+        watch_out_for.append("Road friction points and possible delays.")
+        timing_adj_parts.append("Add a 20-30 minute buffer to your travel time.")
+        
+    if is_long_travel:
+        watch_out_for.append("Travel fatigue stacking up from driving.")
+        comfort_actions.append("Take a stretch/snack break during the drive.")
+        fallback_plan_parts.append("Trim optional stops if the drive feels too long.")
+        
+    if not fallback_plan_parts:
+        if is_happy or is_neutral:
+            fallback_plan_parts.append("No major fallbacks needed, but stay flexible.")
+        else:
+            fallback_plan_parts.append("Delay one minor stop if the schedule feels too rushed.")
+    day_prediction = " ".join(day_prediction_parts)
+    timing_adjustment = " ".join(timing_adj_parts)
+    fallback_plan = " ".join(fallback_plan_parts)
+
+    confidence_note = "High confidence read." if confidence > 0.7 else "Moderate confidence read."
+
     condition_bits = [
         f"crowd pressure is {crowd_level or 'unknown'}",
         f"weather risk is {weather_level or 'unknown'}",
@@ -694,41 +779,6 @@ def build_start_of_day_mood_recommendation(
     ]
     if travel_hours is not None:
         condition_bits.append(f"travel load is about {travel_hours:.1f} hours")
-
-    if risk_level == "high":
-        day_prediction = "The day ahead may feel tiring unless you slow the pace early."
-        recommendation = "Start earlier, keep the first major stop shorter, and add a proper rest or food break before the busiest attraction."
-        timing_adjustment = "Start 30-45 mins earlier than usual to secure uncrowded time."
-        watch_out_for = ["Peak crowd heat around noon", "Travel fatigue stacking up", "Road friction points"]
-        comfort_actions = ["Hydrate frequently", "Keep snacks handy", "Take mini-breaks"]
-        fallback_plan = "If fatigue sets in, drop the lowest-priority attraction and head straight to the accommodation."
-    elif risk_level == "medium":
-        day_prediction = "The day ahead is manageable, but crowd, weather, or travel friction could affect comfort."
-        recommendation = "Keep the route, but use the best visit window and protect one short recovery break."
-        timing_adjustment = "Stick to the plan but shift the busiest stop to the best recommended time."
-        watch_out_for = ["Midday heat", "Sudden weather changes", "Moderate crowding"]
-        comfort_actions = ["Protect lunch break time", "Use a flexible pace"]
-        fallback_plan = "Delay one minor stop if the schedule feels too rushed."
-    else:
-        day_prediction = "The day ahead should feel comfortable if the plan stays close to the current timing."
-        recommendation = "Continue as planned and keep the check-in as a light wellness signal."
-        timing_adjustment = "No major timing changes needed."
-        watch_out_for = ["General travel fatigue later in the day"]
-        comfort_actions = ["Enjoy the sights at a steady pace"]
-        fallback_plan = "None needed, but keep a backup indoor activity if it rains."
-
-    summary_map = {
-        "happy": "You're starting with great energy!",
-        "neutral": "You're starting the day steady.",
-        "surprise": "An energetic start to the day!",
-        "sad": "A slower start today, which is totally okay.",
-        "anger": "A bit tense this morning, let's pace it well.",
-        "fear": "Take it easy today and prioritize comfort.",
-        "disgust": "A slightly off morning, let's keep things smooth."
-    }
-    summary = summary_map.get(label, "A solid start to the travel day.")
-
-    confidence_note = "High confidence read." if confidence > 0.7 else "Moderate confidence read."
 
     reasons = [
         mood_description,
