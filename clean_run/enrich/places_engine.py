@@ -447,24 +447,17 @@ def planning_geometry_for_route(
         and route_distance_m / straight_distance_m > 2.05
         and route_distance_m - straight_distance_m > 85_000
     )
-    if is_excessive_detour and origin.get("lat") and origin.get("lng") and destination.get("lat") and destination.get("lng"):
-        return (
-            [{"lat": origin["lat"], "lng": origin["lng"]}, {"lat": destination["lat"], "lng": destination["lng"]}],
-            [0.0, straight_distance_m],
-            straight_distance_m,
-            {
-                "used_direct_planning_corridor": True,
-                "reason": "Google returned an excessive highway detour, so attractions and stays were selected along the direct trip corridor.",
-                "route_distance_m": round(route_distance_m, 2),
-                "straight_line_distance_m": round(straight_distance_m, 2),
-            },
-        )
-
     return (
         geometry["decoded_points"],
         geometry["cumulative_distances_m"],
         float(route.get("distance_meters") or geometry["total_geometry_distance_m"]),
-        {"used_direct_planning_corridor": False},
+        {
+            "used_direct_planning_corridor": False,
+            "is_excessive_detour": is_excessive_detour,
+            "reason": "Attractions and stays are selected along the same Google route shown on the map.",
+            "route_distance_m": round(route_distance_m, 2),
+            "straight_line_distance_m": round(straight_distance_m, 2),
+        },
     )
 
 

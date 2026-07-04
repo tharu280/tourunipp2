@@ -245,6 +245,12 @@ function toLatLng(point) {
   return [lat, lng];
 }
 
+function coordinateKey(point) {
+  const latLng = toLatLng(point);
+  if (!latLng) return null;
+  return `${latLng[0].toFixed(5)},${latLng[1].toFixed(5)}`;
+}
+
 function pushUniquePoint(points, point) {
   const latLng = toLatLng(point);
   if (!latLng) return;
@@ -260,6 +266,18 @@ function collectPath(points, path) {
   for (const point of path) {
     pushUniquePoint(points, point);
   }
+}
+
+function routePointAtRatio(routePoints, ratio, fallbackPoint) {
+  if (Array.isArray(routePoints) && routePoints.length) {
+    const boundedRatio = Math.max(0, Math.min(1, Number(ratio) || 0));
+    const index = Math.round((routePoints.length - 1) * boundedRatio);
+    const selected = routePoints[index];
+    if (selected) {
+      return { lat: selected[0], lng: selected[1] };
+    }
+  }
+  return fallbackPoint;
 }
 
 export function getPolyline(plan) {
@@ -301,59 +319,171 @@ export function getPolyline(plan) {
 
 export function getStops(plan) {
   const stops = [];
-  const origin = plan?.origin_resolved || plan?.route?.origin_resolved;
+  const segments = getRouteSegments(plan);
+  const tripRequirements = plan?.trip_requirements || plan?.dashboard?.trip_requirements || {};
+  const routePoints = getPolyline(plan);
+  const origin =
+    routePointAtRatio(routePoints, 0, null) ||
+    plan?.origin_resolved ||
+    plan?.route?.origin_resolved ||
+    segments[0]?.start_point;
   const destination =
-    plan?.destination_resolved || plan?.route?.destination_resolved;
-  if (origin?.lat && origin?.lng)
-    stops.push({ name: origin.name || "Start", point: origin });
-  for (const segment of getRouteSegments(plan)) {
-    const end = segment?.end_point;
-    if (end?.lat && end?.lng) {
-      stops.push({
+    routePointAtRatio(routePoints, 1, null) ||
+    plan?.destination_resolved ||
+    plan?.route?.destination_resolved ||
+    segments[segments.length - 1]?.end_point;
+  const seen = new Set();
+  const pushStop = (stop) => {
+    const key = coordinateKey(stop.point);
+    if (!key || seen.has(key)) return;
+    seen.add(key);
+    stops.push(stop);
+  };
+
+  if (origin?.lat && origin?.lng) {
+    pushStop({
+      kind: "start",
+      label: "Start",
+      name: origin.name || tripRequirements.origin || "Start",
+      detail: "Trip begins here",
+      point: origin,
+    });
+  }
+
+  for (const segment of segments) {
+    if (!segment?.is_overnight_stop) continue;
+    const day = segment.day || stops.length;
+    const checkpoint = routePointAtRatio(
+      routePoints,
+      day / Math.max(segments.length, 1),
+      segment?.end_point,
+    );
+    if (checkpoint?.lat && checkpoint?.lng) {
+      pushStop({
+        kind: "day",
+        label: `D${day}`,
         name:
           segment?.recommended_lodging?.display_name ||
           segment?.day_label ||
-          `Day ${segment.day || stops.length}`,
-        point: end,
+          `Day ${day}`,
+        detail:
+          segment?.recommended_lodging?.display_name
+            ? `Day ${day} checkpoint · nearby stay: ${segment.recommended_lodging.display_name}`
+            : `Route checkpoint · ${segment.day_label || `Day ${day}`}`,
+        point: checkpoint,
       });
     }
   }
+
   if (
     destination?.lat &&
-    destination?.lng &&
-    !stops.some(
-      (s) => s.point.lat === destination.lat && s.point.lng === destination.lng
-    )
+    destination?.lng
   ) {
-    stops.push({ name: destination.name || "Destination", point: destination });
+    const key = coordinateKey(destination);
+    const destinationName =
+      destination.name || tripRequirements.destination || "Destination";
+    if (key && seen.has(key)) {
+      const lastStop = stops.find((stop) => coordinateKey(stop.point) === key);
+      if (lastStop) {
+        lastStop.kind = "end";
+        lastStop.label = "End";
+        lastStop.name = destinationName;
+        lastStop.detail = "Trip ends here";
+      }
+    } else {
+      pushStop({
+        kind: "end",
+        label: "End",
+        name: destinationName,
+        detail: "Trip ends here",
+        point: destination,
+      });
+    }
   }
   return stops;
 }
 
 /* ── Attractions / Lodging ──────────────────────────────────────── */
 
+function selectedAttractionsForSegment(segment) {
+  return (
+    segment?.selected_attractions ||
+    segment?.gemini_selected_attractions ||
+    segment?.top_attractions ||
+    []
+  );
+}
+
+function attractionName(item) {
+  return (
+    item?.display_name ||
+    item?.name ||
+    item?.attraction_name ||
+    "Attraction"
+  );
+}
+
+function attractionSignature(names) {
+  return names
+    .map((name) => String(name || "").trim().toLowerCase())
+    .filter(Boolean)
+    .sort()
+    .join("|");
+}
+
 export function getAttractions(plan) {
   const attractions = [];
   for (const segment of getRouteSegments(plan)) {
-    const selected =
-      segment?.selected_attractions ||
-      segment?.gemini_selected_attractions ||
-      segment?.top_attractions ||
-      [];
+    const selected = selectedAttractionsForSegment(segment);
     for (const item of selected.slice(0, 3)) {
       attractions.push({
         day: segment.day,
         dayLabel: segment.day_label,
-        name:
-          item.display_name ||
-          item.name ||
-          item.attraction_name ||
-          "Attraction",
+        name: attractionName(item),
         rating: item.rating,
       });
     }
   }
   return attractions.slice(0, 15);
+}
+
+export function getItineraryRows(plan) {
+  const rows = [];
+  let previousSignature = "";
+  const destination =
+    plan?.destination_resolved?.name ||
+    plan?.route?.destination_resolved?.name ||
+    plan?.trip_requirements?.destination ||
+    plan?.dashboard?.trip_requirements?.destination ||
+    "the destination";
+
+  for (const segment of getRouteSegments(plan)) {
+    const day = segment.day || rows.length + 1;
+    const names = selectedAttractionsForSegment(segment)
+      .slice(0, 3)
+      .map(attractionName);
+    const signature = attractionSignature(names);
+    const isRepeated =
+      signature && previousSignature && signature === previousSignature;
+    const fallbackName =
+      segment?.recommended_lodging?.display_name ||
+      destination ||
+      "the next stop";
+
+    rows.push({
+      segment,
+      day,
+      label: segment.day_label || `Day ${day}`,
+      highlights: isRepeated
+        ? [`Travel toward ${fallbackName}`]
+        : names,
+      isRepeated,
+    });
+
+    if (signature) previousSignature = signature;
+  }
+
+  return rows;
 }
 
 export function getLodging(plan) {
@@ -370,27 +500,30 @@ export function getLodging(plan) {
       ...stay,
     }));
   }
-  // Fall back to segment recommended_lodging
+
+  // Main stay carousel should show only the selected overnight stay.
+  // `top_lodging` is an alternatives list and should not appear as extra hotels per day.
   const stays = [];
   for (const segment of getRouteSegments(plan)) {
-    if (segment?.recommended_lodging)
+    if (segment?.is_overnight_stop === false) continue;
+    if (segment?.recommended_lodging) {
       stays.push({
         day: segment.day,
         type: "Selected",
         ...segment.recommended_lodging,
       });
-    for (const item of segment?.top_lodging || [])
-      stays.push({ day: segment.day, type: "Nearby", ...item });
+    }
   }
+
   const seen = new Set();
   return stays
     .filter((item) => {
-      const key = `${item.day}-${item.display_name || item.name}`;
+      const key = `${item.day}-${item.place_id || item.display_name || item.name}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return item.display_name || item.name;
     })
-    .slice(0, 8);
+    .sort((a, b) => Number(a.day || 0) - Number(b.day || 0));
 }
 
 export function lodgingPriceLabel(stay) {

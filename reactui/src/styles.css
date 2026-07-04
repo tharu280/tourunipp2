@@ -761,12 +761,37 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
 }
 .map-pin {
-  width: 12px !important;
-  height: 12px !important;
+  width: auto !important;
+  min-width: 30px;
+  height: 28px !important;
   border-radius: 999px;
   background: var(--brand-primary);
-  border: 3px solid white;
+  border: 2px solid white;
   box-shadow: 0 4px 12px rgba(7, 95, 85, 0.4);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  padding: 0 8px;
+}
+.map-pin span {
+  display: block;
+  transform: translateY(-0.5px);
+}
+.map-pin-start {
+  background: #0f766e;
+}
+.map-pin-end {
+  background: #111827;
+}
+.map-pin-stay {
+  background: #0e7490;
+}
+.map-pin-day {
+  background: var(--brand-primary);
 }
 
 /* ── Conditions pill bar ── */
@@ -942,6 +967,10 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.itinerary-attrs-muted {
+  color: var(--text-tertiary);
+  font-style: italic;
 }
 .itinerary-dot-sep {
   width: 3px;

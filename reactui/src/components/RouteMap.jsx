@@ -38,12 +38,13 @@ export default function RouteMap({ plan }) {
   );
   const center = polyline[0] || SRI_LANKA_CENTER;
 
-  const pinIcon = divIcon({
-    className: "map-pin",
-    html: "",
-    iconSize: [12, 12],
-    iconAnchor: [6, 6],
-  });
+  const stopIcon = (stop) =>
+    divIcon({
+      className: `map-pin map-pin-${stop.kind || "day"}`,
+      html: `<span>${stop.label || ""}</span>`,
+      iconSize: stop.kind === "start" || stop.kind === "end" ? [42, 28] : [32, 28],
+      iconAnchor: stop.kind === "start" || stop.kind === "end" ? [21, 14] : [16, 14],
+    });
 
   return (
     <div className="map-card" id="section-map" aria-label="Route map">
@@ -70,11 +71,19 @@ export default function RouteMap({ plan }) {
 
         {stops.map((stop, i) => (
           <Marker
-            key={`stop-${i}`}
+            key={`stop-${stop.kind || "day"}-${stop.label || i}-${stop.point.lat}-${stop.point.lng}`}
             position={[stop.point.lat, stop.point.lng]}
-            icon={pinIcon}
+            icon={stopIcon(stop)}
           >
-            <Popup>{stop.name}</Popup>
+            <Popup>
+              <strong>{stop.label ? `${stop.label} · ` : ""}{stop.name}</strong>
+              {stop.detail && (
+                <>
+                  <br />
+                  {stop.detail}
+                </>
+              )}
+            </Popup>
           </Marker>
         ))}
 
