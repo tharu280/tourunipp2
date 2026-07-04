@@ -1,5 +1,11 @@
 import { getCrowdSummary, getVisitorIntensityLabel, titleCase, getRouteSegments } from "../helpers";
 
+function humanizeTime(timeStr) {
+  if (!timeStr) return null;
+  const str = String(timeStr).replace(/_/g, " ");
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function riskClass(level) {
   if (!level) return "unknown";
   const l = String(level).toLowerCase();
@@ -80,7 +86,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
           // Deduplicate
           const uniqueAttractions = [];
           for (const attr of allAttractions) {
-            if (!attr) continue;
+            if (!attr || !attr.name || attr.name.trim() === "") continue;
             const id = attr.place_id || attr.name;
             if (!id) continue;
             if (!seenPlaceIds.has(attr.place_id) && !seenNames.has(attr.name)) {
@@ -97,9 +103,11 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
               {/* Day Header */}
               <div style={{ padding: "16px", borderBottom: "1px solid var(--border-color)", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>Day {dayNum}</div>
+                  <div style={{ fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>
+                    Day {dayNum}{seg.day_label ? ` · ${seg.day_label}` : ""}
+                  </div>
                   <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                    {seg.day_label || "Route segment"}
+                    {dayPressure.summary || dayPressure.description || (dayCls === "high" ? "Expect busier conditions today. Plan ahead." : "Normal crowd conditions expected today.")}
                   </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
@@ -134,10 +142,19 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                       const aCls = riskClass(attrPressure.pressure_level || attrPressure.risk_level || "low");
                       const aScore = attrPressure.pressure_score ?? null;
                       const wiki = attrPressure.wiki_interest || attr.wiki_interest || null;
-                      const visitTime = attrPressure.best_visit_window?.time_label || attrPressure.preferred_visit_window || attr.best_visit_window;
+                      const wikiNum = parseFloat(wiki);
+                      const isValidWiki = !isNaN(wikiNum) && wikiNum > 0;
+                      
+                      const visitTime = humanizeTime(attrPressure.best_visit_window?.time_label || attrPressure.preferred_visit_window || attr.best_visit_window);
                       
                       const reasons = attrPressure.reasons || attrPressure.details || [];
-                      const reasonText = reasons.length > 0 ? reasons[0] : (aScore > 65 ? "High historical demand" : "Normal demand");
+                      let reasonText = reasons.length > 0 ? reasons[0] : "";
+                      if (reasonText && reasonText.toLowerCase().includes("weekend travel demand can make this attraction busier")) {
+                        reasonText = "";
+                      }
+                      if (!reasonText || typeof reasonText !== 'string' || reasonText.trim() === "") {
+                        reasonText = aScore > 65 ? "High historical demand." : "Normal demand expected for this stop.";
+                      }
 
                       return (
                         <div key={`attr-${idx}`} style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "12px", backgroundColor: "var(--bg-tertiary)", borderRadius: "8px" }}>
@@ -153,9 +170,9 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                                 <span>👥</span> {getVisitorIntensityLabel(aScore)}
                               </span>
                             )}
-                            {wiki != null && (
+                            {isValidWiki && (
                               <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                                <span>📖</span> {(wiki / 1000).toFixed(1)}k Wiki
+                                <span>📖</span> {(wikiNum / 1000).toFixed(1)}k Wiki
                               </span>
                             )}
                             {visitTime && (
@@ -175,9 +192,8 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                   </div>
                 ) : (
                   <div style={{ padding: "16px", backgroundColor: "var(--bg-tertiary)", borderRadius: "8px", textAlign: "center" }}>
-                    <div style={{ fontWeight: 600, fontSize: "14px", marginBottom: "4px" }}>Transfer day: {seg.day_label || "Route"}</div>
                     <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                      Enjoy the scenic route. Road conditions apply.
+                      No attraction-level crowd estimate available for this day.
                     </div>
                   </div>
                 )}
