@@ -22,12 +22,8 @@ CLASS_NAMES = ["anger", "happy", "neutral", "sad", "surprise"]
 
 # Use the absolute path if available, or relative to the workspace root
 MODEL_PATH = (
-    Path(__file__).resolve().parents[2]
-    / "clean_run"
-    / "new cnn"
-    / "five_class"
-    / "outputs"
-    / "scratch_cnn_rafdb5_e40"
+    Path(__file__).resolve().parent
+    / "models"
     / "emotion_rafdb5.tflite"
 )
 
