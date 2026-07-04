@@ -11,7 +11,19 @@ from typing import Any
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+# ── Currency conversion rates (single source of truth for backend) ───────────
+# The frontend reads from CURRENCY_RATES_JSON exposed by the root endpoint.
+CURRENCY_RATES: dict[str, float] = {
+    "LKR": 1.0,
+    "USD": float(os.getenv("RATE_USD_TO_LKR", "300")),
+    "AED": float(os.getenv("RATE_AED_TO_LKR", "82")),
+    "EUR": float(os.getenv("RATE_EUR_TO_LKR", "325")),
+    "GBP": float(os.getenv("RATE_GBP_TO_LKR", "380")),
+    "SGD": float(os.getenv("RATE_SGD_TO_LKR", "223")),
+    "INR": float(os.getenv("RATE_INR_TO_LKR", "3.6")),
+}
 
 from clean_run.emotion import (
     attach_location_context,
@@ -74,6 +86,16 @@ class FlightSearchRequest(BaseModel):
     cabin_class: str = "economy"
     total_budget_lkr: float | None = None
     currency: str = "USD"
+
+    @field_validator("origin")
+    @classmethod
+    def origin_must_be_iata(cls, v: str) -> str:
+        if not re.fullmatch(r"[A-Za-z]{3}", v or ""):
+            raise ValueError(
+                f"origin must be a 3-letter IATA airport code (e.g. DXB), got {v!r}"
+            )
+        return v.upper()
+
 
 
 class PlanRequest(BaseModel):
@@ -178,30 +200,21 @@ def _estimate_flight_cost_lkr(
         }
 
     currency = str(flight.get("currency") or "").upper()
+    rate = CURRENCY_RATES.get(currency)
+
     if currency == "LKR":
         estimated = price_value
+        conversion = {"source_currency": "LKR", "target_currency": "LKR", "rate": 1.0, "mode": "identity"}
+    elif rate is not None:
+        # Honour an explicit override for USD (legacy param) before falling back to CURRENCY_RATES
+        if currency == "USD" and flight_usd_to_lkr_rate is not None:
+            rate = flight_usd_to_lkr_rate
+        estimated = price_value * rate
         conversion = {
-            "source_currency": "LKR",
+            "source_currency": currency,
             "target_currency": "LKR",
-            "rate": 1.0,
-            "mode": "identity",
-        }
-    elif currency == "USD":
-        configured_rate = (
-            flight_usd_to_lkr_rate
-            if flight_usd_to_lkr_rate is not None
-            else float(os.getenv("FLIGHT_USD_TO_LKR_RATE") or 300.0)
-        )
-        estimated = price_value * configured_rate
-        conversion = {
-            "source_currency": "USD",
-            "target_currency": "LKR",
-            "rate": configured_rate,
-            "mode": (
-                "provided"
-                if flight_usd_to_lkr_rate is not None
-                else ("env" if os.getenv("FLIGHT_USD_TO_LKR_RATE") else "default_estimate")
-            ),
+            "rate": rate,
+            "mode": "provided" if (currency == "USD" and flight_usd_to_lkr_rate is not None) else "config",
         }
     else:
         return {
@@ -332,6 +345,7 @@ async def root() -> dict[str, Any]:
         "status": "running",
         "service": "tourunipp2-clean-run-backend",
         "entrypoint": "clean_run.api:app",
+        "currency_rates": CURRENCY_RATES,
     }
 
 
@@ -349,7 +363,11 @@ async def health() -> dict[str, Any]:
 @app.post("/chat")
 async def chat(req: ChatRequest) -> dict[str, Any]:
     try:
-        response = get_intake_service().process_turn(req.message, req.session)
+        # Run in a thread so the LLM's ThreadPoolExecutor doesn't block
+        # the FastAPI event loop (same pattern as /plan and /flights/search).
+        response = await asyncio.to_thread(
+            get_intake_service().process_turn, req.message, req.session
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=500,

@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import logging
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable, Protocol
+
+_log = logging.getLogger(__name__)
 
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
@@ -282,6 +285,28 @@ TRIP_FIELD_ORDER = [
     "duration",
 ]
 
+# ── Pre-compiled regex constants (compiled once at import time) ────────────
+_STANDALONE_DATE_RE = re.compile(
+    r"\b(\d{4}-\d{2}-\d{2}|\d{4}\s+[A-Za-z]+\s+\d{1,2}|\d{1,2}\s+[A-Za-z]+\s+\d{4}|[A-Za-z]+\s+\d{1,2}\s+\d{4})\b",
+    re.IGNORECASE,
+)
+_DURATION_RE = re.compile(r"\b(\d+)\s*(day|days|week|weeks)\b", re.IGNORECASE)
+_BUDGET_KW_RE = re.compile(r"\b(budget|lkr|rs\.?|rupees?)\b", re.IGNORECASE)
+_PASSENGER_KW_RE = re.compile(r"\bpass(?:enger|anger)s?\b", re.IGNORECASE)
+_TOTAL_BUDGET_RE = re.compile(
+    r"\b(?:total|overall)\s+budget(?:\s+is|\s+of|:)?\s*(?:lkr|rs\.?|rupees?)?\s*([\d,]+(?:\.\d+)?)",
+    re.IGNORECASE,
+)
+_GENERIC_BUDGET_RE = re.compile(
+    r"\bbudget(?:\s+is|\s+of|:)?\s*(?:lkr|rs\.?|rupees?)?\s*([\d,]+(?:\.\d+)?)"
+    r"|\b(?:lkr|rs\.?|rupees?)\s*([\d,]+(?:\.\d+)?)\b",
+    re.IGNORECASE,
+)
+_ACCOM_BUDGET_RE = re.compile(
+    r"\b(?:accommodation|stay|hotel)\s+budget(?:\s+is|\s+of|:)?\s*(?:lkr|rs\.?|rupees?)?\s*([\d,]+(?:\.\d+)?)",
+    re.IGNORECASE,
+)
+
 
 class StructuredExtractionChain(Protocol):
     def invoke(self, payload: dict[str, str]) -> object: ...
@@ -469,7 +494,8 @@ def _parse_cabin_class(value: str) -> str | None:
 
 
 def _history_to_text(history: Iterable[ConversationTurn]) -> str:
-    items = list(history)
+    # Cap at last 10 turns (5 exchanges) to bound LLM token usage.
+    items = list(history)[-10:]
     if not items:
         return "No previous conversation."
     return "\n".join(f"{turn.role.title()}: {turn.content}" for turn in items)
@@ -727,25 +753,322 @@ def _extract_embedded_trip_route_pair(text: str) -> tuple[str | None, str | None
     )
 
 
+
+# ─ Focused sub-extractors ──────────────────────────────────────────────────────────────────────────────────────────────
+
+def _extract_duration(text: str, lowered: str, next_required_field: str) -> str | None:
+    m = _DURATION_RE.search(lowered)
+    if m:
+        return f"{m.group(1)} {m.group(2)}"
+    if next_required_field == "duration":
+        bare = re.fullmatch(r"\s*(\d{1,2})\s*", text)
+        if bare:
+            return f"{bare.group(1)} days"
+    return None
+
+
+def _extract_needs_flights(lowered: str) -> bool | None:
+    if any(
+        hint in lowered
+        for hint in ("flying from", "flight date", "flight departure", "economy", "business", "premium economy", "first class", "first")
+    ):
+        return True
+    for hint in NO_HINTS:
+        if hint in lowered:
+            return False
+    for hint in YES_HINTS:
+        if hint in lowered:
+            return True
+    return None
+
+
+def _extract_trip_route(
+    text: str,
+    *,
+    is_flight_msg: bool,
+    contextual_flight_collection: bool,
+) -> tuple[str | None, str | None]:
+    origin, destination = _extract_route_pair(text, allow_generic_from_to=not is_flight_msg)
+
+    if (not origin or not destination) and _DURATION_RE.search(text.lower()):
+        emb_origin, emb_destination = _extract_embedded_trip_route_pair(text)
+        origin = origin or emb_origin
+        destination = destination or emb_destination
+
+    if not destination and not is_flight_msg:
+        dest_m = re.search(r"\bto\s+(.+?)(?:\s+for\s+|\s+in\s+|\s*$)", text, flags=re.IGNORECASE)
+        if dest_m:
+            destination = _clean_place_fragment(dest_m.group(1))
+
+    if not origin and not (is_flight_msg or contextual_flight_collection):
+        orig_m = re.search(r"\bfrom\s+(.+?)(?:\s+to\s+|\s+for\s+|\s+in\s+|\s*$)", text, flags=re.IGNORECASE)
+        if orig_m:
+            origin = _clean_place_fragment(orig_m.group(1))
+
+    return origin, destination
+
+
+def _extract_budgets(lowered: str) -> tuple[float | None, float | None]:
+    total_budget_lkr: float | None = None
+
+    m = _TOTAL_BUDGET_RE.search(lowered)
+    if m:
+        total_budget_lkr = _normalize_budget_value(m.group(1))
+
+    if total_budget_lkr is None:
+        m = _GENERIC_BUDGET_RE.search(lowered)
+        if m:
+            total_budget_lkr = _normalize_budget_value(m.group(1) or m.group(2))
+
+    accom_budget_lkr: float | None = None
+    m = _ACCOM_BUDGET_RE.search(lowered)
+    if m:
+        accom_budget_lkr = _normalize_budget_value(m.group(1))
+
+    return total_budget_lkr, accom_budget_lkr
+
+
+class _FlightExtraction:
+    """Result container for flight-field extraction (avoids big tuple returns)."""
+    __slots__ = ("origin", "origin_input", "departure_date", "passengers", "cabin_class", "needs_flights")
+
+    def __init__(self) -> None:
+        self.origin: str | None = None
+        self.origin_input: str | None = None
+        self.departure_date: str | None = None
+        self.passengers: int | None = None
+        self.cabin_class: str | None = None
+        self.needs_flights: bool | None = None
+
+
+def _extract_flight_fields(
+    text: str,
+    lowered: str,
+    *,
+    missing_fields: list[str],
+    contextual_flight_collection: bool,
+    next_required_field: str,
+    passenger_keywords_present: bool,
+) -> _FlightExtraction:
+    r = _FlightExtraction()
+
+    # Parse cabin class and passengers ONCE — reused below, no second call.
+    parsed_cabin = _parse_cabin_class(text)
+    parsed_passengers = _parse_passenger_value(text)
+
+    # ─ Explicit "flying from XYZ" / IATA patterns ───────────────────────────────────────────
+    iata_m = re.search(r"\bfly(?:ing)?\s+from\s+([A-Za-z]{3})\b", text, re.IGNORECASE)
+    if iata_m:
+        r.origin_input = iata_m.group(1).upper()
+        r.origin = iata_m.group(1).upper()
+        r.needs_flights = True
+
+    if not r.origin:
+        iata2_m = re.search(r"\bflight origin(?:\s+is|:)?\s*([A-Za-z]{3})\b", text, re.IGNORECASE)
+        if iata2_m:
+            r.origin_input = iata2_m.group(1).upper()
+            r.origin = iata2_m.group(1).upper()
+            r.needs_flights = True
+
+    if not r.origin:
+        city_m = re.search(
+            rf"\b(?:flying|fly|flights?|need flights?)\s+from\s+(.+?){FLIGHT_DETAIL_BOUNDARY}",
+            text, re.IGNORECASE,
+        )
+        if city_m:
+            raw = _clean_place_fragment(city_m.group(1))
+            code = _normalize_airport_code(raw)
+            if code:
+                r.origin_input = raw
+                r.origin = code
+                r.needs_flights = True
+
+    if not r.origin:
+        short_m = re.search(rf"^\s*from\s+(.+?){FLIGHT_DETAIL_BOUNDARY}", text, re.IGNORECASE)
+        if short_m and (contextual_flight_collection or _looks_like_flight_detail_message(text)):
+            raw = _clean_place_fragment(short_m.group(1))
+            code = _normalize_airport_code(raw)
+            if code:
+                r.origin_input = raw
+                r.origin = code
+                r.needs_flights = True
+
+    if not r.origin:
+        plain_m = re.search(rf"\bflight origin(?:\s+is|:)?\s*(.+?){FLIGHT_DETAIL_BOUNDARY}", text, re.IGNORECASE)
+        if plain_m:
+            raw = _clean_place_fragment(plain_m.group(1))
+            code = _normalize_airport_code(raw)
+            if code:
+                r.origin_input = raw
+                r.origin = code
+                r.needs_flights = True
+
+    # ─ Contextual single-word city answer ──────────────────────────────────────────────────
+    if ("flight_origin" in missing_fields or contextual_flight_collection) and not r.origin:
+        code = _normalize_airport_code(text)
+        if code:
+            r.origin = code
+            r.origin_input = _clean_place_fragment(text)
+            r.needs_flights = True
+
+    # ─ Departure date ───────────────────────────────────────────────────────────────────────
+    date_label_m = re.search(
+        r"\b(?:flight date|departure date|flight departure date)(?:\s+is|:)?\s*([A-Za-z0-9,\-/ ]+)",
+        text, re.IGNORECASE,
+    )
+    if date_label_m:
+        parsed = _normalize_date_value(date_label_m.group(1))
+        if parsed:
+            r.departure_date = parsed
+            r.needs_flights = True
+
+    if not r.departure_date and r.needs_flights is True:
+        on_m = re.search(
+            r"\bon\s+([A-Za-z0-9,\-/ ]+?)(?:\s+for\s+\d+\s+passengers?|\s*,|\s+(?:economy|premium economy|business|first)(?:\s+class)?|\s*$)",
+            text, re.IGNORECASE,
+        )
+        if on_m:
+            parsed = _normalize_date_value(on_m.group(1))
+            if parsed:
+                r.departure_date = parsed
+
+    if not r.departure_date and ("flight_departure_date" in missing_fields or contextual_flight_collection):
+        parsed = _normalize_date_value(text)
+        if parsed:
+            r.departure_date = parsed
+            r.needs_flights = True
+        else:
+            m = _STANDALONE_DATE_RE.search(text)
+            if m:
+                parsed = _normalize_date_value(m.group(1))
+                if parsed:
+                    r.departure_date = parsed
+                    r.needs_flights = True
+
+    if not r.departure_date and r.needs_flights is True:
+        m = _STANDALONE_DATE_RE.search(text)
+        if m:
+            parsed = _normalize_date_value(m.group(1))
+            if parsed:
+                r.departure_date = parsed
+
+    # ─ Passengers (uses cached parsed_passengers) ──────────────────────────────────────────
+    if parsed_passengers is not None and (
+        next_required_field == "flight_passengers"
+        or passenger_keywords_present
+        or "flight_passengers" in missing_fields
+        or contextual_flight_collection
+    ):
+        r.passengers = parsed_passengers
+        r.needs_flights = True
+
+    # ─ Cabin class (uses cached parsed_cabin — no second parse) ──────────────────────────
+    if parsed_cabin:
+        r.cabin_class = parsed_cabin
+        r.needs_flights = True
+
+    return r
+
+
+def _extract_contextual_place(
+    text: str,
+    next_required_field: str,
+    current_details: TripRequirements,
+) -> tuple[str | None, str | None]:
+    """Single-word contextual fallback for trip origin / destination."""
+    clean = text.strip()
+    if (
+        clean
+        and " " not in clean
+        and clean.lower() not in YES_HINTS
+        and clean.lower() not in NO_HINTS
+        and _normalize_date_value(clean) is None
+        and _parse_passenger_value(clean) is None
+    ):
+        if next_required_field == "destination":
+            return None, _clean_place_fragment(clean)
+        if (
+            next_required_field == "origin"
+            and not _looks_like_flight_detail_message(text)
+            and _normalize_requirement_value(current_details.destination) != _clean_place_fragment(clean)
+        ):
+            return _clean_place_fragment(clean), None
+    return None, None
+
+
+# ─ Thin orchestrator ──────────────────────────────────────────────────────────────────────────────────────────────────
+
 def _heuristic_trip_requirements(
     message: str,
     *,
     current_details: TripRequirements | None = None,
     current_missing_fields: list[str] | None = None,
 ) -> TripRequirements:
+    """Extract trip requirements from a single user message using regex heuristics.
+
+    Thin orchestrator — delegates to focused sub-extractors.
+    Called at most once per bot per turn.
+    """
     text = " ".join(message.strip().split())
     lowered = text.lower()
     missing_fields = current_missing_fields or []
     next_required_field = _next_required_field(missing_fields)
     current_details = current_details or TripRequirements()
+
     contextual_flight_collection = (
         _normalize_needs_flights(current_details.needs_flights) is True
         and any(
-            field in missing_fields
-            for field in ("flight_origin", "flight_departure_date", "flight_passengers", "flight_cabin_class")
+            f in missing_fields
+            for f in ("flight_origin", "flight_departure_date", "flight_passengers", "flight_cabin_class")
         )
     )
-    budget_keywords_present = bool(re.search(r"\b(budget|lkr|rs\.?|rupees?)\b", lowered))
+    passenger_keywords_present = bool(_PASSENGER_KW_RE.search(lowered))
+    is_flight_msg = _looks_like_flight_detail_message(text)
+
+    # ── Sub-extractors ────────────────────────────────────────────────
+    duration = _extract_duration(text, lowered, next_required_field)
+    needs_flights = _extract_needs_flights(lowered)
+    origin, destination = _extract_trip_route(
+        text, is_flight_msg=is_flight_msg, contextual_flight_collection=contextual_flight_collection,
+    )
+    total_budget_lkr, accommodation_budget_lkr = _extract_budgets(lowered)
+    flight = _extract_flight_fields(
+        text, lowered,
+        missing_fields=missing_fields,
+        contextual_flight_collection=contextual_flight_collection,
+        next_required_field=next_required_field,
+        passenger_keywords_present=passenger_keywords_present,
+    )
+
+    # ── Bare-number budget contextual fallback ────────────────────────
+    if next_required_field == "total_budget_lkr" and total_budget_lkr is None:
+        total_budget_lkr = _normalize_budget_value(text)
+
+    # ── Single-word trip place fallback ───────────────────────────────
+    ctx_origin, ctx_dest = _extract_contextual_place(text, next_required_field, current_details)
+    origin = origin or ctx_origin
+    destination = destination or ctx_dest
+
+    if flight.needs_flights is True:
+        needs_flights = True
+
+    return TripRequirements(
+        needs_flights=needs_flights,
+        origin=origin,
+        destination=destination,
+        duration=duration,
+        accommodation_budget_lkr=accommodation_budget_lkr,
+        total_budget_lkr=total_budget_lkr,
+        flight_origin_input=flight.origin_input,
+        flight_origin=flight.origin,
+        flight_departure_date=flight.departure_date,
+        flight_search_mode=None,
+        flight_passengers=flight.passengers,
+        flight_cabin_class=flight.cabin_class,
+    )
+
+
+
     passenger_keywords_present = bool(re.search(r"\bpass(?:enger|anger)s?\b", lowered))
     budget_only_mode = next_required_field == "total_budget_lkr" and (
         budget_keywords_present or missing_fields == ["total_budget_lkr"]
@@ -1130,7 +1453,17 @@ class IntakeBot:
                 return self._chain.invoke(payload)
             future = self._executor.submit(self._chain.invoke, payload)
             return future.result(timeout=self._timeout_seconds)
-        except (FutureTimeoutError, Exception):
+        except FutureTimeoutError:
+            _log.warning(
+                "LLM chain timed out after %.1fs — falling back to heuristics",
+                self._timeout_seconds,
+            )
+            return None
+        except Exception:
+            _log.error(
+                "LLM chain raised an unexpected error — falling back to heuristics",
+                exc_info=True,
+            )
             return None
 
     def _build_chain_payload(
