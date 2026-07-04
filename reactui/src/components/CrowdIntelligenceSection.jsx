@@ -80,6 +80,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
           // Deduplicate
           const uniqueAttractions = [];
           for (const attr of allAttractions) {
+            if (!attr) continue;
             const id = attr.place_id || attr.name;
             if (!id) continue;
             if (!seenPlaceIds.has(attr.place_id) && !seenNames.has(attr.name)) {
@@ -98,7 +99,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>Day {dayNum}</div>
                   <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                    {seg.start_point || "Start"} → {seg.end_point || "Destination"}
+                    {seg.day_label || "Route segment"}
                   </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
@@ -174,7 +175,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                   </div>
                 ) : (
                   <div style={{ padding: "16px", backgroundColor: "var(--bg-tertiary)", borderRadius: "8px", textAlign: "center" }}>
-                    <div style={{ fontWeight: 600, fontSize: "14px", marginBottom: "4px" }}>Transfer day toward {seg.end_point || "next destination"}</div>
+                    <div style={{ fontWeight: 600, fontSize: "14px", marginBottom: "4px" }}>Transfer day: {seg.day_label || "Route"}</div>
                     <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
                       Enjoy the scenic route. Road conditions apply.
                     </div>
