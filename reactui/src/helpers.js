@@ -927,7 +927,6 @@ export function getWeatherSegmentPoints(plan) {
       precipMm: forecast.precip_mm ?? null,
       tempC: forecast.avg_temp_c ?? null,
       windKph: forecast.max_wind_kph ?? null,
-      bestWindow: forecast.best_window || risk.best_window || null,
     };
   });
 }
