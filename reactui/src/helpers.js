@@ -143,11 +143,9 @@ export function buildPlanRequest(session, selectedFlight, flightPlan) {
 }
 
 export function isTripHandoff(turn) {
-  // Only hand off once the backend says all flight fields are fully collected.
-  // active_phase transitions to "trip" only after every flight field is satisfied,
-  // but we also require is_complete or that every flight field check passes.
-  // Never trigger on partial trip-phase questions like "Where should the trip start?".
-  return turn?.is_complete === true;
+  // We should trigger flight search when the backend transitions the active_phase to "trip"
+  // or if the whole intake is complete.
+  return turn?.active_phase === "trip" || turn?.is_complete === true;
 }
 
 export function getSessionId(plan) {

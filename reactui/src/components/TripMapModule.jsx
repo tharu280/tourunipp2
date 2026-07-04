@@ -249,24 +249,54 @@ function WeatherLayer({ polyline, segments }) {
             radius={11}
             pathOptions={{ color, fillColor: color, fillOpacity: 0.6, weight: 2.5 }}
           >
-            <Popup maxWidth={220}>
+            <Popup maxWidth={260}>
               <div style={{ fontFamily: "Inter, sans-serif", padding: "2px 0" }}>
                 <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
                   {seg.date}
                 </div>
                 {seg.status === "unavailable" || seg.riskLevel === "unknown" ? (
                   <div style={{ fontSize: 12, color: "#6B7280", lineHeight: 1.5 }}>
-                    Weather forecast unavailable for this date. The trip dates are outside the forecast provider window.
+                    Forecast unavailable this far ahead. Check closer to travel date.
                   </div>
                 ) : (
                   <>
                     <div style={{ fontSize: 12, color: "#374151", fontWeight: 600 }}>
                       {titleCase(seg.riskLevel)} weather risk
-                      {seg.riskScore != null ? ` · ${seg.riskScore}/100` : ""}
                     </div>
-                    {seg.tempC   != null && <div style={{ fontSize: 11, color: "#6B7280", marginTop: 2 }}>Avg temp: {seg.tempC}°C</div>}
-                    {seg.precipMm != null && <div style={{ fontSize: 11, color: "#6B7280" }}>Rain: {seg.precipMm} mm</div>}
-                    {seg.windKph != null && <div style={{ fontSize: 11, color: "#6B7280" }}>Wind: {seg.windKph} km/h</div>}
+                    {seg.condition ? (
+                      <div style={{ fontSize: 12, color: "#6B7280", marginTop: 4, fontWeight: 500 }}>
+                        {seg.condition}
+                      </div>
+                    ) : seg.riskScore != null ? (
+                      <div style={{ fontSize: 12, color: "#6B7280", marginTop: 4, fontWeight: 500 }}>
+                        {seg.riskScore <= 30 ? "Likely clear, good for travel" : seg.riskScore <= 65 ? "Moderate rain risk or cloudy" : "High risk of rain or storms"}
+                      </div>
+                    ) : null}
+                    
+                    {seg.tempC != null && (
+                      <div style={{ fontSize: 11, color: "#6B7280", marginTop: 4 }}>
+                        <strong style={{ fontWeight: 600 }}>Temp:</strong> {seg.tempC}°C
+                      </div>
+                    )}
+                    {seg.precipMm != null && (
+                      <div style={{ fontSize: 11, color: "#6B7280", marginTop: 2 }}>
+                        <strong style={{ fontWeight: 600 }}>Rain:</strong> {seg.precipMm} mm
+                      </div>
+                    )}
+                    {seg.windKph != null && (
+                      <div style={{ fontSize: 11, color: "#6B7280", marginTop: 2 }}>
+                        <strong style={{ fontWeight: 600 }}>Wind:</strong> {seg.windKph} km/h
+                      </div>
+                    )}
+                    {seg.reason && (
+                      <div style={{
+                        fontSize: 11, color: "#6B7280", lineHeight: 1.4,
+                        padding: "6px 8px", background: "#F9FAFB", borderRadius: 6,
+                        marginTop: 6
+                      }}>
+                        {seg.reason}
+                      </div>
+                    )}
                   </>
                 )}
               </div>
@@ -427,9 +457,7 @@ function WeatherPanel({ segments }) {
 
       {allUnavailable ? (
         <p className="map-panel-body">
-          Live forecast is outside the provider window for these travel dates.
-          Weather data will become available closer to your trip.
-          Check back nearer the departure date for updated conditions.
+          Forecast unavailable this far ahead. Check closer to travel date.
         </p>
       ) : (
         <div className="weather-seg-list">
@@ -444,15 +472,34 @@ function WeatherPanel({ segments }) {
                 <div className="weather-seg-status">
                   {seg.status === "unavailable" || seg.riskLevel === "unknown"
                     ? "Forecast unavailable"
-                    : titleCase(seg.riskLevel)}
-                  {seg.riskScore != null && seg.riskLevel !== "unknown"
-                    ? ` · ${seg.riskScore}/100`
-                    : ""}
+                    : titleCase(seg.riskLevel) + " weather risk"}
                 </div>
+                {seg.condition ? (
+                  <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 2 }}>
+                    {seg.condition}
+                  </div>
+                ) : seg.riskScore != null && seg.riskLevel !== "unknown" ? (
+                  <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 2 }}>
+                    {seg.riskScore <= 30 ? "Likely clear, good for travel" : seg.riskScore <= 65 ? "Moderate rain risk or cloudy" : "High risk of rain or storms"}
+                  </div>
+                ) : null}
+                {seg.reason && (
+                  <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 4, fontStyle: "italic" }}>
+                    {seg.reason}
+                  </div>
+                )}
               </div>
-              {seg.tempC != null && (
-                <div className="weather-seg-temp">{seg.tempC}°C</div>
-              )}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 2, minWidth: 60 }}>
+                {seg.tempC != null && (
+                  <div className="weather-seg-temp">{seg.tempC}°C</div>
+                )}
+                {seg.precipMm != null && (
+                  <div style={{ fontSize: 12, color: "var(--text-3)" }}>{seg.precipMm}mm</div>
+                )}
+                {seg.windKph != null && (
+                  <div style={{ fontSize: 12, color: "var(--text-3)" }}>{seg.windKph}km/h</div>
+                )}
+              </div>
             </div>
           ))}
         </div>
