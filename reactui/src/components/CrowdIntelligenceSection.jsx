@@ -1,4 +1,4 @@
-import { getCrowdSummary, getVisitorIntensityLabel, titleCase, getRouteSegments } from "../helpers";
+import { getCrowdSummary, getVisitorIntensityLabel, titleCase, buildCrowdDayRows } from "../helpers";
 
 function humanizeTime(timeStr) {
   if (!timeStr) return null;
@@ -15,17 +15,6 @@ function riskClass(level) {
   return "unknown";
 }
 
-function getAttractionPressure(name, placeId, dashboardData, plan) {
-  const crowd = dashboardData?.crowd || plan?.crowd || plan?.crowd_signals || {};
-  const list = crowd.attraction_pressure || [];
-  return list.find((a) => a.place_id === placeId || a.name === name) || {};
-}
-
-function getDayPressure(dayNum, dashboardData, plan) {
-  const crowd = dashboardData?.crowd || plan?.crowd || plan?.crowd_signals || {};
-  const list = crowd.zone_pressure?.days || [];
-  return list.find((d) => d.day === dayNum) || {};
-}
 
 export default function CrowdIntelligenceSection({ plan, dashboardData }) {
   const { riskLevel, signalScore, helperSummary, chips } = getCrowdSummary(plan, dashboardData);
@@ -34,11 +23,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
   const cls = riskClass(risk);
   const visitor = getVisitorIntensityLabel(signalScore);
 
-  const segments = getRouteSegments(plan);
-  
-  // Track seen attractions to avoid duplicates across days
-  const seenPlaceIds = new Set();
-  const seenNames = new Set();
+  const dayRows = buildCrowdDayRows(plan, dashboardData);
 
   return (
     <div id="section-crowd" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -69,34 +54,14 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
 
       {/* Day by Day Crowd Panels */}
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        {segments.map((seg, i) => {
-          const dayNum = seg.day || i + 1;
-          const dayPressure = getDayPressure(dayNum, dashboardData, plan);
-          const dayCls = riskClass(dayPressure.risk_level || dayPressure.pressure_level || "low");
-          const dayScore = dayPressure.pressure_score ?? null;
-
-          // Combine attractions from the segment
-          const allAttractions = [
-            ...(seg.ranked_places || []),
-            ...(seg.top_attractions || []),
-            ...(seg.selected_attractions || []),
-            ...(seg.gemini_selected_attractions || []),
-          ];
-
-          // Deduplicate
-          const uniqueAttractions = [];
-          for (const attr of allAttractions) {
-            if (!attr || !attr.name || attr.name.trim() === "") continue;
-            const id = attr.place_id || attr.name;
-            if (!id) continue;
-            if (!seenPlaceIds.has(attr.place_id) && !seenNames.has(attr.name)) {
-              if (attr.place_id) seenPlaceIds.add(attr.place_id);
-              if (attr.name) seenNames.add(attr.name);
-              uniqueAttractions.push(attr);
-            }
+        {dayRows.map((dayData, i) => {
+          const { dayNum, dayLabel, dayCls, dayScore, daySummary, attractions } = dayData;
+          const hasAttractions = attractions.length > 0;
+          
+          let cleanDayLabel = dayLabel;
+          if (cleanDayLabel && cleanDayLabel.trim().toLowerCase() === `day ${dayNum}`) {
+            cleanDayLabel = null;
           }
-
-          const hasAttractions = uniqueAttractions.length > 0;
 
           return (
             <div key={`crowd-day-${dayNum}`} style={{ backgroundColor: "var(--bg-secondary)", borderRadius: "12px", overflow: "hidden", border: "1px solid var(--border-color)" }}>
@@ -104,15 +69,15 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
               <div style={{ padding: "16px", borderBottom: "1px solid var(--border-color)", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>
-                    Day {dayNum}{seg.day_label ? ` · ${seg.day_label}` : ""}
+                    Day {dayNum}{cleanDayLabel ? ` · ${cleanDayLabel}` : ""}
                   </div>
                   <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                    {dayPressure.summary || dayPressure.description || (dayCls === "high" ? "Expect busier conditions today. Plan ahead." : "Normal crowd conditions expected today.")}
+                    {daySummary || (dayCls === "high" ? "Expect busier conditions today. Plan ahead." : "Normal crowd conditions expected today.")}
                   </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div className={`crowd-risk-badge ${dayCls}`} style={{ marginBottom: "4px" }}>
-                    {titleCase(dayPressure.risk_level || dayPressure.pressure_level || "Low")}
+                    {titleCase(dayCls)}
                   </div>
                   {dayScore != null && (
                     <div style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
@@ -137,15 +102,15 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
 
                 {hasAttractions ? (
                   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                    {uniqueAttractions.map((attr, idx) => {
-                      const attrPressure = getAttractionPressure(attr.name, attr.place_id, dashboardData, plan);
+                    {attractions.map((attr, idx) => {
+                      const attrPressure = attr.pressure;
                       const aCls = riskClass(attrPressure.pressure_level || attrPressure.risk_level || "low");
                       const aScore = attrPressure.pressure_score ?? null;
-                      const wiki = attrPressure.wiki_interest || attr.wiki_interest || null;
+                      const wiki = attrPressure.wiki_interest || attr.original?.wiki_interest || null;
                       const wikiNum = parseFloat(wiki);
                       const isValidWiki = !isNaN(wikiNum) && wikiNum > 0;
                       
-                      const visitTime = humanizeTime(attrPressure.best_visit_window?.time_label || attrPressure.preferred_visit_window || attr.best_visit_window);
+                      const visitTime = humanizeTime(attrPressure.best_visit_window?.time_label || attrPressure.preferred_visit_window || attr.original?.best_visit_window);
                       
                       const reasons = attrPressure.reasons || attrPressure.details || [];
                       let reasonText = reasons.length > 0 ? reasons[0] : "";
@@ -161,7 +126,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                             <div style={{ fontWeight: 600, fontSize: "14px", lineHeight: "1.3", paddingRight: "8px" }}>{attr.name}</div>
                             <div className={`crowd-risk-badge ${aCls}`} style={{ fontSize: "10px", padding: "2px 6px", whiteSpace: "nowrap" }}>
-                              {titleCase(attrPressure.pressure_level || attrPressure.risk_level || "Low")}
+                              {titleCase(aCls)}
                             </div>
                           </div>
                           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", fontSize: "12px", color: "var(--text-secondary)" }}>
@@ -193,7 +158,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
                 ) : (
                   <div style={{ padding: "16px", backgroundColor: "var(--bg-tertiary)", borderRadius: "8px", textAlign: "center" }}>
                     <div style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                      No attraction-level crowd estimate available for this day.
+                      Crowd estimate is only available at day level for this travel day.
                     </div>
                   </div>
                 )}
@@ -203,7 +168,7 @@ export default function CrowdIntelligenceSection({ plan, dashboardData }) {
         })}
       </div>
 
-      {segments.length === 0 && (
+      {dayRows.length === 0 && (
         <div className="empty-state">Crowd intelligence details will appear after plan generation.</div>
       )}
     </div>

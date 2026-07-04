@@ -686,6 +686,97 @@ export function getCrowdSummary(plan, dashboardData) {
   };
 }
 
+export function buildCrowdDayRows(plan, dashboardData) {
+  const crowd = dashboardData?.crowd || plan?.crowd || plan?.crowd_signals || {};
+  const segments = getRouteSegments(plan);
+  const pressureList = crowd.attraction_pressure || [];
+
+  const normalizedPressure = pressureList.map(p => {
+    const name = p.name || p.display_name || p.attraction_name || p.title || (typeof p === 'string' ? p : "");
+    const place_id = p.place_id || null;
+    const lowerName = typeof name === 'string' ? name.toLowerCase().trim() : "";
+    return { ...p, name, place_id, lowerName };
+  }).filter(p => p.name);
+
+  let itineraryDays = dashboardData?.itinerary || plan?.itinerary || plan?.plan_overview?.itinerary || [];
+  if (!Array.isArray(itineraryDays)) {
+    if (typeof itineraryDays === 'object' && itineraryDays !== null) {
+      itineraryDays = Object.values(itineraryDays);
+    } else {
+      itineraryDays = [];
+    }
+  }
+  const dayRows = [];
+
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    const dayNum = seg.day || i + 1;
+
+    const dayPressureList = crowd.zone_pressure?.days || [];
+    const dayPressure = dayPressureList.find(d => d.day === dayNum) || {};
+
+    const dayData = {
+      dayNum,
+      dayLabel: seg.day_label || null,
+      dayCls: String(dayPressure.risk_level || dayPressure.pressure_level || "low").toLowerCase(),
+      dayScore: dayPressure.pressure_score ?? null,
+      daySummary: dayPressure.summary || dayPressure.description || null,
+      attractions: []
+    };
+
+    const directMatches = normalizedPressure.filter(p => p.day === dayNum);
+    const segAttractions = [
+      ...(seg.ranked_places || []),
+      ...(seg.top_attractions || []),
+      ...(seg.selected_attractions || []),
+      ...(seg.gemini_selected_attractions || [])
+    ];
+    const itineraryDay = itineraryDays.find(d => d.day === dayNum);
+    const itineraryAttractions = itineraryDay ? (itineraryDay.attractions || itineraryDay.activities || []) : [];
+
+    const allCandidates = [...directMatches, ...segAttractions, ...itineraryAttractions];
+
+    const seenNames = new Set();
+    const seenIds = new Set();
+    const dayAttractions = [];
+
+    for (const cand of allCandidates) {
+      if (!cand) continue;
+      const cName = cand.name || cand.display_name || cand.attraction_name || cand.title || (typeof cand === 'string' ? cand : "");
+      if (!cName) continue;
+
+      const cLower = typeof cName === 'string' ? cName.toLowerCase().trim() : "";
+      const cId = cand.place_id || null;
+
+      if ((cId && seenIds.has(cId)) || seenNames.has(cLower)) continue;
+      if (cId) seenIds.add(cId);
+      seenNames.add(cLower);
+
+      let matchedPressure = normalizedPressure.find(p => p.place_id === cId && cId != null);
+      if (!matchedPressure) {
+        matchedPressure = normalizedPressure.find(p => p.lowerName === cLower);
+      }
+      if (!matchedPressure && cLower.length > 4) {
+        matchedPressure = normalizedPressure.find(p => p.lowerName && (p.lowerName.includes(cLower) || cLower.includes(p.lowerName)));
+      }
+
+      if (matchedPressure) {
+        dayAttractions.push({
+          name: matchedPressure.name || cName,
+          place_id: matchedPressure.place_id || cId,
+          pressure: matchedPressure,
+          original: cand
+        });
+      }
+    }
+
+    dayData.attractions = dayAttractions;
+    dayRows.push(dayData);
+  }
+
+  return dayRows;
+}
+
 /* ── Road / Warnings ─────────────────────────────────────────────── */
 
 export function getRoadTrafficSummary(plan) {
