@@ -1,0 +1,3416 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-02T16:51:45Z",
+    "timestamp_areas_base": "2026-07-02T16:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 12985856598,
+      "lat": 8.2201232,
+      "lon": 80.0667948,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Thimbiripokuna Palamgala",
+        "ruins": "bridge"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986132033,
+      "lat": 8.2426265,
+      "lon": 80.0818901,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Nai Pena Guhawa Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12985856596,
+      "lat": 8.3025067,
+      "lon": 79.9795071,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Galge Viharaya Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986131701,
+      "lat": 8.3474923,
+      "lon": 80.0629562,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Monastic Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986104963,
+      "lat": 8.3365807,
+      "lon": 80.0882529,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Mahaandaragollewa Wewa Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986131735,
+      "lat": 8.3615576,
+      "lon": 80.065435,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Stone Pillar Manufature Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5260006521,
+      "lat": 8.3564929,
+      "lon": 80.1103108,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Kimbulaketugala",
+        "ruins": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9441851965,
+      "lat": 8.0669075,
+      "lon": 80.3662091,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9444222809,
+      "lat": 8.0901298,
+      "lon": 80.3615239,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3518445752,
+      "lat": 8.0103729,
+      "lon": 80.5134245,
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11442932162,
+      "lat": 8.0949378,
+      "lon": 80.4581367,
+      "tags": {
+        "leisure": "park",
+        "name": "AKKARA 100 GROUND"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11442932156,
+      "lat": 8.1198756,
+      "lon": 80.4536,
+      "tags": {
+        "leisure": "garden",
+        "name": "JAYASINGHE ECO GARDEN"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986132212,
+      "lat": 8.2781484,
+      "lon": 80.1254368,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Veheragala Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11030021405,
+      "lat": 8.2788259,
+      "lon": 80.1565696,
+      "tags": {
+        "name:en": "Lake Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12985856599,
+      "lat": 8.3020206,
+      "lon": 80.144129,
+      "tags": {
+        "historic": "ruins",
+        "name": "Hunuvilagama Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12985856600,
+      "lat": 8.3392737,
+      "lon": 80.1289893,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Weeransole Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12986104935,
+      "lat": 8.3534805,
+      "lon": 80.1178332,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Tammannawala Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4365606089,
+      "lat": 8.2280617,
+      "lon": 80.4361311,
+      "tags": {
+        "name": "Thuruwila purana Raja maha Viharaya",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13613017801,
+      "lat": 8.2703415,
+      "lon": 80.5168306,
+      "tags": {
+        "name": "Gatalagama Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6860471950,
+      "lat": 8.3228004,
+      "lon": 80.4161868,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3105221929,
+      "lat": 8.328983,
+      "lon": 80.3897024,
+      "tags": {
+        "historic": "ruins",
+        "name": "Bodhigharaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3105222059,
+      "lat": 8.3285247,
+      "lon": 80.3899662,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Vessagiriya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10811136108,
+      "lat": 8.3265829,
+      "lon": 80.3895948,
+      "tags": {
+        "name": "Rock cave with stone doorway",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6432436685,
+      "lat": 8.3376481,
+      "lon": 80.3900578,
+      "tags": {
+        "historic": "monument",
+        "name": "Royal park (baths)"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10811136105,
+      "lat": 8.3343329,
+      "lon": 80.3903972,
+      "tags": {
+        "name": "Isurumuniya Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11482826691,
+      "lat": 8.3372563,
+      "lon": 80.3899496,
+      "tags": {
+        "historic": "monument",
+        "name": "Ranmasu Uyana - Star Gate"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13570488105,
+      "lat": 8.333969,
+      "lon": 80.3895529,
+      "tags": {
+        "name": "Archaeological museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10877048230,
+      "lat": 8.3360224,
+      "lon": 80.3950396,
+      "tags": {
+        "historic": "monument",
+        "name": "Sarananda Pirivena Buddha statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10811136107,
+      "lat": 8.3401821,
+      "lon": 80.3895262,
+      "tags": {
+        "name": "Octagonal ruin",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3657323592,
+      "lat": 8.3447103,
+      "lon": 80.3972255,
+      "tags": {
+        "addr:city": "Anuradhapura",
+        "addr:street": "Mihindu Mawatha",
+        "alt_name": "Sacred Jaya Sri Maha Bodhi",
+        "genus": "Ficus",
+        "leaf_cycle": "semi_evergreen",
+        "leaf_type": "broadleaved",
+        "name": "Jaya Sri Maha Bodhi",
+        "name:fr": "Arbre du Bouddha",
+        "name:si": "ජය ශ්‍රි මහා බොධිය",
+        "natural": "tree",
+        "religion": "buddhist",
+        "species": "Ficus religiosa",
+        "tourism": "attraction",
+        "wikidata": "Q944175",
+        "wikipedia": "si:ශ්‍රී මහා බෝධිය, අනුරාධපුර"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6859758947,
+      "lat": 8.3440102,
+      "lon": 80.3962376,
+      "tags": {
+        "historic": "ruins",
+        "name": "Mayura Parivena"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7182095151,
+      "lat": 8.3453186,
+      "lon": 80.3932509,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7091125986,
+      "lat": 8.350051,
+      "lon": 80.3963636,
+      "tags": {
+        "addr:city": "Anuradhapura",
+        "addr:housenumber": "992W+2G9,",
+        "addr:street": "Abhayawewa Rd,",
+        "name": "Ruwanweli Maha Seya",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10877128411,
+      "lat": 8.3493445,
+      "lon": 80.3934913,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13971890074,
+      "lat": 8.3494225,
+      "lon": 80.396473,
+      "tags": {
+        "artwork_type": "statue",
+        "name": "King Bhathikabaya Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5439762425,
+      "lat": 8.3287252,
+      "lon": 80.4075406,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7177491677,
+      "lat": 8.3267182,
+      "lon": 80.4103698,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10877127268,
+      "lat": 8.3337152,
+      "lon": 80.400383,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "stele"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10880157505,
+      "lat": 8.3369814,
+      "lon": 80.4061778,
+      "tags": {
+        "historic": "monument",
+        "name:en": "Walisingha Harishchandra"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1181986189,
+      "lat": 8.3310521,
+      "lon": 80.4144824,
+      "tags": {
+        "leisure": "garden",
+        "name": "Cactus Nursery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2376412527,
+      "lat": 8.3339017,
+      "lon": 80.4138221,
+      "tags": {
+        "description": "Elephant Statue",
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7177492086,
+      "lat": 8.3340069,
+      "lon": 80.4141356,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4690500674,
+      "lat": 8.3520364,
+      "lon": 80.4016843,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Patimaghara"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5267471308,
+      "lat": 8.3449492,
+      "lon": 80.4133531,
+      "tags": {
+        "historic": "ruins",
+        "name": "Tholuvila Monastery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6690059986,
+      "lat": 8.3479334,
+      "lon": 80.4131871,
+      "tags": {
+        "name": "Ruins",
+        "name:fr": "Ruines",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5711360822,
+      "lat": 8.3635575,
+      "lon": 80.3757808,
+      "tags": {
+        "name:en": "Western Monastery",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5178155065,
+      "lat": 8.3537147,
+      "lon": 80.395962,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Maha Vihara Padhanagharaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5412519221,
+      "lat": 8.3558548,
+      "lon": 80.3994321,
+      "tags": {
+        "historic": "memorial",
+        "name": "Dalada Maligawa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1410576898,
+      "lat": 8.369115,
+      "lon": 80.3929702,
+      "tags": {
+        "amenity": "place_of_worship",
+        "artwork_type": "statue",
+        "name": "Second Samadhi Buddha Statue",
+        "religion": "buddhist",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944921267,
+      "lat": 8.3671844,
+      "lon": 80.3923582,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Relic Shrine"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944921268,
+      "lat": 8.3688827,
+      "lon": 80.3916769,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Main Refectory"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944921271,
+      "lat": 8.3693973,
+      "lon": 80.3898215,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Prasada Stupa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944966632,
+      "lat": 8.3679488,
+      "lon": 80.3891156,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Mahayana Stupa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944966668,
+      "lat": 8.3671472,
+      "lon": 80.3897089,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Cave shelter"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944966680,
+      "lat": 8.3698325,
+      "lon": 80.3916385,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Image house"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4621888689,
+      "lat": 8.3703008,
+      "lon": 80.3899695,
+      "tags": {
+        "historic": "monument",
+        "name": "Moonstone II"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944921272,
+      "lat": 8.3687822,
+      "lon": 80.3955479,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Assembly Hall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4463292294,
+      "lat": 8.3685886,
+      "lon": 80.3938703,
+      "tags": {
+        "historic": "monument",
+        "name": "Refectory"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5167165092,
+      "lat": 8.3664324,
+      "lon": 80.394995,
+      "tags": {
+        "name": "Abhayagiriya Museum",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6683049985,
+      "lat": 8.3677261,
+      "lon": 80.3930744,
+      "tags": {
+        "name": "Ruins Main Residential Complex",
+        "name:fr": "Résidence principale du monastère",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3944966696,
+      "lat": 8.3722867,
+      "lon": 80.3893024,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Dighapashana cave"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5820418632,
+      "lat": 8.3590544,
+      "lon": 80.4019178,
+      "tags": {
+        "historic": "ruins",
+        "name": "Mahapali Alms-Hall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5820418633,
+      "lat": 8.3590317,
+      "lon": 80.4022532,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4409259289,
+      "lat": 8.3594387,
+      "lon": 80.4013921,
+      "tags": {
+        "historic": "monument",
+        "name": "Citadel"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5766001454,
+      "lat": 8.3592428,
+      "lon": 80.4023724,
+      "tags": {
+        "historic": "stone",
+        "name": "The Slab Inscription of Mahapali Refectory"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5820418634,
+      "lat": 8.3603167,
+      "lon": 80.4021299,
+      "tags": {
+        "historic": "ruins",
+        "name": "Vaulted Vihara (Gedige) Image House of Anuradhapura"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5167165070,
+      "lat": 8.3723656,
+      "lon": 80.4010745,
+      "tags": {
+        "name": "Kapara Mulaya",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2831907385,
+      "lat": 8.3699654,
+      "lon": 80.4218753,
+      "tags": {
+        "historic": "ruins",
+        "name": "Ramakele Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2831589055,
+      "lat": 8.3936466,
+      "lon": 80.3947055,
+      "tags": {
+        "historic": "ruins",
+        "name:en": "Wijayarama Archaeological Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5314443422,
+      "lat": 8.3859549,
+      "lon": 80.4100311,
+      "tags": {
+        "name:en": "Pankuliya Ashokaramaya",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4096541049,
+      "lat": 8.3985378,
+      "lon": 80.4058277,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Ancient Stone Bridge"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4096541050,
+      "lat": 8.3985706,
+      "lon": 80.4058616,
+      "tags": {
+        "name": "Ancient Stone Bridge",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4407902422,
+      "lat": 8.3985821,
+      "lon": 80.4058578,
+      "tags": {
+        "name": "Gal Palama",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5711360821,
+      "lat": 8.3995613,
+      "lon": 80.4004633,
+      "tags": {
+        "name:en": "Kiribath Wahera",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10734725405,
+      "lat": 8.3015913,
+      "lon": 80.4297335,
+      "tags": {
+        "historic": "monument",
+        "name:en": "Anuradhapura"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13613017701,
+      "lat": 8.3284962,
+      "lon": 80.5185503,
+      "tags": {
+        "name": "Katupotha Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937246988,
+      "lat": 8.3459263,
+      "lon": 80.5085523,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937246495,
+      "lat": 8.3461941,
+      "lon": 80.5081449,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Kaludiya Pokuna"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5445037726,
+      "lat": 8.3510161,
+      "lon": 80.5048336,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5445130021,
+      "lat": 8.3497458,
+      "lon": 80.5069023,
+      "tags": {
+        "name:en": "Rajagiri Lena Kanda (Rajagiri Cave Mountain)",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10814089805,
+      "lat": 8.3496058,
+      "lon": 80.5055526,
+      "tags": {
+        "name:en": "Ruin with pillars and stupa mounds",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1402637232,
+      "lat": 8.3512032,
+      "lon": 80.514095,
+      "tags": {
+        "alt_name": "The Lion Pond",
+        "historic": "ruins",
+        "name": "Sinha Pokuna"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937241888,
+      "lat": 8.3474545,
+      "lon": 80.5127047,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937241940,
+      "lat": 8.3492082,
+      "lon": 80.5156256,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5561327394,
+      "lat": 8.3517035,
+      "lon": 80.5130813,
+      "tags": {
+        "access": "yes",
+        "fee": "no",
+        "name": "Ataseta Cave",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6953341663,
+      "lat": 8.347538,
+      "lon": 80.5126963,
+      "tags": {
+        "alt_name": "Mihintale",
+        "ele": "311",
+        "name": "Eth Vehara",
+        "natural": "peak",
+        "prominence": "191"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10814015205,
+      "lat": 8.3476,
+      "lon": 80.5125458,
+      "tags": {
+        "name:en": "View of Anuradhapura",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12553788693,
+      "lat": 8.3513469,
+      "lon": 80.5125653,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1402637230,
+      "lat": 8.3510324,
+      "lon": 80.5182896,
+      "tags": {
+        "ele": "250",
+        "name": "Aradhana Gala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937244666,
+      "lat": 8.3510663,
+      "lon": 80.5182863,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6687613887,
+      "lat": 8.3522427,
+      "lon": 80.5197119,
+      "tags": {
+        "name": "Mahinda cave",
+        "name:fr": "Grotte de Mahinda",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9349793101,
+      "lat": 8.3519428,
+      "lon": 80.5176702,
+      "tags": {
+        "artwork_type": "statue",
+        "material": "stone",
+        "name": "Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6690060085,
+      "lat": 8.3551703,
+      "lon": 80.4279432,
+      "tags": {
+        "name": "Ruins",
+        "name:fr": "Ruines",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5046261527,
+      "lat": 8.352887,
+      "lon": 80.4673528,
+      "tags": {
+        "name:en": "meditation temple",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6155798485,
+      "lat": 8.3835347,
+      "lon": 80.4302801,
+      "tags": {
+        "tourism": "picnic_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5561252044,
+      "lat": 8.3539928,
+      "lon": 80.5140799,
+      "tags": {
+        "historic": "ruins",
+        "name": "Maninaga Mandiraya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12555910479,
+      "lat": 8.3538666,
+      "lon": 80.5157163,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11282692297,
+      "lat": 8.3668144,
+      "lon": 80.5046238,
+      "tags": {
+        "description": "Early Brahmi Rock Inscription. it is located near the main admin building.",
+        "ele": "3m",
+        "name": "Rajarata University, A Early Brahmi Rock Inscription",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6183566652,
+      "lat": 8.3743929,
+      "lon": 80.5070159,
+      "tags": {
+        "historic": "ruins",
+        "name": "Wasammale Hill/Cave painting"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12985877731,
+      "lat": 8.4391121,
+      "lon": 80.0891632,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Galbendi Neeravia Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5091953653,
+      "lat": 8.4993687,
+      "lon": 80.0456206,
+      "tags": {
+        "historic": "archaeological_site",
+        "historic:civilization": "sinhalese",
+        "name": "Kuba Vehera (Ochchappu Kallu)",
+        "name:si": "කුබ වෙහෙර",
+        "name:ta": "Ochchappu Kallu",
+        "religion": "buddhist",
+        "source": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12985856601,
+      "lat": 8.4480507,
+      "lon": 80.1528823,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Kuda Vilachchiya Wewa and its Ruins",
+        "ruins": "building"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5245293283,
+      "lat": 8.5723326,
+      "lon": 80.2550894,
+      "tags": {
+        "archaeological_site": "fortification",
+        "historic": "archaeological_site",
+        "name": "Thanthirimale Archaeological Reserve",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1732697627,
+      "lat": 8.568539,
+      "lon": 80.481452,
+      "tags": {
+        "amenity": "place_of_worship",
+        "historic": "ruins",
+        "name": "Isinbessagala Raja Maha Viharaya",
+        "name:en": "Isinbessagala Buddhist Temple",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5278819921,
+      "lat": 7.908643,
+      "lon": 80.5753212,
+      "tags": {
+        "name": "Pink quartz Mountain View point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5319539696,
+      "lat": 7.9086794,
+      "lon": 80.5753731,
+      "tags": {
+        "historic": "monument",
+        "name": "Buddha Statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13892532449,
+      "lat": 7.9104537,
+      "lon": 80.5743856,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4726751890,
+      "lat": 7.9148217,
+      "lon": 80.5787538,
+      "tags": {
+        "addr:street": "Madatugama-Pubbogama-Andiyagala Road",
+        "name": "Jathika Namal Uyana",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4914548549,
+      "lat": 8.0277741,
+      "lon": 80.5351496,
+      "tags": {
+        "name": "Dahaiya Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4914548543,
+      "lat": 8.0898648,
+      "lon": 80.5780327,
+      "tags": {
+        "name": "Thoniyagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4904911266,
+      "lat": 8.0558728,
+      "lon": 80.6299495,
+      "tags": {
+        "name": "Kinihiri Kanda",
+        "natural": "peak",
+        "wikidata": "Q27441922"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7309598495,
+      "lat": 8.0142419,
+      "lon": 80.6495029,
+      "tags": {
+        "ele": "250",
+        "name": "Rathmalkanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8609137565,
+      "lat": 8.0313636,
+      "lon": 80.6930609,
+      "tags": {
+        "direction": "180",
+        "name": "Galkadawala Lake",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8609137566,
+      "lat": 8.0304517,
+      "lon": 80.6922117,
+      "tags": {
+        "direction": "160",
+        "name": "Galkadawala Lake",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3723116036,
+      "lat": 8.1090191,
+      "lon": 80.6568395,
+      "tags": {
+        "ele": "766",
+        "name": "Ritigala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937270690,
+      "lat": 8.1187691,
+      "lon": 80.6612693,
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5714845930,
+      "lat": 8.1186344,
+      "lon": 80.6607336,
+      "tags": {
+        "name:en": "Monastery Ruins",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6315702786,
+      "lat": 8.118275,
+      "lon": 80.6604194,
+      "tags": {
+        "name:en": "Big Tree",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3723220027,
+      "lat": 8.1183328,
+      "lon": 80.6646122,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Ritigala Ancient Buddhist Monastery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937270688,
+      "lat": 8.1180893,
+      "lon": 80.6636994,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Library"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5247245410,
+      "lat": 8.1179206,
+      "lon": 80.6646709,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Stone bridge 01"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8103531302,
+      "lat": 8.1654349,
+      "lon": 80.638915,
+      "tags": {
+        "ele": "390",
+        "name": "Labunoruwa Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12592876801,
+      "lat": 8.0401961,
+      "lon": 80.750841,
+      "tags": {
+        "name": "Comunity Based Tourism Office",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6855041444,
+      "lat": 8.0398942,
+      "lon": 80.7554993,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7235296085,
+      "lat": 8.0581698,
+      "lon": 80.7701177,
+      "tags": {
+        "name:en": "Entrance Hurulu Eco Park",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6183506039,
+      "lat": 8.4056929,
+      "lon": 80.5395324,
+      "tags": {
+        "historic": "ruins",
+        "name": "Mahakanadarawa Stone Bridge"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4910608815,
+      "lat": 8.5994376,
+      "lon": 80.5787515,
+      "tags": {
+        "name": "Wedda Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5604566173,
+      "lat": 8.5844053,
+      "lon": 80.7585723,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Ruined Stupa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4910609507,
+      "lat": 8.6401285,
+      "lon": 80.5905103,
+      "tags": {
+        "name": "Etha Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11523641413,
+      "lat": 8.6288164,
+      "lon": 80.6379715,
+      "tags": {
+        "drinking_water": "yes",
+        "intermittent": "no",
+        "name": "Gonamariyawa Natural Water Spring",
+        "natural": "spring"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11523557059,
+      "lat": 8.6399232,
+      "lon": 80.6665416,
+      "tags": {
+        "drinking_water": "yes",
+        "intermittent": "no",
+        "name": "Kebithigollawa Natural Water Spring",
+        "natural": "spring"
+      }
+    },
+    {
+      "type": "way",
+      "id": 519016201,
+      "center": {
+        "lat": 7.8469714,
+        "lon": 80.4768216
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "landuse": "forest",
+        "leisure": "nature_reserve",
+        "name": "Pallekele Reserved Forest",
+        "natural": "wood",
+        "start_date": "1896"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023912932,
+      "center": {
+        "lat": 8.0636563,
+        "lon": 80.3706792
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023912933,
+      "center": {
+        "lat": 8.0636881,
+        "lon": 80.3712991
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025879821,
+      "center": {
+        "lat": 8.082363,
+        "lon": 80.3439344
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023904306,
+      "center": {
+        "lat": 8.0681162,
+        "lon": 80.3637779
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023904319,
+      "center": {
+        "lat": 8.066908,
+        "lon": 80.3662063
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023904323,
+      "center": {
+        "lat": 8.0657859,
+        "lon": 80.3688326
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024029198,
+      "center": {
+        "lat": 8.0681664,
+        "lon": 80.3685715
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024020108,
+      "center": {
+        "lat": 8.0733017,
+        "lon": 80.3668209
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024029205,
+      "center": {
+        "lat": 8.0713932,
+        "lon": 80.3722915
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024029232,
+      "center": {
+        "lat": 8.0720828,
+        "lon": 80.3702649
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024241932,
+      "center": {
+        "lat": 8.0745396,
+        "lon": 80.372573
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024248477,
+      "center": {
+        "lat": 8.0731939,
+        "lon": 80.3708826
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024248478,
+      "center": {
+        "lat": 8.0733455,
+        "lon": 80.3729501
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024642512,
+      "center": {
+        "lat": 8.0826424,
+        "lon": 80.3503929
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025253637,
+      "center": {
+        "lat": 8.0863317,
+        "lon": 80.3556501
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025253638,
+      "center": {
+        "lat": 8.0852189,
+        "lon": 80.3560832
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024241890,
+      "center": {
+        "lat": 8.078667,
+        "lon": 80.37071
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024241893,
+      "center": {
+        "lat": 8.0777939,
+        "lon": 80.3706247
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024612079,
+      "center": {
+        "lat": 8.0836239,
+        "lon": 80.3716855
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024179036,
+      "center": {
+        "lat": 8.0901302,
+        "lon": 80.3615215
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1046207081,
+      "center": {
+        "lat": 8.0551913,
+        "lon": 80.3855852
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024608929,
+      "center": {
+        "lat": 8.0723752,
+        "lon": 80.3749821
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025629110,
+      "center": {
+        "lat": 8.0901622,
+        "lon": 80.3781521
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1067463063,
+      "center": {
+        "lat": 8.0397828,
+        "lon": 80.4731589
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Vehicle park of Mahawela Grounds"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1027132192,
+      "center": {
+        "lat": 8.097048,
+        "lon": 80.3281717
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026437966,
+      "center": {
+        "lat": 8.10073,
+        "lon": 80.3320776
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026439709,
+      "center": {
+        "lat": 8.1019075,
+        "lon": 80.3290156
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025924948,
+      "center": {
+        "lat": 8.0928916,
+        "lon": 80.3464494
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025924949,
+      "center": {
+        "lat": 8.0917122,
+        "lon": 80.3456843
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026171412,
+      "center": {
+        "lat": 8.1021889,
+        "lon": 80.3367813
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026416804,
+      "center": {
+        "lat": 8.1007605,
+        "lon": 80.3398384
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025657215,
+      "center": {
+        "lat": 8.0965835,
+        "lon": 80.3490689
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025657221,
+      "center": {
+        "lat": 8.0949096,
+        "lon": 80.3503733
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025578241,
+      "center": {
+        "lat": 8.0984855,
+        "lon": 80.3605125
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025282022,
+      "center": {
+        "lat": 8.1010341,
+        "lon": 80.3589082
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585322,
+      "center": {
+        "lat": 8.1022271,
+        "lon": 80.3593802
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025609993,
+      "center": {
+        "lat": 8.0958262,
+        "lon": 80.3633105
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025609995,
+      "center": {
+        "lat": 8.0953582,
+        "lon": 80.3643695
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025616534,
+      "center": {
+        "lat": 8.0953403,
+        "lon": 80.3663425
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025648546,
+      "center": {
+        "lat": 8.0916007,
+        "lon": 80.3615804
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025623897,
+      "center": {
+        "lat": 8.0953413,
+        "lon": 80.371588
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025623899,
+      "center": {
+        "lat": 8.0957211,
+        "lon": 80.3707525
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025623921,
+      "center": {
+        "lat": 8.0937483,
+        "lon": 80.3693693
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025623926,
+      "center": {
+        "lat": 8.0930976,
+        "lon": 80.3715011
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588377,
+      "center": {
+        "lat": 8.0969837,
+        "lon": 80.364447
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588378,
+      "center": {
+        "lat": 8.0969068,
+        "lon": 80.3632698
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620672,
+      "center": {
+        "lat": 8.0970419,
+        "lon": 80.3662554
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620695,
+      "center": {
+        "lat": 8.0969572,
+        "lon": 80.3687843
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025623885,
+      "center": {
+        "lat": 8.0964845,
+        "lon": 80.3695822
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025789469,
+      "center": {
+        "lat": 8.1032588,
+        "lon": 80.3620268
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025832727,
+      "center": {
+        "lat": 8.1036056,
+        "lon": 80.369867
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025578237,
+      "center": {
+        "lat": 8.0976032,
+        "lon": 80.3613485
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585309,
+      "center": {
+        "lat": 8.1001587,
+        "lon": 80.3610623
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585310,
+      "center": {
+        "lat": 8.0994258,
+        "lon": 80.3609099
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585312,
+      "center": {
+        "lat": 8.100561,
+        "lon": 80.3619714
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585313,
+      "center": {
+        "lat": 8.1000983,
+        "lon": 80.3626962
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585316,
+      "center": {
+        "lat": 8.0990487,
+        "lon": 80.3630185
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025585318,
+      "center": {
+        "lat": 8.0991867,
+        "lon": 80.3616529
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588375,
+      "center": {
+        "lat": 8.0974045,
+        "lon": 80.3626187
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588396,
+      "center": {
+        "lat": 8.0992304,
+        "lon": 80.3638376
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588397,
+      "center": {
+        "lat": 8.0983306,
+        "lon": 80.3634814
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025588398,
+      "center": {
+        "lat": 8.0988272,
+        "lon": 80.3643383
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620676,
+      "center": {
+        "lat": 8.0976053,
+        "lon": 80.3657499
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620677,
+      "center": {
+        "lat": 8.0977541,
+        "lon": 80.365273
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620679,
+      "center": {
+        "lat": 8.0975259,
+        "lon": 80.363869
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620686,
+      "center": {
+        "lat": 8.0991973,
+        "lon": 80.3653588
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620687,
+      "center": {
+        "lat": 8.0996247,
+        "lon": 80.3661479
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025620694,
+      "center": {
+        "lat": 8.0981469,
+        "lon": 80.3670268
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025798275,
+      "center": {
+        "lat": 8.1015551,
+        "lon": 80.3673698
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026424291,
+      "center": {
+        "lat": 8.1057863,
+        "lon": 80.357221
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1026424294,
+      "center": {
+        "lat": 8.1044364,
+        "lon": 80.3571128
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025789476,
+      "center": {
+        "lat": 8.1043023,
+        "lon": 80.3599851
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1093230907,
+      "center": {
+        "lat": 8.1427805,
+        "lon": 80.3278269
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025637495,
+      "center": {
+        "lat": 8.0947663,
+        "lon": 80.3743751
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025637496,
+      "center": {
+        "lat": 8.0942123,
+        "lon": 80.3743448
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1025832737,
+      "center": {
+        "lat": 8.1016584,
+        "lon": 80.3760409
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1093230906,
+      "center": {
+        "lat": 8.1430858,
+        "lon": 80.3277183
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 287438764,
+      "center": {
+        "lat": 8.1682625,
+        "lon": 80.3946667
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Play Ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 286529599,
+      "center": {
+        "lat": 8.1473102,
+        "lon": 80.4128501
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "play ground of sri siddartha central collage"
+      }
+    },
+    {
+      "type": "way",
+      "id": 287012162,
+      "center": {
+        "lat": 8.1513562,
+        "lon": 80.406926
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "small play ground and park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 287012161,
+      "center": {
+        "lat": 8.1580487,
+        "lon": 80.4005541
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Eliyadulwawa play ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 549266622,
+      "center": {
+        "lat": 8.3239782,
+        "lon": 80.4260919
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "leisure": "nature_reserve",
+        "protection_title": "reservation"
+      }
+    },
+    {
+      "type": "way",
+      "id": 407424136,
+      "center": {
+        "lat": 8.3283963,
+        "lon": 80.3898469
+      },
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Vessagiriya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 556094545,
+      "center": {
+        "lat": 8.3186491,
+        "lon": 80.3924758
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581209150,
+      "center": {
+        "lat": 8.3286491,
+        "lon": 80.3900063
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Vessagiriya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581209151,
+      "center": {
+        "lat": 8.3289945,
+        "lon": 80.3896807
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Bodhigharaya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531627419,
+      "center": {
+        "lat": 8.3379845,
+        "lon": 80.3894212
+      },
+      "tags": {
+        "leisure": "nature_reserve",
+        "name": "Ranmasu Uyana"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533091231,
+      "center": {
+        "lat": 8.340719,
+        "lon": 80.3949755
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1236602451,
+      "center": {
+        "lat": 8.3383406,
+        "lon": 80.3896859
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Ranmasu Uyana"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632760014,
+      "center": {
+        "lat": 8.3486001,
+        "lon": 80.3734434
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "name": "Meditation Hall",
+        "religion": "buddhist",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 278865304,
+      "center": {
+        "lat": 8.340376,
+        "lon": 80.3895287
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533090483,
+      "center": {
+        "lat": 8.3409011,
+        "lon": 80.3879131
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 538924802,
+      "center": {
+        "lat": 8.343206,
+        "lon": 80.391016
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581215269,
+      "center": {
+        "lat": 8.3456038,
+        "lon": 80.3885923
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581217408,
+      "center": {
+        "lat": 8.3459375,
+        "lon": 80.3894656
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581217409,
+      "center": {
+        "lat": 8.3458345,
+        "lon": 80.3896941
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581217618,
+      "center": {
+        "lat": 8.345963,
+        "lon": 80.389674
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581218073,
+      "center": {
+        "lat": 8.3454257,
+        "lon": 80.3897099
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581218500,
+      "center": {
+        "lat": 8.3452976,
+        "lon": 80.3900563
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 538920307,
+      "center": {
+        "lat": 8.3437352,
+        "lon": 80.393918
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581211013,
+      "center": {
+        "lat": 8.3460506,
+        "lon": 80.3978993
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581216158,
+      "center": {
+        "lat": 8.3461911,
+        "lon": 80.3894116
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581216751,
+      "center": {
+        "lat": 8.3464993,
+        "lon": 80.3895945
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581216752,
+      "center": {
+        "lat": 8.3466472,
+        "lon": 80.3897143
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398905067,
+      "center": {
+        "lat": 8.3493395,
+        "lon": 80.3943756
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Folk Museum",
+        "opening_hours": "Tu-Su 9:00-17:00",
+        "tourism": "museum",
+        "website": "https://www.museum.gov.lk/web/index.php?option=com_regionalm&task=regionalmuseum&id=5&Itemid=81&lang=en",
+        "wikipedia:en": "Folk Museum (Anuradhapura)"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398905090,
+      "center": {
+        "lat": 8.3473724,
+        "lon": 80.3936082
+      },
+      "tags": {
+        "building": "yes",
+        "building:levels": "2",
+        "fee": "no",
+        "name": "Archaelogical Museum",
+        "operator": "Department of Archaeology Sri Lanka",
+        "phone": "+94 25 3856564",
+        "tourism": "museum",
+        "website": "https://www.archaeology.gov.lk/",
+        "wikidata": "Q20640029",
+        "wikimedia_commons": "Category:Anuradhapura Museum",
+        "wikipedia": "en:Anuradhapura Museum",
+        "wikipedia:en": "Anuradhapura Museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 615528137,
+      "center": {
+        "lat": 8.3488176,
+        "lon": 80.3983917
+      },
+      "tags": {
+        "alt_name": "Maha Vihara Alms Hall",
+        "historic": "ruins",
+        "name": "Mahaviharaya Alms Hall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 102371583,
+      "center": {
+        "lat": 8.3290454,
+        "lon": 80.4125049
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Help Green Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 507225476,
+      "center": {
+        "lat": 8.3363854,
+        "lon": 80.4122548
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531607468,
+      "center": {
+        "lat": 8.3381395,
+        "lon": 80.4056934
+      },
+      "tags": {
+        "addr:city": "Anuradhapura",
+        "leisure": "park",
+        "name": "Harischandra Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 549266632,
+      "center": {
+        "lat": 8.3366355,
+        "lon": 80.4182301
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "leisure": "nature_reserve",
+        "protection_title": "reservation"
+      }
+    },
+    {
+      "type": "way",
+      "id": 544945925,
+      "center": {
+        "lat": 8.3405076,
+        "lon": 80.4121366
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Urban Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 534194505,
+      "center": {
+        "lat": 8.3453838,
+        "lon": 80.4138078
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213132,
+      "center": {
+        "lat": 8.3522339,
+        "lon": 80.4017623
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 127264515,
+      "center": {
+        "lat": 8.3485363,
+        "lon": 80.4033975
+      },
+      "tags": {
+        "building": "yes",
+        "fee": "yes",
+        "name": "Jetavanarama Museum",
+        "name:en": "Muzeum Jetavana",
+        "name:ru": "Музей \"Ступа Джетавана\"",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213133,
+      "center": {
+        "lat": 8.3506599,
+        "lon": 80.4016022
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213134,
+      "center": {
+        "lat": 8.3514663,
+        "lon": 80.4017919
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213135,
+      "center": {
+        "lat": 8.3509022,
+        "lon": 80.4018163
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213136,
+      "center": {
+        "lat": 8.3491539,
+        "lon": 80.4021498
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213137,
+      "center": {
+        "lat": 8.3492057,
+        "lon": 80.4032532
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581213138,
+      "center": {
+        "lat": 8.3492249,
+        "lon": 80.4045587
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 555360383,
+      "center": {
+        "lat": 8.360461,
+        "lon": 80.3739387
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 555360384,
+      "center": {
+        "lat": 8.3603659,
+        "lon": 80.3722068
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 555574961,
+      "center": {
+        "lat": 8.3568668,
+        "lon": 80.3761515
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 278865307,
+      "center": {
+        "lat": 8.3577459,
+        "lon": 80.3988848
+      },
+      "tags": {
+        "alt_name": "The Royal Palace",
+        "historic": "ruins",
+        "name": "Palace of Vijayaba"
+      }
+    },
+    {
+      "type": "way",
+      "id": 548319696,
+      "center": {
+        "lat": 8.3695261,
+        "lon": 80.3940826
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 543501671,
+      "center": {
+        "lat": 8.3641209,
+        "lon": 80.3904578
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 543899216,
+      "center": {
+        "lat": 8.3704937,
+        "lon": 80.3911796
+      },
+      "tags": {
+        "area": "yes",
+        "historic": "monument",
+        "name": "Rathna Prasada"
+      }
+    },
+    {
+      "type": "way",
+      "id": 543899232,
+      "center": {
+        "lat": 8.3716023,
+        "lon": 80.3919851
+      },
+      "tags": {
+        "area": "yes",
+        "historic": "monument",
+        "name": "Mahasena's Palace",
+        "name:en": "Mahasena Temple (Moonstone)"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1236504821,
+      "center": {
+        "lat": 8.3714648,
+        "lon": 80.391985
+      },
+      "tags": {
+        "description": "Sandakada Pahana, also known as Moonstone, is a unique feature of the architecture of ancient Sri Lanka.",
+        "historic": "monument",
+        "name": "Sandakada pahana (Moonstone)"
+      }
+    },
+    {
+      "type": "way",
+      "id": 615528139,
+      "center": {
+        "lat": 8.3591852,
+        "lon": 80.4016966
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 550562510,
+      "center": {
+        "lat": 8.3711761,
+        "lon": 80.4018278
+      },
+      "tags": {
+        "addr:city": "Anuradhapura",
+        "addr:street": "Vata Wandana Road",
+        "historic": "archaeological_site",
+        "name": "Kuttam Pokuna",
+        "name:de": "Zwillingsbecken",
+        "name:en": "Twin Pond"
+      }
+    },
+    {
+      "type": "way",
+      "id": 550562522,
+      "center": {
+        "lat": 8.3721872,
+        "lon": 80.4012496
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 550828266,
+      "center": {
+        "lat": 8.3695678,
+        "lon": 80.4223145
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 550996891,
+      "center": {
+        "lat": 8.3336046,
+        "lon": 80.4392184
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "leisure": "nature_reserve"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1256740129,
+      "center": {
+        "lat": 8.3157662,
+        "lon": 80.4589511
+      },
+      "tags": {
+        "garden:type": "community",
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1226659776,
+      "center": {
+        "lat": 8.3356754,
+        "lon": 80.5028352
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "park 1"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1217679442,
+      "center": {
+        "lat": 8.3505713,
+        "lon": 80.5062163
+      },
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Rajagiri Lena   site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1217679737,
+      "center": {
+        "lat": 8.3508056,
+        "lon": 80.5180504
+      },
+      "tags": {
+        "access": "yes",
+        "archaeological_site": "city",
+        "historic": "archaeological_site",
+        "name": "Mihinthalaya Acheaological site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1356595422,
+      "center": {
+        "lat": 8.3550181,
+        "lon": 80.5179596
+      },
+      "tags": {
+        "archaeological_site": "city",
+        "historic": "archaeological_site",
+        "historic:civilization": "anuradhapura_period",
+        "inscription": "This is a sacred city in Sri Lanka.It was built by King Dewanampiyatissa.",
+        "name": "Mihintale Sacred City"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581132513,
+      "center": {
+        "lat": 8.3520655,
+        "lon": 80.5092436
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Katu seya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581144469,
+      "center": {
+        "lat": 8.3519012,
+        "lon": 80.5154681
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Dana Salawa",
+        "name:en": "The Alms hall",
+        "name:ru": "Трапезная или Зал подаяния"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581144470,
+      "center": {
+        "lat": 8.3515592,
+        "lon": 80.5153228
+      },
+      "tags": {
+        "description": "Две сохранившиеся плиты содержат надписи о категориях служащих, правилах поведения и обязанностях местных обитателей. Построен королем Махиндой IV (Mahinda IV, пр. 975-991 г.).",
+        "historic": "ruins",
+        "name": "Da Ge",
+        "name:en": "The Relic House",
+        "name:ru": "Зал реликвий"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581144471,
+      "center": {
+        "lat": 8.3512777,
+        "lon": 80.5152325
+      },
+      "tags": {
+        "alt_name": "Sannipata Salava",
+        "historic": "ruins",
+        "name": "Sannipata Sala",
+        "name:en": "Assembly Hall",
+        "name:ru": "Место собраний"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581147399,
+      "center": {
+        "lat": 8.349047,
+        "lon": 80.5152762
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Image house"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1251056490,
+      "center": {
+        "lat": 8.3933907,
+        "lon": 80.4436542
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581132511,
+      "center": {
+        "lat": 8.3534365,
+        "lon": 80.5090278
+      },
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581132512,
+      "center": {
+        "lat": 8.3531625,
+        "lon": 80.5091937
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Idikatu Seya",
+        "name:en": "Indikatu Seya Monastery",
+        "name:ru": "Монастырь Индикату Сейя"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398907402,
+      "center": {
+        "lat": 8.3554649,
+        "lon": 80.5119562
+      },
+      "tags": {
+        "access": "yes",
+        "description:en": "Ancient hospital built by king Sena II (853-887) A:C",
+        "historic": "ruins",
+        "name": "Mihinthale Ancient Hospital Complex",
+        "ruins": "building"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581141841,
+      "center": {
+        "lat": 8.3540552,
+        "lon": 80.5142754
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Maninaga Mandiraya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 862175512,
+      "center": {
+        "lat": 8.3585943,
+        "lon": 80.5118427
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1244607148,
+      "center": {
+        "lat": 8.361776,
+        "lon": 80.511477
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1222908179,
+      "center": {
+        "lat": 8.4082875,
+        "lon": 80.2700119
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "park1"
+      }
+    },
+    {
+      "type": "way",
+      "id": 524546322,
+      "center": {
+        "lat": 8.5176128,
+        "lon": 80.3063893
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 612152270,
+      "center": {
+        "lat": 8.5839969,
+        "lon": 80.2758282
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 612152271,
+      "center": {
+        "lat": 8.5866782,
+        "lon": 80.274691
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 899394706,
+      "center": {
+        "lat": 7.9593013,
+        "lon": 80.631634
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 500388531,
+      "center": {
+        "lat": 8.0892674,
+        "lon": 80.577692
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 661602200,
+      "center": {
+        "lat": 8.0480003,
+        "lon": 80.7399162
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 442062960,
+      "center": {
+        "lat": 8.0382307,
+        "lon": 80.751858
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1220377732,
+      "center": {
+        "lat": 8.2769048,
+        "lon": 80.6478416
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Playground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1321595832,
+      "center": {
+        "lat": 8.5636235,
+        "lon": 80.8203227
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "safa play ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626824737,
+      "center": {
+        "lat": 8.6559022,
+        "lon": 80.5831812
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626832749,
+      "center": {
+        "lat": 8.6620898,
+        "lon": 80.5965212
+      },
+      "tags": {
+        "name": "rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626824733,
+      "center": {
+        "lat": 8.6652598,
+        "lon": 80.5943902
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626824734,
+      "center": {
+        "lat": 8.6635694,
+        "lon": 80.5941005
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626832751,
+      "center": {
+        "lat": 8.6577199,
+        "lon": 80.5971756
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626832752,
+      "center": {
+        "lat": 8.6591041,
+        "lon": 80.5974787
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626832750,
+      "center": {
+        "lat": 8.6614163,
+        "lon": 80.5984605
+      },
+      "tags": {
+        "name": "rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626832748,
+      "center": {
+        "lat": 8.6604644,
+        "lon": 80.6163695
+      },
+      "tags": {
+        "name": "rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 15434166,
+      "center": {
+        "lat": 8.4497148,
+        "lon": 80.042688
+      },
+      "tags": {
+        "attribution": "Forest Department of Sri Lanka",
+        "boundary": "national_park",
+        "leisure": "nature_reserve",
+        "name": "Wilpattu National Park",
+        "name:ml": "വില്പട്ടു ദേശീയോദ്യാനം",
+        "name:si": "විල්පත්තු ජාතික උද්‍යානය",
+        "name:ta": "வில்பத்து தேசிய வனம்",
+        "opening_hours": "Mo-Su 06:00-18:00",
+        "protect_class": "2",
+        "protection_title": "National Park",
+        "ref:WDPA": "902",
+        "site_ownership": "national",
+        "site_status": "designated",
+        "start_date": "1938",
+        "type": "boundary",
+        "wikidata": "Q3524793",
+        "wikipedia": "en:Wilpattu National Park"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 8477480,
+      "center": {
+        "lat": 8.3573816,
+        "lon": 80.4000812
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Entrance of the Royal Palace",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5992524,
+      "center": {
+        "lat": 8.355513,
+        "lon": 80.5132565
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Archaeological Museum Mihintale",
+        "name:ru": "Археологический музей",
+        "tourism": "museum",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}

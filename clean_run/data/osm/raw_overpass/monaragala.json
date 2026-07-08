@@ -1,0 +1,1429 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-02T16:51:45Z",
+    "timestamp_areas_base": "2026-07-02T16:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 12536461165,
+      "lat": 6.4398115,
+      "lon": 80.8910495,
+      "tags": {
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13045397092,
+      "lat": 6.3868474,
+      "lon": 81.3359285,
+      "tags": {
+        "name": "Wedasitikanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13045397093,
+      "lat": 6.3879743,
+      "lon": 81.3415647,
+      "tags": {
+        "name": "Vallikanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5007045022,
+      "lat": 6.4048783,
+      "lon": 81.3680994,
+      "tags": {
+        "name:en": "Big Game Camp Pickup Spot",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1744023356,
+      "lat": 6.4186197,
+      "lon": 81.3341736,
+      "tags": {
+        "addr:city": "Katharagama UP",
+        "name": "Archaeological Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1720902214,
+      "lat": 6.687014,
+      "lon": 81.0783616,
+      "tags": {
+        "height": "16",
+        "historic": "ruins",
+        "historic:civilization": "Mahayana",
+        "name": "Buduruwagala Rock Carvings",
+        "wikidata": "Q2927591",
+        "wikimedia_commons": "Category:Buduruwagala",
+        "wikipedia": "en:Buduruvagala"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7092899639,
+      "lat": 6.6910279,
+      "lon": 81.0914376,
+      "tags": {
+        "historic": "ruins",
+        "ruins": "stupa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10913656874,
+      "lat": 6.6917784,
+      "lon": 81.0911372,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10913656875,
+      "lat": 6.6916153,
+      "lon": 81.0909917,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10913656876,
+      "lat": 6.691303,
+      "lon": 81.0907955,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10913656878,
+      "lat": 6.6916207,
+      "lon": 81.0912849,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6257451771,
+      "lat": 6.6912811,
+      "lon": 81.107282,
+      "tags": {
+        "name": "Archeological Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133135823,
+      "lat": 6.7081082,
+      "lon": 81.0939999,
+      "tags": {
+        "historic": "ruins",
+        "name": "Sellaba Archeological Reserve"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7092912036,
+      "lat": 6.6903393,
+      "lon": 81.107391,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4897351185,
+      "lat": 6.7209551,
+      "lon": 81.1591815,
+      "tags": {
+        "name": "Thunkumahela",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4496380792,
+      "lat": 6.5351516,
+      "lon": 81.2780426,
+      "tags": {
+        "name:en": "Lulugamvehera National Park",
+        "opening_hours": "Mo-Su 06:00-18:00",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4496380791,
+      "lat": 6.5405682,
+      "lon": 81.3040448,
+      "tags": {
+        "name:en": "Weheragala National Park Entrance",
+        "opening_hours": "Mo-Su 06:00-18:00",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4496392090,
+      "lat": 6.5401567,
+      "lon": 81.3051958,
+      "tags": {
+        "name:en": "Luluganverhera National Park ticket office",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552447,
+      "lat": 6.5269694,
+      "lon": 81.336276,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Malwariyakema Monastic Ruins and Vedda Paintings"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4897351184,
+      "lat": 6.6910347,
+      "lon": 81.166048,
+      "tags": {
+        "ele": "185",
+        "name": "Horakagoda Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1727612256,
+      "lat": 6.7258324,
+      "lon": 81.357038,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Dambegoda Bosath Statue",
+        "note": "This also old same as Maligawila Buddha statue. Both of this statues located in the same complex. This is about 80 feet tall statue made of up of single crystal stone.",
+        "operator": "Department of Archaeology, LK"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6200882614,
+      "lat": 6.7814086,
+      "lon": 81.0856275,
+      "tags": {
+        "name:en": "Ellewala Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7112607286,
+      "lat": 6.7813035,
+      "lon": 81.0851596,
+      "tags": {
+        "name:en": "Visari Fall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9528569417,
+      "lat": 6.7442464,
+      "lon": 81.2397662,
+      "tags": {
+        "name:de": "Schöner Platz zum Entspannen mit Blick auf grüne Felder",
+        "name:en": "View to Fields",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1727612266,
+      "lat": 6.771581,
+      "lon": 81.2332517,
+      "tags": {
+        "addr:city": "Buttala",
+        "historic": "archaeological_site",
+        "name": "Yudaganawa Stupa",
+        "operator": "Department of Archaeology"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4920389454,
+      "lat": 6.7329099,
+      "lon": 81.3193202,
+      "tags": {
+        "name": "Ulgala",
+        "natural": "peak",
+        "wikidata": "Q27440893"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1727612263,
+      "lat": 6.7283447,
+      "lon": 81.3524319,
+      "tags": {
+        "addr:city": "Maligawila, Okkampitiya",
+        "addr:street": "Maligawila Road",
+        "historic": "archaeological_site",
+        "name": "Maligawila Buddha Statue",
+        "note": "This is approximately 1200 yrs old 110 feet Buddha statue made of crystal stone.",
+        "operator": "Department of Archaeology, LK"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133167330,
+      "lat": 6.8499267,
+      "lon": 81.2373371,
+      "tags": {
+        "name": "Pareiyan Ella Falls",
+        "name:si": "පරෙයියන් ඇල්ල",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8597590918,
+      "lat": 6.8589403,
+      "lon": 81.3333106,
+      "tags": {
+        "name": "Green Park",
+        "operator": "Government",
+        "tourism": "theme_park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10913586005,
+      "lat": 6.8728168,
+      "lon": 81.3507357,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7845821147,
+      "lat": 6.9021996,
+      "lon": 81.3478376,
+      "tags": {
+        "alt_name": "Mauragiriya",
+        "ele": "485",
+        "name": "Monaragala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4927751621,
+      "lat": 7.0149471,
+      "lon": 81.2784288,
+      "tags": {
+        "name:en": "My hom",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467455158,
+      "lat": 7.1452915,
+      "lon": 81.3254149,
+      "tags": {
+        "name": "Kirikekumangoda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552524,
+      "lat": 6.4762576,
+      "lon": 81.3715596,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Pilimagala Monastic Ruins",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10635406005,
+      "lat": 6.5132824,
+      "lon": 81.4674749,
+      "tags": {
+        "addr:street": "Hambantota",
+        "name:fr": "Yala National Park",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10635411305,
+      "lat": 6.5163317,
+      "lon": 81.4753176,
+      "tags": {
+        "addr:street": "Hambantota",
+        "name:fr": "Yala National Park",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552412,
+      "lat": 6.5208815,
+      "lon": 81.5068866,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Lunuatu Galge Archaeological Ruins",
+        "ruins": "building"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552621,
+      "lat": 6.5638925,
+      "lon": 81.5020329,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Thalaguruhela Monastic Ruins",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11061349907,
+      "lat": 6.5578089,
+      "lon": 81.5139601,
+      "tags": {
+        "ele": "250",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552246,
+      "lat": 6.61235,
+      "lon": 81.4936926,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Iriyapola Ancient Temple",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10351495556,
+      "lat": 6.6172356,
+      "lon": 81.5539682,
+      "tags": {
+        "access": "permit",
+        "archaeological_site": "ruins",
+        "historic": "archaeological_site",
+        "historic:civilization": "sinhalese",
+        "name": "Diwulanegoda Ancient Temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11080569351,
+      "lat": 6.7964139,
+      "lon": 81.4611179,
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11080569352,
+      "lat": 6.7936653,
+      "lon": 81.4628023,
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10235226830,
+      "lat": 6.7938652,
+      "lon": 81.5012856,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Waththegama Purana Raja Maha Viharaya",
+        "name:si": "වත්තේගම පුරාණ රජ මහ විහාරය",
+        "name:ta": "வத்தேகம புராதன ரஜமஹா விகாரை"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10235224228,
+      "lat": 6.7910625,
+      "lon": 81.535036,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Wattarama Aranya Senasanaya",
+        "name:si": "වට්ටාරම ආරණ්‍ය සේනාසනය",
+        "name:ta": "வட்டாராம ஆரண்ய சேனாசனய"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4071230266,
+      "lat": 6.8685474,
+      "lon": 81.388639,
+      "tags": {
+        "name": "Maragala Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4558623660,
+      "lat": 6.9160378,
+      "lon": 81.3865849,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Sugala Devi  Bathing Pond",
+        "name:si": "ගලබැද්ද බිසෝ පොකුණ"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4322776421,
+      "lat": 6.9031061,
+      "lon": 81.5400903,
+      "tags": {
+        "leisure": "park",
+        "name": "kaluObba handiya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10235195803,
+      "lat": 6.9222932,
+      "lon": 81.5512019,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Manabarana Viharaya",
+        "name:si": "මාණාබරණ විහාරය",
+        "name:ta": "மாணாபரண விகாரை"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11212568717,
+      "lat": 6.9336149,
+      "lon": 81.578521,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Katupelellegala Ancient Buddhist Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10237993665,
+      "lat": 6.809488,
+      "lon": 81.5842863,
+      "tags": {
+        "amenity": "place_of_worship",
+        "historic": "archaeological_site",
+        "name": "Dimbulagala Buddhist Monetary",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10235161659,
+      "lat": 6.8765312,
+      "lon": 81.6276344,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Namaluwa",
+        "name:si": "නාමළුව",
+        "name:ta": "நாமழுவ"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10235242357,
+      "lat": 7.0220089,
+      "lon": 81.4583628,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Kadala Vehera",
+        "name:si": "කදාල වෙහෙර",
+        "name:ta": "கதால விகாரை"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11212568718,
+      "lat": 6.9486368,
+      "lon": 81.5697498,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Helamulla Degalhela Viharaya Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4069023256,
+      "lat": 7.0353252,
+      "lon": 81.5463087,
+      "tags": {
+        "alt_name": "Westminster Abbey",
+        "ele": "558",
+        "name": "Govinda Hela",
+        "natural": "peak",
+        "wikidata": "Q27439002"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467454969,
+      "lat": 7.0964118,
+      "lon": 81.3866045,
+      "tags": {
+        "name": "Kadirampila",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467454676,
+      "lat": 7.1168958,
+      "lon": 81.3964992,
+      "tags": {
+        "name": "Guruhela Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7833005447,
+      "lat": 7.0454634,
+      "lon": 81.491164,
+      "tags": {
+        "ele": "352",
+        "name": "Buddama Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12466878897,
+      "lat": 7.0999131,
+      "lon": 81.5178793,
+      "tags": {
+        "name": "Wadinagala Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11212568719,
+      "lat": 6.9679885,
+      "lon": 81.5870984,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Pansalgoda Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933259,
+      "lat": 7.1839792,
+      "lon": 81.3637486,
+      "tags": {
+        "ele": "230",
+        "name": "Bulupitihela Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12461575822,
+      "lat": 7.2046031,
+      "lon": 81.3313249,
+      "tags": {
+        "name": "Yakunnehela Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933260,
+      "lat": 7.2005761,
+      "lon": 81.3685683,
+      "tags": {
+        "historic": "ruins",
+        "name": "Kahataththa Hela Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12461575820,
+      "lat": 7.1718745,
+      "lon": 81.4143685,
+      "tags": {
+        "ele": "525",
+        "name": "Endagala Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933258,
+      "lat": 7.1749998,
+      "lon": 81.3703193,
+      "tags": {
+        "ele": "525",
+        "name": "Nilgala Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12461575821,
+      "lat": 7.1985107,
+      "lon": 81.3700573,
+      "tags": {
+        "name": "Kahataththahela Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933252,
+      "lat": 7.1861937,
+      "lon": 81.3915514,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "name": "Nilgala Mukkaru Tomb"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933253,
+      "lat": 7.1861952,
+      "lon": 81.4026026,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Ruins of Ancient Kalugalbemma Road"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467463223,
+      "lat": 7.1469148,
+      "lon": 81.4292095,
+      "tags": {
+        "name": "Medahelawala Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10291933255,
+      "lat": 7.1913042,
+      "lon": 81.4239628,
+      "tags": {
+        "name": "Makara Kata (Dragon's Mouth)",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467463220,
+      "lat": 7.1865092,
+      "lon": 81.453179,
+      "tags": {
+        "name": "Dorapuruwagoda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117374579,
+      "lat": 7.2512886,
+      "lon": 81.4085372,
+      "tags": {
+        "name": "Henewala Cave",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117374578,
+      "lat": 7.2495962,
+      "lon": 81.4122686,
+      "tags": {
+        "name": "Henewala Wadigala",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6169993184,
+      "lat": 7.2148237,
+      "lon": 81.5357971,
+      "tags": {
+        "artwork_type": "statue",
+        "name": "D.S.Senanayaka Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6169995089,
+      "lat": 7.2230621,
+      "lon": 81.5330477,
+      "tags": {
+        "name": "Senanayaka Samudraya Spilling Point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11143148230,
+      "lat": 7.2200248,
+      "lon": 81.536128,
+      "tags": {
+        "name": "Inginiyagala Summit",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11143099795,
+      "lat": 7.2234732,
+      "lon": 81.5420787,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467643193,
+      "lat": 7.2517975,
+      "lon": 81.3795243,
+      "tags": {
+        "name": "Danigala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117457719,
+      "lat": 7.2641499,
+      "lon": 81.3729115,
+      "tags": {
+        "name": "Galoya Forest View",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117457720,
+      "lat": 7.2624865,
+      "lon": 81.3741163,
+      "tags": {
+        "building": "temple",
+        "landmark": "yes",
+        "name": "Bulupitiya Bend Ganadewi Temple",
+        "religion": "hindu",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117374580,
+      "lat": 7.2596543,
+      "lon": 81.3898962,
+      "tags": {
+        "name": "Pattiyathalawa Cave",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117374581,
+      "lat": 7.2652376,
+      "lon": 81.3835638,
+      "tags": {
+        "name": "Belumgala",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467643194,
+      "lat": 7.2641165,
+      "lon": 81.4069767,
+      "tags": {
+        "name": "Udaperuwahela",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117457721,
+      "lat": 7.2785464,
+      "lon": 81.3808165,
+      "tags": {
+        "addr:street": "Rathugala",
+        "name": "Vadda's Heritage Centre",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11117374582,
+      "lat": 7.2798437,
+      "lon": 81.4203883,
+      "tags": {
+        "name": "Kahatapitiya Cave",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678588,
+      "lat": 7.2823174,
+      "lon": 81.4334924,
+      "tags": {
+        "name": "Ambaththehela",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678591,
+      "lat": 7.3083985,
+      "lon": 81.4205136,
+      "tags": {
+        "name": "Kulaletagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678593,
+      "lat": 7.3370315,
+      "lon": 81.4380364,
+      "tags": {
+        "name": "Degalwalagoda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678599,
+      "lat": 7.3546479,
+      "lon": 81.4736557,
+      "tags": {
+        "name": "Wawinnegoda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467679032,
+      "lat": 7.2579871,
+      "lon": 81.4806789,
+      "tags": {
+        "name": "Mulagama Cave",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678596,
+      "lat": 7.3468839,
+      "lon": 81.479442,
+      "tags": {
+        "name": "Mahabaliaula",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678597,
+      "lat": 7.3481053,
+      "lon": 81.4758811,
+      "tags": {
+        "name": "Weerawinnahela",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12467678598,
+      "lat": 7.3500762,
+      "lon": 81.4822368,
+      "tags": {
+        "name": "Ballawala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11948784604,
+      "lat": 7.4112143,
+      "lon": 81.4218574,
+      "tags": {
+        "ele": "460",
+        "name": "Yaka Netu Hela",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "way",
+      "id": 409049428,
+      "center": {
+        "lat": 6.4377897,
+        "lon": 80.888468
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Udawalawe Elephants Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1427301062,
+      "center": {
+        "lat": 6.6836027,
+        "lon": 81.081221
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1427301063,
+      "center": {
+        "lat": 6.6835255,
+        "lon": 81.081221
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1427301060,
+      "center": {
+        "lat": 6.6870686,
+        "lon": 81.078321
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1427301061,
+      "center": {
+        "lat": 6.6870686,
+        "lon": 81.0782835
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 597842395,
+      "center": {
+        "lat": 6.7515573,
+        "lon": 81.0590727
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 918216905,
+      "center": {
+        "lat": 6.8690583,
+        "lon": 81.3482412
+      },
+      "tags": {
+        "name": "Pradeshiya Sabha Children Park",
+        "tourism": "theme_park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1320955045,
+      "center": {
+        "lat": 6.7913501,
+        "lon": 81.3899376
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "ground1"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1320953578,
+      "center": {
+        "lat": 6.8496381,
+        "lon": 81.4476828
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 756790128,
+      "center": {
+        "lat": 6.8719528,
+        "lon": 81.580212
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 756247031,
+      "center": {
+        "lat": 6.8765371,
+        "lon": 81.6172707
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 756247030,
+      "center": {
+        "lat": 6.8760205,
+        "lon": 81.6203177
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 757102054,
+      "center": {
+        "lat": 6.8987945,
+        "lon": 81.6127417
+      },
+      "tags": {
+        "leisure": "nature_reserve"
+      }
+    },
+    {
+      "type": "way",
+      "id": 757461814,
+      "center": {
+        "lat": 6.9097419,
+        "lon": 81.6087815
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 757461815,
+      "center": {
+        "lat": 6.9063102,
+        "lon": 81.6079997
+      },
+      "tags": {
+        "leisure": "nature_reserve"
+      }
+    },
+    {
+      "type": "way",
+      "id": 759275017,
+      "center": {
+        "lat": 6.8982573,
+        "lon": 81.6242401
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 769202370,
+      "center": {
+        "lat": 6.9357074,
+        "lon": 81.6086984
+      },
+      "tags": {
+        "name": "Natural rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 769202371,
+      "center": {
+        "lat": 6.9333989,
+        "lon": 81.6097886
+      },
+      "tags": {
+        "name": "Natural rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 769202372,
+      "center": {
+        "lat": 6.9319677,
+        "lon": 81.6098356
+      },
+      "tags": {
+        "name": "Natural rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 769213335,
+      "center": {
+        "lat": 6.9674722,
+        "lon": 81.6193816
+      },
+      "tags": {
+        "name": "Natural rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 799375307,
+      "center": {
+        "lat": 7.0302408,
+        "lon": 81.6074283
+      },
+      "tags": {
+        "name": "Natural Rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 799387214,
+      "center": {
+        "lat": 7.0330771,
+        "lon": 81.6066263
+      },
+      "tags": {
+        "name": "Natural Rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 799389218,
+      "center": {
+        "lat": 7.0495617,
+        "lon": 81.6087273
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1081161541,
+      "center": {
+        "lat": 7.1571085,
+        "lon": 81.2242586
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "childen park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266254,
+      "center": {
+        "lat": 7.2436193,
+        "lon": 81.2697905
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266252,
+      "center": {
+        "lat": 7.2519209,
+        "lon": 81.2693238
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266255,
+      "center": {
+        "lat": 7.2448751,
+        "lon": 81.269592
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266249,
+      "center": {
+        "lat": 7.2474348,
+        "lon": 81.2691468
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266250,
+      "center": {
+        "lat": 7.2489089,
+        "lon": 81.2688303
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266251,
+      "center": {
+        "lat": 7.2503032,
+        "lon": 81.2691253
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266253,
+      "center": {
+        "lat": 7.2461949,
+        "lon": 81.2661212
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266256,
+      "center": {
+        "lat": 7.2459075,
+        "lon": 81.2692755
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266248,
+      "center": {
+        "lat": 7.2529107,
+        "lon": 81.2722635
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1102266247,
+      "center": {
+        "lat": 7.252054,
+        "lon": 81.2712389
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1241970823,
+      "center": {
+        "lat": 7.2971266,
+        "lon": 81.4276531
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10550498,
+      "center": {
+        "lat": 6.5121673,
+        "lon": 80.8692616
+      },
+      "tags": {
+        "boundary": "national_park",
+        "landuse": "forest",
+        "leisure": "nature_reserve",
+        "name": "Udawalawe National Park",
+        "natural": "wood",
+        "type": "multipolygon",
+        "wikidata": "Q131875",
+        "wikipedia": "en:Udawalawe National Park"
+      }
+    }
+  ]
+}

@@ -1,0 +1,4932 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-06-12T12:14:17Z",
+    "timestamp_areas_base": "2026-06-12T12:14:17Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 6366843085,
+      "lat": 6.1276002,
+      "lon": 80.1044062,
+      "tags": {
+        "name": "Surf Control - Surf School & Stuff",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4550335089,
+      "lat": 6.1349229,
+      "lon": 80.0995487,
+      "tags": {
+        "name": "Hikkaduwa Coral Reaf",
+        "name:ru": "Хиккадува, коралловый риф",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4664842694,
+      "lat": 6.1317035,
+      "lon": 80.0998856,
+      "tags": {
+        "description": "Turtle view point",
+        "description:ru": "Наблюдение за черепахами прямо в океане",
+        "name:en": "Turtle Beach",
+        "name:ru": "Пляж с дикими черепахами. приходят с рассветом и уходят с закатом",
+        "name:uk": "Спостереження за морськими черепахами",
+        "opening_hours": "24/7",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7324580577,
+      "lat": 6.1314908,
+      "lon": 80.0997773,
+      "tags": {
+        "name": "Shark view point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858305,
+      "lat": 6.131542,
+      "lon": 80.1016056,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/jiyZXSCUETUwywi79",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858692,
+      "lat": 6.1348865,
+      "lon": 80.0999599,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/EYE6DZdWfJmtY8bV6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5137426725,
+      "lat": 6.1377427,
+      "lon": 80.0986889,
+      "tags": {
+        "name": "Snorkling Place",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858731,
+      "lat": 6.1415871,
+      "lon": 80.0994588,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/1pELNKirzHh7iB6w7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858732,
+      "lat": 6.1416013,
+      "lon": 80.0994601,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/nKKwBWQBy3aJNBbA7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858733,
+      "lat": 6.1416122,
+      "lon": 80.0994612,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/UzHkAVUB2WZYf3f8A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13502858734,
+      "lat": 6.1416235,
+      "lon": 80.0994622,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/84PfS8GUuPhL6Ecj7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504980529,
+      "lat": 6.1490828,
+      "lon": 80.0988327,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/w3LQgpuvGQNy7tX96"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9448792092,
+      "lat": 6.1923896,
+      "lon": 80.047307,
+      "tags": {
+        "historic": "wreck",
+        "name": "Conch dive site",
+        "seamark:type": "wreck"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993688,
+      "lat": 6.1562886,
+      "lon": 80.0916973,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/8qW5qfgAJLGVSWRs7",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993689,
+      "lat": 6.156298,
+      "lon": 80.0916156,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/qarYmCvuGhp3iQAVA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5222767724,
+      "lat": 6.1633997,
+      "lon": 80.0905277,
+      "tags": {
+        "name": "Turtle Hatchery Hikkaduwa",
+        "name:en": "Turtle Hatchery Hikkaduwa",
+        "name:ru": "Черепаховая ферма",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505066480,
+      "lat": 6.1628229,
+      "lon": 80.0912375,
+      "tags": {
+        "artwork_type": "vase",
+        "image": "https://photos.app.goo.gl/SF4Uka6xgsqyUX8w7",
+        "name": "DONATION",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 250132315,
+      "lat": 6.1630795,
+      "lon": 80.0917452,
+      "tags": {
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/5XQZwzR858uo9xtm9",
+        "name": "Tsunami Honganji Vihara",
+        "note": "Buddha Statue - since 26.12.2005",
+        "url": "https://youtu.be/pELm3vZ75n4?si=lOdQCZt--ckB2XuJ&t=61"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6325660489,
+      "lat": 6.1583507,
+      "lon": 80.0919254,
+      "tags": {
+        "name:en": "Dive Seenigama Dive Lanka",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505066462,
+      "lat": 6.1630044,
+      "lon": 80.0917582,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/BLXfN2u18gxnmBZd8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505066465,
+      "lat": 6.1630151,
+      "lon": 80.0917971,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/67WSGZbTYHYH2tov5",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505066474,
+      "lat": 6.1630454,
+      "lon": 80.0917637,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/dFm6H1uQwdoog3yc9",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505066475,
+      "lat": 6.1630485,
+      "lon": 80.0917779,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/7W94c7UoSERpstcM6",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504980589,
+      "lat": 6.1515647,
+      "lon": 80.1001311,
+      "tags": {
+        "artwork_type": "statue",
+        "covered": "yes",
+        "image": "https://photos.app.goo.gl/68D2zATPuy9KfWkA9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993304,
+      "lat": 6.1520329,
+      "lon": 80.1006703,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/qECuUJfphJWPDSkf7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993319,
+      "lat": 6.1541042,
+      "lon": 80.1034395,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/4xdvPKwHmvErGtmr7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993320,
+      "lat": 6.1540731,
+      "lon": 80.1034131,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/HsQUpAnhBYhqEQ75A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993327,
+      "lat": 6.1546945,
+      "lon": 80.1042823,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/L2FJcD8ZLutuxYd16"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13504993378,
+      "lat": 6.1525544,
+      "lon": 80.108232,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/2rz4woQi1X5ieQsh8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4556181993,
+      "lat": 6.1671685,
+      "lon": 80.0884684,
+      "tags": {
+        "name:en": "Turtle sanctuary",
+        "name:ru": "Черепашья ферма",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6347257887,
+      "lat": 6.1665372,
+      "lon": 80.0892894,
+      "tags": {
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/7UGLbcMgRE7bkwkB6",
+        "name": "Tsunami Honganji Viharaya",
+        "name:en": "Tsunami Monument",
+        "name:fr": "Monument commémoratif Tsunami 26 décembre 2006"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8685274985,
+      "lat": 6.1643829,
+      "lon": 80.0902958,
+      "tags": {
+        "addr:city": "Hikkaduwa",
+        "addr:street": "Colombo-Galle Road",
+        "leisure": "park",
+        "name": "Sea Turtle Hatchery & Rescue Center"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12625263101,
+      "lat": 6.1691278,
+      "lon": 80.0874864,
+      "tags": {
+        "name:en": "Tsunami Photo Museum Telwatta",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505162726,
+      "lat": 6.1640746,
+      "lon": 80.090564,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/ZyJvr5re52Q8rav5A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505162736,
+      "lat": 6.1663465,
+      "lon": 80.0895826,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/fR3h3nTnxWVBpZHA7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505162760,
+      "lat": 6.1680766,
+      "lon": 80.0883307,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/BsAJKuRzJxYcjUSG9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505162761,
+      "lat": 6.1683289,
+      "lon": 80.0882106,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/8ZKHsiNgYicmzRNC8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5164700323,
+      "lat": 6.2278405,
+      "lon": 80.0539815,
+      "tags": {
+        "name": "Turtle Farm",
+        "name:en": "Turtle Farm",
+        "name:ru": "Черепашья ферма",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3749027799,
+      "lat": 6.2414013,
+      "lon": 80.0506862,
+      "tags": {
+        "addr:city": "Ambalangoda",
+        "addr:street": "Colombo-Galle Road",
+        "name": "Ariyapala Masks Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505558527,
+      "lat": 6.2034441,
+      "lon": 80.0640074,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/Xrr8gjuRHGqgftTL6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505558529,
+      "lat": 6.2051653,
+      "lon": 80.0632099,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/7QiAtjNDLeeq723r8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505569319,
+      "lat": 6.2278978,
+      "lon": 80.0667143,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/gFuWdbkmBowTY1hY9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11169198252,
+      "lat": 6.2295349,
+      "lon": 80.0607882,
+      "tags": {
+        "addr:city": "Ambalangoda",
+        "addr:street": "Saddhasenawedamawatha",
+        "museum": "art",
+        "name": "Tukkawadu Mask Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13505569382,
+      "lat": 6.2310023,
+      "lon": 80.06825,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/iccCiGvMApGQcEwN8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13166897637,
+      "lat": 6.2736394,
+      "lon": 80.0382751,
+      "tags": {
+        "name": "Madu River Safari No 07",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7235166533,
+      "lat": 6.2905731,
+      "lon": 80.0366586,
+      "tags": {
+        "direction": "0-360",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7244411286,
+      "lat": 6.2909932,
+      "lon": 80.0390992,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199094417,
+      "lat": 6.3000371,
+      "lon": 80.0378652,
+      "tags": {
+        "name": "Ahungalla Sea Turtles Conservation Project",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6250973513,
+      "lat": 5.9928317,
+      "lon": 80.3118871,
+      "tags": {
+        "check_date": "2026-01-05",
+        "name": "Sea Turtle Conservation Project",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458582005,
+      "lat": 5.9930714,
+      "lon": 80.3160433,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/Ni83WEgyJuThcQNL6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1506190043,
+      "lat": 6.0305829,
+      "lon": 80.2160344,
+      "tags": {
+        "height": "7 m",
+        "historic": "memorial",
+        "name": "Memorial Pillar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377394539,
+      "lat": 6.0301375,
+      "lon": 80.2150659,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Moon Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399100,
+      "lat": 6.0264707,
+      "lon": 80.2147178,
+      "tags": {
+        "historic": "archaeological_site",
+        "image": "https://photos.app.goo.gl/vvcdDpkYVKn19KfWA",
+        "name": "The Neptune Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399101,
+      "lat": 6.0270001,
+      "lon": 80.2140301,
+      "tags": {
+        "historic": "archaeological_site",
+        "image": "https://photos.app.goo.gl/NxRSLw7kJFHRtm828",
+        "name": "The Clippenburg Bastion",
+        "name:en": "Clippenburg Bastion",
+        "name:fr": "Bastion Clippenburg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399141,
+      "lat": 6.028318,
+      "lon": 80.2137606,
+      "tags": {
+        "historic": "archaeological_site",
+        "image": "https://photos.app.goo.gl/WJhNEqqLp9pewA9N8",
+        "name": "The Aeolus Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5747162745,
+      "lat": 6.0301198,
+      "lon": 80.2137486,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Star Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242888,
+      "lat": 6.0264287,
+      "lon": 80.2148063,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/5u1WW9cu7MBN3zyv6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242889,
+      "lat": 6.0263609,
+      "lon": 80.2146985,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/gmKbM5uFR8hqF4G6A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242890,
+      "lat": 6.0265585,
+      "lon": 80.2147425,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/TrV1EFLw6GyVgZcK8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242891,
+      "lat": 6.026724,
+      "lon": 80.2145607,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/feTLSLJnS7k5zXS2A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242892,
+      "lat": 6.0268619,
+      "lon": 80.2143506,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/cyHTx93kRgKt3HD6A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242893,
+      "lat": 6.0269614,
+      "lon": 80.2141558,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/bSMBcbdqyzrT69Vt6",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242894,
+      "lat": 6.0284475,
+      "lon": 80.2138721,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/bHRGqrVGbeQxn5Cn8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242895,
+      "lat": 6.030002,
+      "lon": 80.2139175,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/iwqfibN4u8GgsE4b9",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242896,
+      "lat": 6.0300006,
+      "lon": 80.2138741,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/6EEKyzdiMGFAJYyE8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242897,
+      "lat": 6.0300062,
+      "lon": 80.2137279,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/CsfLj3iJ61QG5t97A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242898,
+      "lat": 6.0299769,
+      "lon": 80.2136667,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/MpvVbb47ux4Lbp8u7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265601,
+      "lat": 6.030013,
+      "lon": 80.2149385,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/3aisAvWvnZRS4zU8A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265602,
+      "lat": 6.0300154,
+      "lon": 80.2149758,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/iqVbpDGd7sd12A91A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265603,
+      "lat": 6.0300146,
+      "lon": 80.2150434,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/cyroQHDwXGBqAfBr6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265604,
+      "lat": 6.0300172,
+      "lon": 80.2151166,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/i2b1GHo364Ldx1S69",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265605,
+      "lat": 6.0300578,
+      "lon": 80.2150597,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/5Q23Nkya5PvRLg8eA",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265607,
+      "lat": 6.030118,
+      "lon": 80.2149734,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/FF8AMThV18XRptLMA"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265608,
+      "lat": 6.0301393,
+      "lon": 80.2150471,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/JxSs5dfUZ7cyaJ8m6",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265609,
+      "lat": 6.0302043,
+      "lon": 80.2150821,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/5T4uDRD3CmFWCFts6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265610,
+      "lat": 6.0302057,
+      "lon": 80.2150111,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/3N36u9SCX214zLqDA",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265611,
+      "lat": 6.0301129,
+      "lon": 80.2152512,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/qWft3WsFS9C3zJ5S7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265612,
+      "lat": 6.0300947,
+      "lon": 80.2152984,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/Rfdq3fTrKAL7h7XM7",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265613,
+      "lat": 6.0301206,
+      "lon": 80.2153159,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/cxNgz1hwwZvZZGgg6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5469820321,
+      "lat": 6.0407815,
+      "lon": 80.1985862,
+      "tags": {
+        "name": "Sea turtle hatchery mahamodara",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613387,
+      "lat": 6.0405663,
+      "lon": 80.2000251,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/DFHhzhpHR4WpYvT1A",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613388,
+      "lat": 6.0405408,
+      "lon": 80.2000594,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/wDvULFCWjt69x5sS9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613389,
+      "lat": 6.0405165,
+      "lon": 80.2001247,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/FrzEzsE5Cd8k2cE59",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613390,
+      "lat": 6.0405072,
+      "lon": 80.2001539,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/zX4fvQiG8LD3xCRw6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613391,
+      "lat": 6.0404985,
+      "lon": 80.2001831,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/7L9YHUAddriso9oD6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613392,
+      "lat": 6.0404908,
+      "lon": 80.2002094,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/Kr6DcVMPAYifjAdCA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613393,
+      "lat": 6.0404862,
+      "lon": 80.2002256,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/Xmfr5dBo9w5gW8rL6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613394,
+      "lat": 6.0404784,
+      "lon": 80.2002598,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/K6cqjDzQFnYTmLPq9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613395,
+      "lat": 6.040472,
+      "lon": 80.2002871,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/uVoUj9B9UpZVPfs29",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613396,
+      "lat": 6.0404623,
+      "lon": 80.2003283,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/AhZwivxck8FP2Dek7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613397,
+      "lat": 6.0404535,
+      "lon": 80.2003657,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/pqPWsXBeUv7aXpWf6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613398,
+      "lat": 6.0404481,
+      "lon": 80.2003885,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/1VDtVR5R66cTpKs78",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613399,
+      "lat": 6.0404404,
+      "lon": 80.2004216,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/wfnEuMKpv99HEk5D7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483613400,
+      "lat": 6.0404362,
+      "lon": 80.2004388,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/eqc7cZrae7K5bWjP6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4555281189,
+      "lat": 6.0341443,
+      "lon": 80.2119993,
+      "tags": {
+        "name": "Lion Foto",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10937162816,
+      "lat": 6.0329081,
+      "lon": 80.2143682,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/25ELLn9Ss6SHSCzy9",
+        "name": "Mr. Dewapura Jayasena - Father of hydroelectricity"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10937162817,
+      "lat": 6.0328795,
+      "lon": 80.2144163,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/7QaCqX8m9KmVdsHTA",
+        "name": "Anagarika Dharmapala"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458794174,
+      "lat": 6.0370273,
+      "lon": 80.2155562,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/FxAqeJPCuWjJY1rk8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5196005779,
+      "lat": 6.0665246,
+      "lon": 80.2090392,
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11502316371,
+      "lat": 6.0901532,
+      "lon": 80.1728791,
+      "tags": {
+        "name:en": "Elephant riding",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5247120122,
+      "lat": 6.0181155,
+      "lon": 80.235169,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8610876163,
+      "lat": 6.0177462,
+      "lon": 80.2356447,
+      "tags": {
+        "addr:city": "Roomassala",
+        "addr:street": "Peella Road",
+        "leisure": "park",
+        "name": "Rumassala lover's palace"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804068,
+      "lat": 6.0184698,
+      "lon": 80.2354191,
+      "tags": {
+        "image": "https://photos.app.goo.gl/QdvaU1GWYbx5aXvn9",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804069,
+      "lat": 6.0176615,
+      "lon": 80.2349541,
+      "tags": {
+        "image": "https://photos.app.goo.gl/UeSsRzrgESZLG2766",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804070,
+      "lat": 6.0173924,
+      "lon": 80.2352174,
+      "tags": {
+        "image": "https://photos.app.goo.gl/Mf7yt6Rz3s6byd4x7",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6673229487,
+      "lat": 6.0166394,
+      "lon": 80.2368247,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7058103709,
+      "lat": 6.0158172,
+      "lon": 80.2375742,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/Ha99uAZWLzdJhAqf9",
+        "memorial": "stele",
+        "name": "2004 Tsunami Victims Memorial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7494754985,
+      "lat": 6.0170225,
+      "lon": 80.2362381,
+      "tags": {
+        "historic": "wreck",
+        "seamark:type": "wreck",
+        "seamark:wreck:category": "hull_showing",
+        "wreck:visible_at_high_tide": "yes",
+        "wreck:visible_at_low_tide": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10780485965,
+      "lat": 6.0160863,
+      "lon": 80.2379987,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/iM1Dac1qPWr4LnWz8",
+        "name": "Buddha Sasana",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10814195698,
+      "lat": 6.0151184,
+      "lon": 80.2369296,
+      "tags": {
+        "image": "https://photos.app.goo.gl/YUJWJbVhGC91peNbA",
+        "url": "https://youtu.be/8_bSxULHUCA",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482575652,
+      "lat": 6.0159675,
+      "lon": 80.2382963,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/VL8wYAZfHG78x6QQ8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482575653,
+      "lat": 6.0160031,
+      "lon": 80.2383299,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/dPivHZ2GuGf5FjEq5"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804071,
+      "lat": 6.0174181,
+      "lon": 80.2372081,
+      "tags": {
+        "image": "https://photos.app.goo.gl/8cqnFfEgbhXs4o8PA",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482575535,
+      "lat": 6.0060951,
+      "lon": 80.2436149,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/4RLvXJJ45BwYTYWL9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482575540,
+      "lat": 6.0060174,
+      "lon": 80.2435223,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/DC9oUaq3dL96amFW9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482575543,
+      "lat": 6.0063667,
+      "lon": 80.2428567,
+      "tags": {
+        "image": "https://photos.app.goo.gl/fFPRBMqRR3PLcgZc6",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4556165692,
+      "lat": 5.9996808,
+      "lon": 80.2636381,
+      "tags": {
+        "name:en": "Wijala beach",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6273572085,
+      "lat": 6.0013739,
+      "lon": 80.2600697,
+      "tags": {
+        "name": "Palm rope swing.",
+        "name:en": "Paid Palm Rope Swing",
+        "name:ru": "Платная Тарзанка",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504159,
+      "lat": 6.0034972,
+      "lon": 80.2576087,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/fYk7CJvYpzxTa1Y99",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504160,
+      "lat": 6.0034762,
+      "lon": 80.2576167,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/4zS9PQ5vpDmMyP366",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504161,
+      "lat": 6.003452,
+      "lon": 80.2576699,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/ZqzqD2e9Fmy6Wy1F9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504162,
+      "lat": 6.003439,
+      "lon": 80.2577003,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/YnD4QbsaYHEJYLRp9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504163,
+      "lat": 6.0034054,
+      "lon": 80.2577718,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/UW95xtTEfR9hc7Wa8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504164,
+      "lat": 6.003388,
+      "lon": 80.2578093,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/fwcsK8Dq1WiKYhXu7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504165,
+      "lat": 6.0033728,
+      "lon": 80.2578429,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/cVSWdPBEJh5L7ctw9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504166,
+      "lat": 6.0033631,
+      "lon": 80.2578648,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/d57p91eGXADwoTJo7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504167,
+      "lat": 6.0033513,
+      "lon": 80.2578908,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/GXn4PgEoXusByoPB9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504168,
+      "lat": 6.0033415,
+      "lon": 80.2579111,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/F6cHxmtvzrmXANBn7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6273572086,
+      "lat": 6.0001929,
+      "lon": 80.2620853,
+      "tags": {
+        "name": "Ship Rock",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11475829069,
+      "lat": 6.0001052,
+      "lon": 80.2619912,
+      "tags": {
+        "name:en": "Frog Rock",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4736486323,
+      "lat": 6.0066746,
+      "lon": 80.2424645,
+      "tags": {
+        "name": "Blowhole",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5007016724,
+      "lat": 6.0092242,
+      "lon": 80.244804,
+      "tags": {
+        "name:en": "Handmade shell jewelry",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6796215311,
+      "lat": 6.0121852,
+      "lon": 80.2480787,
+      "tags": {
+        "name": "Saffron Robes",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8777795558,
+      "lat": 6.0106677,
+      "lon": 80.2469573,
+      "tags": {
+        "name": "Monkey View",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482504177,
+      "lat": 6.0098273,
+      "lon": 80.2466433,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/5Kmm2LU5eKt37aEv9",
+        "name": "RETO LEONHARD CLOETTA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804086,
+      "lat": 6.01003,
+      "lon": 80.2475769,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/HYCxMV93Jvy9gYUQ6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13482804087,
+      "lat": 6.0099925,
+      "lon": 80.2475885,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/KtDzZ3xvpURvoxfYA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399097,
+      "lat": 6.0244364,
+      "lon": 80.2195123,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Point Utrecht Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399099,
+      "lat": 6.0250148,
+      "lon": 80.2160979,
+      "tags": {
+        "historic": "archaeological_site",
+        "image": "https://photos.app.goo.gl/7B4hSBPKttbTRfpi8",
+        "name": "The Triton Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7058084961,
+      "lat": 6.0257695,
+      "lon": 80.2188322,
+      "tags": {
+        "name": "The Galle Fort At Gallery",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13459306119,
+      "lat": 6.0239165,
+      "lon": 80.2175814,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/v3Z3vaGDU8vSuy3J9",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461242886,
+      "lat": 6.0250607,
+      "lon": 80.2162294,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/tyVsqgd8mqWAGpd48",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 53244238,
+      "lat": 6.0302116,
+      "lon": 80.2160884,
+      "tags": {
+        "historic": "city_gate"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377394540,
+      "lat": 6.030412,
+      "lon": 80.2168463,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Sun Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399093,
+      "lat": 6.0291903,
+      "lon": 80.2172933,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Vismarkt Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399094,
+      "lat": 6.0290333,
+      "lon": 80.2192948,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Zwart Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399095,
+      "lat": 6.0274982,
+      "lon": 80.2198261,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Akersloot Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3377399096,
+      "lat": 6.0263242,
+      "lon": 80.219768,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "The Aurora Bastion"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4796130131,
+      "lat": 6.028251,
+      "lon": 80.218443,
+      "tags": {
+        "historic": "city_gate",
+        "name": "Dutch Entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6797696268,
+      "lat": 6.0295706,
+      "lon": 80.2161479,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/b4mRaKq8cbLBYBGs7",
+        "memorial": "statue",
+        "name": "Ramasinghe Premadasa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6797810530,
+      "lat": 6.0263516,
+      "lon": 80.2167652,
+      "tags": {
+        "name": "Exotic Roots Art Gallery Café",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9242801887,
+      "lat": 6.031036,
+      "lon": 80.2170356,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458794120,
+      "lat": 6.028394,
+      "lon": 80.2162083,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/MZHa1TsSfWBeRj9M9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13459306116,
+      "lat": 6.0262961,
+      "lon": 80.2195948,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/iBqq7XeSqnpBUSSk8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13459306117,
+      "lat": 6.0263055,
+      "lon": 80.2196091,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/N2tusoeahWXzLdwUA",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13459306118,
+      "lat": 6.0263429,
+      "lon": 80.2197529,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/72G1xxsY8FmPJr8VA"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265614,
+      "lat": 6.0302936,
+      "lon": 80.2167215,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/SFgYyaTzPyksFsdd8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265615,
+      "lat": 6.0303233,
+      "lon": 80.2167243,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/tBhdnynBcK5phmvY8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265616,
+      "lat": 6.0305866,
+      "lon": 80.2169635,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/QFttRHcSCtaF5DFC7",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265617,
+      "lat": 6.0305626,
+      "lon": 80.2169228,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/64m281JZLpBnhfpo9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265618,
+      "lat": 6.030506,
+      "lon": 80.2168192,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/DZ1sV9xkM6efmhLL9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265620,
+      "lat": 6.0291395,
+      "lon": 80.2171604,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/XQVAyEsQukYQQnuj6",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265621,
+      "lat": 6.0291468,
+      "lon": 80.2172019,
+      "tags": {
+        "historic": "cannon",
+        "image": "https://photos.app.goo.gl/mHwVVr3f9nA4DGD97"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265623,
+      "lat": 6.0279429,
+      "lon": 80.2175451,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/5Z1s2M36YvRw26ap9",
+        "memorial": "anchor"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461265624,
+      "lat": 6.0280493,
+      "lon": 80.2176292,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/q9mJiSVckPX6L1L7A",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5247120123,
+      "lat": 6.0255448,
+      "lon": 80.2410849,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3656211462,
+      "lat": 6.0304356,
+      "lon": 80.2345573,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5827941671,
+      "lat": 6.0355285,
+      "lon": 80.2190401,
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5827942685,
+      "lat": 6.036115,
+      "lon": 80.2183142,
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5179789546,
+      "lat": 6.0395174,
+      "lon": 80.2282582,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2423958681,
+      "lat": 6.0339785,
+      "lon": 80.2349626,
+      "tags": {
+        "historic": "monument",
+        "monument": "statue",
+        "name": "Buddha Statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6295668286,
+      "lat": 6.0356871,
+      "lon": 80.2473202,
+      "tags": {
+        "name:en": "Dutch Antiquities",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6337660985,
+      "lat": 6.0448478,
+      "lon": 80.2581144,
+      "tags": {
+        "name:en": "Sooriya weaving mills",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1763166087,
+      "lat": 5.9937218,
+      "lon": 80.3041182,
+      "tags": {
+        "addr:city": "Koggala",
+        "name": "Sea Turtle Hatchery",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13456064382,
+      "lat": 5.9936666,
+      "lon": 80.3074478,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/Wa7EsMGh8ADYqaoMA",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10584049872,
+      "lat": 5.9939553,
+      "lon": 80.3173651,
+      "tags": {
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11478088669,
+      "lat": 5.9986791,
+      "lon": 80.3146697,
+      "tags": {
+        "name:en": "Monkeys",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13457021933,
+      "lat": 5.9957474,
+      "lon": 80.3145445,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/2CuD7sPN7Y45SVes6",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13457899803,
+      "lat": 5.9992817,
+      "lon": 80.3157372,
+      "tags": {
+        "image": "https://photos.app.goo.gl/cDpHFXT6N6zfxWcU8",
+        "leisure": "garden",
+        "name": "MANJU spice & Herbal Garden",
+        "phone": "+94772018892"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4342403191,
+      "lat": 6.0376032,
+      "lon": 80.3044583,
+      "tags": {
+        "name": "Bogahagoda",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8516812972,
+      "lat": 6.0651056,
+      "lon": 80.2617707,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2564533026,
+      "lat": 6.0587746,
+      "lon": 80.3152866,
+      "tags": {
+        "name": "Hiyare Biodiversity Research Center",
+        "tourism": "theme_park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6151874578,
+      "lat": 6.0973686,
+      "lon": 80.3123094,
+      "tags": {
+        "description": "Kottawa low-land rainforest and arboretum",
+        "name:en": "Kottawa Rainforest and Arboretum",
+        "opening_hours": "Mo-Su 08:00-17:00",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5319727123,
+      "lat": 5.9834929,
+      "lon": 80.3323903,
+      "tags": {
+        "name:cs": "Rybáři na kůlech",
+        "name:en": "Stick Fishermans",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10586767905,
+      "lat": 5.9844629,
+      "lon": 80.3306171,
+      "tags": {
+        "image": "https://photos.app.goo.gl/vUY4dn2AGzYjTpwW7",
+        "name:en": "Stick Fishing",
+        "tourism": "attraction",
+        "url": "https://youtu.be/Q6qGgyZID1s"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10586769305,
+      "lat": 5.9854749,
+      "lon": 80.3285158,
+      "tags": {
+        "name:en": "Stick Fishing",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13472261373,
+      "lat": 5.9855986,
+      "lon": 80.3285153,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/i74hV9ZtkeSEN6HM6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3053343646,
+      "lat": 5.9889841,
+      "lon": 80.3274941,
+      "tags": {
+        "addr:city": "Koggala",
+        "name:en": "Martin Wickramasinghe Folk Museum Complex",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13472261397,
+      "lat": 5.9893149,
+      "lon": 80.3372141,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/Bgx8BuJHH7D6bJV8A",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13472261400,
+      "lat": 5.9895114,
+      "lon": 80.3378889,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/HHqxZAUQ1nNr62wC7",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4361198389,
+      "lat": 5.976616,
+      "lon": 80.353275,
+      "tags": {
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10779286306,
+      "lat": 5.9741842,
+      "lon": 80.3582339,
+      "tags": {
+        "name:en": "Beach views",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12777802101,
+      "lat": 5.9754302,
+      "lon": 80.3544967,
+      "tags": {
+        "name": "Stilt fishermen",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7108864185,
+      "lat": 5.9699302,
+      "lon": 80.3680142,
+      "tags": {
+        "name": "Stick Fishermen",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13828686769,
+      "lat": 5.9676066,
+      "lon": 80.3713103,
+      "tags": {
+        "access": "yes",
+        "leisure": "swimming_area",
+        "name": "Ahangama Secret Beach",
+        "natural": "beach",
+        "surface": "sand",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10030921417,
+      "lat": 5.9650699,
+      "lon": 80.3786869,
+      "tags": {
+        "name:es": "pescadores zancudos",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13828686765,
+      "lat": 5.9649548,
+      "lon": 80.3797493,
+      "tags": {
+        "access": "yes",
+        "leisure": "swimming_area",
+        "natural": "beach",
+        "surface": "sand",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13828686770,
+      "lat": 5.9669042,
+      "lon": 80.374696,
+      "tags": {
+        "access": "yes",
+        "leisure": "swimming_area",
+        "name": "Ahangama Beach",
+        "natural": "beach",
+        "surface": "sand",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13457021940,
+      "lat": 5.9966246,
+      "lon": 80.3223834,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/Kpe63nB4z5SNVLDS8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13457021941,
+      "lat": 5.9966574,
+      "lon": 80.3223923,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/FwRh68ugCuHpj8X86",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13457896509,
+      "lat": 5.9980899,
+      "lon": 80.3230935,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/nRvHHbKAXGVbNB4G7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458017884,
+      "lat": 5.9981038,
+      "lon": 80.3229407,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/hoXKbsYXhg6RzA4G7",
+        "memorial": "stone"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458017885,
+      "lat": 5.998091,
+      "lon": 80.322964,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/ymRLaSbxjiAC2Czz8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458582003,
+      "lat": 5.9969503,
+      "lon": 80.32228,
+      "tags": {
+        "leisure": "garden",
+        "name": "SPICE & HERBAL GARDEN"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6620925485,
+      "lat": 6.003626,
+      "lon": 80.3213784,
+      "tags": {
+        "name:en": "Spice Island",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13458571597,
+      "lat": 6.0007213,
+      "lon": 80.3239686,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/ZNSU23U1sVRTC5td9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13474244563,
+      "lat": 6.021188,
+      "lon": 80.3472299,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/o5PjCj7vjWfLRf2A6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13474244568,
+      "lat": 6.0214361,
+      "lon": 80.3472063,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/23iuLJTN8UJVe1MU6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13474244590,
+      "lat": 6.021012,
+      "lon": 80.3490219,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/ojQCCLSM6KiGC2Kb6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507345774,
+      "lat": 6.1109894,
+      "lon": 80.125022,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/CRrb7kMRSKcysa329",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507345775,
+      "lat": 6.1167274,
+      "lon": 80.1186027,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/EUYMqQ79SgvppFV67"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884269,
+      "lat": 6.111963,
+      "lon": 80.1251521,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/DAh9zTnPaN5BLCrX7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884271,
+      "lat": 6.1121547,
+      "lon": 80.1250912,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/AnvnbYmLaAMCkTUB6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884272,
+      "lat": 6.1121582,
+      "lon": 80.1250579,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/zTQw4SQ9SVgt1Mfu9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884277,
+      "lat": 6.1122503,
+      "lon": 80.1248222,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/PeTNnNLeJpcmKdebA"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884279,
+      "lat": 6.112464,
+      "lon": 80.1249789,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/W4iWF6Z4D18oiYZL7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884281,
+      "lat": 6.1127228,
+      "lon": 80.1251101,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/vC6mZ7NgBPZ2RwDo6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483884282,
+      "lat": 6.1125841,
+      "lon": 80.1251899,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/nAuR1udafiX6uNSc9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8685274983,
+      "lat": 6.1618243,
+      "lon": 80.1274127,
+      "tags": {
+        "addr:city": "Hikkaduwa",
+        "leisure": "park",
+        "name": "Berathuduwa Nature Resort"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13031944789,
+      "lat": 6.1266825,
+      "lon": 80.2295434,
+      "tags": {
+        "amenity": "place_of_worship",
+        "name:en": "Punchi Sri Padaya Viewpoint",
+        "religion": "buddhist",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5029001845,
+      "lat": 6.13776,
+      "lon": 80.2607489,
+      "tags": {
+        "name": "Dolaaramba",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4620115989,
+      "lat": 6.1556042,
+      "lon": 80.2204598,
+      "tags": {
+        "name:en": "Tea factory Hill garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381036,
+      "lat": 6.2255299,
+      "lon": 80.1176918,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/EE7nuRrbfTuywXTa7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381044,
+      "lat": 6.2255088,
+      "lon": 80.1176229,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/b9UP2RFn3SWFYVTC7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381045,
+      "lat": 6.2255309,
+      "lon": 80.1176277,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/fjSXd5HRrKVWsUKF8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381046,
+      "lat": 6.2255715,
+      "lon": 80.1176372,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/43mPYkwEamvAxKTT9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381047,
+      "lat": 6.2256379,
+      "lon": 80.1176519,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/N5L1HZeKXpbEmS4N7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381048,
+      "lat": 6.2256911,
+      "lon": 80.1176665,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/bs64Q4wi7MvhHMXC7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381049,
+      "lat": 6.225722,
+      "lon": 80.1176912,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/Lg9m4dbV99tWyR9d7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381050,
+      "lat": 6.2257383,
+      "lon": 80.1177052,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/PuSbFLJRX1TEhGXUA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381051,
+      "lat": 6.2257595,
+      "lon": 80.1177362,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/xRubc6NFyvQLhjnU8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381052,
+      "lat": 6.2257718,
+      "lon": 80.1177556,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/BePoGgF31Nb6ZLzn6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381103,
+      "lat": 6.2256905,
+      "lon": 80.1147069,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/6vHfkvngYt7MArA18"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381116,
+      "lat": 6.2258427,
+      "lon": 80.1145253,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/fMFiEtsnpZeUVmkh9",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381179,
+      "lat": 6.2259651,
+      "lon": 80.1141578,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/X2CDwPsN5SkGXcrTA",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381053,
+      "lat": 6.2258003,
+      "lon": 80.1178019,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/vpKsRnt6VS3Wmxm86",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484065643,
+      "lat": 6.2373202,
+      "lon": 80.1601082,
+      "tags": {
+        "artwork_type": "graffiti",
+        "covered": "yes",
+        "image": "https://photos.app.goo.gl/jyCZumQGHTs4XnDq8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484065644,
+      "lat": 6.2370805,
+      "lon": 80.160176,
+      "tags": {
+        "artwork_type": "graffiti",
+        "covered": "yes",
+        "image": "https://photos.app.goo.gl/Z5mFn3KTgtW49YMw8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484065655,
+      "lat": 6.237848,
+      "lon": 80.1629223,
+      "tags": {
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/2M6WTnedB32xLXYQ8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992166,
+      "lat": 6.2547621,
+      "lon": 80.1984928,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/TKxJpx24epXA5rRT7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992172,
+      "lat": 6.2548437,
+      "lon": 80.1983117,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/8Mz9QppdTHcibKAb6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992176,
+      "lat": 6.2550069,
+      "lon": 80.1981521,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/YbvNDX7bkGamqYTS8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992177,
+      "lat": 6.2552296,
+      "lon": 80.1977559,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/VeCvTvfPEuKfVyRu5",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381059,
+      "lat": 6.2740021,
+      "lon": 80.1372018,
+      "tags": {
+        "artwork_type": "graffiti",
+        "covered": "yes",
+        "image": "https://photos.app.goo.gl/FAdT3PPdCjh2Hxu96",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13507381060,
+      "lat": 6.2737807,
+      "lon": 80.1373891,
+      "tags": {
+        "artwork_type": "graffiti",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11989424694,
+      "lat": 6.2766914,
+      "lon": 80.1410216,
+      "tags": {
+        "addr:city": "Elpitiya",
+        "addr:postcode": "80400",
+        "addr:street": "Convent View Kurundugahahetekma",
+        "name": "Isidi Aquarium",
+        "tourism": "aquarium"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484978991,
+      "lat": 6.2595592,
+      "lon": 80.1848761,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/afBcZKSSPEfjcmYx5",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484978996,
+      "lat": 6.2595028,
+      "lon": 80.1848859,
+      "tags": {
+        "artwork_type": "statue",
+        "covered": "yes",
+        "image": "https://photos.app.goo.gl/5oFVDk2rqjED4qye7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13485090830,
+      "lat": 6.2592827,
+      "lon": 80.1850616,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/LYmUA99n3rikBC4S6"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992090,
+      "lat": 6.2554677,
+      "lon": 80.1939612,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/Qa2CvR2wqz15i3Bg9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9125422618,
+      "lat": 6.2586051,
+      "lon": 80.197338,
+      "tags": {
+        "image": "https://photos.app.goo.gl/1yKTzsyZuBqMQ7mj7",
+        "name": "Andahelena Ella",
+        "name:si": "අඬාහැලෙන ඇල්ල",
+        "tourism": "attraction",
+        "url": "https://youtu.be/y1ppR7KQ5ps?si=vyYDrXxGAdzFIbQq&t=337",
+        "url:0": "https://youtu.be/kj6S2PJo0NM?si=3_QbCXP381sQ9rry&t=475",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992049,
+      "lat": 6.2587392,
+      "lon": 80.1973907,
+      "tags": {
+        "image": "https://photos.app.goo.gl/zRFY9h4dUUewWHyt9",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13484992051,
+      "lat": 6.2588115,
+      "lon": 80.197421,
+      "tags": {
+        "image": "https://photos.app.goo.gl/fcMDqzKGUbbmJoJx6",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9125555013,
+      "lat": 6.2916365,
+      "lon": 80.2154718,
+      "tags": {
+        "alt_name": "බන්ට් එක",
+        "name": "Kiridola",
+        "name:si": "කිරිදොල",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5030579588,
+      "lat": 6.217311,
+      "lon": 80.2867985,
+      "tags": {
+        "name": "Ethumale",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4621586590,
+      "lat": 6.1950683,
+      "lon": 80.3242,
+      "tags": {
+        "name:en": "Tea shop-factory",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5455788124,
+      "lat": 6.2186047,
+      "lon": 80.3627056,
+      "tags": {
+        "name": "tea factory",
+        "name:ru": "чайная фабрика",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2616147812,
+      "lat": 6.2510037,
+      "lon": 80.3379577,
+      "tags": {
+        "name": "Kanneliya Rainforest Reserve",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10968416590,
+      "lat": 6.2446812,
+      "lon": 80.3510843,
+      "tags": {
+        "name:en": "High Kabbale Peak",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10968439412,
+      "lat": 6.2711358,
+      "lon": 80.3588751,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5018097621,
+      "lat": 6.3978652,
+      "lon": 80.0055951,
+      "tags": {
+        "name:en": "Sea Turtle conservation center",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2788326672,
+      "lat": 6.3274734,
+      "lon": 80.0318424,
+      "tags": {
+        "addr:city": "Kosgoda",
+        "name": "Kosgoda Sea Turtle Conservation Project",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4918571122,
+      "lat": 6.354312,
+      "lon": 80.0182795,
+      "tags": {
+        "name:en": "Kosgoda Sea Turtle Conservation Project",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5386154922,
+      "lat": 6.354556,
+      "lon": 80.0182057,
+      "tags": {
+        "name:en": "Kosgoda Sea Turtle Conservation Project",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4681359813,
+      "lat": 6.3730312,
+      "lon": 80.0108163,
+      "tags": {
+        "contact:email": "induruwaseaturtles13@gmail.com",
+        "contact:phone": "+94716465996",
+        "contact:website": "http://www.srilankaseaturtles.com",
+        "name": "Induruwa sea turtle farm",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5935616891,
+      "lat": 6.3737892,
+      "lon": 80.0102892,
+      "tags": {
+        "name:ru": "Центр по сохранению морских черепах в Индуруве",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4693137589,
+      "lat": 6.4047562,
+      "lon": 80.0216523,
+      "tags": {
+        "name:en": "Jeffry bawa's garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13461654001,
+      "lat": 6.4178963,
+      "lon": 79.9975542,
+      "tags": {
+        "historic": "memorial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4322773503,
+      "lat": 6.4217368,
+      "lon": 79.9963303,
+      "tags": {
+        "leisure": "park",
+        "name": "piknik aria"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10797328091,
+      "lat": 6.4248476,
+      "lon": 80.0034638,
+      "tags": {
+        "amenity": "place_of_worship",
+        "artwork_type": "statue",
+        "name": "Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10933134956,
+      "lat": 6.4264508,
+      "lon": 79.9980317,
+      "tags": {
+        "name": "Flower",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9150634346,
+      "lat": 6.3745281,
+      "lon": 80.2370436,
+      "tags": {
+        "name": "Kalu Dola Ella",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3563707810,
+      "lat": 6.330639,
+      "lon": 80.4089888,
+      "tags": {
+        "ele": "710",
+        "name": "Mountain Peak Kalubovitiyana",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4225544269,
+      "lat": 6.3347433,
+      "lon": 80.4044858,
+      "tags": {
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3563664791,
+      "lat": 6.3919677,
+      "lon": 80.392724,
+      "tags": {
+        "alt_name": "Doowili Ella Waterfall",
+        "name": "Dooli Ella Waterfall",
+        "name:si": "දූලි ඇල්ල",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5166965479,
+      "lat": 6.3688789,
+      "lon": 80.4569311,
+      "tags": {
+        "name": "Lankagama Sangili Palama",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10570114947,
+      "lat": 6.3727073,
+      "lon": 80.4529069,
+      "tags": {
+        "name:en": "Sinharaja, Lankagama Entrance",
+        "tourism": "attraction",
+        "website": "https://www.sinharajaforestreserve.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3563677193,
+      "lat": 6.375223,
+      "lon": 80.4527399,
+      "tags": {
+        "name": "Brahmana Ella Water Fall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3563679036,
+      "lat": 6.3758854,
+      "lon": 80.452351,
+      "tags": {
+        "name:en": "Thattu Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12141810301,
+      "lat": 6.3784546,
+      "lon": 80.4542153,
+      "tags": {
+        "name:en": "Uranwatuna Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12141810302,
+      "lat": 6.3781254,
+      "lon": 80.4538947,
+      "tags": {
+        "name:en": "Gal Oruwa Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4825208439,
+      "lat": 6.3709756,
+      "lon": 80.4794439,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4825236007,
+      "lat": 6.3710518,
+      "lon": 80.4864491,
+      "tags": {
+        "name": "Waterfall",
+        "tourism": "viewpoint",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 195275709,
+      "center": {
+        "lat": 6.1347151,
+        "lon": 80.0997352
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/qDjRu2c6DrTxekjQ6",
+        "name": "Hikkaduwa Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471488928,
+      "center": {
+        "lat": 6.1425293,
+        "lon": 80.097313
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/SePXjLcJcfBp7Nu66",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471771180,
+      "center": {
+        "lat": 6.1550138,
+        "lon": 80.0933329
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471771187,
+      "center": {
+        "lat": 6.1567948,
+        "lon": 80.0915279
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471771188,
+      "center": {
+        "lat": 6.1576872,
+        "lon": 80.0916611
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/HFGUTmmoS78E5h1P8",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471786475,
+      "center": {
+        "lat": 6.1627401,
+        "lon": 80.0913187
+      },
+      "tags": {
+        "building": "yes",
+        "image": "https://photos.app.goo.gl/nwEHMQ3U7RkwwY2C9",
+        "museum": "history",
+        "name": "TSUNAMI PHOTO GALLERY",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1177275611,
+      "center": {
+        "lat": 6.1687924,
+        "lon": 80.0879744
+      },
+      "tags": {
+        "building": "yes",
+        "fee": "no",
+        "name": "General Tsunami Photo Museum",
+        "opening_hours": "Mo-Su 08:00-18:00",
+        "tourism": "museum",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471796692,
+      "center": {
+        "lat": 6.1639956,
+        "lon": 80.0904851
+      },
+      "tags": {
+        "building": "yes",
+        "image": "https://photos.app.goo.gl/kDqTaHVAebsDaD5A7",
+        "name": "Turtle Hatchery",
+        "phone": "+94772938338",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471796696,
+      "center": {
+        "lat": 6.1683568,
+        "lon": 80.0882938
+      },
+      "tags": {
+        "building": "yes",
+        "name:en": "Community Tsunami Education Center and Tsunami Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471796697,
+      "center": {
+        "lat": 6.168146,
+        "lon": 80.0883159
+      },
+      "tags": {
+        "building": "yes",
+        "image": "https://photos.app.goo.gl/n6zzhiJvpTPZaL6H8",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471796699,
+      "center": {
+        "lat": 6.1682273,
+        "lon": 80.088188
+      },
+      "tags": {
+        "barrier": "wall",
+        "image": "https://photos.app.goo.gl/hDLWX23JUgEZnt9B6",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "way",
+      "id": 371312338,
+      "center": {
+        "lat": 6.1906307,
+        "lon": 80.0639227
+      },
+      "tags": {
+        "name": "Akurala Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1472051842,
+      "center": {
+        "lat": 6.196523,
+        "lon": 80.0965757
+      },
+      "tags": {
+        "building": "yes",
+        "email": "samanmoonstonemine@gmail.com",
+        "image": "https://photos.app.goo.gl/Ef2xsmR1L62UacM69",
+        "name": "Saman Gems & Moonstone Mine",
+        "name:de": "Mondstein Mine",
+        "name:en": "Moonstone Mines",
+        "phone": "+94(0)915630157",
+        "shop": "jewelry",
+        "tourism": "attraction",
+        "url": "https://youtu.be/SRHxGDhrNB0",
+        "website": "www.samangems.com"
+      }
+    },
+    {
+      "type": "way",
+      "id": 288582815,
+      "center": {
+        "lat": 6.2499881,
+        "lon": 80.0431756
+      },
+      "tags": {
+        "name": "Ambalangoda Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626693037,
+      "center": {
+        "lat": 6.2196274,
+        "lon": 80.0563684
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444954,
+      "center": {
+        "lat": 6.2355526,
+        "lon": 80.0451485
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444958,
+      "center": {
+        "lat": 6.2362426,
+        "lon": 80.0453841
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "name": "Gendawana Gala",
+        "natural": "rock",
+        "place": "islet",
+        "protection_title": "Sanctuary"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444937,
+      "center": {
+        "lat": 6.2374938,
+        "lon": 80.0449651
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444939,
+      "center": {
+        "lat": 6.2376262,
+        "lon": 80.0444927
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444941,
+      "center": {
+        "lat": 6.2376941,
+        "lon": 80.0448878
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444943,
+      "center": {
+        "lat": 6.2373904,
+        "lon": 80.0448251
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444947,
+      "center": {
+        "lat": 6.2372947,
+        "lon": 80.0449795
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444949,
+      "center": {
+        "lat": 6.2371779,
+        "lon": 80.0449807
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 98444952,
+      "center": {
+        "lat": 6.2365694,
+        "lon": 80.0446449
+      },
+      "tags": {
+        "natural": "rock",
+        "place": "islet"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626692712,
+      "center": {
+        "lat": 6.2352292,
+        "lon": 80.0520407
+      },
+      "tags": {
+        "name": "Ambalangoda Beach",
+        "name:ru": "Пляж Амбалангода",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1078288698,
+      "center": {
+        "lat": 6.2365649,
+        "lon": 80.0542823
+      },
+      "tags": {
+        "addr:city": "Ambalangoda",
+        "addr:postcode": "80300",
+        "addr:street": "Colombo-Galle Road",
+        "leisure": "park",
+        "name": "Three Wheeler Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 403591132,
+      "center": {
+        "lat": 6.2176079,
+        "lon": 80.0667351
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "lashintion park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 819084083,
+      "center": {
+        "lat": 6.2440286,
+        "lon": 80.0595251
+      },
+      "tags": {
+        "natural": "spring"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626660405,
+      "center": {
+        "lat": 6.3019875,
+        "lon": 80.0336864
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 819753744,
+      "center": {
+        "lat": 6.2579346,
+        "lon": 80.0379567
+      },
+      "tags": {
+        "building": "public",
+        "contact:email": "info@puppeteersoflanka.com",
+        "contact:phone": "+94 71 552 5038",
+        "contact:website": "https://puppeteersoflanka.com/",
+        "museum": "art",
+        "museum_type": "regional",
+        "name": "Puppet Museum",
+        "opening_hours": "Mo-Fr 09:00-18:00",
+        "operator": "Puppeteers of Lanka",
+        "tourism": "museum",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 288582818,
+      "center": {
+        "lat": 6.2661244,
+        "lon": 80.0348425
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626665919,
+      "center": {
+        "lat": 6.2714485,
+        "lon": 80.0336166
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626666017,
+      "center": {
+        "lat": 6.2731278,
+        "lon": 80.0350602
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626665408,
+      "center": {
+        "lat": 6.2873297,
+        "lon": 80.0357273
+      },
+      "tags": {
+        "name": "Balapitiya Beach",
+        "name:ru": "Пляж Балапития",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1320942871,
+      "center": {
+        "lat": 6.2695942,
+        "lon": 80.1013062
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "samaraweera playground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 394241360,
+      "center": {
+        "lat": 5.9896464,
+        "lon": 80.3142792
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/R9HmbH3eYjxYHSvy7",
+        "name:en": "Koggala Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1467344371,
+      "center": {
+        "lat": 5.9917485,
+        "lon": 80.315894
+      },
+      "tags": {
+        "aircraft:type": "Hawker Siddeley HS-748 (AVRO)",
+        "fee": "20 LKR",
+        "historic": "aircraft",
+        "image": "https://photos.app.goo.gl/BhDMGv9Zdu7J8gNP9",
+        "name": "Old Hawker 748",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 28239769,
+      "center": {
+        "lat": 6.0324462,
+        "lon": 80.2136563
+      },
+      "tags": {
+        "is_in": "Galle, Galle District, Southern Province, Sri Lanka",
+        "leisure": "park",
+        "name": "Dharmapala Park",
+        "name:en": "Dharmapala Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137294982,
+      "center": {
+        "lat": 6.0283944,
+        "lon": 80.2151315
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Army Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 939103948,
+      "center": {
+        "lat": 6.0403517,
+        "lon": 80.1972597
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 221473609,
+      "center": {
+        "lat": 6.042953,
+        "lon": 80.1932907
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533338714,
+      "center": {
+        "lat": 6.0417282,
+        "lon": 80.1945091
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 871149848,
+      "center": {
+        "lat": 6.092648,
+        "lon": 80.1361225
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Dodanduwa Beach III",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 705966191,
+      "center": {
+        "lat": 6.0970831,
+        "lon": 80.1316417
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 633232310,
+      "center": {
+        "lat": 6.0818312,
+        "lon": 80.147846
+      },
+      "tags": {
+        "name": "Beach rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 559786461,
+      "center": {
+        "lat": 6.0598214,
+        "lon": 80.1763042
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533261078,
+      "center": {
+        "lat": 6.0559182,
+        "lon": 80.1779718
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533261079,
+      "center": {
+        "lat": 6.0540429,
+        "lon": 80.1792365
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 533261080,
+      "center": {
+        "lat": 6.0533426,
+        "lon": 80.1798464
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 708749159,
+      "center": {
+        "lat": 6.0658056,
+        "lon": 80.1703148
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 557508045,
+      "center": {
+        "lat": 6.0489336,
+        "lon": 80.2034417
+      },
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "way",
+      "id": 543185516,
+      "center": {
+        "lat": 6.0519941,
+        "lon": 80.2124747
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Bickay Nature Reserve",
+        "natural": "wood",
+        "source": "Bing"
+      }
+    },
+    {
+      "type": "way",
+      "id": 537450820,
+      "center": {
+        "lat": 6.0585297,
+        "lon": 80.2063844
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431415522,
+      "center": {
+        "lat": 6.0120385,
+        "lon": 80.2395384
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 651998170,
+      "center": {
+        "lat": 6.0179013,
+        "lon": 80.2355254
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1470120075,
+      "center": {
+        "lat": 6.0063446,
+        "lon": 80.2439447
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/ZNzHUsoLJmoMHocV6"
+      }
+    },
+    {
+      "type": "way",
+      "id": 481558075,
+      "center": {
+        "lat": 5.999905,
+        "lon": 80.2636054
+      },
+      "tags": {
+        "name": "Wijaya Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1162766948,
+      "center": {
+        "lat": 5.9985666,
+        "lon": 80.2697247
+      },
+      "tags": {
+        "name": "Mihiripena beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 481558086,
+      "center": {
+        "lat": 6.0017242,
+        "lon": 80.2589612
+      },
+      "tags": {
+        "name": "Delawella Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 303723769,
+      "center": {
+        "lat": 6.0081986,
+        "lon": 80.2478088
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/rGDyqqst9PpX5AKj7",
+        "name": "Unawatuna",
+        "natural": "beach",
+        "wikidata": "Q65302304"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137294932,
+      "center": {
+        "lat": 6.0246309,
+        "lon": 80.2193275
+      },
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Old Gun Powder Magazine"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398160986,
+      "center": {
+        "lat": 6.0242818,
+        "lon": 80.2191605
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 449260368,
+      "center": {
+        "lat": 6.0237028,
+        "lon": 80.2175508
+      },
+      "tags": {
+        "historic": "ruins",
+        "image": "https://photos.app.goo.gl/kenWqWeokDpe2bfs7",
+        "name": "Flag Rock Bastion",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "way",
+      "id": 449547344,
+      "center": {
+        "lat": 6.0253726,
+        "lon": 80.2174782
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 449547345,
+      "center": {
+        "lat": 6.0253298,
+        "lon": 80.2177135
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1159239364,
+      "center": {
+        "lat": 6.024899,
+        "lon": 80.2163328
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398160985,
+      "center": {
+        "lat": 6.0253331,
+        "lon": 80.219752
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 28239945,
+      "center": {
+        "lat": 6.0281544,
+        "lon": 80.2184419
+      },
+      "tags": {
+        "alt_name": "Old Warehouse",
+        "building": "yes",
+        "building:levels": "2",
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/M2P5BknwqehyS2jf6",
+        "name": "Dutch Warehouse (National Maritime Museum)",
+        "name:zh": "旧城门",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 136845474,
+      "center": {
+        "lat": 6.0289259,
+        "lon": 80.2169741
+      },
+      "tags": {
+        "addr:city": "Galle",
+        "addr:street": "පල්ලිය වීදිය",
+        "building": "yes",
+        "image": "https://photos.app.goo.gl/ekWANxrWjEwVYZmH7",
+        "name": "National Museum Fort",
+        "opening_hours": "Tu-Sa 09:00-16:00",
+        "phone": "+94 912 232 051",
+        "tourism": "museum",
+        "wikipedia": "en:National_Museum_of_Galle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 136845710,
+      "center": {
+        "lat": 6.0298367,
+        "lon": 80.2164262
+      },
+      "tags": {
+        "designation": "Wimala Surendra Park",
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137294927,
+      "center": {
+        "lat": 6.0276646,
+        "lon": 80.2186349
+      },
+      "tags": {
+        "amenity": "courthouse",
+        "building": "yes",
+        "historic": "monument",
+        "name": "Magistrate Court (Malay Soilders' Barrack)",
+        "office": "government"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137294929,
+      "center": {
+        "lat": 6.0267719,
+        "lon": 80.2195753
+      },
+      "tags": {
+        "addr:postcode": "80000",
+        "addr:street": "Hospital Street",
+        "building": "commercial",
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/zDmvwQgymjo1JKV5A",
+        "name": "Old Dutch Hospital (Shopping Precint)",
+        "smoking": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137295208,
+      "center": {
+        "lat": 6.0264825,
+        "lon": 80.2190023
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Historical Mansion Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137295707,
+      "center": {
+        "lat": 6.0277153,
+        "lon": 80.2178418
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "monument",
+        "name": "Former Queen's House",
+        "office": "company"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137309318,
+      "center": {
+        "lat": 6.0265776,
+        "lon": 80.2186286
+      },
+      "tags": {
+        "addr:city": "Galle",
+        "addr:street": "Leyn Baan Street",
+        "building": "yes",
+        "name": "Historical Mansion Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137493646,
+      "center": {
+        "lat": 6.0324635,
+        "lon": 80.2172575
+      },
+      "tags": {
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/bY3etGTxrWo6S3Fy5",
+        "name": "War Heroes Statue"
+      }
+    },
+    {
+      "type": "way",
+      "id": 137493746,
+      "center": {
+        "lat": 6.0292966,
+        "lon": 80.2165713
+      },
+      "tags": {
+        "landuse": "grass",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398146186,
+      "center": {
+        "lat": 6.0281466,
+        "lon": 80.2171271
+      },
+      "tags": {
+        "addr:city": "Galle",
+        "addr:street": "පල්ලිය වීදිය",
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "denomination": "dutch_reformed",
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/BNAmgphQhBHUnZ597",
+        "name": "Dutch Reformed Church (1755)",
+        "religion": "christian",
+        "wikidata": "Q17189325",
+        "wikipedia": "en:Groote_Kerk,_Galle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398158892,
+      "center": {
+        "lat": 6.0276859,
+        "lon": 80.2162108
+      },
+      "tags": {
+        "addr:city": "Galle",
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "denomination": "methodist",
+        "historic": "monument",
+        "name": "Magistrate Court (Malay Soilders' Barrack)",
+        "religion": "christian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398205360,
+      "center": {
+        "lat": 6.0302268,
+        "lon": 80.2174974
+      },
+      "tags": {
+        "description": "Не для купания! Все заставлено лодками местных рыбаков.",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398205369,
+      "center": {
+        "lat": 6.0319752,
+        "lon": 80.2184491
+      },
+      "tags": {
+        "description": "Не для купания! Все заставлено лодками местных рыбаков.",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398205370,
+      "center": {
+        "lat": 6.031132,
+        "lon": 80.217564
+      },
+      "tags": {
+        "description": "Не для купания! Все заставлено лодками местных рыбаков.",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 487101504,
+      "center": {
+        "lat": 6.0281578,
+        "lon": 80.2184638
+      },
+      "tags": {
+        "highway": "residential",
+        "historic": "city_gate",
+        "lanes": "2",
+        "maxheight": "3",
+        "maxspeed": "30",
+        "name": "Baladaksha Mawatha",
+        "name:zh": "旧城门",
+        "oneway": "no",
+        "ref": "B037",
+        "surface": "asphalt",
+        "tunnel": "building_passage"
+      }
+    },
+    {
+      "type": "way",
+      "id": 564219711,
+      "center": {
+        "lat": 6.0307506,
+        "lon": 80.2390056
+      },
+      "tags": {
+        "name": "Dewata beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 756596053,
+      "center": {
+        "lat": 6.0275277,
+        "lon": 80.2422902
+      },
+      "tags": {
+        "name": "Coco Bay",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 589124561,
+      "center": {
+        "lat": 6.0255865,
+        "lon": 80.267111
+      },
+      "tags": {
+        "landuse": "orchard",
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1467171357,
+      "center": {
+        "lat": 6.0006542,
+        "lon": 80.3173687
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/Yx8n5srxeLA7BbLs5",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1467171358,
+      "center": {
+        "lat": 6.0005828,
+        "lon": 80.317372
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/Yx8n5srxeLA7BbLs5",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1467171359,
+      "center": {
+        "lat": 6.0004544,
+        "lon": 80.3173917
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/T7spnAGrMVg7M3Jt7",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1467171360,
+      "center": {
+        "lat": 6.0006516,
+        "lon": 80.3173072
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 568456712,
+      "center": {
+        "lat": 6.0624611,
+        "lon": 80.2390307
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 568486386,
+      "center": {
+        "lat": 6.054207,
+        "lon": 80.2475847
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 568459530,
+      "center": {
+        "lat": 6.0746364,
+        "lon": 80.2389313
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "verde"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1273820985,
+      "center": {
+        "lat": 6.0957978,
+        "lon": 80.2183265
+      },
+      "tags": {
+        "leisure": "park",
+        "name:en": "Serene River Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1014960406,
+      "center": {
+        "lat": 5.981218,
+        "lon": 80.3380878
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1014960405,
+      "center": {
+        "lat": 5.9832976,
+        "lon": 80.3327153
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1468985549,
+      "center": {
+        "lat": 5.9845253,
+        "lon": 80.3303873
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/LZbx11MLWFxKaN2A7",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 259026853,
+      "center": {
+        "lat": 5.9857609,
+        "lon": 80.3282366
+      },
+      "tags": {
+        "name": "Koggala Beach Park",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1468985550,
+      "center": {
+        "lat": 5.9886015,
+        "lon": 80.3377663
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/uZNZskn17Vhpc5Pq7"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1468985558,
+      "center": {
+        "lat": 5.9894947,
+        "lon": 80.3372357
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/jXwzLnVLy8JdVLvj6",
+        "url": "https://youtu.be/rm9N1sjQqEE?si=KbzMR2G5LJ_U66aX&t=227"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1347743756,
+      "center": {
+        "lat": 5.9674339,
+        "lon": 80.3717816
+      },
+      "tags": {
+        "lifeguard": "no",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1030601255,
+      "center": {
+        "lat": 6.0136418,
+        "lon": 80.364178
+      },
+      "tags": {
+        "alt_name": "Virgin Tea Plantation;Herman Tea",
+        "building": "yes",
+        "image": "https://photos.app.goo.gl/7dm74JAVMJe3VT4n8",
+        "museum": "agriculture",
+        "name": "Handunugoda Tea Estate",
+        "opening_hours": "Mo-Su 08:00-17:00",
+        "phone": "+94777713999",
+        "shop": "yes",
+        "tourism": "museum",
+        "url": "https://youtu.be/Y0w4vhIXlo0?si=j7_1C5PY21Rr68TY&t=440",
+        "website": "https://www.hermanteas.com/"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1153242211,
+      "center": {
+        "lat": 6.1094596,
+        "lon": 80.1241257
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Kumarakanda Beach",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1153243888,
+      "center": {
+        "lat": 6.1058455,
+        "lon": 80.1247451
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Dodanduwa Beach I",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1154507101,
+      "center": {
+        "lat": 6.1023117,
+        "lon": 80.1251041
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Dodanduwa Beach II",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 462386702,
+      "center": {
+        "lat": 6.1135881,
+        "lon": 80.1218981
+      },
+      "tags": {
+        "historic": "ruins",
+        "source": "Bing"
+      }
+    },
+    {
+      "type": "way",
+      "id": 992624001,
+      "center": {
+        "lat": 6.1142871,
+        "lon": 80.12647
+      },
+      "tags": {
+        "addr:city": "Hikkaduwa",
+        "addr:street": "Dodanduwa-Gonapinuwala Road",
+        "building": "yes",
+        "name": "PABLO Boutique",
+        "opening_hours": "Mo-Su 10:00-21:00",
+        "phone": "+94774171632",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "type": "way",
+      "id": 874789142,
+      "center": {
+        "lat": 6.1193452,
+        "lon": 80.1390986
+      },
+      "tags": {
+        "leisure": "garden",
+        "name": "Methsi Gardens"
+      }
+    },
+    {
+      "type": "way",
+      "id": 869113996,
+      "center": {
+        "lat": 6.1419975,
+        "lon": 80.2081977
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 869113995,
+      "center": {
+        "lat": 6.1438763,
+        "lon": 80.2091861
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1023631220,
+      "center": {
+        "lat": 6.1842143,
+        "lon": 80.1953979
+      },
+      "tags": {
+        "addr:city": "Baddegama",
+        "addr:postcode": "80200",
+        "addr:street": "Kotagoda",
+        "building": "yes",
+        "name": "Ruhunu Aquarium Online Store",
+        "operator": "Danushka Ruwan Bandarigoda",
+        "tourism": "aquarium"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1472051863,
+      "center": {
+        "lat": 6.2255552,
+        "lon": 80.1150131
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/zVh2V3jJfPB6sgXE9"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024910603,
+      "center": {
+        "lat": 6.2542947,
+        "lon": 80.1999763
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/jUKdoY1RFqMeXXxe7",
+        "url": "https://youtu.be/qf4-D6VNJpU?si=xTKl_AEM06Jflues"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1470404725,
+      "center": {
+        "lat": 6.2549207,
+        "lon": 80.198303
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/VGSwLoD8QoS7oMyQ8",
+        "url": "https://youtu.be/qf4-D6VNJpU?si=G011__-reDadBoVw&t=226"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1360503003,
+      "center": {
+        "lat": 6.2723188,
+        "lon": 80.1343881
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "fernando ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1471449741,
+      "center": {
+        "lat": 6.2665867,
+        "lon": 80.1749865
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/B9RwjwLFwyWYnwhk8"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024921273,
+      "center": {
+        "lat": 6.2598251,
+        "lon": 80.1849911
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/MgN7gYGvovxAUK5u8"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1470404701,
+      "center": {
+        "lat": 6.2590059,
+        "lon": 80.1977338
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/g6CqnYcd4LG9yJuUA",
+        "name": "Nature Pool",
+        "natural": "water",
+        "tourism": "attraction",
+        "url": "https://youtu.be/y1ppR7KQ5ps?si=9dUAkJ2yyzaHc4UL&t=610"
+      }
+    },
+    {
+      "type": "way",
+      "id": 185031770,
+      "center": {
+        "lat": 6.2933535,
+        "lon": 80.1648103
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Children's Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632110555,
+      "center": {
+        "lat": 6.3062336,
+        "lon": 80.1684578
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632110553,
+      "center": {
+        "lat": 6.305921,
+        "lon": 80.1661378
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 766596340,
+      "center": {
+        "lat": 6.1070158,
+        "lon": 80.347691
+      },
+      "tags": {
+        "leisure": "garden",
+        "name": "Home Garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 633247012,
+      "center": {
+        "lat": 6.2014981,
+        "lon": 80.3341106
+      },
+      "tags": {
+        "leisure": "garden",
+        "name": "Private Garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 128600427,
+      "center": {
+        "lat": 6.4065511,
+        "lon": 79.9998753
+      },
+      "tags": {
+        "name": "Bentota",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147288804,
+      "center": {
+        "lat": 6.3852681,
+        "lon": 80.0071245
+      },
+      "tags": {
+        "name:en": "Induruwa Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 148848638,
+      "center": {
+        "lat": 6.3951134,
+        "lon": 80.0043001
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 148998476,
+      "center": {
+        "lat": 6.3976764,
+        "lon": 80.0055888
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Sea Turtle Research Project",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 330616474,
+      "center": {
+        "lat": 6.395406,
+        "lon": 80.0052987
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626672444,
+      "center": {
+        "lat": 6.337836,
+        "lon": 80.0240479
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626668102,
+      "center": {
+        "lat": 6.3142842,
+        "lon": 80.0290368
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626668710,
+      "center": {
+        "lat": 6.3183943,
+        "lon": 80.0297729
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626669772,
+      "center": {
+        "lat": 6.3166902,
+        "lon": 80.0293759
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 710797650,
+      "center": {
+        "lat": 6.3335118,
+        "lon": 80.0278758
+      },
+      "tags": {
+        "name": "Victor Hasselblad Sea Turtle Research & Conservation Center",
+        "tourism": "zoo",
+        "wheelchair": "limited",
+        "zoo": "reptile"
+      }
+    },
+    {
+      "type": "way",
+      "id": 147288811,
+      "center": {
+        "lat": 6.3717148,
+        "lon": 80.0101259
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1207929781,
+      "center": {
+        "lat": 6.3794712,
+        "lon": 80.0112462
+      },
+      "tags": {
+        "leisure": "nature_reserve",
+        "name": "coconut",
+        "opening_hours": "kaikawala"
+      }
+    },
+    {
+      "type": "way",
+      "id": 128600426,
+      "center": {
+        "lat": 6.4291026,
+        "lon": 79.9918717
+      },
+      "tags": {
+        "name": "Bentota",
+        "name:en": "Ventura",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 262396049,
+      "center": {
+        "lat": 6.416518,
+        "lon": 79.9968018
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1185761850,
+      "center": {
+        "lat": 6.4249043,
+        "lon": 79.9962765
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 166513424,
+      "center": {
+        "lat": 6.4308739,
+        "lon": 80.0071769
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 7796228,
+      "center": {
+        "lat": 6.1195703,
+        "lon": 80.1135661
+      },
+      "tags": {
+        "alt_name": "Thiranagama Beach",
+        "image": "https://photos.app.goo.gl/5S94rS1GVhaT92Vj7",
+        "lifeguard": "no",
+        "name": "Narigama Beach",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand",
+        "type": "multipolygon",
+        "url": "https://youtu.be/iYiQhu3L9uo"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5408970,
+      "center": {
+        "lat": 6.123542,
+        "lon": 80.1110039
+      },
+      "tags": {
+        "leisure": "garden",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 3527678,
+      "center": {
+        "lat": 6.2793041,
+        "lon": 80.0345296
+      },
+      "tags": {
+        "area": "yes",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 8386702,
+      "center": {
+        "lat": 6.0272697,
+        "lon": 80.2167179
+      },
+      "tags": {
+        "heritage": "1",
+        "heritage:operator": "whc",
+        "historic": "fort",
+        "name": "Old Town of Galle and its Fortifications",
+        "name:fr": "Vieille ville de Galle et ses fortifications",
+        "ref:whc": "451",
+        "site:type": "heritage",
+        "type": "site",
+        "whc:criteria": "(iv)",
+        "whc:inscription_date": "1988",
+        "wikidata": "Q2507050",
+        "wikipedia": "en:Galle_Fort"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 7371234,
+      "center": {
+        "lat": 6.0187191,
+        "lon": 80.2388799
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/NEU9DrACgXUaXbzy9",
+        "name": "White Jungle beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 20127286,
+      "center": {
+        "lat": 5.9845633,
+        "lon": 80.3303192
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 9343842,
+      "center": {
+        "lat": 6.236566,
+        "lon": 80.3890698
+      },
+      "tags": {
+        "alt_name": "KDN Forest Complex",
+        "leisure": "nature_reserve",
+        "name": "Kanneliya-Dediyagala-Nakiyadeniya Forest Reserve",
+        "note": "Complex multipolygon. Downlaod all members before editing! Don't delete or edit the relation, if you don't know exactly what you are doing.",
+        "type": "multipolygon",
+        "wikipedia": "en:Kanneliya-Dediyagala-Nakiyadeniya"
+      }
+    }
+  ]
+}

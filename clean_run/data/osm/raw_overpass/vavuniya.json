@@ -1,0 +1,836 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-08T10:05:00Z",
+    "timestamp_areas_base": "2026-07-07T19:41:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 10287255710,
+      "lat": 8.7157875,
+      "lon": 80.350127,
+      "tags": {
+        "name": "450101",
+        "name:en": "UNIT 06 MAIN STREET 450101 (unit 06 to unite 04 )",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287667410,
+      "lat": 8.7160156,
+      "lon": 80.3603526,
+      "tags": {
+        "name": "45012",
+        "name:en": "45012 SCHOOL ROAD starting   (பாடசாலை முன் சுற்றுவட்ட வீதி)",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287667411,
+      "lat": 8.7168379,
+      "lon": 80.3617971,
+      "tags": {
+        "name": "45012",
+        "name:en": "45012 SCHOOL ROAD ENDING (பாடசாலை முன் சுற்றுவட்ட வீதி )",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287680509,
+      "lat": 8.7165728,
+      "lon": 80.3643037,
+      "tags": {
+        "name:en": "UNIT 6 TO  UNIT 4    MAIN ROAD",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287682609,
+      "lat": 8.7182656,
+      "lon": 80.3631712,
+      "tags": {
+        "name:en": "45011KALIMAKAL NAKAR ROAD. (கலைமகள் நகர் வீதி)",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287682610,
+      "lat": 8.7170876,
+      "lon": 80.36033,
+      "tags": {
+        "name:en": "45011 KALAIMAKAL NAKAR ROAD (கலைமகள் நகர் வீதி)  starting",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10287695809,
+      "lat": 8.7194805,
+      "lon": 80.3628393,
+      "tags": {
+        "name:en": "rangeth kama to palayayooruwa main road",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3943037887,
+      "lat": 8.7514026,
+      "lon": 80.3381069,
+      "tags": {
+        "alt_name": "Kurukkalputhukulam GTMS",
+        "alt_name:ta": "குருக்கள்புதுக்குளம் அதக பாடசாலை",
+        "amenity": "school",
+        "historic": "Kurukkaloor GTMS",
+        "name": "V/Kurukkalputhukulam GTMS",
+        "name:ta": "வ/குருக்கள்புதுக்குளம் அதக பாடசாலை"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4129846589,
+      "lat": 8.7639679,
+      "lon": 80.4679096,
+      "tags": {
+        "name": "Jathusana Home ",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3763997492,
+      "lat": 8.7519012,
+      "lon": 80.500947,
+      "tags": {
+        "historic": "memorial",
+        "name": "Tamil Poet Emperor Kambar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3765416257,
+      "lat": 8.7545696,
+      "lon": 80.4965016,
+      "tags": {
+        "historic": "memorial",
+        "name": "Swami Vevehanathar"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3641954572,
+      "lat": 8.7556415,
+      "lon": 80.5005548,
+      "tags": {
+        "historic": "memorial",
+        "name": "Navaliyoor Somasutharap Poet's Statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3641958139,
+      "lat": 8.7574362,
+      "lon": 80.500933,
+      "tags": {
+        "historic": "memorial",
+        "name": "Sri La Sri Arumuganavala's Statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3765414721,
+      "lat": 8.7541958,
+      "lon": 80.4981002,
+      "tags": {
+        "historic": "memorial",
+        "name": "St Thaninayagam"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3765416385,
+      "lat": 8.7543469,
+      "lon": 80.4980572,
+      "tags": {
+        "historic": "memorial",
+        "name": "Chevanayagam"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5584399921,
+      "lat": 8.7588843,
+      "lon": 80.5001014,
+      "tags": {
+        "name:en": "Archeological Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4129821991,
+      "lat": 8.7632016,
+      "lon": 80.4841019,
+      "tags": {
+        "name": "Kavisanan complex ",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3641960214,
+      "lat": 8.7650677,
+      "lon": 80.5036278,
+      "tags": {
+        "historic": "memorial",
+        "name": "Pannadaravanniyan (Last Tamil King of Vanni Kingdom)"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3922860434,
+      "lat": 8.758997,
+      "lon": 80.5000924,
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3765437093,
+      "lat": 8.7484166,
+      "lon": 80.5152878,
+      "tags": {
+        "historic": "memorial",
+        "name": "Avvaiyar",
+        "source": "http://www.panoramio.com/photo/45580783"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5114366649,
+      "lat": 8.8127189,
+      "lon": 80.4966652,
+      "tags": {
+        "height": "12",
+        "intermittent": "yes",
+        "name": "Nochchimoddai Dam",
+        "waterway": "waterfall",
+        "width": "10"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2408760543,
+      "lat": 8.790312,
+      "lon": 80.5744421,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Gallen Raja Maha Viharaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7660344426,
+      "lat": 8.8963125,
+      "lon": 80.6555209,
+      "tags": {
+        "name": "Sapumalgaskada Ancient Temple",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3551583308,
+      "lat": 9.044669,
+      "lon": 80.6366745,
+      "tags": {
+        "historic": "battlefield"
+      }
+    },
+    {
+      "type": "way",
+      "id": 636728813,
+      "center": {
+        "lat": 8.5886422,
+        "lon": 80.3518769
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 605164578,
+      "center": {
+        "lat": 8.5929685,
+        "lon": 80.3756286
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 601934349,
+      "center": {
+        "lat": 8.5912081,
+        "lon": 80.3805779
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 601934352,
+      "center": {
+        "lat": 8.5898794,
+        "lon": 80.3805927
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 601934351,
+      "center": {
+        "lat": 8.5925541,
+        "lon": 80.3797263
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525660571,
+      "center": {
+        "lat": 8.6311568,
+        "lon": 80.3853971
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525510290,
+      "center": {
+        "lat": 8.630647,
+        "lon": 80.3885588
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 524828716,
+      "center": {
+        "lat": 8.6756964,
+        "lon": 80.494207
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 417030153,
+      "center": {
+        "lat": 8.6911722,
+        "lon": 80.5237233
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Komararsankulam Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 592564460,
+      "center": {
+        "lat": 8.7058892,
+        "lon": 80.5194063
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 526117823,
+      "center": {
+        "lat": 8.7081733,
+        "lon": 80.5306297
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 373008162,
+      "center": {
+        "lat": 8.7448138,
+        "lon": 80.5087231
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Umamaheswaran Illam"
+      }
+    },
+    {
+      "type": "way",
+      "id": 233479635,
+      "center": {
+        "lat": 8.7580341,
+        "lon": 80.4960286
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Vavuniya Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1217680521,
+      "center": {
+        "lat": 8.7933528,
+        "lon": 80.4486672
+      },
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626350333,
+      "center": {
+        "lat": 8.8104921,
+        "lon": 80.4319965
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 433781269,
+      "center": {
+        "lat": 8.7749963,
+        "lon": 80.4990452
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Periyarkulam Children park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525829611,
+      "center": {
+        "lat": 8.7902426,
+        "lon": 80.5176268
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080560,
+      "center": {
+        "lat": 8.9526516,
+        "lon": 80.4781901
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 626861356,
+      "center": {
+        "lat": 8.9567922,
+        "lon": 80.4401686
+      },
+      "tags": {
+        "name": "rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627072535,
+      "center": {
+        "lat": 8.9753673,
+        "lon": 80.4387081
+      },
+      "tags": {
+        "name": "rock",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080563,
+      "center": {
+        "lat": 8.9661374,
+        "lon": 80.4786596
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080572,
+      "center": {
+        "lat": 8.9632363,
+        "lon": 80.4716805
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080575,
+      "center": {
+        "lat": 8.9644021,
+        "lon": 80.4714391
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080567,
+      "center": {
+        "lat": 8.9655307,
+        "lon": 80.4754382
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080551,
+      "center": {
+        "lat": 8.9539922,
+        "lon": 80.4788983
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080579,
+      "center": {
+        "lat": 8.9614864,
+        "lon": 80.4788353
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080583,
+      "center": {
+        "lat": 8.9586634,
+        "lon": 80.4801025
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080588,
+      "center": {
+        "lat": 8.9603591,
+        "lon": 80.4810145
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080556,
+      "center": {
+        "lat": 8.9672396,
+        "lon": 80.484429
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080558,
+      "center": {
+        "lat": 8.9600649,
+        "lon": 80.4847026
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627080553,
+      "center": {
+        "lat": 8.9651095,
+        "lon": 80.4854053
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627072538,
+      "center": {
+        "lat": 8.9843545,
+        "lon": 80.4386785
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627075188,
+      "center": {
+        "lat": 8.9889358,
+        "lon": 80.462907
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 627075190,
+      "center": {
+        "lat": 8.9894723,
+        "lon": 80.462976
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525859803,
+      "center": {
+        "lat": 8.6935552,
+        "lon": 80.5347365
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525859805,
+      "center": {
+        "lat": 8.6929065,
+        "lon": 80.534982
+      },
+      "tags": {
+        "leisure": "garden",
+        "place": "farm"
+      }
+    },
+    {
+      "type": "way",
+      "id": 525866999,
+      "center": {
+        "lat": 8.6907294,
+        "lon": 80.5326562
+      },
+      "tags": {
+        "crop": "rice",
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 527426908,
+      "center": {
+        "lat": 8.7111401,
+        "lon": 80.5660084
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531198948,
+      "center": {
+        "lat": 8.717213,
+        "lon": 80.5708211
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531198949,
+      "center": {
+        "lat": 8.7163724,
+        "lon": 80.5720179
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 631827125,
+      "center": {
+        "lat": 8.7385665,
+        "lon": 80.5516053
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531198946,
+      "center": {
+        "lat": 8.7204712,
+        "lon": 80.5717242
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 530465540,
+      "center": {
+        "lat": 8.7347331,
+        "lon": 80.5726321
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632064830,
+      "center": {
+        "lat": 8.7580089,
+        "lon": 80.5353909
+      },
+      "tags": {
+        "landuse": "farmyard",
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 531175234,
+      "center": {
+        "lat": 8.7642701,
+        "lon": 80.5355445
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632077215,
+      "center": {
+        "lat": 8.7646826,
+        "lon": 80.5325103
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632074223,
+      "center": {
+        "lat": 8.76648,
+        "lon": 80.5464349
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 632074224,
+      "center": {
+        "lat": 8.7670102,
+        "lon": 80.5454171
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 528109443,
+      "center": {
+        "lat": 8.8127056,
+        "lon": 80.5948287
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 661387319,
+      "center": {
+        "lat": 8.8054352,
+        "lon": 80.588783
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 471328570,
+      "center": {
+        "lat": 9.0498261,
+        "lon": 80.5678243
+      },
+      "tags": {
+        "alt_name": "sinnaadampan",
+        "alt_name:ta": "சின்ன அடம்பன்",
+        "historic": "China Adampan",
+        "name": "Chinna-Adampan",
+        "name:ta": "சின்னடம்பன்",
+        "natural": "water",
+        "water": "lake"
+      }
+    }
+  ]
+}

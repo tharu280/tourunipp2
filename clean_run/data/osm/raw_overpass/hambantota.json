@@ -1,0 +1,1711 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-06-12T12:14:17Z",
+    "timestamp_areas_base": "2026-06-12T12:14:17Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 917949443,
+      "lat": 5.9776154,
+      "lon": 80.7387267,
+      "tags": {
+        "name": "Hummanaya Blow Hole",
+        "natural": "blowhole",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3960769281,
+      "lat": 6.0115949,
+      "lon": 80.7059334,
+      "tags": {
+        "name": "Wawulgala Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12629722001,
+      "lat": 5.9954466,
+      "lon": 80.7461264,
+      "tags": {
+        "name": "Mawella beach",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4481215318,
+      "lat": 6.0253313,
+      "lon": 80.7941817,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7617292354,
+      "lat": 6.0240291,
+      "lon": 80.7949289,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9269381913,
+      "lat": 6.0196661,
+      "lon": 80.7952092,
+      "tags": {
+        "historic": "monument",
+        "name": "War Heroes' Monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10779612007,
+      "lat": 6.0242422,
+      "lon": 80.7981877,
+      "tags": {
+        "name:en": "Murals",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7100580078,
+      "lat": 6.0363228,
+      "lon": 80.8044047,
+      "tags": {
+        "name": "Indika Art Gallery",
+        "tourism": "gallery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4439432082,
+      "lat": 6.0429891,
+      "lon": 80.8301175,
+      "tags": {
+        "name": "Marakolliya Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10933342641,
+      "lat": 6.0950185,
+      "lon": 80.7447875,
+      "tags": {
+        "artwork_type": "bust",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4699139209,
+      "lat": 6.0432445,
+      "lon": 80.8625726,
+      "tags": {
+        "name:en": "Rock Pool",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4391700339,
+      "lat": 6.0461535,
+      "lon": 80.8559105,
+      "tags": {
+        "name": "Turtles View",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7095187246,
+      "lat": 6.0629653,
+      "lon": 80.8744854,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12499358801,
+      "lat": 6.060401,
+      "lon": 80.8757292,
+      "tags": {
+        "name:en": "Kahandamodara beach",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9691327800,
+      "lat": 6.1193885,
+      "lon": 80.7376843,
+      "tags": {
+        "name": "walakadahena peak",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10933382689,
+      "lat": 6.122802,
+      "lon": 80.7356378,
+      "tags": {
+        "direction": "279",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7603239868,
+      "lat": 6.2197856,
+      "lon": 80.6235568,
+      "tags": {
+        "ele": "772",
+        "name": "Rammale Mountain",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5627298468,
+      "lat": 6.2675009,
+      "lon": 80.6952354,
+      "tags": {
+        "name": "Katuwana Dutch Fort",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4840725123,
+      "lat": 6.2570294,
+      "lon": 80.7095071,
+      "tags": {
+        "addr:street": "Walasmulla-Katuwana-Middeniya Road",
+        "email": "mail@ashramsrilanka.org",
+        "name:en": "Ashram Sri Lanka",
+        "opening_hours": "Mo-Su 09:00-18:00",
+        "phone": "+94777901160",
+        "tourism": "attraction",
+        "website": "https://ashramsrilanka.org/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6221741875,
+      "lat": 6.1024349,
+      "lon": 80.9056892,
+      "tags": {
+        "leisure": "park",
+        "name": "Bataatha Farm Entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12471222875,
+      "lat": 6.1010412,
+      "lon": 80.999893,
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4794762722,
+      "lat": 6.1067418,
+      "lon": 81.05071,
+      "tags": {
+        "name": "Godavaya wildlife sanctuary viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5167036321,
+      "lat": 6.1875733,
+      "lon": 80.9702458,
+      "tags": {
+        "name": "Abarana Ella",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1818567443,
+      "lat": 6.2536639,
+      "lon": 80.982025,
+      "tags": {
+        "name": "Madunagala Hot Water Springs",
+        "natural": "spring"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4902498408,
+      "lat": 6.2472328,
+      "lon": 81.0031307,
+      "tags": {
+        "name": "Madunagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8413779827,
+      "lat": 6.3063606,
+      "lon": 80.997632,
+      "tags": {
+        "leisure": "park",
+        "name": "sooriyawewa Ground"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2918580550,
+      "lat": 6.2166468,
+      "lon": 81.090144,
+      "tags": {
+        "addr:street": "Nagara Lake, Hambantota",
+        "alt_name": "Bird Park/Bird Research Center-Hambantota",
+        "contact:phone": "+94 77 766 0290",
+        "name": "Birds Research Center & Resort",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1783873595,
+      "lat": 6.1763674,
+      "lon": 81.1639278,
+      "tags": {
+        "historic": "monument",
+        "name": "Tomb of Andare: the Court Jester"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10571634754,
+      "lat": 6.1999119,
+      "lon": 81.2128162,
+      "tags": {
+        "access": "yes",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10571634755,
+      "lat": 6.2026253,
+      "lon": 81.2412649,
+      "tags": {
+        "access": "yes",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133024384,
+      "lat": 6.1962886,
+      "lon": 81.291645,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Telulla Archaeological Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6432569785,
+      "lat": 6.2010858,
+      "lon": 81.3245632,
+      "tags": {
+        "description": "Natural Pool",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133054679,
+      "lat": 6.2188764,
+      "lon": 81.1654546,
+      "tags": {
+        "historic": "ruins",
+        "name": "Yahangala Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7099295299,
+      "lat": 6.2515472,
+      "lon": 81.2272678,
+      "tags": {
+        "aircraft:type": "Hewker Siddeley HS748 Series 2A (AVRO)",
+        "historic": "aircraft",
+        "start_date": "1968",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133023966,
+      "lat": 6.2304953,
+      "lon": 81.2886697,
+      "tags": {
+        "amenity": "place_of_worship",
+        "historic": "ruins",
+        "name": "Vilpita Rajamaha Viharaya",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5413675522,
+      "lat": 6.2120509,
+      "lon": 81.3341341,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5413675621,
+      "lat": 6.213246,
+      "lon": 81.335353,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13718452127,
+      "lat": 6.2172007,
+      "lon": 81.3378188,
+      "tags": {
+        "name": "Kirinde Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9133039312,
+      "lat": 6.2765314,
+      "lon": 81.290579,
+      "tags": {
+        "historic": "ruins",
+        "name": "Silapassa Pirivena Archaeological Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1727709368,
+      "lat": 6.2807167,
+      "lon": 81.2948619,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Sandagiri Stupa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7255150485,
+      "lat": 6.2878465,
+      "lon": 81.2769551,
+      "tags": {
+        "name:en": "Trees with a lot of bats",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7114095185,
+      "lat": 6.2888315,
+      "lon": 81.2759027,
+      "tags": {
+        "name:cs": "Vyhlídka na ptačí hnízdění",
+        "name:en": "Bird view point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310418240,
+      "lat": 6.2879368,
+      "lon": 81.3866419,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Bembewa Archaeological Site",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13074409554,
+      "lat": 6.3749043,
+      "lon": 81.3336562,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Weheragala Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552558,
+      "lat": 6.3093975,
+      "lon": 81.4301333,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Seelawakanda Monastic Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552216,
+      "lat": 6.33052,
+      "lon": 81.4492465,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Gonagala Ancient Temple",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552500,
+      "lat": 6.3894802,
+      "lon": 81.4708668,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Modaragala Monastic Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552501,
+      "lat": 6.3406243,
+      "lon": 81.4934776,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Padikema Ruins",
+        "ruins": "bunker"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1639032179,
+      "lat": 6.3443413,
+      "lon": 81.4970715,
+      "tags": {
+        "historic": "memorial",
+        "name": "Tsunami memorial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13227585502,
+      "lat": 6.3439602,
+      "lon": 81.4978013,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12293524549,
+      "lat": 6.3624298,
+      "lon": 81.4773567,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Akasachaithya Ancient Monastery",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12374149862,
+      "lat": 6.3778541,
+      "lon": 81.5079048,
+      "tags": {
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Handunnoruwa Ancient Site",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310428142,
+      "lat": 6.5061528,
+      "lon": 81.5285336,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "inscription": "Inscription 1\n\nBata-Tisaha sagasa.\n[The cave of] lord Tissa, [is given] to the Sangha.\n\nInscription 2\n\nSi[!*] Amataya Ba-\n-rayaha upa.saka\nNakayaha mataya Laci-\n-ya lene catudisika saga-\n-hataye niyate\n\nHail ! The cave of Laci, the mother of the minister",
+        "name": "Dematagala Cave Temple",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552499,
+      "lat": 6.3930473,
+      "lon": 81.5855121,
+      "tags": {
+        "historic": "yes",
+        "name": "Minihagalkanda Prehistoric Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552371,
+      "lat": 6.5157877,
+      "lon": 81.6034372,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Kottadamuhela Archaeological Ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552370,
+      "lat": 6.5061832,
+      "lon": 81.6072485,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Kanabiso Galge Buddhist Monastic Complex",
+        "ruins": "temple"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12310552484,
+      "lat": 6.5143997,
+      "lon": 81.6206614,
+      "tags": {
+        "access": "permit",
+        "historic": "ruins",
+        "historic:civilization": "sinhalese",
+        "name": "Mandagala Archaeological Ruins"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1162984128,
+      "center": {
+        "lat": 5.9779127,
+        "lon": 80.7379227
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 325811062,
+      "center": {
+        "lat": 5.9891279,
+        "lon": 80.7476638
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 325944332,
+      "center": {
+        "lat": 5.9986484,
+        "lon": 80.7499307
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 566249922,
+      "center": {
+        "lat": 6.0043776,
+        "lon": 80.7665161
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 566246272,
+      "center": {
+        "lat": 6.0012683,
+        "lon": 80.755339
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1024483327,
+      "center": {
+        "lat": 6.0021407,
+        "lon": 80.7647785
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 566249923,
+      "center": {
+        "lat": 6.0048366,
+        "lon": 80.767157
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1160890447,
+      "center": {
+        "lat": 6.0043476,
+        "lon": 80.7718419
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 325388085,
+      "center": {
+        "lat": 6.0075446,
+        "lon": 80.7801271
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 759650781,
+      "center": {
+        "lat": 6.0593193,
+        "lon": 80.8800166
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1248735647,
+      "center": {
+        "lat": 6.0786248,
+        "lon": 80.8659856
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 374639702,
+      "center": {
+        "lat": 6.1241339,
+        "lon": 80.7243105
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1340798086,
+      "center": {
+        "lat": 6.1230154,
+        "lon": 80.736251
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 288254528,
+      "center": {
+        "lat": 6.1496688,
+        "lon": 80.6969414
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "School Ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 288402227,
+      "center": {
+        "lat": 6.148865,
+        "lon": 80.6971374
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "School Ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 374639701,
+      "center": {
+        "lat": 6.1255961,
+        "lon": 80.7357261
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 187932863,
+      "center": {
+        "lat": 6.1014027,
+        "lon": 80.9595399
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "kalamatiya Bird Sanctuary"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1052417692,
+      "center": {
+        "lat": 6.1192942,
+        "lon": 81.1083718
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1052417696,
+      "center": {
+        "lat": 6.1183124,
+        "lon": 81.1066603
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1052417690,
+      "center": {
+        "lat": 6.1193947,
+        "lon": 81.1054545
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1052417689,
+      "center": {
+        "lat": 6.1201937,
+        "lon": 81.1176426
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1161111112,
+      "center": {
+        "lat": 6.1220871,
+        "lon": 81.1269417
+      },
+      "tags": {
+        "building": "tower",
+        "building:levels": "3",
+        "historic": "martello_tower",
+        "man_made": "tower",
+        "name": "Martello Tower"
+      }
+    },
+    {
+      "type": "way",
+      "id": 816769045,
+      "center": {
+        "lat": 6.2414807,
+        "lon": 80.9763608
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Ridiyagama Safari Park",
+        "opening_hours": "08:30-18:00",
+        "operator": "Department Of National Zoological Gardens",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590299734,
+      "center": {
+        "lat": 6.1931289,
+        "lon": 81.3163466
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590299736,
+      "center": {
+        "lat": 6.1920856,
+        "lon": 81.3139368
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590299738,
+      "center": {
+        "lat": 6.192126,
+        "lon": 81.3161595
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 364796383,
+      "center": {
+        "lat": 6.1922514,
+        "lon": 81.3231557
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 364796435,
+      "center": {
+        "lat": 6.1912593,
+        "lon": 81.3230972
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297685,
+      "center": {
+        "lat": 6.1921656,
+        "lon": 81.3197816
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297686,
+      "center": {
+        "lat": 6.1914445,
+        "lon": 81.3203185
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297687,
+      "center": {
+        "lat": 6.1911974,
+        "lon": 81.320183
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297688,
+      "center": {
+        "lat": 6.1912957,
+        "lon": 81.3200601
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297689,
+      "center": {
+        "lat": 6.1915211,
+        "lon": 81.3200318
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297690,
+      "center": {
+        "lat": 6.1916133,
+        "lon": 81.3201499
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297691,
+      "center": {
+        "lat": 6.1918297,
+        "lon": 81.3202888
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297692,
+      "center": {
+        "lat": 6.1917819,
+        "lon": 81.3201826
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297693,
+      "center": {
+        "lat": 6.1919563,
+        "lon": 81.3200661
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590299732,
+      "center": {
+        "lat": 6.1964072,
+        "lon": 81.3256801
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297680,
+      "center": {
+        "lat": 6.2003351,
+        "lon": 81.3261526
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297681,
+      "center": {
+        "lat": 6.2002047,
+        "lon": 81.326026
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297682,
+      "center": {
+        "lat": 6.1997341,
+        "lon": 81.3252306
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297683,
+      "center": {
+        "lat": 6.1986848,
+        "lon": 81.3243705
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 590297684,
+      "center": {
+        "lat": 6.1984467,
+        "lon": 81.3242355
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 403504637,
+      "center": {
+        "lat": 6.2856803,
+        "lon": 81.2752969
+      },
+      "tags": {
+        "building": "yes",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 403504647,
+      "center": {
+        "lat": 6.2856955,
+        "lon": 81.2759233
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Yatala Vehera"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 17633773,
+      "center": {
+        "lat": 14.2200738,
+        "lon": 86.9016006
+      },
+      "tags": {
+        "alt_name:ca": "Badia de Bengala",
+        "alt_name:es": "Mar de Birmania",
+        "alt_name:fa": "کنداب",
+        "fixme": "inner ways for multipolygon, accuracy of outer ways near islands and on southern edge",
+        "gns:dsg_code": "SEA",
+        "gns:id": "-1506334",
+        "name": "Bay of Bengal",
+        "name:ar": "خليج البنغال",
+        "name:be": "Бенгальскі заліў",
+        "name:bn": "বঙ্গোপসাগর",
+        "name:br": "Pleg-mor Bengal",
+        "name:ca": "Golf de Bengala",
+        "name:cs": "Bengálský záliv",
+        "name:da": "Bengalske Bugt",
+        "name:de": "Golf von Bengalen",
+        "name:en": "Bay of Bengal",
+        "name:eo": "Bengala Golfo",
+        "name:es": "Golfo de Bengala",
+        "name:eu": "Bengalako golkoa",
+        "name:fa": "خلیج بنگال",
+        "name:fi": "Bengalinlahti",
+        "name:fr": "Golfe du Bengale",
+        "name:hi": "बंगाल की खाड़ी",
+        "name:hr": "Bengalski zaljev",
+        "name:hu": "Bengáli-öböl",
+        "name:ia": "Golfo de Bengala",
+        "name:is": "Bengalflói",
+        "name:it": "Golfo del Bengala",
+        "name:ja": "ベンガル湾",
+        "name:ko": "벵골 만",
+        "name:lt": "Bengalijos įlanka",
+        "name:mk": "Бенгалски Залив",
+        "name:ml": "ബംഗാൾ ഉൾക്കടൽ",
+        "name:ms": "Teluk Benggala",
+        "name:nl": "Golf van Bengalen",
+        "name:pl": "Zatoka Bengalska",
+        "name:ru": "Бенгальский залив",
+        "name:si": "බෙංගාල බොක්ක",
+        "name:sk": "Bengálsky záliv",
+        "name:sr": "Бенгалски залив",
+        "name:sr-Latn": "Bengalski zaliv",
+        "name:ta": "வங்காள விரிகுடா",
+        "name:uk": "Бенгальська затока",
+        "name:vi": "Vịnh Bengal",
+        "name:zh": "孟加拉湾",
+        "name:zh-Hans": "孟加拉湾",
+        "name:zh-Hant": "孟加拉灣",
+        "natural": "bay",
+        "place": "sea",
+        "source:name:br": "ofis publik ar brezhoneg",
+        "type": "multipolygon",
+        "wikidata": "Q38684",
+        "wikipedia": "en:Bay of Bengal"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5925882,
+      "center": {
+        "lat": 5.9782036,
+        "lon": 80.7269062
+      },
+      "tags": {
+        "name": "Kudawella Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5846794,
+      "center": {
+        "lat": 5.9803042,
+        "lon": 80.7364439
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5867089,
+      "center": {
+        "lat": 5.9867548,
+        "lon": 80.7401139
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5867088,
+      "center": {
+        "lat": 5.9929778,
+        "lon": 80.7459365
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5886113,
+      "center": {
+        "lat": 6.0011083,
+        "lon": 80.7620429
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5886123,
+      "center": {
+        "lat": 6.0057327,
+        "lon": 80.7749058
+      },
+      "tags": {
+        "name": "Silent Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5886130,
+      "center": {
+        "lat": 6.009187,
+        "lon": 80.7807872
+      },
+      "tags": {
+        "name": "Goyambokka",
+        "natural": "beach",
+        "surface": "sand",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5886131,
+      "center": {
+        "lat": 6.0107836,
+        "lon": 80.7827788
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892252,
+      "center": {
+        "lat": 6.0152885,
+        "lon": 80.7876
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892205,
+      "center": {
+        "lat": 6.0180934,
+        "lon": 80.7907043
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892245,
+      "center": {
+        "lat": 6.0354425,
+        "lon": 80.82929
+      },
+      "tags": {
+        "name": "Rekawa Beach",
+        "natural": "beach",
+        "tourism": "attraction",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892204,
+      "center": {
+        "lat": 6.0192304,
+        "lon": 80.7941317
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892203,
+      "center": {
+        "lat": 6.0200702,
+        "lon": 80.7961174
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892198,
+      "center": {
+        "lat": 6.0226279,
+        "lon": 80.8008776
+      },
+      "tags": {
+        "name": "Paravi Wella Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5926094,
+      "center": {
+        "lat": 6.0971783,
+        "lon": 80.9812523
+      },
+      "tags": {
+        "leaf_cycle": "deciduous",
+        "leaf_type": "needleleaved",
+        "leisure": "nature_reserve",
+        "name": "Ussangoda National Park",
+        "natural": "wood",
+        "type": "multipolygon",
+        "wikidata": "Q7902106"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5407661,
+      "center": {
+        "lat": 6.1581408,
+        "lon": 81.190284
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5928530,
+      "center": {
+        "lat": 6.110831,
+        "lon": 81.0724679
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5405138,
+      "center": {
+        "lat": 6.1475556,
+        "lon": 81.0677772
+      },
+      "tags": {
+        "addr:city": "Mirijjawila",
+        "addr:street": "Hambantota Bypass Rd",
+        "garden:type": "botanical",
+        "leisure": "garden",
+        "name": "Dry Zone Botanical Garden",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5892269,
+      "center": {
+        "lat": 6.1329322,
+        "lon": 81.1372033
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18201458,
+      "center": {
+        "lat": 6.2676592,
+        "lon": 81.6512862
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "leisure": "nature_reserve",
+        "maritime": "yes",
+        "name": "Great and Little Basses FMA",
+        "protect_class": "3",
+        "protected_area": "habitat",
+        "protection_title": "National Marine Sanctuary",
+        "seamark:type": "protected_area",
+        "type": "boundary"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18300704,
+      "center": {
+        "lat": 6.2499058,
+        "lon": 81.391217
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18300700,
+      "center": {
+        "lat": 6.259029,
+        "lon": 81.4070651
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18300701,
+      "center": {
+        "lat": 6.2641565,
+        "lon": 81.4136827
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18227114,
+      "center": {
+        "lat": 6.2716461,
+        "lon": 81.4190439
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226823,
+      "center": {
+        "lat": 6.2776811,
+        "lon": 81.4238318
+      },
+      "tags": {
+        "name": "Amaduwa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226829,
+      "center": {
+        "lat": 6.2985069,
+        "lon": 81.4452383
+      },
+      "tags": {
+        "name": "Vilapalawala Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226827,
+      "center": {
+        "lat": 6.2821368,
+        "lon": 81.426625
+      },
+      "tags": {
+        "name": "Kudaseelawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226828,
+      "center": {
+        "lat": 6.2877595,
+        "lon": 81.4319508
+      },
+      "tags": {
+        "name": "Mahaseelawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226489,
+      "center": {
+        "lat": 6.3062948,
+        "lon": 81.4637636
+      },
+      "tags": {
+        "name": "Vapadeniya Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225922,
+      "center": {
+        "lat": 6.3107579,
+        "lon": 81.4775181
+      },
+      "tags": {
+        "name": "Uraniya Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225921,
+      "center": {
+        "lat": 6.3137579,
+        "lon": 81.483193
+      },
+      "tags": {
+        "name": "Buthawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18215754,
+      "center": {
+        "lat": 6.3464674,
+        "lon": 81.5030999
+      },
+      "tags": {
+        "name": "Patanangala North Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225923,
+      "center": {
+        "lat": 6.3256523,
+        "lon": 81.4880428
+      },
+      "tags": {
+        "name": "Buthawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226413,
+      "center": {
+        "lat": 6.3588841,
+        "lon": 81.5185386
+      },
+      "tags": {
+        "name": "Yala Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225916,
+      "center": {
+        "lat": 6.3186423,
+        "lon": 81.4842709
+      },
+      "tags": {
+        "name": "Buthawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225917,
+      "center": {
+        "lat": 6.3174373,
+        "lon": 81.4842654
+      },
+      "tags": {
+        "name": "Buthawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18225919,
+      "center": {
+        "lat": 6.3157614,
+        "lon": 81.4839329
+      },
+      "tags": {
+        "name": "Buthawa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18226896,
+      "center": {
+        "lat": 6.3352439,
+        "lon": 81.497618
+      },
+      "tags": {
+        "name": "Patanangala South Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18227040,
+      "center": {
+        "lat": 6.3682928,
+        "lon": 81.5483981
+      },
+      "tags": {
+        "name": "Pilinnewa Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 18166045,
+      "center": {
+        "lat": 6.5035563,
+        "lon": 81.7029527
+      },
+      "tags": {
+        "name": "Moyakata Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}

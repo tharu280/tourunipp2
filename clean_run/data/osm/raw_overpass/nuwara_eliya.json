@@ -1,0 +1,2392 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-02T16:51:45Z",
+    "timestamp_areas_base": "2026-07-02T16:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 5403560822,
+      "lat": 6.8235568,
+      "lon": 80.5036349,
+      "tags": {
+        "name": "Sri pada World Peace bell STP",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10920716143,
+      "lat": 6.823862,
+      "lon": 80.509857,
+      "tags": {
+        "historic": "monument",
+        "name": "Buddha"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10920716055,
+      "lat": 6.8239912,
+      "lon": 80.5125202,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10920716157,
+      "lat": 6.823835,
+      "lon": 80.512697,
+      "tags": {
+        "historic": "monument",
+        "name": "Sleeping Buddha"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10915576208,
+      "lat": 6.8251222,
+      "lon": 80.5199083,
+      "tags": {
+        "historic": "monument",
+        "name": "Buddha"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9740549810,
+      "lat": 6.8257088,
+      "lon": 80.5215046,
+      "tags": {
+        "name": "thorana",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13979921601,
+      "lat": 6.8257788,
+      "lon": 80.5229374,
+      "tags": {
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6592862733,
+      "lat": 6.8838548,
+      "lon": 80.498693,
+      "tags": {
+        "ele": "1553",
+        "name": "Saptha Kanya 7",
+        "name:en": "Seven Virgins 7",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6592862732,
+      "lat": 6.8951985,
+      "lon": 80.4876637,
+      "tags": {
+        "ele": "1040",
+        "name": "Saptha Kanya 1",
+        "name:en": "Seven Virgins 1",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6592862737,
+      "lat": 6.8936647,
+      "lon": 80.4896378,
+      "tags": {
+        "ele": "1390",
+        "name": "Saptha Kanya 2",
+        "name:en": "Seven Virgins 2",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9599053299,
+      "lat": 6.9010134,
+      "lon": 80.4972584,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3207148721,
+      "lat": 6.899106,
+      "lon": 80.5009038,
+      "tags": {
+        "name": "Laxapana Falls",
+        "waterway": "waterfall",
+        "wikidata": "Q6505129"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9599105960,
+      "lat": 6.9013991,
+      "lon": 80.4986165,
+      "tags": {
+        "name": "Gal Goa",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9651261977,
+      "lat": 6.9006572,
+      "lon": 80.5002983,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9651261990,
+      "lat": 6.901488,
+      "lon": 80.4994588,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9599053300,
+      "lat": 6.9113232,
+      "lon": 80.5035971,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6592863152,
+      "lat": 6.9252435,
+      "lon": 80.5042012,
+      "tags": {
+        "access": "yes",
+        "description": "This monument is the 0-Mile Post of the Laxapana Power House Road. Also, the nearby Junction is the 0-kilometre Post for the same road.",
+        "historic": "monument",
+        "inscription": "0-Mile",
+        "name": "Zero Mile Post"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9599357507,
+      "lat": 6.9140091,
+      "lon": 80.5212079,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "plaque",
+        "name": "Martin Air Plane Crash"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9599380067,
+      "lat": 6.9135681,
+      "lon": 80.5212591,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5253572522,
+      "lat": 6.9122827,
+      "lon": 80.5295062,
+      "tags": {
+        "name": "Norton",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5253572525,
+      "lat": 6.9269807,
+      "lon": 80.5225324,
+      "tags": {
+        "name": "Benachie",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5413804741,
+      "lat": 6.9493501,
+      "lon": 80.5021871,
+      "tags": {
+        "name": "Aberdeen Waterfall",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5413804743,
+      "lat": 6.9485832,
+      "lon": 80.5017265,
+      "tags": {
+        "height": "70",
+        "name": "Aberdeen Waterfall",
+        "waterway": "waterfall",
+        "width": "5",
+        "wikidata": "Q37408"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483904060,
+      "lat": 6.949633,
+      "lon": 80.501489,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13483847186,
+      "lat": 6.9499187,
+      "lon": 80.5126968,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5253572534,
+      "lat": 6.9543304,
+      "lon": 80.5213737,
+      "tags": {
+        "name": "Trafalgar",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4371644066,
+      "lat": 6.7782047,
+      "lon": 80.5552837,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12536254089,
+      "lat": 6.7795673,
+      "lon": 80.5560787,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12536254092,
+      "lat": 6.7786554,
+      "lon": 80.5592226,
+      "tags": {
+        "name": "Upper Gartmore Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12536414575,
+      "lat": 6.778062,
+      "lon": 80.5594426,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2611001772,
+      "lat": 6.7983418,
+      "lon": 80.5426007,
+      "tags": {
+        "name": "Moray Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5308355624,
+      "lat": 6.7997245,
+      "lon": 80.5430326,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2714398571,
+      "lat": 6.798623,
+      "lon": 80.5487307,
+      "tags": {
+        "name": "Sri Pada Falls (Adam Peak's Falls)",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12536209292,
+      "lat": 6.7984627,
+      "lon": 80.5487058,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12536209216,
+      "lat": 6.7999735,
+      "lon": 80.5493414,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6326686085,
+      "lat": 6.799745,
+      "lon": 80.5518171,
+      "tags": {
+        "name": "Sri Pada Falls Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6324796385,
+      "lat": 6.7816821,
+      "lon": 80.5574796,
+      "tags": {
+        "name:en": "Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6324862485,
+      "lat": 6.7809582,
+      "lon": 80.5621269,
+      "tags": {
+        "name": "Gartmore Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5244274525,
+      "lat": 6.8273972,
+      "lon": 80.5329798,
+      "tags": {
+        "name": "laxapana mohine FAlls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12612594205,
+      "lat": 6.7970076,
+      "lon": 80.6778261,
+      "tags": {
+        "name": "Pekoe Trail Start Stage 9",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7820842220,
+      "lat": 6.8200659,
+      "lon": 80.6912329,
+      "tags": {
+        "ele": "1940",
+        "name": "Green Mount",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11542559981,
+      "lat": 6.8390917,
+      "lon": 80.5589229,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5166992630,
+      "lat": 6.865249,
+      "lon": 80.5497349,
+      "tags": {
+        "name": "Maskeliya Ravana Gala",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5326819822,
+      "lat": 6.8484699,
+      "lon": 80.584723,
+      "tags": {
+        "name": "Castlereigh Reservoir Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4611280292,
+      "lat": 6.8497798,
+      "lon": 80.597307,
+      "tags": {
+        "name": "Castlereigh Reservoir Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4611290891,
+      "lat": 6.8462619,
+      "lon": 80.6017449,
+      "tags": {
+        "name:en": "Castlereagh Reservoir viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12612594303,
+      "lat": 6.8368799,
+      "lon": 80.6140831,
+      "tags": {
+        "name": "Pekoe Trail Start Stage 8",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10915535787,
+      "lat": 6.8649908,
+      "lon": 80.5970154,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9602552547,
+      "lat": 6.8631264,
+      "lon": 80.6245238,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13420597562,
+      "lat": 6.9251611,
+      "lon": 80.5553475,
+      "tags": {
+        "artwork_type": "stele",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4122652880,
+      "lat": 6.9356302,
+      "lon": 80.5554459,
+      "tags": {
+        "name": "Rozella 'Double Curve'",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5909690085,
+      "lat": 6.8900316,
+      "lon": 80.5982186,
+      "tags": {
+        "historic": "memorial",
+        "name": "Clocktower",
+        "name:de": "Glockenturm"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5430606722,
+      "lat": 6.8943294,
+      "lon": 80.5999966,
+      "tags": {
+        "name:en": "Afternoon Cricket Spot",
+        "opening_hours": "Mo-Su 16:00-18:00",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6235694145,
+      "lat": 6.9022828,
+      "lon": 80.607352,
+      "tags": {
+        "layer": "-1",
+        "name": "Singimale Tunnel",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6235694146,
+      "lat": 6.8980942,
+      "lon": 80.604592,
+      "tags": {
+        "layer": "-1",
+        "name": "Singimale Tunnel",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5050189234,
+      "lat": 6.8945165,
+      "lon": 80.6188154,
+      "tags": {
+        "ele": "1753",
+        "name": "Kotagala",
+        "natural": "peak",
+        "wikidata": "Q27457475"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11109070864,
+      "lat": 6.9156675,
+      "lon": 80.5865791,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11109070860,
+      "lat": 6.9204008,
+      "lon": 80.5864271,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11109070861,
+      "lat": 6.9193671,
+      "lon": 80.586159,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12615568002,
+      "lat": 6.9269317,
+      "lon": 80.6175576,
+      "tags": {
+        "name": "Pekoe Trail Stage 6 Start Point",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6328894486,
+      "lat": 6.9325455,
+      "lon": 80.6231213,
+      "tags": {
+        "name:en": "Tea Plantation View",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6575361301,
+      "lat": 6.847159,
+      "lon": 80.665183,
+      "tags": {
+        "ele": "2015",
+        "name": "Elbedda",
+        "natural": "peak",
+        "wikidata": "Q27447587"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6575355282,
+      "lat": 6.8675257,
+      "lon": 80.6526518,
+      "tags": {
+        "name": "Preston Hill",
+        "natural": "peak",
+        "wikidata": "Q27447036"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6575355281,
+      "lat": 6.8872739,
+      "lon": 80.6447982,
+      "tags": {
+        "name": "Dell Hill",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4855581087,
+      "lat": 6.8891307,
+      "lon": 80.6879617,
+      "tags": {
+        "name": "Agra Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4852030234,
+      "lat": 6.9115324,
+      "lon": 80.7212443,
+      "tags": {
+        "ele": "1564",
+        "name": "Dambagasthalawa",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675292992,
+      "lat": 6.9285924,
+      "lon": 80.7207169,
+      "tags": {
+        "name:en": "Radella Tea Factory",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6269087854,
+      "lat": 6.7989937,
+      "lon": 80.7664235,
+      "tags": {
+        "ele": "2388",
+        "name": "Kirigalpotta",
+        "natural": "peak",
+        "wikidata": "Q375975",
+        "wikimedia_commons": "Category:Kirigalpotta",
+        "wikipedia": "en:Kirigalpotta"
+      }
+    },
+    {
+      "type": "node",
+      "id": 676861111,
+      "lat": 6.7925595,
+      "lon": 80.789623,
+      "tags": {
+        "name": "Baker's Falls",
+        "waterway": "waterfall",
+        "wikidata": "Q37307"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12566072434,
+      "lat": 6.7963095,
+      "lon": 80.7925286,
+      "tags": {
+        "name": "Slab Rock Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5050152975,
+      "lat": 6.812823,
+      "lon": 80.7828425,
+      "tags": {
+        "alt_name": "Kudahagala Kanda",
+        "ele": "2320",
+        "name": "Agrabopath",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5167045651,
+      "lat": 6.8286656,
+      "lon": 80.7834421,
+      "tags": {
+        "name": "Aggra Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 603033668,
+      "lat": 6.780405,
+      "lon": 80.7944245,
+      "tags": {
+        "direction": "135",
+        "name": "World's End (Plate 1)",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1742667917,
+      "lat": 6.7799838,
+      "lon": 80.7940585,
+      "tags": {
+        "direction": "135",
+        "name": "World's End (Plate 2)",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 891639918,
+      "lat": 6.7853177,
+      "lon": 80.8003087,
+      "tags": {
+        "direction": "180",
+        "name": "Mini World's End",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2714444021,
+      "lat": 6.7944005,
+      "lon": 80.7955712,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5405608121,
+      "lat": 6.793766,
+      "lon": 80.7949098,
+      "tags": {
+        "direction": "40",
+        "name:en": "Waterfall Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12568297699,
+      "lat": 6.817415,
+      "lon": 80.7930821,
+      "tags": {
+        "name": "Mahaveli River Source Stream",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12566216772,
+      "lat": 6.8235276,
+      "lon": 80.8055421,
+      "tags": {
+        "name": "Adam's Peak View",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4507978494,
+      "lat": 6.8845413,
+      "lon": 80.7810229,
+      "tags": {
+        "name": "Elgin Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5212527409,
+      "lat": 6.8445218,
+      "lon": 80.8123087,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4825524195,
+      "lat": 6.8331199,
+      "lon": 80.8197979,
+      "tags": {
+        "alt_name": "Totupola Mountain",
+        "ele": "2359",
+        "loc_name": "Thotupola",
+        "name": "Thotupola Kanda",
+        "natural": "peak",
+        "wikidata": "Q7796948",
+        "wikimedia_commons": "Category:Thotupola Kanda",
+        "wikipedia": "en:Totapolakanda"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4825491385,
+      "lat": 6.9120779,
+      "lon": 80.7756516,
+      "tags": {
+        "addr:street": "Blackpool - Ambewela Road",
+        "ele": "2158",
+        "name": "Conical Hill",
+        "natural": "peak",
+        "wikidata": "Q23584970",
+        "wikipedia": "en:Conical Hill (Sri Lanka)"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4611128989,
+      "lat": 6.9491329,
+      "lon": 80.6331628,
+      "tags": {
+        "name:en": "Devon Fall Viewpoint #2",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7323220188,
+      "lat": 6.948351,
+      "lon": 80.6330598,
+      "tags": {
+        "historic": "memorial",
+        "name": "Самовар"
+      }
+    },
+    {
+      "type": "node",
+      "id": 247212347,
+      "lat": 6.9515033,
+      "lon": 80.6301127,
+      "tags": {
+        "name": "Devon Falls",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4698521292,
+      "lat": 6.9517076,
+      "lon": 80.6297262,
+      "tags": {
+        "name": "Devon Watrefall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4611088990,
+      "lat": 6.9475097,
+      "lon": 80.6455562,
+      "tags": {
+        "name:en": "St. Clair Viewing Gallery",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7082440984,
+      "lat": 6.9398816,
+      "lon": 80.6611453,
+      "tags": {
+        "historic": "wayside_shrine",
+        "name": "Sama Viharaya",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10765406433,
+      "lat": 6.9452324,
+      "lon": 80.6527029,
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4611088991,
+      "lat": 6.9517583,
+      "lon": 80.6360182,
+      "tags": {
+        "name:en": "Devon Falls Viewpoint #1",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5809896557,
+      "lat": 6.9513704,
+      "lon": 80.6481451,
+      "tags": {
+        "addr:city": "Talawakele",
+        "addr:street": "Hatton - Nuwara Eliya Road",
+        "name": "St. Clair Falls",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4122622298,
+      "lat": 6.9598313,
+      "lon": 80.6604328,
+      "tags": {
+        "name": "'Soda Bottle' Curve",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4852088781,
+      "lat": 6.9684244,
+      "lon": 80.6469688,
+      "tags": {
+        "ele": "1464",
+        "name": "Hunuketiyagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675430289,
+      "lat": 6.9450388,
+      "lon": 80.7387603,
+      "tags": {
+        "name:en": "Waterfall",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4725682889,
+      "lat": 6.9451389,
+      "lon": 80.7387778,
+      "tags": {
+        "name:en": "Nanu Oya Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5647082221,
+      "lat": 6.9455072,
+      "lon": 80.7377634,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4852088777,
+      "lat": 6.9668163,
+      "lon": 80.693872,
+      "tags": {
+        "ele": "2216",
+        "name": "Great Western Peak",
+        "natural": "peak",
+        "wikidata": "Q20987409",
+        "wikipedia": "en:Great Western Mountain"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5549946421,
+      "lat": 7.0060363,
+      "lon": 80.6881134,
+      "tags": {
+        "name:en": "Pundalu Oya (Dunsinane) Ella Falls",
+        "tourism": "yes",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5544665622,
+      "lat": 7.0349432,
+      "lon": 80.7082382,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1886599269,
+      "lat": 7.0240159,
+      "lon": 80.7188409,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5935616988,
+      "lat": 7.0236861,
+      "lon": 80.7173248,
+      "tags": {
+        "name:ru": "Натуральный бассейн и водопадик",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12145395787,
+      "lat": 7.0257649,
+      "lon": 80.7203148,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7085698873,
+      "lat": 7.0303476,
+      "lon": 80.7170372,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7171516185,
+      "lat": 7.029118,
+      "lon": 80.7165567,
+      "tags": {
+        "name:en": "Adma Agro Strawberry Farm",
+        "opening_hours": "Mo-Su 07:30-18:30",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4465975780,
+      "lat": 7.0639133,
+      "lon": 80.5870478,
+      "tags": {
+        "name": "Kothmale Hanging Bridge",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4465993050,
+      "lat": 7.0638951,
+      "lon": 80.6002325,
+      "tags": {
+        "addr:city": "Kothmale",
+        "addr:street": "Ulapane-Pussellawa Road",
+        "name": "Kothmale Reservoir Observation Point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12145443021,
+      "lat": 7.093583,
+      "lon": 80.6533088,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7085272523,
+      "lat": 7.0681446,
+      "lon": 80.6856722,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4586724590,
+      "lat": 7.0771149,
+      "lon": 80.6759844,
+      "tags": {
+        "name": "Glenloch Tea Plantation",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3254675194,
+      "lat": 7.0470584,
+      "lon": 80.6956007,
+      "tags": {
+        "name": "Puna Ella Falls",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4459218097,
+      "lat": 7.0453761,
+      "lon": 80.6964776,
+      "tags": {
+        "name": "Blue Fields Tea Factory",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4848081561,
+      "lat": 7.0469328,
+      "lon": 80.6955484,
+      "tags": {
+        "name": "Gerandi Ella Waterfall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10799016605,
+      "lat": 7.0437725,
+      "lon": 80.6954336,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3975121346,
+      "lat": 7.0547791,
+      "lon": 80.6997315,
+      "tags": {
+        "height": "109",
+        "name": "Ramboda Lower Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10799139805,
+      "lat": 7.0529089,
+      "lon": 80.6985568,
+      "tags": {
+        "name:en": "View of the waterfall",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13070317901,
+      "lat": 7.0425266,
+      "lon": 80.7078815,
+      "tags": {
+        "name": "Nice Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2055187239,
+      "lat": 7.0545948,
+      "lon": 80.7013657,
+      "tags": {
+        "name": "Ramboda Middle Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4430215189,
+      "lat": 7.0543939,
+      "lon": 80.7055863,
+      "tags": {
+        "name": "Ramboda Upper Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10635533505,
+      "lat": 7.0590976,
+      "lon": 80.6941047,
+      "tags": {
+        "name:en": "Chill Ramboda",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1886592077,
+      "lat": 7.0558715,
+      "lon": 80.6990648,
+      "tags": {
+        "name": "Ramboda Falls",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4459252090,
+      "lat": 7.0569144,
+      "lon": 80.6956009,
+      "tags": {
+        "level": "1",
+        "name": "Kothmale Panorama",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4988352221,
+      "lat": 7.0590993,
+      "lon": 80.6988017,
+      "tags": {
+        "name": "Dewathura Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10635521505,
+      "lat": 7.0604849,
+      "lon": 80.6944846,
+      "tags": {
+        "name:en": "Viewpoint&Restaurant",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10799140206,
+      "lat": 7.0551769,
+      "lon": 80.7048191,
+      "tags": {
+        "name:en": "Upper viewing deck",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12629721602,
+      "lat": 7.0564054,
+      "lon": 80.7059241,
+      "tags": {
+        "name": "Amazing view of waterfall  and tea plantations",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12629721603,
+      "lat": 7.056769,
+      "lon": 80.7052686,
+      "tags": {
+        "name": "Incredible view of waterfall and tea plantations",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5623867621,
+      "lat": 7.0742148,
+      "lon": 80.6944897,
+      "tags": {
+        "height": "100",
+        "name": "Garandi Gini Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6220669885,
+      "lat": 7.0950064,
+      "lon": 80.648669,
+      "tags": {
+        "name:it": "Piantagioni di Tè",
+        "name:ru": "чайная плантация Rothschild",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8235674949,
+      "lat": 7.127301,
+      "lon": 80.7138547,
+      "tags": {
+        "historic": "memorial",
+        "material": "concrete",
+        "memorial": "statue",
+        "name": "Mr. James Taylor Statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4675370791,
+      "lat": 6.9411217,
+      "lon": 80.7463278,
+      "tags": {
+        "name:en": "Edinburgh Tea Processing Center",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11052239805,
+      "lat": 6.9550802,
+      "lon": 80.7659307,
+      "tags": {
+        "name:en": "Row of white statues up to the temple",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4584003089,
+      "lat": 6.9580205,
+      "lon": 80.7626508,
+      "tags": {
+        "name:de": "Single Tree Hill",
+        "name:en": "Single Tree Hill",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4883891581,
+      "lat": 6.9569212,
+      "lon": 80.762138,
+      "tags": {
+        "ele": "2100",
+        "name": "Single Tree",
+        "natural": "peak",
+        "wikidata": "Q23585049",
+        "wikipedia": "en:One Tree Hill (Sri Lanka)"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11052288005,
+      "lat": 6.9609431,
+      "lon": 80.7613739,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4885454565,
+      "lat": 6.9481641,
+      "lon": 80.7868481,
+      "tags": {
+        "name": "Textile Hill",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10683411634,
+      "lat": 6.9563336,
+      "lon": 80.7670901,
+      "tags": {
+        "name": "Tea plantations view",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11644825969,
+      "lat": 6.9548115,
+      "lon": 80.7667834,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7082438450,
+      "lat": 6.9548798,
+      "lon": 80.773789,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11816818669,
+      "lat": 6.9527264,
+      "lon": 80.7734989,
+      "tags": {
+        "leisure": "park",
+        "name:en": "Pedro tea estate"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4883891582,
+      "lat": 6.9672984,
+      "lon": 80.7535302,
+      "tags": {
+        "ele": "2115",
+        "name": "Haddon Hill",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11469179111,
+      "lat": 6.9762642,
+      "lon": 80.7539875,
+      "tags": {
+        "direction": "0-360",
+        "ele": "2065m",
+        "name": "Eagle's Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11644940169,
+      "lat": 6.9738896,
+      "lon": 80.7539944,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7905101876,
+      "lat": 6.972736,
+      "lon": 80.766188,
+      "tags": {
+        "addr:city": "Nuwara Eliya",
+        "addr:district": "Nuwara Eliya District",
+        "addr:street": "Queen Elizabeth Dr",
+        "name": "Mackwoods Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11052738706,
+      "lat": 6.9768067,
+      "lon": 80.7532536,
+      "tags": {
+        "name:en": "Viewpoint of tea plants below",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4883891580,
+      "lat": 6.9844681,
+      "lon": 80.7462138,
+      "tags": {
+        "ele": "2240",
+        "name": "Kikiliyamana",
+        "natural": "peak",
+        "wikidata": "Q27447565",
+        "wikipedia": "en:Kikilimana"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3393538266,
+      "lat": 6.9673282,
+      "lon": 80.768913,
+      "tags": {
+        "addr:city": "Nuwara Eliya",
+        "name": "Victoria Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7082442425,
+      "lat": 6.9676281,
+      "lon": 80.7675551,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10915334629,
+      "lat": 6.967378,
+      "lon": 80.7676877,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10915395205,
+      "lat": 6.9678669,
+      "lon": 80.7677234,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "obelisk",
+        "name:en": "World wars"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5289283122,
+      "lat": 6.9724048,
+      "lon": 80.7923831,
+      "tags": {
+        "name:en": "drink beer sunset point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3880555639,
+      "lat": 6.9779314,
+      "lon": 80.7803511,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3254826636,
+      "lat": 6.9784844,
+      "lon": 80.7867203,
+      "tags": {
+        "name": "Lover's Leap Waterfall",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11143135305,
+      "lat": 6.9782249,
+      "lon": 80.786747,
+      "tags": {
+        "name:en": "Lover's Leap Waterfall bottom viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4501771825,
+      "lat": 6.9430772,
+      "lon": 80.820152,
+      "tags": {
+        "addr:city": "Nuwara Eliya",
+        "addr:street": "Moon Plains Road",
+        "name": "Moon Plains",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4885454559,
+      "lat": 6.9390795,
+      "lon": 80.8254933,
+      "tags": {
+        "name": "Ahumulu Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3833099699,
+      "lat": 6.9473172,
+      "lon": 80.8306935,
+      "tags": {
+        "name": "Bomburu Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3833697249,
+      "lat": 6.9470599,
+      "lon": 80.8307743,
+      "tags": {
+        "name": "Bomburu Ella Waterfall",
+        "tourism": "attraction",
+        "wikidata": "Q38384",
+        "wikimedia_commons": "Category:Bomburu Ella Falls",
+        "wikipedia": "en:Bomburu Ella"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4887500214,
+      "lat": 6.9576958,
+      "lon": 80.8376384,
+      "tags": {
+        "ele": "1842",
+        "name": "Kotakithula Kanda",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4887500218,
+      "lat": 6.9752464,
+      "lon": 80.8437753,
+      "tags": {
+        "name": "Welibissa",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4927751721,
+      "lat": 6.9917717,
+      "lon": 80.7488933,
+      "tags": {
+        "name:en": "Sanasa",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7171132885,
+      "lat": 7.0027264,
+      "lon": 80.7405615,
+      "tags": {
+        "name:en": "Tea plantations",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2035834190,
+      "lat": 7.0009508,
+      "lon": 80.7736523,
+      "tags": {
+        "ele": "2524",
+        "name": "Pidurutalagala",
+        "name:ru": "Пидуруталагала",
+        "name:uk": "Підуруталаґала",
+        "natural": "peak",
+        "prominence": "2524",
+        "source:prominence": "Highest peak of Sri Lanka Island",
+        "wikidata": "Q1146327",
+        "wikimedia_commons": "Category:Pidurutalagala",
+        "wikipedia": "en:Pidurutalagala"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4886158583,
+      "lat": 6.9789311,
+      "lon": 80.854547,
+      "tags": {
+        "ele": "2039",
+        "name": "Kuraththa",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8666546805,
+      "lat": 7.0499472,
+      "lon": 80.7831355,
+      "tags": {
+        "description": "Mandaram Nuwara Viewpoint",
+        "direction": "240",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5050131721,
+      "lat": 7.0430787,
+      "lon": 80.8442927,
+      "tags": {
+        "ele": "2069",
+        "name": "Mahakudugala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4823495252,
+      "lat": 7.0554141,
+      "lon": 80.8365697,
+      "tags": {
+        "ele": "1815",
+        "name": "Highforest",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9523088047,
+      "lat": 7.1430033,
+      "lon": 80.8088444,
+      "tags": {
+        "direction": "106",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4823844374,
+      "lat": 7.0801553,
+      "lon": 80.8504843,
+      "tags": {
+        "name": "Kurundu Oya Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9883842891,
+      "lat": 7.0761687,
+      "lon": 80.8860947,
+      "tags": {
+        "ele": "1300",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12642921689,
+      "lat": 7.0804294,
+      "lon": 80.8933448,
+      "tags": {
+        "historic": "memorial",
+        "material": "concrete",
+        "memorial": "statue",
+        "name": "Anagarika Dharmapala Memorial",
+        "subject:wikidata": "Q3518574"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9881685783,
+      "lat": 7.0842595,
+      "lon": 80.8940608,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6202677542,
+      "lat": 7.0921695,
+      "lon": 80.9410933,
+      "tags": {
+        "name": "Golumale Stream",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12157850197,
+      "lat": 7.0949988,
+      "lon": 80.8619984,
+      "tags": {
+        "historic": "memorial",
+        "inscription": "ශ්‍රීමත් රණසිංහ ප්‍රේමදාස|ජනාධිපති උතුමාණන්|විසින් රට ජාතිය හා බුද්ධ ශාසනය|උන්නතිය සදහා කරන ලද ඉමහත්|සේවාවන්ට උපහාර පිණිස ඒතුමා සිහි කරීම වස් වලපනේ ජනතාව විසින්|මෙම ප්‍රතිමාව පිහිටුවන ලදි",
+        "material": "concrete",
+        "memorial": "statue",
+        "name": "President R.Premadasa Memorial",
+        "subject:wikidata": "Q472323",
+        "subject:wikipedia": "en:Ranasinghe Premadasa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5010070237,
+      "lat": 7.1776172,
+      "lon": 80.7754152,
+      "tags": {
+        "archaeological_site": "fortification",
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6631957185,
+      "lat": 7.2413421,
+      "lon": 80.78497,
+      "tags": {
+        "name:en": "Victoria Dam",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "way",
+      "id": 593509496,
+      "center": {
+        "lat": 6.769572,
+        "lon": 80.4969862
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 593509498,
+      "center": {
+        "lat": 6.7778683,
+        "lon": 80.5004986
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 384794485,
+      "center": {
+        "lat": 6.7890585,
+        "lon": 80.4909615
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 384794246,
+      "center": {
+        "lat": 6.810565,
+        "lon": 80.4993702
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 547019985,
+      "center": {
+        "lat": 6.8838679,
+        "lon": 80.4947796
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 988798155,
+      "center": {
+        "lat": 6.8855145,
+        "lon": 80.5005619
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 547019981,
+      "center": {
+        "lat": 6.93163,
+        "lon": 80.4519736
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 547019983,
+      "center": {
+        "lat": 6.9319181,
+        "lon": 80.4604465
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 988798156,
+      "center": {
+        "lat": 6.8873657,
+        "lon": 80.4978069
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1050236062,
+      "center": {
+        "lat": 6.8995838,
+        "lon": 80.5018822
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1470261165,
+      "center": {
+        "lat": 6.9487611,
+        "lon": 80.501622
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 547019989,
+      "center": {
+        "lat": 6.7884892,
+        "lon": 80.5735599
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 439534820,
+      "center": {
+        "lat": 6.799872,
+        "lon": 80.549453
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1004658526,
+      "center": {
+        "lat": 6.8366148,
+        "lon": 80.5378247
+      },
+      "tags": {
+        "artwork_type": "mural",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1256023893,
+      "center": {
+        "lat": 6.923844,
+        "lon": 80.5432696
+      },
+      "tags": {
+        "description": "Open Area Inclusive only for Lot No 85, 86, 91",
+        "leisure": "park",
+        "name": "Open Area"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1255606535,
+      "center": {
+        "lat": 6.9279394,
+        "lon": 80.5427778
+      },
+      "tags": {
+        "description": "Allocated for Vehicle Turnings and Open Space",
+        "leisure": "park",
+        "name": "39",
+        "opening_hours": "24/7",
+        "operator": "Cloudy Bay Owners",
+        "operator:type": "public"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1256023868,
+      "center": {
+        "lat": 6.9266306,
+        "lon": 80.5399933
+      },
+      "tags": {
+        "addr:block_number": "9",
+        "leisure": "park",
+        "operator": "Cloudy Bay Owners",
+        "operator:type": "public"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1255236153,
+      "center": {
+        "lat": 6.9271756,
+        "lon": 80.5449104
+      },
+      "tags": {
+        "description": "Space for Overhead Tank and public gatherings or resting.",
+        "leisure": "park",
+        "name": "Open Space",
+        "opening_hours": "24/7",
+        "operator": "Cloudy Bay",
+        "operator:type": "public"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1256025412,
+      "center": {
+        "lat": 6.926637,
+        "lon": 80.5441716
+      },
+      "tags": {
+        "description": "Water Extraction and Pump House to supply water to the Cloudy Bay Project",
+        "leisure": "park",
+        "name": "Water Extraction",
+        "opening_hours": "24/7"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1256552461,
+      "center": {
+        "lat": 6.9270943,
+        "lon": 80.5445994
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "66"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1066014776,
+      "center": {
+        "lat": 6.8969503,
+        "lon": 80.5957706
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "aboosally children's park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1002022019,
+      "center": {
+        "lat": 6.8876948,
+        "lon": 80.600334
+      },
+      "tags": {
+        "description": "children park",
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1194181456,
+      "center": {
+        "lat": 6.9173844,
+        "lon": 80.5866098
+      },
+      "tags": {
+        "garden:style": "zen",
+        "garden:type": "botanical",
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1176190318,
+      "center": {
+        "lat": 6.9182646,
+        "lon": 80.5918224
+      },
+      "tags": {
+        "addr:city": "Kotagala",
+        "addr:street": "Avissawella - Hatton - Nuwara Eliya Road",
+        "grassland": "yes",
+        "leisure": "garden",
+        "name": "Green hills"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1187666677,
+      "center": {
+        "lat": 6.8627876,
+        "lon": 80.7086511
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1046933427,
+      "center": {
+        "lat": 6.9283303,
+        "lon": 80.7220339
+      },
+      "tags": {
+        "man_made": "works",
+        "name:en": "Somerset Estate Tea Factory",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 938649841,
+      "center": {
+        "lat": 6.806539,
+        "lon": 80.755561
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 921403802,
+      "center": {
+        "lat": 6.796607,
+        "lon": 80.7511841
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 921403803,
+      "center": {
+        "lat": 6.7979121,
+        "lon": 80.7498966
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 493088634,
+      "center": {
+        "lat": 6.9255692,
+        "lon": 80.8215814
+      },
+      "tags": {
+        "garden:type": "botanical",
+        "leisure": "garden",
+        "name": "Hakgala Botanical Garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1133853104,
+      "center": {
+        "lat": 6.9266066,
+        "lon": 80.8225683
+      },
+      "tags": {
+        "building": "yes",
+        "name:en": "Hakgala Botanical Garden Entranc",
+        "shop": "ticket",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 758656580,
+      "center": {
+        "lat": 7.0295465,
+        "lon": 80.7171636
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1320531895,
+      "center": {
+        "lat": 7.0491818,
+        "lon": 80.7023262
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "play ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1320912488,
+      "center": {
+        "lat": 7.049733,
+        "lon": 80.7026858
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Main Play ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1196874437,
+      "center": {
+        "lat": 6.9563402,
+        "lon": 80.7766837
+      },
+      "tags": {
+        "access": "yes",
+        "fee": "yes",
+        "garden:type": "public",
+        "leisure": "garden",
+        "name": "Victory Park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1196872351,
+      "center": {
+        "lat": 6.9623126,
+        "lon": 80.7723697
+      },
+      "tags": {
+        "name": "Lake Gregory Park",
+        "tourism": "theme_park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 267208685,
+      "center": {
+        "lat": 6.9654069,
+        "lon": 80.766774
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 486410766,
+      "center": {
+        "lat": 6.9716192,
+        "lon": 80.7666578
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1196870208,
+      "center": {
+        "lat": 6.9702921,
+        "lon": 80.7680082
+      },
+      "tags": {
+        "tourism": "picnic_site"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1033676203,
+      "center": {
+        "lat": 7.1421552,
+        "lon": 80.8089246
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1317061535,
+      "center": {
+        "lat": 7.0913888,
+        "lon": 80.8551313
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1317061534,
+      "center": {
+        "lat": 7.1090337,
+        "lon": 80.8483844
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1317061533,
+      "center": {
+        "lat": 7.1048999,
+        "lon": 80.8504289
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 7387070,
+      "center": {
+        "lat": 7.238015,
+        "lon": 80.8746555
+      },
+      "tags": {
+        "leisure": "nature_reserve",
+        "name": "Victoria Randenigala Rantembe Sanctuary",
+        "note": "Boader is approximate",
+        "type": "multipolygon",
+        "wikipedia": "en:List of wildlife sanctuaries of Sri Lanka"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 16186319,
+      "center": {
+        "lat": 6.9693814,
+        "lon": 80.7683928
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Victoria Park",
+        "type": "multipolygon",
+        "wikidata": "Q15941030"
+      }
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-02T16:51:45Z",
+    "timestamp_areas_base": "2026-07-02T16:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 4211188722,
+      "lat": 9.3229187,
+      "lon": 79.8488668,
+      "tags": {
+        "name": "Palk Bay",
+        "name:de": "Palkbucht",
+        "name:en": "Palk Bay",
+        "natural": "bay",
+        "wikidata": "Q27441240",
+        "wikipedia": "en:Palk Bay"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7599280789,
+      "lat": 9.3788762,
+      "lon": 80.3660002,
+      "tags": {
+        "historic": "wayside_cross"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7577980036,
+      "lat": 9.4675197,
+      "lon": 80.2173412,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 331834079,
+      "lat": 9.5393896,
+      "lon": 80.2955103,
+      "tags": {
+        "name": "Jaffna Lagoon",
+        "natural": "bay",
+        "wikidata": "Q2593960",
+        "wikimedia_commons": "Category:Jaffna lagoon",
+        "wikipedia": "en:Jaffna Lagoon"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4095100591,
+      "lat": 9.5018563,
+      "lon": 80.4060626,
+      "tags": {
+        "historic": "monument",
+        "name": "Hasalaka Gamini Ranaviru Smarakaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4095100590,
+      "lat": 9.5019865,
+      "lon": 80.4063655,
+      "tags": {
+        "name": "Terrrorist Bulldozer",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3221417154,
+      "lat": 9.5236764,
+      "lon": 80.4070524,
+      "tags": {
+        "historic": "monument",
+        "name": "Monument of Peace"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4623148028,
+      "lat": 9.5234785,
+      "lon": 80.4085374,
+      "tags": {
+        "name": "Dutch Fort Elephantpass Ruins",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4623161206,
+      "lat": 9.5609346,
+      "lon": 80.4154064,
+      "tags": {
+        "name": "Dutch Fort Beschutter Ruins",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "way",
+      "id": 320582688,
+      "center": {
+        "lat": 9.4398493,
+        "lon": 79.8880154
+      },
+      "tags": {
+        "natural": "beach",
+        "source": "Bing Sat"
+      }
+    },
+    {
+      "type": "way",
+      "id": 813050197,
+      "center": {
+        "lat": 9.3055412,
+        "lon": 80.4002685
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398443213,
+      "center": {
+        "lat": 9.396839,
+        "lon": 80.349233
+      },
+      "tags": {
+        "leisure": "garden"
+      }
+    },
+    {
+      "type": "way",
+      "id": 392708357,
+      "center": {
+        "lat": 9.3831229,
+        "lon": 80.4090281
+      },
+      "tags": {
+        "historic": "monument",
+        "name": "War Memorial"
+      }
+    },
+    {
+      "type": "way",
+      "id": 882656903,
+      "center": {
+        "lat": 9.394991,
+        "lon": 80.408748
+      },
+      "tags": {
+        "historic": "ruins",
+        "name": "Destroyed Water Tower"
+      }
+    },
+    {
+      "type": "way",
+      "id": 808665906,
+      "center": {
+        "lat": 9.3730587,
+        "lon": 80.4944357
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 808665907,
+      "center": {
+        "lat": 9.3774427,
+        "lon": 80.4953575
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 842059703,
+      "center": {
+        "lat": 9.4182008,
+        "lon": 80.522822
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 813722623,
+      "center": {
+        "lat": 9.4766678,
+        "lon": 80.2145994
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1252339172,
+      "center": {
+        "lat": 9.5591575,
+        "lon": 80.1782244
+      },
+      "tags": {
+        "area": "yes",
+        "natural": "bay"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1030295979,
+      "center": {
+        "lat": 9.5236869,
+        "lon": 80.4070493
+      },
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 17633773,
+      "center": {
+        "lat": 14.2200738,
+        "lon": 86.9016006
+      },
+      "tags": {
+        "alt_name:ca": "Badia de Bengala",
+        "alt_name:es": "Mar de Birmania",
+        "alt_name:fa": "کنداب",
+        "fixme": "inner ways for multipolygon, accuracy of outer ways near islands and on southern edge",
+        "gns:dsg_code": "SEA",
+        "gns:id": "-1506334",
+        "name": "Bay of Bengal",
+        "name:ar": "خليج البنغال",
+        "name:be": "Бенгальскі заліў",
+        "name:bn": "বঙ্গোপসাগর",
+        "name:br": "Pleg-mor Bengal",
+        "name:ca": "Golf de Bengala",
+        "name:cs": "Bengálský záliv",
+        "name:da": "Bengalske Bugt",
+        "name:de": "Golf von Bengalen",
+        "name:en": "Bay of Bengal",
+        "name:eo": "Bengala Golfo",
+        "name:es": "Golfo de Bengala",
+        "name:eu": "Bengalako golkoa",
+        "name:fa": "خلیج بنگال",
+        "name:fi": "Bengalinlahti",
+        "name:fr": "Golfe du Bengale",
+        "name:hi": "बंगाल की खाड़ी",
+        "name:hr": "Bengalski zaljev",
+        "name:hu": "Bengáli-öböl",
+        "name:ia": "Golfo de Bengala",
+        "name:is": "Bengalflói",
+        "name:it": "Golfo del Bengala",
+        "name:ja": "ベンガル湾",
+        "name:ko": "벵골 만",
+        "name:lt": "Bengalijos įlanka",
+        "name:mk": "Бенгалски Залив",
+        "name:ml": "ബംഗാൾ ഉൾക്കടൽ",
+        "name:ms": "Teluk Benggala",
+        "name:nl": "Golf van Bengalen",
+        "name:pl": "Zatoka Bengalska",
+        "name:ru": "Бенгальский залив",
+        "name:si": "බෙංගාල බොක්ක",
+        "name:sk": "Bengálsky záliv",
+        "name:sr": "Бенгалски залив",
+        "name:sr-Latn": "Bengalski zaliv",
+        "name:ta": "வங்காள விரிகுடா",
+        "name:uk": "Бенгальська затока",
+        "name:vi": "Vịnh Bengal",
+        "name:zh": "孟加拉湾",
+        "name:zh-Hans": "孟加拉湾",
+        "name:zh-Hant": "孟加拉灣",
+        "natural": "bay",
+        "place": "sea",
+        "source:name:br": "ofis publik ar brezhoneg",
+        "type": "multipolygon",
+        "wikidata": "Q38684",
+        "wikipedia": "en:Bay of Bengal"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 19405634,
+      "center": {
+        "lat": 9.4397444,
+        "lon": 79.8870117
+      },
+      "tags": {
+        "natural": "beach",
+        "source": "Bing Sat",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}

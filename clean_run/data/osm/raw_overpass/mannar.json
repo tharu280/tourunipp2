@@ -1,0 +1,319 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-08T09:46:43Z",
+    "timestamp_areas_base": "2026-07-07T19:41:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 6183477765,
+      "lat": 8.7809448,
+      "lon": 79.9343729,
+      "tags": {
+        "castle_type": "manor",
+        "historic": "castle",
+        "name": "Dorric Fort",
+        "ruins": "yes",
+        "tourism": "attraction",
+        "wikipedia": "en:Doric Bungalow"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6183477764,
+      "lat": 8.7926334,
+      "lon": 79.9296309,
+      "tags": {
+        "historic": "ruins",
+        "name": "Arippu Dutch Fort"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12618488649,
+      "lat": 8.7510717,
+      "lon": 80.1638348,
+      "tags": {
+        "name": "Hanging bridge",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6218908687,
+      "lat": 8.9827155,
+      "lon": 79.8724415,
+      "tags": {
+        "name:en": "Keeri beach",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4289829989,
+      "lat": 8.9758832,
+      "lon": 79.9170635,
+      "tags": {
+        "name": "Mannar Dutch Fort",
+        "name:en": "Mannar Dutch Fort",
+        "opening_hours": "24/7",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4723787590,
+      "lat": 8.981667,
+      "lon": 79.9233614,
+      "tags": {
+        "name:en": "Baobab Tree",
+        "name:fr": "Baobab",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11159275713,
+      "lat": 8.9815372,
+      "lon": 79.9232358,
+      "tags": {
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3665943635,
+      "lat": 8.9854229,
+      "lon": 79.9098369,
+      "tags": {
+        "historic": "wayside_shrine",
+        "name": "St. Mary's Catholic Church"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6218908686,
+      "lat": 8.9817296,
+      "lon": 79.9228703,
+      "tags": {
+        "name:en": "Baobab tree",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10759409898,
+      "lat": 9.0859831,
+      "lon": 79.6981549,
+      "tags": {
+        "name:en": "Thalaimannar Islands Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10976238973,
+      "lat": 9.0814516,
+      "lon": 79.6987268,
+      "tags": {
+        "name": "Sri Rama's Bridge Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12578799904,
+      "lat": 9.0535636,
+      "lon": 79.8477027,
+      "tags": {
+        "name": "Donkey Clinic and education centre",
+        "opening_hours": "Mo-Su 09:00-16:30",
+        "phone": "+94712635444",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4793480121,
+      "lat": 9.0366362,
+      "lon": 79.8759973,
+      "tags": {
+        "addr:city": "Erukkalampaddy",
+        "alt_name": "Mn/Erukkalampiddy Muslim Madhya Maha Vidyalaya",
+        "alt_name:ta": "எருக்கலம்பிட்டி முஸ்லிம் மத்திய மகாவித்தியாலயம்",
+        "amenity": "school",
+        "email": "epaddymuslimmmv@yahoo.com",
+        "historic": "Erukkalampiddy Muslim Madhya Maha Vidyalaya",
+        "name": "Mn/Erukkalampiddy Muslim Madhya Maha Vidyalayam",
+        "name:ta": "மன்/எருக்கலம்பிட்டி முஸ்லிம் மத்திய மகாவித்தியாலயம்",
+        "old_name": "Erukkalampiddy Muslim Madhya Maha Vidyalayam",
+        "phone": "232050996"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10976203669,
+      "lat": 9.0691752,
+      "lon": 79.8594823,
+      "tags": {
+        "historic": "tower",
+        "name": "Narapadu Dutch Tower",
+        "tower:type": "observation"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4762126522,
+      "lat": 8.8560313,
+      "lon": 80.2039439,
+      "tags": {
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 588803641,
+      "center": {
+        "lat": 8.9759479,
+        "lon": 79.9170592
+      },
+      "tags": {
+        "building": "yes",
+        "castle_type": "fortress",
+        "historic": "castle",
+        "name": "Mannar Dutch Fort"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1221451111,
+      "center": {
+        "lat": 8.9785295,
+        "lon": 79.9264735
+      },
+      "tags": {
+        "addr:housenumber": "XWHG+Q7J,",
+        "addr:street": "Mannar",
+        "leisure": "park",
+        "name": "St. Lucy’s School Playground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1213021095,
+      "center": {
+        "lat": 8.9859893,
+        "lon": 79.9198248
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 611905557,
+      "center": {
+        "lat": 9.0912005,
+        "lon": 79.7013802
+      },
+      "tags": {
+        "alt_name": "Adam and Eve's Grave",
+        "barrier": "wall",
+        "name:en": "Adam's Grave",
+        "opening_hours": "24/7",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1156999090,
+      "center": {
+        "lat": 9.1000033,
+        "lon": 79.6998836
+      },
+      "tags": {
+        "abandoned": "yes",
+        "leisure": "park",
+        "name:en": "Thalimannar Beach Gardens"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 17633773,
+      "center": {
+        "lat": 14.2200738,
+        "lon": 86.9016006
+      },
+      "tags": {
+        "alt_name:ca": "Badia de Bengala",
+        "alt_name:es": "Mar de Birmania",
+        "alt_name:fa": "کنداب",
+        "fixme": "inner ways for multipolygon, accuracy of outer ways near islands and on southern edge",
+        "gns:dsg_code": "SEA",
+        "gns:id": "-1506334",
+        "name": "Bay of Bengal",
+        "name:ar": "خليج البنغال",
+        "name:be": "Бенгальскі заліў",
+        "name:bn": "বঙ্গোপসাগর",
+        "name:br": "Pleg-mor Bengal",
+        "name:ca": "Golf de Bengala",
+        "name:cs": "Bengálský záliv",
+        "name:da": "Bengalske Bugt",
+        "name:de": "Golf von Bengalen",
+        "name:en": "Bay of Bengal",
+        "name:eo": "Bengala Golfo",
+        "name:es": "Golfo de Bengala",
+        "name:eu": "Bengalako golkoa",
+        "name:fa": "خلیج بنگال",
+        "name:fi": "Bengalinlahti",
+        "name:fr": "Golfe du Bengale",
+        "name:hi": "बंगाल की खाड़ी",
+        "name:hr": "Bengalski zaljev",
+        "name:hu": "Bengáli-öböl",
+        "name:ia": "Golfo de Bengala",
+        "name:is": "Bengalflói",
+        "name:it": "Golfo del Bengala",
+        "name:ja": "ベンガル湾",
+        "name:ko": "벵골 만",
+        "name:lt": "Bengalijos įlanka",
+        "name:mk": "Бенгалски Залив",
+        "name:ml": "ബംഗാൾ ഉൾക്കടൽ",
+        "name:ms": "Teluk Benggala",
+        "name:nl": "Golf van Bengalen",
+        "name:pl": "Zatoka Bengalska",
+        "name:ru": "Бенгальский залив",
+        "name:si": "බෙංගාල බොක්ක",
+        "name:sk": "Bengálsky záliv",
+        "name:sr": "Бенгалски залив",
+        "name:sr-Latn": "Bengalski zaliv",
+        "name:ta": "வங்காள விரிகுடா",
+        "name:uk": "Бенгальська затока",
+        "name:vi": "Vịnh Bengal",
+        "name:zh": "孟加拉湾",
+        "name:zh-Hans": "孟加拉湾",
+        "name:zh-Hant": "孟加拉灣",
+        "natural": "bay",
+        "place": "sea",
+        "source:name:br": "ofis publik ar brezhoneg",
+        "type": "multipolygon",
+        "wikidata": "Q38684",
+        "wikipedia": "en:Bay of Bengal"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 17737802,
+      "center": {
+        "lat": 9.0704197,
+        "lon": 79.7266314
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}

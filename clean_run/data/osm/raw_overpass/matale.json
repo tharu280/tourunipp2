@@ -1,0 +1,1954 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-06-12T12:14:17Z",
+    "timestamp_areas_base": "2026-06-12T12:14:17Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 4933895494,
+      "lat": 7.8148765,
+      "lon": 80.5114939,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Viharahinna Archaeological Area"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9954142345,
+      "lat": 7.445643,
+      "lon": 80.5752544,
+      "tags": {
+        "leisure": "park",
+        "name": "Enasalmada Waththa Land",
+        "operator": "LRC"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12061825773,
+      "lat": 7.4275761,
+      "lon": 80.6114595,
+      "tags": {
+        "name": "Balakaduwa Ella",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11628632970,
+      "lat": 7.4509849,
+      "lon": 80.6126833,
+      "tags": {
+        "name:en": "view on rice fields & mountains",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3412740593,
+      "lat": 7.4017036,
+      "lon": 80.6897795,
+      "tags": {
+        "name": "Hunnasgiri Ella",
+        "name:de": "Hunas Wasserfall",
+        "name:en": "Hunas Falls",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5071014216,
+      "lat": 7.4029293,
+      "lon": 80.692668,
+      "tags": {
+        "name": "Upper Hunnasfall",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10875222267,
+      "lat": 7.4642812,
+      "lon": 80.6197109,
+      "tags": {
+        "leisure": "park",
+        "name": "Matale Children Park"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4484914414,
+      "lat": 7.4897604,
+      "lon": 80.5884005,
+      "tags": {
+        "name": "Brandigala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6144326492,
+      "lat": 7.4891722,
+      "lon": 80.6214951,
+      "tags": {
+        "addr:street": "Jaffna - Kandy Road",
+        "name": "Aluvihare Walauwe",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7025902985,
+      "lat": 7.4970671,
+      "lon": 80.6166963,
+      "tags": {
+        "historic": "monument",
+        "name:en": "Buddha statue"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10803702405,
+      "lat": 7.4973069,
+      "lon": 80.6217011,
+      "tags": {
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4463369590,
+      "lat": 7.528939,
+      "lon": 80.6261935,
+      "tags": {
+        "name": "Luckgrove Spice Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7090910867,
+      "lat": 7.4766978,
+      "lon": 80.729996,
+      "tags": {
+        "ele": "1648",
+        "name": "Knuckles-Kirigalpotta",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4472247508,
+      "lat": 7.4955285,
+      "lon": 80.6990816,
+      "tags": {
+        "addr:city": "Rattota",
+        "addr:street": "Matale-Illukkumbura-Pallegama-Girandurukotte Road",
+        "name": "Bambarakiri Ella",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11019021605,
+      "lat": 7.5498917,
+      "lon": 80.6743629,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11019022205,
+      "lat": 7.5461716,
+      "lon": 80.6754231,
+      "tags": {
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4112028263,
+      "lat": 7.5245225,
+      "lon": 80.7338588,
+      "tags": {
+        "name": "Riverston",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4397313911,
+      "lat": 7.5303944,
+      "lon": 80.7330583,
+      "tags": {
+        "name": "Riverston",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8155531730,
+      "lat": 7.5496196,
+      "lon": 80.7298554,
+      "tags": {
+        "ele": "1515",
+        "name": "Patanagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7090910868,
+      "lat": 7.4551115,
+      "lon": 80.7482898,
+      "tags": {
+        "ele": "1903",
+        "name": "Gombaniya",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6632682803,
+      "lat": 7.4415776,
+      "lon": 80.8084003,
+      "tags": {
+        "description": "Knuckles Forest - Ududumbara",
+        "name": "Kalupahana",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13098242412,
+      "lat": 7.4698061,
+      "lon": 80.7918641,
+      "tags": {
+        "height": "20",
+        "name": "Dumbara Ella",
+        "name:si": "දුම්බර ඇල්ල",
+        "source": "https://amazinglanka.com/wp/dumbara-ella/",
+        "waterway": "waterfall",
+        "width": "2"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13098268804,
+      "lat": 7.4701126,
+      "lon": 80.791555,
+      "tags": {
+        "name": "Dumbara Ella Falls and Pool",
+        "name:si": "දුම්බර ඇල්ල",
+        "source": "https://amazinglanka.com/wp/dumbara-ella/",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8566285117,
+      "lat": 7.4934698,
+      "lon": 80.7687593,
+      "tags": {
+        "name": "වල්පොලමුල්ල",
+        "name:en": "Walpolamulla",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13098242433,
+      "lat": 7.4644695,
+      "lon": 80.7979098,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13098242452,
+      "lat": 7.464449,
+      "lon": 80.7979849,
+      "tags": {
+        "name": "Infinity Pool",
+        "source": "https://www.attractionsinsrilanka.com/travel-directory/knuckles-infinity-pool/",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13098242417,
+      "lat": 7.4618343,
+      "lon": 80.8008878,
+      "tags": {
+        "height": "40",
+        "name": "Duwili Ella",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5747559422,
+      "lat": 7.4660876,
+      "lon": 80.8393578,
+      "tags": {
+        "ele": "1252",
+        "name": "Lakegala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5107267913,
+      "lat": 7.5231896,
+      "lon": 80.749642,
+      "tags": {
+        "name": "Rathninda Ella",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5106951411,
+      "lat": 7.5173714,
+      "lon": 80.7559526,
+      "tags": {
+        "name": "Wedda peni ella",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11708245559,
+      "lat": 7.5226632,
+      "lon": 80.7548775,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4840490592,
+      "lat": 7.5242407,
+      "lon": 80.7747338,
+      "tags": {
+        "ele": "1104",
+        "name": "Maningala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2051234664,
+      "lat": 7.5530795,
+      "lon": 80.7536313,
+      "tags": {
+        "name": "Mini World's End",
+        "tourism": "picnic_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4472284387,
+      "lat": 7.5462573,
+      "lon": 80.8221257,
+      "tags": {
+        "information": "Kaluganga Reservoir Project - Updated 25 Wed. Dec -2019",
+        "name": "Pallegama Old Village",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4946779498,
+      "lat": 7.5418324,
+      "lon": 80.8303696,
+      "tags": {
+        "information": "Kaluganga Reservoir Project - Updated 25 Wed. Dec -2019",
+        "name": "Laggala Old Town",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4986173123,
+      "lat": 7.5759353,
+      "lon": 80.6253839,
+      "tags": {
+        "addr:city": "Kawudupelella",
+        "addr:street": "Jaffna - Kandy Road",
+        "name": "Royal Spice Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4986196478,
+      "lat": 7.5763917,
+      "lon": 80.6259149,
+      "tags": {
+        "addr:city": "Kawudupelella",
+        "addr:street": "Jaffna - Kandy Road",
+        "name": "New Paradise Spice Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9779587539,
+      "lat": 7.5738695,
+      "lon": 80.6264443,
+      "tags": {
+        "name": "dolamaite Excavtion site",
+        "natural": "cliff",
+        "source": "local knowledge"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4586724489,
+      "lat": 7.583191,
+      "lon": 80.6274322,
+      "tags": {
+        "name:en": "Spice Garden #50",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4986254002,
+      "lat": 7.5829487,
+      "lon": 80.6265083,
+      "tags": {
+        "addr:city": "Kurundugaspitiya",
+        "addr:street": "Jaffna - Kandy Road",
+        "name": "Sirilak Spice and Herbal Botanical Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12770414401,
+      "lat": 7.5808782,
+      "lon": 80.626484,
+      "tags": {
+        "addr:housenumber": "200",
+        "addr:street": "Jaffna - Kandy Road",
+        "name": "Paramount Spice Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8144003521,
+      "lat": 7.5886683,
+      "lon": 80.7046115,
+      "tags": {
+        "name": "Opalgala Transmission Station",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8144003524,
+      "lat": 7.5897916,
+      "lon": 80.7053919,
+      "tags": {
+        "ele": "1343",
+        "name": "Opalgala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8144003520,
+      "lat": 7.5900283,
+      "lon": 80.7137648,
+      "tags": {
+        "name": "Karagahatenna Transmission Station",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8145531204,
+      "lat": 7.5894418,
+      "lon": 80.7136586,
+      "tags": {
+        "ele": "1280",
+        "name": "Karagahatenna",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10869934311,
+      "lat": 7.6694475,
+      "lon": 80.6446908,
+      "tags": {
+        "historic": "archaeological_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13762338901,
+      "lat": 7.6846529,
+      "lon": 80.5800733,
+      "tags": {
+        "artwork_type": "statue",
+        "check_date": "2026-04-26",
+        "name": "Buddhist Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13762477201,
+      "lat": 7.7183562,
+      "lon": 80.5363906,
+      "tags": {
+        "artwork_type": "statue",
+        "check_date": "2026-04-26",
+        "name": "Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6134602817,
+      "lat": 7.6759913,
+      "lon": 80.6352823,
+      "tags": {
+        "addr:street": "Melpitiya Rd.",
+        "name": "Alugolla",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6853942086,
+      "lat": 7.7599403,
+      "lon": 80.571142,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10875211542,
+      "lat": 7.698132,
+      "lon": 80.6385301,
+      "tags": {
+        "ele": "739",
+        "name": "Arangala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4938231523,
+      "lat": 7.7668566,
+      "lon": 80.6404028,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Menikdena Archeological Reserve"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5043038322,
+      "lat": 7.588254,
+      "lon": 80.7552087,
+      "tags": {
+        "name": "Sera Ella Water Fall",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11496548721,
+      "lat": 7.6237911,
+      "lon": 80.9442562,
+      "tags": {
+        "direction": "0-360",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4986424115,
+      "lat": 7.6319921,
+      "lon": 80.9362697,
+      "tags": {
+        "addr:street": "Hettipola - Wasgamuwa Road",
+        "name": "Safari Palace Wasgamuwa",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5350918621,
+      "lat": 7.6991061,
+      "lon": 80.7589715,
+      "tags": {
+        "name": "Moragahakanda Reservoir Viewpoint",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6144585612,
+      "lat": 7.7000946,
+      "lon": 80.7682263,
+      "tags": {
+        "artwork_type": "statue",
+        "material": "stone",
+        "name": "Moragahakanda Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4859812933,
+      "lat": 7.8012322,
+      "lon": 80.606049,
+      "tags": {
+        "name:en": "Dambulla temple",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10856002215,
+      "lat": 7.8287849,
+      "lon": 80.570999,
+      "tags": {
+        "artwork_type": "statue",
+        "material": "concrete",
+        "name": "Bandaranayake Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5589539521,
+      "lat": 7.8372255,
+      "lon": 80.6298651,
+      "tags": {
+        "archaeological_site": "megalith",
+        "facebook": "https://www.facebook.com/pg/Ibbankatuwa-megalithic-Burial-Site-292917867899104/",
+        "historic": "archaeological_site",
+        "name": "Ibbankatuwa Megalithic Burial Site",
+        "name:pl": "Ibbankatuwa cmentarzysko megalityczne",
+        "name:si": "ඉබ්බන්කටුව මෙෙගලිතික සුසාන",
+        "opening_hours": "Mo-Su 09:00-18:00",
+        "phone": "+94 66 2284760",
+        "tourism": "museum",
+        "wikidata": "Q28406819",
+        "wikipedia": "en:Ibbankatuwa Megalithic Tombs"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13445797001,
+      "lat": 7.8479318,
+      "lon": 80.648388,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6181355843,
+      "lat": 7.8544223,
+      "lon": 80.6524506,
+      "tags": {
+        "historic": "monument",
+        "name": "Sima Malakaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4306992720,
+      "lat": 7.8573717,
+      "lon": 80.6473675,
+      "tags": {
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10861774450,
+      "lat": 7.8554147,
+      "lon": 80.6513361,
+      "tags": {
+        "artwork_type": "statue",
+        "level": "4",
+        "name": "Golden Buddha",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6853934693,
+      "lat": 7.8738283,
+      "lon": 80.6510324,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11775113771,
+      "lat": 7.8700175,
+      "lon": 80.6519254,
+      "tags": {
+        "historic": "memorial",
+        "name": "Soldier"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2714398529,
+      "lat": 7.8608104,
+      "lon": 80.6758588,
+      "tags": {
+        "name": "Popham's Arboretum",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6853939394,
+      "lat": 7.8569208,
+      "lon": 80.6880064,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6127982022,
+      "lat": 7.8750828,
+      "lon": 80.7349719,
+      "tags": {
+        "archaeological_site": "settlement",
+        "historic": "archaeological_site",
+        "name": "Kaludiya Pokuna",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12788198153,
+      "lat": 7.8744991,
+      "lon": 80.7353824,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "stone",
+        "name": "9 c. inscription"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12788198178,
+      "lat": 7.8751823,
+      "lon": 80.7357853,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "stele",
+        "name": "10 c. inscription"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5071145827,
+      "lat": 7.913441,
+      "lon": 80.680038,
+      "tags": {
+        "amenity": "place_of_worship",
+        "religion": "buddhist",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6856352142,
+      "lat": 7.9291733,
+      "lon": 80.6871997,
+      "tags": {
+        "historic": "wayside_shrine",
+        "natural": "tree",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6856250272,
+      "lat": 7.9263589,
+      "lon": 80.6958155,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "christian"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13076883175,
+      "lat": 7.9399033,
+      "lon": 80.6931444,
+      "tags": {
+        "historic": "cannon"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13076894270,
+      "lat": 7.9398015,
+      "lon": 80.6930903,
+      "tags": {
+        "historic": "cannon"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6837039786,
+      "lat": 7.9373361,
+      "lon": 80.7148794,
+      "tags": {
+        "name": "Potani",
+        "name:ru": "Потани",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5138765253,
+      "lat": 7.9286984,
+      "lon": 80.7439194,
+      "tags": {
+        "name": "Siyabalagala",
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11022083105,
+      "lat": 7.9367251,
+      "lon": 80.7528245,
+      "tags": {
+        "name:en": "Viewpoint of Sigirya Rock",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5138765254,
+      "lat": 7.9433198,
+      "lon": 80.7420526,
+      "tags": {
+        "ele": "254",
+        "name": "Duwannagala",
+        "natural": "peak",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7101435261,
+      "lat": 7.9407419,
+      "lon": 80.7420008,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12543613879,
+      "lat": 7.942375,
+      "lon": 80.7419599,
+      "tags": {
+        "name": "Duwannagala Rock",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12543620282,
+      "lat": 7.9431196,
+      "lon": 80.7420397,
+      "tags": {
+        "name": "Sunset Point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6649955785,
+      "lat": 7.9581412,
+      "lon": 80.7488254,
+      "tags": {
+        "historic": "ruins",
+        "name:en": "Ruins",
+        "name:fr": "Ruines",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3205709398,
+      "lat": 7.9518339,
+      "lon": 80.7575474,
+      "tags": {
+        "name": "Cruel elephant rides",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3207221761,
+      "lat": 7.9506245,
+      "lon": 80.7595179,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6853931487,
+      "lat": 7.9512853,
+      "lon": 80.7536647,
+      "tags": {
+        "name": "Pethikada Paintings & Crafts",
+        "phone": "+94 77 7132504",
+        "tourism": "gallery",
+        "website": "http://pethikada.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11802067469,
+      "lat": 7.9500924,
+      "lon": 80.7574137,
+      "tags": {
+        "name": "Mapagala Rock",
+        "natural": "rock",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11802067669,
+      "lat": 7.9511153,
+      "lon": 80.7576595,
+      "tags": {
+        "historic": "ruins",
+        "name": "Mapagala Archaeological Site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13022382601,
+      "lat": 7.9513664,
+      "lon": 80.7537721,
+      "tags": {
+        "name": "Elephant cruelty",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019733740,
+      "lat": 7.9560209,
+      "lon": 80.7585222,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Audience Hall",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019733762,
+      "lat": 7.9562783,
+      "lon": 80.7582684,
+      "tags": {
+        "name": "Cobra Hood Cave",
+        "natural": "cave_entrance",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2732074707,
+      "lat": 7.956437,
+      "lon": 80.7595043,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Apsara Paintings",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4016318087,
+      "lat": 7.9560027,
+      "lon": 80.7597243,
+      "tags": {
+        "direction": "170",
+        "name": "Sigiriya Reservoir Viewpoint",
+        "tourism": "viewpoint",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4366143463,
+      "lat": 7.9566634,
+      "lon": 80.7599301,
+      "tags": {
+        "ele": "363",
+        "name": "Sigiriya",
+        "name:en": "Lion Rock",
+        "name:kn": "ಸೀಗಿರಿಯ",
+        "name:pl": "Lwia skała",
+        "name:ru": "Сигирия",
+        "name:si": "සීගිරිය",
+        "name:ta": "சிகிரியா",
+        "name:zh": "獅子岩",
+        "natural": "peak",
+        "prominence": "143",
+        "wikipedia:fr": "Sigirîya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7194678488,
+      "lat": 7.9585864,
+      "lon": 80.7586475,
+      "tags": {
+        "name:en": "Carved Rock",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7194678489,
+      "lat": 7.9584831,
+      "lon": 80.7586264,
+      "tags": {
+        "name": "Preaching Rock",
+        "natural": "rock",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2732074684,
+      "lat": 7.957308,
+      "lon": 80.7600766,
+      "tags": {
+        "direction": "10",
+        "name": "Pidurangala Rock Viewpoint",
+        "tourism": "viewpoint",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4016303689,
+      "lat": 7.9576062,
+      "lon": 80.7601078,
+      "tags": {
+        "historic": "monument",
+        "name": "Lion's Paws"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7194686985,
+      "lat": 7.9573289,
+      "lon": 80.7617799,
+      "tags": {
+        "name:en": "Aligala Cave",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7194686986,
+      "lat": 7.958358,
+      "lon": 80.7602134,
+      "tags": {
+        "name:en": "Rock with Holes",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10796165510,
+      "lat": 7.9612807,
+      "lon": 80.7447426,
+      "tags": {
+        "name:en": "Melu’s rock",
+        "natural": "rock",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12545522394,
+      "lat": 7.9613414,
+      "lon": 80.7447651,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12556676308,
+      "lat": 7.9646354,
+      "lon": 80.7575197,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019733819,
+      "lat": 7.9658517,
+      "lon": 80.7623997,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Pidurangala Vihara",
+        "name:en": "Pidurangala Vihara",
+        "name:ru": "Кирпичный Будда Пидурангала",
+        "name:si": "පිදුරංගල විහාරය",
+        "religion": "buddhist",
+        "tourism": "attraction",
+        "wikidata": "Q16669900",
+        "wikimedia_commons": "Category:Pidurangala temple",
+        "wikipedia": "en:Pidurangala Vihara"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3937275720,
+      "lat": 7.9656168,
+      "lon": 80.7618517,
+      "tags": {
+        "direction": "190",
+        "name": "Sigiriya viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5319583421,
+      "lat": 7.9653604,
+      "lon": 80.7618926,
+      "tags": {
+        "direction": "180",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4683162589,
+      "lat": 7.9680532,
+      "lon": 80.7580508,
+      "tags": {
+        "name:en": "Sigiriya and Pidurangala rocks view point",
+        "name:es": "Vista panorámica de Sigiriya rock y de Pidurangala",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6222604385,
+      "lat": 7.9682586,
+      "lon": 80.75511,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6649955485,
+      "lat": 7.9699701,
+      "lon": 80.7599013,
+      "tags": {
+        "historic": "ruins",
+        "name:en": "Chapter House"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6649955585,
+      "lat": 7.9696702,
+      "lon": 80.759832,
+      "tags": {
+        "historic": "ruins",
+        "name:en": "Image House"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019733746,
+      "lat": 7.9694402,
+      "lon": 80.760698,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Bodikaraya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019733748,
+      "lat": 7.9680888,
+      "lon": 80.7610523,
+      "tags": {
+        "name": "Cave Inscriptions",
+        "natural": "cave_entrance",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2019734191,
+      "lat": 7.9666513,
+      "lon": 80.7623515,
+      "tags": {
+        "direction": "90",
+        "name": "Sunrise viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4366143462,
+      "lat": 7.9662102,
+      "lon": 80.7616977,
+      "tags": {
+        "ele": "340",
+        "name": "Pidurangala",
+        "name:ru": "Пидурангала",
+        "natural": "peak",
+        "source:ele": "gps",
+        "wikidata": "Q65949703",
+        "wikimedia_commons": "Category:Pidurangala rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5319571822,
+      "lat": 7.9662763,
+      "lon": 80.7625624,
+      "tags": {
+        "direction": "90",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11431846298,
+      "lat": 7.9661961,
+      "lon": 80.7625519,
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Giant buddha"
+      }
+    },
+    {
+      "type": "way",
+      "id": 519016201,
+      "center": {
+        "lat": 7.8469714,
+        "lon": 80.4768216
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "landuse": "forest",
+        "leisure": "nature_reserve",
+        "name": "Pallekele Reserved Forest",
+        "natural": "wood",
+        "start_date": "1896"
+      }
+    },
+    {
+      "type": "way",
+      "id": 393032625,
+      "center": {
+        "lat": 7.7700909,
+        "lon": 80.530526
+      },
+      "tags": {
+        "landuse": "yes",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1086363590,
+      "center": {
+        "lat": 7.4456983,
+        "lon": 80.5753038
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "Enasalmada Waththa Land"
+      }
+    },
+    {
+      "type": "way",
+      "id": 448760366,
+      "center": {
+        "lat": 7.4241186,
+        "lon": 80.6310385
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "S.B. Yalegama Ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 559357884,
+      "center": {
+        "lat": 7.3959562,
+        "lon": 80.6969189
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 814839061,
+      "center": {
+        "lat": 7.4610341,
+        "lon": 80.6653352
+      },
+      "tags": {
+        "area": "yes",
+        "artwork_type": "statue",
+        "name": "Buddhist Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1216721609,
+      "center": {
+        "lat": 7.4717623,
+        "lon": 80.6219901
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1216742283,
+      "center": {
+        "lat": 7.4728334,
+        "lon": 80.635327
+      },
+      "tags": {
+        "addr:housenumber": "steps",
+        "name": "Danger Road",
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1197751507,
+      "center": {
+        "lat": 7.4976711,
+        "lon": 80.6218543
+      },
+      "tags": {
+        "addr:city": "Aluwihare",
+        "addr:street": "Jaffna - Kandy Road",
+        "amenity": "place_of_worship",
+        "denomination": "theravada",
+        "historic": "wayside_shrine",
+        "name": "Matale Aluvihara Raja Maha Viharaya",
+        "religion": "buddhist",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 287419519,
+      "center": {
+        "lat": 7.5069052,
+        "lon": 80.6640574
+      },
+      "tags": {
+        "ele": "6",
+        "leisure": "park",
+        "name": "school ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273409,
+      "center": {
+        "lat": 7.4606456,
+        "lon": 80.7927449
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273410,
+      "center": {
+        "lat": 7.4579222,
+        "lon": 80.7911088
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273411,
+      "center": {
+        "lat": 7.4557254,
+        "lon": 80.7900734
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1424993541,
+      "center": {
+        "lat": 7.4614421,
+        "lon": 80.8006424
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273419,
+      "center": {
+        "lat": 7.4673301,
+        "lon": 80.7694124
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273418,
+      "center": {
+        "lat": 7.4670908,
+        "lon": 80.7727544
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273421,
+      "center": {
+        "lat": 7.5151872,
+        "lon": 80.7644825
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1424993540,
+      "center": {
+        "lat": 7.4619966,
+        "lon": 80.8009172
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273412,
+      "center": {
+        "lat": 7.463465,
+        "lon": 80.8013486
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273413,
+      "center": {
+        "lat": 7.4663687,
+        "lon": 80.8014742
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273414,
+      "center": {
+        "lat": 7.466531,
+        "lon": 80.7978385
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273415,
+      "center": {
+        "lat": 7.4739468,
+        "lon": 80.7946104
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273416,
+      "center": {
+        "lat": 7.4701452,
+        "lon": 80.7960936
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273417,
+      "center": {
+        "lat": 7.4695335,
+        "lon": 80.7981496
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1425273420,
+      "center": {
+        "lat": 7.5208406,
+        "lon": 80.7668965
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 316427428,
+      "center": {
+        "lat": 7.6697429,
+        "lon": 80.645926
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "name": "Nalanda Gedige",
+        "religion": "buddhist",
+        "wikipedia": "en:Nalanda Gedige"
+      }
+    },
+    {
+      "type": "way",
+      "id": 316427429,
+      "center": {
+        "lat": 7.6699005,
+        "lon": 80.6459155
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "name": "Nalanda Gedige",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "way",
+      "id": 442028558,
+      "center": {
+        "lat": 7.6860837,
+        "lon": 80.6261159
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431435463,
+      "center": {
+        "lat": 7.8542228,
+        "lon": 80.652913
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431488935,
+      "center": {
+        "lat": 7.8553922,
+        "lon": 80.6519045
+      },
+      "tags": {
+        "addr:city": "Dambulla",
+        "addr:street": "Jaffna - Kandy Road",
+        "alt_name": "Golden Temple of Dambulla",
+        "amenity": "place_of_worship",
+        "denomination": "theravada",
+        "name": "The Golden Temple",
+        "name:pl": "Złota świątynia",
+        "name:si": "රංගිරි දඹුලු විහාරය",
+        "religion": "buddhist",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431435464,
+      "center": {
+        "lat": 7.8514017,
+        "lon": 80.6533124
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 824870522,
+      "center": {
+        "lat": 7.85243,
+        "lon": 80.6527802
+      },
+      "tags": {
+        "leisure": "garden",
+        "name": "Herbal Garden",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1167894557,
+      "center": {
+        "lat": 7.8541656,
+        "lon": 80.652492
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Museum of Wall Paintings",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431488940,
+      "center": {
+        "lat": 7.8558323,
+        "lon": 80.648793
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431488941,
+      "center": {
+        "lat": 7.8568689,
+        "lon": 80.6475616
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431489913,
+      "center": {
+        "lat": 7.8565898,
+        "lon": 80.6484169
+      },
+      "tags": {
+        "alt_name": "Dambulla Rock Temple",
+        "amenity": "place_of_worship",
+        "denomination": "theravada",
+        "heritage": "1",
+        "heritage:operator": "whc",
+        "name": "Dambulla Cave Temple",
+        "name:fr": "Temple d'Or de Dambulla",
+        "opening_hours": "07:00-19:00",
+        "ref:whc": "561",
+        "religion": "buddhist",
+        "tourism": "attraction",
+        "whc:criteria": "(i),(vi)",
+        "whc:inscription_date": "1991",
+        "wikipedia": "en:Dambulla cave temple"
+      }
+    },
+    {
+      "type": "way",
+      "id": 431489755,
+      "center": {
+        "lat": 7.8569384,
+        "lon": 80.6525154
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 581120217,
+      "center": {
+        "lat": 7.855427,
+        "lon": 80.6513847
+      },
+      "tags": {
+        "building": "yes",
+        "building:levels": "3",
+        "fee": "yes",
+        "name": "Buddhist Museum",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 191390663,
+      "center": {
+        "lat": 7.9569761,
+        "lon": 80.7518029
+      },
+      "tags": {
+        "addr:city": "Sigiriya",
+        "building": "yes",
+        "check_date": "2024-08-18",
+        "fee": "yes",
+        "name": "Sigiriya Museum",
+        "name:zh": "狮子岩",
+        "tourism": "museum"
+      }
+    },
+    {
+      "type": "way",
+      "id": 23810659,
+      "center": {
+        "lat": 7.9568222,
+        "lon": 80.7598528
+      },
+      "tags": {
+        "description": "1860 marches à monter afin d'atteindre le sommet (~1h30)",
+        "historic": "archaeological_site",
+        "name": "Sigiriya",
+        "name:en": "Lion Temple",
+        "name:fr": "Rocher du Lion",
+        "natural": "bare_rock",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "way",
+      "id": 217591865,
+      "center": {
+        "lat": 7.957059,
+        "lon": 80.7573295
+      },
+      "tags": {
+        "alt_name:en": "Sinhagiri;Lion Rock",
+        "heritage": "1",
+        "heritage:operator": "whc",
+        "historic": "ruins",
+        "name": "සීගිරිය",
+        "name:en": "Sigiriya",
+        "name:ru": "Сигирия",
+        "name:si": "සීගිරිය",
+        "name:ta": "சிகிரியா",
+        "ref:whc": "202",
+        "whc:criteria": "(ii)(iii)(iv)",
+        "whc:inscription_date": "1982",
+        "wikidata": "Q272153",
+        "wikipedia": "en:Sigiriya"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398895494,
+      "center": {
+        "lat": 7.9566018,
+        "lon": 80.7598555
+      },
+      "tags": {
+        "area": "no",
+        "layer": "1",
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398895493,
+      "center": {
+        "lat": 7.9570616,
+        "lon": 80.7597957
+      },
+      "tags": {
+        "area": "yes",
+        "area:highway": "pedestrian",
+        "ele": "363",
+        "highway": "pedestrian",
+        "lit": "no",
+        "name": "Upper Terrace",
+        "note": "This terrace has been aligned on map following on-site GPS data (accuracy 3.0 metres)",
+        "smoothness": "intermediate",
+        "surface": "compacted",
+        "tourism": "viewpoint",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 498000269,
+      "center": {
+        "lat": 7.9572136,
+        "lon": 80.7561034
+      },
+      "tags": {
+        "leisure": "park",
+        "note": "Rough sketch of the free area of the restored park. Improve if you can :-)"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1308414864,
+      "center": {
+        "lat": 7.9616016,
+        "lon": 80.7447518
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1473316379,
+      "center": {
+        "lat": 7.9655086,
+        "lon": 80.7617547
+      },
+      "tags": {
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "way",
+      "id": 258787124,
+      "center": {
+        "lat": 7.9697276,
+        "lon": 80.7603241
+      },
+      "tags": {
+        "historic": "archaeological_site",
+        "name": "Pidurangala"
+      }
+    },
+    {
+      "type": "way",
+      "id": 398737879,
+      "center": {
+        "lat": 7.966169,
+        "lon": 80.7616044
+      },
+      "tags": {
+        "natural": "cliff"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6315786,
+      "center": {
+        "lat": 7.7436137,
+        "lon": 80.9531838
+      },
+      "tags": {
+        "attribution": "Forest Department of Sri Lanka",
+        "boundary": "national_park",
+        "leisure": "nature_reserve",
+        "name": "Wasgamuwa National Park",
+        "name:si": "වස්ගමුව ජාතික උද්‍යානය",
+        "protect_class": "2",
+        "protection_title": "National Park",
+        "ref:WDPA": "1364",
+        "site_ownership": "national",
+        "site_status": "designated",
+        "start_date": "1984",
+        "type": "multipolygon",
+        "wikidata": "Q7971410",
+        "wikipedia": "en:Wasgamuwa National Park"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10491478,
+      "center": {
+        "lat": 7.4490661,
+        "lon": 80.8234466
+      },
+      "tags": {
+        "leisure": "nature_reserve",
+        "name": "Knuckles Conservation Forest",
+        "note": "Boarder is approximate",
+        "type": "multipolygon",
+        "wikipedia": "en:Knuckles Mountain Range"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 9181052,
+      "center": {
+        "lat": 7.8538198,
+        "lon": 80.6524545
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Dambulla Buddhist Museum",
+        "tourism": "museum",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}

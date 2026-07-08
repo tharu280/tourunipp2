@@ -1,0 +1,1914 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-08T09:49:45Z",
+    "timestamp_areas_base": "2026-07-07T19:41:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 4437193978,
+      "lat": 5.9647634,
+      "lon": 80.3836015,
+      "tags": {
+        "name": "Midigama Right",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13828686766,
+      "lat": 5.9648428,
+      "lon": 80.3845712,
+      "tags": {
+        "access": "yes",
+        "leisure": "swimming_area",
+        "name": "Wild Beach",
+        "natural": "beach",
+        "surface": "sand",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13828686767,
+      "lat": 5.9648291,
+      "lon": 80.3907672,
+      "tags": {
+        "access": "yes",
+        "leisure": "swimming_area",
+        "name": "Midigama Beach",
+        "natural": "beach",
+        "surface": "sand",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12777802301,
+      "lat": 5.9610609,
+      "lon": 80.397726,
+      "tags": {
+        "name": "Stilt fishermen",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7063135687,
+      "lat": 5.9585884,
+      "lon": 80.4060051,
+      "tags": {
+        "name": "Stilt Fishermen",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2643547171,
+      "lat": 5.9572389,
+      "lon": 80.4199146,
+      "tags": {
+        "image": "https://photos.app.goo.gl/DcQXXL7VNgKpwCh88",
+        "tourism": "viewpoint",
+        "url": "https://youtu.be/CvBb51IL9Ac"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13475215804,
+      "lat": 5.9603772,
+      "lon": 80.4206198,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/d8NdqmCrNG5Ngf2M9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13475232948,
+      "lat": 5.9658152,
+      "lon": 80.4219995,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/wTavCTwy94wXPnak6",
+        "memorial": "plaque",
+        "name": "SOME PARTS OF THIS MOSQUE HAS BEEN REPAIRED BY TURKISH RED CRESCENT SOCIETY"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5800272353,
+      "lat": 5.9862051,
+      "lon": 80.3953023,
+      "tags": {
+        "addr:street": "Midigama - Pathegama Road",
+        "name:en": "Pallisters",
+        "opening_hours": "Fr-Su 10:00-17:00",
+        "phone": "0770253459",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1745489040,
+      "lat": 5.9694792,
+      "lon": 80.4199094,
+      "tags": {
+        "historic": "monument",
+        "image": "https://photos.app.goo.gl/oiiN59eP27b2jmrx7",
+        "is_in": "Matara District, Southern Province, Sri Lanka.",
+        "name": "Kushtarajagala Statue",
+        "name:ru": "Статуя Куштараджа Гала",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6931105798,
+      "lat": 5.9686905,
+      "lon": 80.4246135,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/JDxuhJQ4wCFLiMLRA",
+        "name": "David Martin Sailraweera"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5764539554,
+      "lat": 5.9392522,
+      "lon": 80.4682756,
+      "tags": {
+        "name": "Coconut Tree Hill",
+        "name:en": "Coconut Tree Hill",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10763693082,
+      "lat": 5.9364429,
+      "lon": 80.5248192,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12347126831,
+      "lat": 5.9392386,
+      "lon": 80.526287,
+      "tags": {
+        "description": "Late Primer-minister",
+        "historic": "memorial",
+        "memorial": "statue",
+        "name": "Late Prime Minister Hon. Dudley Senanayaka"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12356381109,
+      "lat": 5.9367405,
+      "lon": 80.5273492,
+      "tags": {
+        "entrance": "main",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13476261628,
+      "lat": 5.9466305,
+      "lon": 80.4452992,
+      "tags": {
+        "image": "https://photos.app.goo.gl/wq6PyTUxbNspadSm8",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2380090353,
+      "lat": 5.9470016,
+      "lon": 80.4513825,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5253581491,
+      "lat": 5.946629,
+      "lon": 80.4470643,
+      "tags": {
+        "description": "Great view over the ocean.",
+        "name": "Weligambay Villas Parking Space",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6131886486,
+      "lat": 5.9455569,
+      "lon": 80.4474113,
+      "tags": {
+        "name:en": "Secluded Beach",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9483334917,
+      "lat": 5.9447427,
+      "lon": 80.4484671,
+      "tags": {
+        "image": "https://photos.app.goo.gl/8FibMY6urEDohSdW6",
+        "name:en": "Sunset Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13476261682,
+      "lat": 5.9462782,
+      "lon": 80.4471639,
+      "tags": {
+        "image": "https://photos.app.goo.gl/hF26AruF4Az8PYMW9",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13503575633,
+      "lat": 5.9448619,
+      "lon": 80.4476066,
+      "tags": {
+        "tourism": "viewpoint",
+        "url": "https://youtu.be/xxzrIKn96_g"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11738542343,
+      "lat": 5.9441305,
+      "lon": 80.4547875,
+      "tags": {
+        "direction": "90-180",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2380090550,
+      "lat": 5.9416459,
+      "lon": 80.4622185,
+      "tags": {
+        "description": "parrot rock",
+        "name:en": "Parrot Rock",
+        "name:zh": "观景台",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477827967,
+      "lat": 5.9431996,
+      "lon": 80.463057,
+      "tags": {
+        "artwork_type": "graffiti",
+        "image": "https://photos.app.goo.gl/7NuXcrq5VzZS1XCC7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5242116921,
+      "lat": 5.9412891,
+      "lon": 80.4655387,
+      "tags": {
+        "name:en": "Turtle Bay",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10203633820,
+      "lat": 5.9527733,
+      "lon": 80.4675326,
+      "tags": {
+        "name:en": "Art point",
+        "name:ru": "Стрит Арт",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13476235409,
+      "lat": 5.9566583,
+      "lon": 80.4545417,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/VE1BW4GzSx6BApdj8"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13476235411,
+      "lat": 5.9567874,
+      "lon": 80.4545952,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/UahP2drNrHeqYLaq7"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13476235421,
+      "lat": 5.9568549,
+      "lon": 80.4551292,
+      "tags": {
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/ZEGQXpG2y3cMy8cw6",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10794208691,
+      "lat": 5.9644511,
+      "lon": 80.4560061,
+      "tags": {
+        "historic": "memorial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9722122604,
+      "lat": 5.9738344,
+      "lon": 80.4295665,
+      "tags": {
+        "colour": "gold",
+        "height": "3.5",
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/tioykyVzfVRCxmpg9",
+        "memorial": "statue",
+        "name:en": "Hemachandra Gunasekara",
+        "name:ru": "г-н Гунасекара",
+        "name:si": "ගුණසේකර මැතිතුමැ"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9722124151,
+      "lat": 5.9738297,
+      "lon": 80.429318,
+      "tags": {
+        "colour": "black",
+        "height": "3.5",
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/nirU2WM6ajNszLQT8",
+        "memorial": "statue",
+        "name:en": "General Montagu Jayawickrama",
+        "name:ru": "Генерал Монтегю Джаявикрама",
+        "name:si": "සෙන්පති මොන්ටේගු ජයවික්‍රම"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4322773847,
+      "lat": 5.9530974,
+      "lon": 80.5219358,
+      "tags": {
+        "leisure": "park",
+        "name": "waigama"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3493298910,
+      "lat": 6.041543,
+      "lon": 80.4082151,
+      "tags": {
+        "name": "Kananke Bridge",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10931848566,
+      "lat": 6.0552749,
+      "lon": 80.4243181,
+      "tags": {
+        "name:en": "Hakgedi Ella Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5920897285,
+      "lat": 6.0054716,
+      "lon": 80.4331307,
+      "tags": {
+        "name:en": "nugaduwa",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1231840497,
+      "lat": 6.0396569,
+      "lon": 80.4835523,
+      "tags": {
+        "name": "Snake farm",
+        "tourism": "zoo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6852252385,
+      "lat": 6.1012783,
+      "lon": 80.4763285,
+      "tags": {
+        "name:en": "Ajantha",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2176947342,
+      "lat": 6.3319645,
+      "lon": 80.5061691,
+      "tags": {
+        "name": "Hathmale Ella",
+        "tourism": "viewpoint",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5745528021,
+      "lat": 6.3645587,
+      "lon": 80.4786707,
+      "tags": {
+        "name:en": "Sinharaja Conservation Centre",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4558849898,
+      "lat": 5.7764125,
+      "lon": 80.634465,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7160137149,
+      "lat": 5.9356719,
+      "lon": 80.5325175,
+      "tags": {
+        "historic": "ruins"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6620896189,
+      "lat": 5.9192089,
+      "lon": 80.5916227,
+      "tags": {
+        "name:en": "Dondra Point",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10778145937,
+      "lat": 5.9263268,
+      "lon": 80.5877166,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10778145947,
+      "lat": 5.9271463,
+      "lon": 80.5883953,
+      "tags": {
+        "amenity": "place_of_worship",
+        "artwork_type": "statue",
+        "image": "https://photos.app.goo.gl/MqqPkFUX34iNDBp1A",
+        "name": "Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10760867322,
+      "lat": 5.9410478,
+      "lon": 80.5371821,
+      "tags": {
+        "historic": "memorial",
+        "memorial": "stone",
+        "name": "Victims Of Tsunami"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12353287601,
+      "lat": 5.9452259,
+      "lon": 80.5370617,
+      "tags": {
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10586762306,
+      "lat": 5.9449137,
+      "lon": 80.5399231,
+      "tags": {
+        "name:en": "Crocodile River",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12354213258,
+      "lat": 5.9429712,
+      "lon": 80.5373123,
+      "tags": {
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3366002861,
+      "lat": 5.9449108,
+      "lon": 80.5481581,
+      "tags": {
+        "historic": "city_gate",
+        "name": "Fort Entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10778107065,
+      "lat": 5.945397,
+      "lon": 80.5497745,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10845040205,
+      "lat": 5.9473111,
+      "lon": 80.5484839,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10845043805,
+      "lat": 5.9446214,
+      "lon": 80.5493569,
+      "tags": {
+        "historic": "memorial"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12441255369,
+      "lat": 5.9432405,
+      "lon": 80.5481063,
+      "tags": {
+        "historic": "monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13472261310,
+      "lat": 5.9424085,
+      "lon": 80.5493437,
+      "tags": {
+        "bridge:support": "yes",
+        "historic": "yes",
+        "image": "https://photos.app.goo.gl/8bVpqisWcr5vCUqAA",
+        "ruins": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13472261311,
+      "lat": 5.9419894,
+      "lon": 80.5492841,
+      "tags": {
+        "bridge:support": "yes",
+        "historic": "yes",
+        "image": "https://photos.app.goo.gl/2yqhybu4uQWbbexb6",
+        "ruins": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879928,
+      "lat": 5.9438233,
+      "lon": 80.5460168,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/dhUX4fgDKepR2DJk9",
+        "memorial": "technical_monument"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879931,
+      "lat": 5.9417414,
+      "lon": 80.5492457,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/wGoQ5sdJPHQFkiJj8",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879932,
+      "lat": 5.9417165,
+      "lon": 80.5492428,
+      "tags": {
+        "artwork_type": "sculpture",
+        "image": "https://photos.app.goo.gl/QRRBsggx7duVJPoP7",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879945,
+      "lat": 5.9428144,
+      "lon": 80.5493813,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/5xsu6rWGfxH4FWHA8",
+        "memorial": "plaque"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879946,
+      "lat": 5.945387,
+      "lon": 80.5486697,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/8Kemifzjoku24yRE9",
+        "memorial": "plaque",
+        "name": "Koica"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13477879947,
+      "lat": 5.9454727,
+      "lon": 80.5489071,
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/QUHJcipSEb514BVF9",
+        "memorial": "plaque",
+        "name": "https://photos.app.goo.gl/QUHJcipSEb514BVF9"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10778107067,
+      "lat": 5.9451786,
+      "lon": 80.5557878,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "hindu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10948764905,
+      "lat": 5.9489852,
+      "lon": 80.5469835,
+      "tags": {
+        "historic": "monument",
+        "name:en": "Rev. Anagarika Dharmapala"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10933003915,
+      "lat": 5.9411131,
+      "lon": 80.5718592,
+      "tags": {
+        "historic": "monument",
+        "name": "Big Standing Buddha"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10848305010,
+      "lat": 5.9528816,
+      "lon": 80.5755688,
+      "tags": {
+        "artwork_type": "statue",
+        "name": "Buddha Statue",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6676206079,
+      "lat": 5.9803782,
+      "lon": 80.5497019,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6676217539,
+      "lat": 5.9432076,
+      "lon": 80.6166051,
+      "tags": {
+        "historic": "wayside_shrine",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5429410925,
+      "lat": 5.9458572,
+      "lon": 80.6338986,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10779464806,
+      "lat": 5.9457353,
+      "lon": 80.6333872,
+      "tags": {
+        "name:en": "Blowhole",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4066373481,
+      "lat": 5.9446155,
+      "lon": 80.6401163,
+      "tags": {
+        "name": "Pittugal Kanda",
+        "natural": "rock"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11593689270,
+      "lat": 5.9594366,
+      "lon": 80.6827633,
+      "tags": {
+        "name:en": "Sea turtle feeding point",
+        "name:ru": "Кормление морских черепах",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13568838001,
+      "lat": 5.9599002,
+      "lon": 80.6848929,
+      "tags": {
+        "name:en": "Twin coconut tree swing",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11598066769,
+      "lat": 5.9627474,
+      "lon": 80.6995234,
+      "tags": {
+        "addr:street": "Pehebiya Road",
+        "name:en": "CoCo Bay Beach",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12518480532,
+      "lat": 5.9610562,
+      "lon": 80.7134482,
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9504129497,
+      "lat": 5.9601269,
+      "lon": 80.7194106,
+      "tags": {
+        "historic": "wreck",
+        "seamark:type": "wreck",
+        "seamark:wreck:category": "hull_showing",
+        "wreck:visible_at_high_tide": "yes",
+        "wreck:visible_at_low_tide": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11595481269,
+      "lat": 5.9608061,
+      "lon": 80.7197396,
+      "tags": {
+        "name:en": "Blue Beach Island",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12518379540,
+      "lat": 5.9613659,
+      "lon": 80.718916,
+      "tags": {
+        "name": "Two Oceans Gateway",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11529378869,
+      "lat": 6.0215819,
+      "lon": 80.5960749,
+      "tags": {
+        "name:en": "yatiyana handmade paper center",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9533631117,
+      "lat": 6.2996657,
+      "lon": 80.5666447,
+      "tags": {
+        "name:en": "Kiruwana Ella Waterfall",
+        "name:ru": "Кирувана",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564492613,
+      "lat": 6.359597,
+      "lon": 80.571611,
+      "tags": {
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9128405980,
+      "lat": 6.374451,
+      "lon": 80.5445628,
+      "tags": {
+        "name": "Raja Wetunu Ella",
+        "name:si": "රාජා වැටුනු ඇල්ල",
+        "tourism": "attraction",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5573204021,
+      "lat": 6.3702882,
+      "lon": 80.5622444,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564478342,
+      "lat": 6.3822158,
+      "lon": 80.589006,
+      "tags": {
+        "natural": "peak"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564488333,
+      "lat": 6.3858216,
+      "lon": 80.5937135,
+      "tags": {
+        "name": "Twin Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10975878965,
+      "lat": 6.3834353,
+      "lon": 80.591604,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564476084,
+      "lat": 6.3784533,
+      "lon": 80.6011202,
+      "tags": {
+        "name": "Patna Viewpoint",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5521783765,
+      "lat": 6.3753423,
+      "lon": 80.6034081,
+      "tags": {
+        "name": "Patna Sliding",
+        "waterway": "waterfall",
+        "width": "3"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564490522,
+      "lat": 6.3901927,
+      "lon": 80.586792,
+      "tags": {
+        "name": "Badura Fall",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10564489128,
+      "lat": 6.3867107,
+      "lon": 80.5941678,
+      "tags": {
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 446451657,
+      "center": {
+        "lat": 5.9652264,
+        "lon": 80.3836111
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 446443251,
+      "center": {
+        "lat": 5.9633841,
+        "lon": 80.3924749
+      },
+      "tags": {
+        "name:en": "Lazy left",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 914713628,
+      "center": {
+        "lat": 5.9602691,
+        "lon": 80.4005823
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 331628697,
+      "center": {
+        "lat": 5.9646599,
+        "lon": 80.3902255
+      },
+      "tags": {
+        "name:en": "midigama",
+        "name:ja": "ミディガマ",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 914713630,
+      "center": {
+        "lat": 5.9595199,
+        "lon": 80.4039963
+      },
+      "tags": {
+        "name:en": "Naomi Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 408253108,
+      "center": {
+        "lat": 5.9582081,
+        "lon": 80.4084323
+      },
+      "tags": {
+        "name:en": "Abimanagama Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1134338128,
+      "center": {
+        "lat": 5.9588281,
+        "lon": 80.4059005
+      },
+      "tags": {
+        "name:en": "Coconut Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1134338129,
+      "center": {
+        "lat": 5.9585662,
+        "lon": 80.4130592
+      },
+      "tags": {
+        "name:en": "Jungle Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 392336871,
+      "center": {
+        "lat": 5.968958,
+        "lon": 80.4278713
+      },
+      "tags": {
+        "name": "Weligama Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 392336872,
+      "center": {
+        "lat": 5.9598653,
+        "lon": 80.4208723
+      },
+      "tags": {
+        "name:en": "Fishamans reef",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 392336870,
+      "center": {
+        "lat": 5.9649308,
+        "lon": 80.4220851
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 321233215,
+      "center": {
+        "lat": 5.9385202,
+        "lon": 80.491523
+      },
+      "tags": {
+        "name:en": "Ubuntu Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1160824200,
+      "center": {
+        "lat": 5.9394004,
+        "lon": 80.5001461
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 497744372,
+      "center": {
+        "lat": 5.935968,
+        "lon": 80.5172118
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Madiha Beach",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1158995331,
+      "center": {
+        "lat": 5.9369443,
+        "lon": 80.5104288
+      },
+      "tags": {
+        "name": "Madiha Surf Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1332472594,
+      "center": {
+        "lat": 5.936813,
+        "lon": 80.5121654
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1316633242,
+      "center": {
+        "lat": 5.9363253,
+        "lon": 80.5237401
+      },
+      "tags": {
+        "lifeguard": "no",
+        "natural": "beach",
+        "supervised": "yes",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1316847451,
+      "center": {
+        "lat": 5.9355575,
+        "lon": 80.5210489
+      },
+      "tags": {
+        "lifeguard": "no",
+        "natural": "beach",
+        "supervised": "no",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 170181121,
+      "center": {
+        "lat": 5.9361884,
+        "lon": 80.525886
+      },
+      "tags": {
+        "access": "yes",
+        "lifeguard": "yes",
+        "name": "Polhena Beach",
+        "natural": "beach",
+        "supervised": "yes",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 573467082,
+      "center": {
+        "lat": 5.9435475,
+        "lon": 80.450259
+      },
+      "tags": {
+        "lifeguard": "no",
+        "name": "Secret Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1430189010,
+      "center": {
+        "lat": 5.9455362,
+        "lon": 80.4474675
+      },
+      "tags": {
+        "image": "https://photos.app.goo.gl/SabMbBetmfH3JxZf7",
+        "name": "Nyanawella beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1002466766,
+      "center": {
+        "lat": 5.9555627,
+        "lon": 80.4516709
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 568037021,
+      "center": {
+        "lat": 5.9654803,
+        "lon": 80.4517581
+      },
+      "tags": {
+        "natural": "beach",
+        "sport": "surfing"
+      }
+    },
+    {
+      "type": "way",
+      "id": 229404800,
+      "center": {
+        "lat": 5.943154,
+        "lon": 80.459959
+      },
+      "tags": {
+        "name": "Mirissa Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1348389699,
+      "center": {
+        "lat": 5.9412836,
+        "lon": 80.465689
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1160609459,
+      "center": {
+        "lat": 5.9568585,
+        "lon": 80.4549707
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/bSQJSXvgj2K4HvNp7"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1159084134,
+      "center": {
+        "lat": 5.972051,
+        "lon": 80.4293186
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine",
+        "image": "https://photos.app.goo.gl/9HSa2JFSxt59UdEMA",
+        "religion": "buddhist"
+      }
+    },
+    {
+      "type": "way",
+      "id": 905399115,
+      "center": {
+        "lat": 5.9703476,
+        "lon": 80.4412535
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1160828942,
+      "center": {
+        "lat": 5.9669078,
+        "lon": 80.4855838
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "way",
+      "id": 496954757,
+      "center": {
+        "lat": 5.9493609,
+        "lon": 80.5227026
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "way",
+      "id": 286550762,
+      "center": {
+        "lat": 6.0152639,
+        "lon": 80.4759068
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "archaeological_site",
+        "name": "Udukawa Doss House (Udukawa Ambalama)"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1311727070,
+      "center": {
+        "lat": 6.3615905,
+        "lon": 80.4834795
+      },
+      "tags": {
+        "name:en": "Hathbinna Ella Falls",
+        "waterway": "waterfall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 766638136,
+      "center": {
+        "lat": 5.9356309,
+        "lon": 80.5324509
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 766638137,
+      "center": {
+        "lat": 5.9360594,
+        "lon": 80.5322941
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 496787071,
+      "center": {
+        "lat": 5.9403609,
+        "lon": 80.5627474
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1157152265,
+      "center": {
+        "lat": 5.9404336,
+        "lon": 80.5610095
+      },
+      "tags": {
+        "natural": "beach",
+        "supervised": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 179655473,
+      "center": {
+        "lat": 5.9255996,
+        "lon": 80.5946417
+      },
+      "tags": {
+        "description": "Kiralawalla Beach ( කිරලවැල්ල ) located on Devinuwara Kiralawalla area.This is a fishery beach.",
+        "name": "Kiralawalla Beach",
+        "name:en": "Devinuwara Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 588057723,
+      "center": {
+        "lat": 5.9218798,
+        "lon": 80.5930259
+      },
+      "tags": {
+        "description": "Devinuwara Lighthouse Beach (කයිස වැල්ල) located on near Dondra Head lighthouse.",
+        "lifeguard": "no",
+        "name": "Hummana Beach Dondra",
+        "natural": "beach",
+        "supervised": "yes",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 599643483,
+      "center": {
+        "lat": 5.9274432,
+        "lon": 80.6016764
+      },
+      "tags": {
+        "description": "Wawwa Beach ( වාව්ව වැල්ල) is located on Devinuwara.This is the fishery beach.",
+        "name": "Wawwa Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 599643486,
+      "center": {
+        "lat": 5.9272082,
+        "lon": 80.6047409
+      },
+      "tags": {
+        "access": "no",
+        "description": "This place located in wawwa area in Devinuwara .Villagers called it “Wawulpalma (වවුල්පැල්ම)”,because of thereare more bats inside this seam. To enter the cave have two roots. One is Wawwa Beach Road,Dondra.Other one is from sea. ",
+        "fee": "no",
+        "name": "Wawulpalma",
+        "natural": "cave_entrance"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1339176587,
+      "center": {
+        "lat": 5.9329507,
+        "lon": 80.5894117
+      },
+      "tags": {
+        "building": "ruins",
+        "historic": "ruins",
+        "is_in": "Matara District, Southern Province, Sri Lanka.",
+        "name": "Galgane Devalaya",
+        "ruins": "building"
+      }
+    },
+    {
+      "type": "way",
+      "id": 384150115,
+      "center": {
+        "lat": 5.9327517,
+        "lon": 80.6131767
+      },
+      "tags": {
+        "name": "Nunna wella",
+        "name:si": "නුන්නවැල්ල",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 384150116,
+      "center": {
+        "lat": 5.9367658,
+        "lon": 80.6174947
+      },
+      "tags": {
+        "name": "Gandara Wella",
+        "name:si": "ගන්දර වැල්ල",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 286366417,
+      "center": {
+        "lat": 5.9478408,
+        "lon": 80.5352647
+      },
+      "tags": {
+        "addr:city": "Matara",
+        "addr:street": "Anagarika Dharmapala Mawatha",
+        "building": "yes",
+        "ele": "1",
+        "historic": "archaeological_site",
+        "name": "Old Dutch Market",
+        "roof:colour": "red",
+        "roof:shape": "gabled"
+      }
+    },
+    {
+      "type": "way",
+      "id": 496968674,
+      "center": {
+        "lat": 5.9412605,
+        "lon": 80.549045
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "wayside_shrine"
+      }
+    },
+    {
+      "type": "way",
+      "id": 596239241,
+      "center": {
+        "lat": 5.9429854,
+        "lon": 80.5495282
+      },
+      "tags": {
+        "historic": "memorial",
+        "image": "https://photos.app.goo.gl/8vecnLVkhp8MnqRz8",
+        "inscription": "Commemorating end if Civil war May 18, 2009",
+        "memorial": "war_memorial",
+        "name": "Soldier Statue"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1469630443,
+      "center": {
+        "lat": 5.9427684,
+        "lon": 80.5494063
+      },
+      "tags": {
+        "building": "yes",
+        "historic": "city_gate",
+        "image": "https://photos.app.goo.gl/Fn7DAYJWtU5WyFje7"
+      }
+    },
+    {
+      "type": "way",
+      "id": 170062618,
+      "center": {
+        "lat": 5.9420775,
+        "lon": 80.5535471
+      },
+      "tags": {
+        "access": "yes",
+        "leisure": "park",
+        "name": "Beach Park",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1314555164,
+      "center": {
+        "lat": 5.9759708,
+        "lon": 80.5339502
+      },
+      "tags": {
+        "addr:city": "matara",
+        "addr:housenumber": "kirala kale",
+        "addr:street": "Akurass Road",
+        "dog": "yes",
+        "leisure": "park",
+        "mobile": "+41 3465499",
+        "name": "kirala Kale",
+        "opening_hours": "sunrise-sunset"
+      }
+    },
+    {
+      "type": "way",
+      "id": 496785500,
+      "center": {
+        "lat": 5.9450484,
+        "lon": 80.625312
+      },
+      "tags": {
+        "name:de": "Talalla Beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 404358849,
+      "center": {
+        "lat": 5.9458462,
+        "lon": 80.6396812
+      },
+      "tags": {
+        "name": "kapparawella beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 404359537,
+      "center": {
+        "lat": 5.9466179,
+        "lon": 80.6375024
+      },
+      "tags": {
+        "description": "this beach is very like a sand fan and sands are rather large not smooth becourse this beach is coral mixing.",
+        "name": "edanda wella beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1005873131,
+      "center": {
+        "lat": 5.9544092,
+        "lon": 80.6502426
+      },
+      "tags": {
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 320952530,
+      "center": {
+        "lat": 5.9590202,
+        "lon": 80.6790025
+      },
+      "tags": {
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 317928248,
+      "center": {
+        "lat": 5.9612746,
+        "lon": 80.6889634
+      },
+      "tags": {
+        "name": "Dikwella Beach",
+        "name:en": "Dickwella Beach",
+        "natural": "beach",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "way",
+      "id": 320952531,
+      "center": {
+        "lat": 5.9594965,
+        "lon": 80.6822966
+      },
+      "tags": {
+        "name": "Bathigama Beach",
+        "natural": "beach",
+        "surface": "sand;gravel"
+      }
+    },
+    {
+      "type": "way",
+      "id": 320947732,
+      "center": {
+        "lat": 5.9621376,
+        "lon": 80.6960604
+      },
+      "tags": {
+        "name:en": "Dickwella beach",
+        "natural": "beach"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1078021978,
+      "center": {
+        "lat": 6.0811176,
+        "lon": 80.566195
+      },
+      "tags": {
+        "addr:city": "Kamburupitiya",
+        "addr:street": "Matara - Kamburupitiya Road",
+        "building": "commercial",
+        "building:levels": "1",
+        "name": "New Ruhunu Aqua",
+        "tourism": "aquarium"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1078120210,
+      "center": {
+        "lat": 6.0804708,
+        "lon": 80.5667028
+      },
+      "tags": {
+        "addr:city": "Kamburupitiya",
+        "addr:street": "School Road",
+        "building": "commercial",
+        "building:levels": "2",
+        "name": "Dhanu Aqua",
+        "tourism": "aquarium"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 17633773,
+      "center": {
+        "lat": 14.2200738,
+        "lon": 86.9016006
+      },
+      "tags": {
+        "alt_name:ca": "Badia de Bengala",
+        "alt_name:es": "Mar de Birmania",
+        "alt_name:fa": "کنداب",
+        "fixme": "inner ways for multipolygon, accuracy of outer ways near islands and on southern edge",
+        "gns:dsg_code": "SEA",
+        "gns:id": "-1506334",
+        "name": "Bay of Bengal",
+        "name:ar": "خليج البنغال",
+        "name:be": "Бенгальскі заліў",
+        "name:bn": "বঙ্গোপসাগর",
+        "name:br": "Pleg-mor Bengal",
+        "name:ca": "Golf de Bengala",
+        "name:cs": "Bengálský záliv",
+        "name:da": "Bengalske Bugt",
+        "name:de": "Golf von Bengalen",
+        "name:en": "Bay of Bengal",
+        "name:eo": "Bengala Golfo",
+        "name:es": "Golfo de Bengala",
+        "name:eu": "Bengalako golkoa",
+        "name:fa": "خلیج بنگال",
+        "name:fi": "Bengalinlahti",
+        "name:fr": "Golfe du Bengale",
+        "name:hi": "बंगाल की खाड़ी",
+        "name:hr": "Bengalski zaljev",
+        "name:hu": "Bengáli-öböl",
+        "name:ia": "Golfo de Bengala",
+        "name:is": "Bengalflói",
+        "name:it": "Golfo del Bengala",
+        "name:ja": "ベンガル湾",
+        "name:ko": "벵골 만",
+        "name:lt": "Bengalijos įlanka",
+        "name:mk": "Бенгалски Залив",
+        "name:ml": "ബംഗാൾ ഉൾക്കടൽ",
+        "name:ms": "Teluk Benggala",
+        "name:nl": "Golf van Bengalen",
+        "name:pl": "Zatoka Bengalska",
+        "name:ru": "Бенгальский залив",
+        "name:si": "බෙංගාල බොක්ක",
+        "name:sk": "Bengálsky záliv",
+        "name:sr": "Бенгалски залив",
+        "name:sr-Latn": "Bengalski zaliv",
+        "name:ta": "வங்காள விரிகுடா",
+        "name:uk": "Бенгальська затока",
+        "name:vi": "Vịnh Bengal",
+        "name:zh": "孟加拉湾",
+        "name:zh-Hans": "孟加拉湾",
+        "name:zh-Hant": "孟加拉灣",
+        "natural": "bay",
+        "place": "sea",
+        "source:name:br": "ofis publik ar brezhoneg",
+        "type": "multipolygon",
+        "wikidata": "Q38684",
+        "wikipedia": "en:Bay of Bengal"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 15349191,
+      "center": {
+        "lat": 5.9588281,
+        "lon": 80.4059005
+      },
+      "tags": {
+        "name:en": "Naomi Beach",
+        "natural": "beach",
+        "surface": "sand",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 9343842,
+      "center": {
+        "lat": 6.236566,
+        "lon": 80.3890698
+      },
+      "tags": {
+        "alt_name": "KDN Forest Complex",
+        "leisure": "nature_reserve",
+        "name": "Kanneliya-Dediyagala-Nakiyadeniya Forest Reserve",
+        "note": "Complex multipolygon. Downlaod all members before editing! Don't delete or edit the relation, if you don't know exactly what you are doing.",
+        "type": "multipolygon",
+        "wikipedia": "en:Kanneliya-Dediyagala-Nakiyadeniya"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5391832,
+      "center": {
+        "lat": 5.9482947,
+        "lon": 80.5484603
+      },
+      "tags": {
+        "addr:city": "Matara",
+        "addr:street": "Dharmarathna Mawatha",
+        "alt_name": "Redoute Van Eck",
+        "building": "yes",
+        "building:obm": "4621307",
+        "historic": "fort",
+        "image": "https://photos.app.goo.gl/BZJHpwMdkkppzTrw9",
+        "name": "Star Fort Matara",
+        "tourism": "attraction",
+        "type": "multipolygon",
+        "wikidata": "Q18392841",
+        "wikipedia": "en:Star fort, Matara"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 13329574,
+      "center": {
+        "lat": 5.962358,
+        "lon": 80.7074966
+      },
+      "tags": {
+        "description": "This beach is totally overrun. There is no space to lie sunbath except for the pricey sun loungers.",
+        "name": "Sun Loungers (no space) Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5897598,
+      "center": {
+        "lat": 5.9614028,
+        "lon": 80.7187645
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5925882,
+      "center": {
+        "lat": 5.9782036,
+        "lon": 80.7269062
+      },
+      "tags": {
+        "name": "Kudawella Beach",
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6605976,
+      "center": {
+        "lat": 5.9700701,
+        "lon": 80.719505
+      },
+      "tags": {
+        "natural": "beach",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}
