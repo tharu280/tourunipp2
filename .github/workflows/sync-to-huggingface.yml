@@ -15,10 +15,28 @@ jobs:
         with:
           lfs: true
 
-      - name: Sync files to Hugging Face Space
-        uses: huggingface/hub-sync@v0.1.0
-        with:
-          github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: tourismproject/backendtouruni
-          hf_token: ${{ secrets.HF_TOKEN }}
-          space_sdk: docker
+      - name: Install Hugging Face CLI
+        run: python -m pip install --upgrade huggingface_hub
+
+      - name: Upload backend to existing Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          hf upload tourismproject/backendtouruni . \
+            --repo-type space \
+            --exclude ".git*" \
+            --exclude ".github/*" \
+            --exclude ".DS_Store" \
+            --exclude ".pytest_cache/*" \
+            --exclude "venv/*" \
+            --exclude "reactui/*" \
+            --exclude "mobile/*" \
+            --exclude "docs/*" \
+            --exclude "data/*" \
+            --exclude "emotion_test_outputs/*" \
+            --exclude "**/__pycache__/*" \
+            --exclude "**/*.pyc" \
+            --delete "*" \
+            --commit-message "Sync backend from GitHub"
