@@ -19,4 +19,4 @@ COPY clean_run /app/clean_run
 
 EXPOSE 7860
 
-CMD ["uvicorn", "clean_run.api:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["sh", "-c", "uvicorn clean_run.api:app --host 0.0.0.0 --port ${PORT:-7860}"]
