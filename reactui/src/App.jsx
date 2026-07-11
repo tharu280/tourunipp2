@@ -179,13 +179,17 @@ export default function App() {
       const nextSession = payload.session;
       const turn = payload.turn || {};
       setSession(nextSession);
+      if (isTripHandoff(turn)) {
+        // The backend's first trip question is the handoff payload. Do not
+        // render it in flight chat before the user sees and selects a flight.
+        setBusy(false);
+        await runFlightSearch(nextSession, turn.assistant_reply);
+        return;
+      }
       if (turn.assistant_reply) {
         setFlightMessages((prev) => [...prev, makeMsg("assistant", turn.assistant_reply)]);
       }
       setBusy(false);
-      if (isTripHandoff(turn)) {
-        await runFlightSearch(nextSession, turn.assistant_reply);
-      }
     } catch (err) {
       setError(err.message);
       setBusy(false);
