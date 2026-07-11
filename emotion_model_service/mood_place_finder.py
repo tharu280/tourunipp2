@@ -82,6 +82,15 @@ MOOD_PROFILES: dict[str, dict[str, Any]] = {
     },
 }
 
+HOBBY_PROFILES: dict[str, list[str]] = {
+    "Photography": ["viewpoint", "garden", "waterfall", "attraction", "historic"],
+    "Nature": ["nature_reserve", "garden", "park", "waterfall", "viewpoint"],
+    "History": ["museum", "historic", "attraction"],
+    "Art & culture": ["museum", "historic", "attraction"],
+    "Food & cafes": ["cafe", "garden", "park"],
+    "Walking": ["park", "garden", "nature_reserve", "viewpoint"],
+}
+
 CATEGORY_REASONS = {
     "park": "open green space for a calm walk",
     "garden": "a quiet landscaped setting",
@@ -95,7 +104,20 @@ CATEGORY_REASONS = {
 }
 
 
-def build_overpass_query(emotion: str, radius_meters: int) -> str:
+def normalize_hobbies(hobbies: list[str] | None) -> list[str]:
+    return [hobby for hobby in (hobbies or []) if hobby in HOBBY_PROFILES]
+
+
+def preferred_categories(emotion: str, hobbies: list[str] | None = None) -> set[str]:
+    preferred = set(MOOD_PROFILES.get(emotion, MOOD_PROFILES["neutral"])["preferred"])
+    for hobby in normalize_hobbies(hobbies):
+        preferred.update(HOBBY_PROFILES[hobby])
+    return preferred
+
+
+def build_overpass_query(
+    emotion: str, radius_meters: int, hobbies: list[str] | None = None
+) -> str:
     """Build a compact query containing only categories useful for this mood."""
     radius_km = radius_meters / 1000
     latitude_delta = radius_km / 111.32
@@ -111,7 +133,7 @@ def build_overpass_query(emotion: str, radius_meters: int) -> str:
             KANDY_LONGITUDE + longitude_delta,
         )
     )
-    preferred = set(MOOD_PROFILES.get(emotion, MOOD_PROFILES["neutral"])["preferred"])
+    preferred = preferred_categories(emotion, hobbies)
     selectors: list[str] = []
 
     leisure = sorted(preferred & {"park", "garden", "nature_reserve"})
@@ -131,10 +153,12 @@ def build_overpass_query(emotion: str, radius_meters: int) -> str:
 
 
 def fetch_overpass_places(
-    emotion: str, radius_meters: int = SEARCH_RADIUS_METERS
+    emotion: str,
+    radius_meters: int = SEARCH_RADIUS_METERS,
+    hobbies: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     payload = urllib.parse.urlencode(
-        {"data": build_overpass_query(emotion, radius_meters)}
+        {"data": build_overpass_query(emotion, radius_meters, hobbies)}
     ).encode()
     errors: list[str] = []
 
@@ -213,10 +237,14 @@ def place_category(tags: dict[str, str]) -> str | None:
 
 
 def rank_places(
-    elements: list[dict[str, Any]], emotion: str, limit: int = 5
+    elements: list[dict[str, Any]],
+    emotion: str,
+    hobbies: list[str] | None = None,
+    limit: int = 5,
 ) -> list[dict[str, Any]]:
     profile = MOOD_PROFILES.get(emotion, MOOD_PROFILES["neutral"])
     preference_order = profile["preferred"]
+    selected_hobbies = normalize_hobbies(hobbies)
     ranked: list[dict[str, Any]] = []
     seen: set[tuple[str, int]] = set()
 
@@ -237,14 +265,28 @@ def rank_places(
         except ValueError:
             preference_rank = len(preference_order)
 
-        # Mood fit dominates, while distance breaks ties within a category.
-        score = (100 - preference_rank * 12) - min(distance_km, 20) * 2
+        hobby_matches = [
+            hobby for hobby in selected_hobbies if category in HOBBY_PROFILES[hobby]
+        ]
+        # Mood suitability leads. Hobby matches personalize the shortlist and
+        # distance breaks ties without making the nearest place always win.
+        score = (
+            (100 - preference_rank * 12)
+            + min(len(hobby_matches), 2) * 18
+            - min(distance_km, 20) * 2
+        )
+        if hobby_matches:
+            hobby_text = ", ".join(hobby_matches)
+            reason = f"{CATEGORY_REASONS[category]} and matches {hobby_text}"
+        else:
+            reason = CATEGORY_REASONS[category]
         ranked.append(
             {
                 "name": name,
                 "category": category.replace("_", " ").title(),
                 "distance_km": round(distance_km, 1),
-                "reason": CATEGORY_REASONS[category],
+                "reason": reason,
+                "hobby_matches": hobby_matches,
                 "map_url": f"https://www.openstreetmap.org/?mlat={latitude}&mlon={longitude}#map=16/{latitude}/{longitude}",
                 "score": score,
             }

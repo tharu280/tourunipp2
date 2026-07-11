@@ -1,5 +1,5 @@
 ---
-title: TourUni Emotion Classifier
+title: TourUni Mood Place Finder
 emoji: 🙂
 colorFrom: green
 colorTo: blue
@@ -9,11 +9,12 @@ pinned: false
 python_version: "3.10"
 ---
 
-# TourUni Emotion Model Service
+# TourUni Mood Place Finder
 
-This folder is a standalone copy of the emotion classifier previously used by
-the hosted TourUni backend. It has no dependency on the trip-planning backend,
-MongoDB, Gemini, or the frontend.
+This standalone service classifies a face photo, combines the result with
+user-selected hobbies, and recommends nearby places using live OpenStreetMap
+Overpass data. Kandy is the fixed MVP location. It has no dependency on the
+trip-planning backend, MongoDB, Gemini, or the frontend.
 
 ## Model contract
 
@@ -42,7 +43,8 @@ python app.py
 
 Create a new **Gradio Space** and place the contents of this folder at the root
 of the Space repository. Hugging Face reads this README metadata and launches
-`app.py`. The `classify` function is also exposed through Gradio's generated API.
+`app.py`. The combined function is exposed through Gradio's generated
+`/analyze` API.
 
 In Python, clients can call it with `gradio_client`:
 
@@ -50,9 +52,14 @@ In Python, clients can call it with `gradio_client`:
 from gradio_client import Client, handle_file
 
 client = Client("YOUR_USERNAME/YOUR_SPACE")
-result = client.predict(image=handle_file("face.jpg"), api_name="/classify")
+result = client.predict(
+    image=handle_file("face.jpg"),
+    hobbies=["Photography", "Nature"],
+    api_name="/analyze",
+)
 print(result)
 ```
 
-Uploaded images are processed in memory. This service does not save images or
-predictions.
+Uploaded images are processed in memory. This service does not deliberately
+save images or predictions. Hugging Face may temporarily process uploaded files
+as part of handling the request.
