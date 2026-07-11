@@ -91,7 +91,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
             "Trip from Kandy to Galle for 4 days. Budget 400000 LKR."
         )
 
-        self.assertTrue(response.turn.is_complete)
+        self.assertFalse(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "flight_selection")
         self.assertTrue(response.session.trip_requirements.needs_flights)
         self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
         self.assertEqual(response.session.trip_requirements.flight_departure_date, "2026-07-20")
@@ -101,8 +102,15 @@ class TravelIntakeServiceTests(unittest.TestCase):
         self.assertEqual(response.session.trip_requirements.destination, "Galle")
         self.assertEqual(response.session.trip_requirements.duration, "4 days")
         self.assertEqual(response.session.trip_requirements.total_budget_lkr, 400000.0)
-        self.assertIn("from Kandy to Galle", response.turn.assistant_reply)
-        self.assertIn("flights from Dubai", response.turn.assistant_reply)
+        self.assertIn("Choose a flight option", response.turn.assistant_reply)
+
+        confirmed = service.confirm_flight(
+            response.session,
+            selected_flight={"price": 300, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 310000},
+        )
+        self.assertTrue(confirmed.turn.is_complete)
+        self.assertEqual(confirmed.turn.active_phase, "complete")
 
     def test_phase_llm_outputs_are_accepted_without_regex_support(self) -> None:
         flight_chain = FakeChain(
@@ -125,7 +133,12 @@ class TravelIntakeServiceTests(unittest.TestCase):
         service = TravelIntakeService(flight_chain=flight_chain, trip_chain=trip_chain)
 
         first = service.process_turn("please arrange that plan")
-        response = service.process_turn("continue with the route", first.session)
+        confirmed = service.confirm_flight(
+            first.session,
+            selected_flight={"price": 500, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 750000},
+        )
+        response = service.process_turn("continue with the route", confirmed.session)
 
         self.assertTrue(response.turn.is_complete)
         self.assertEqual(response.turn.active_phase, "complete")
@@ -185,12 +198,20 @@ class TravelIntakeServiceTests(unittest.TestCase):
 
         fourth = service.process_turn("400000 lkr", third.session)
         self.assertFalse(fourth.turn.is_complete)
-        self.assertEqual(fourth.turn.active_phase, "trip")
+        self.assertEqual(fourth.turn.active_phase, "flight_selection")
         self.assertEqual(fourth.session.trip_requirements.total_budget_lkr, 400000.0)
         self.assertEqual(fourth.turn.missing_fields, ["duration"])
-        self.assertEqual(fourth.turn.assistant_reply, "How many days should the trip be?")
+        self.assertIn("Choose a flight option", fourth.turn.assistant_reply)
 
-        fifth = service.process_turn("4 days", fourth.session)
+        confirmed = service.confirm_flight(
+            fourth.session,
+            selected_flight={"price": 300, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 310000},
+        )
+        self.assertEqual(confirmed.turn.active_phase, "trip")
+        self.assertEqual(confirmed.turn.assistant_reply, "How many days should the trip be?")
+
+        fifth = service.process_turn("4 days", confirmed.session)
         self.assertTrue(fifth.turn.is_complete)
         self.assertEqual(fifth.turn.active_phase, "complete")
         self.assertEqual(fifth.session.trip_requirements.duration, "4 days")
@@ -214,9 +235,15 @@ class TravelIntakeServiceTests(unittest.TestCase):
 
         fourth = service.process_turn("400000 lkr", third.session)
         self.assertEqual(fourth.session.trip_requirements.total_budget_lkr, 400000.0)
-        self.assertEqual(fourth.turn.assistant_reply, "Where should the trip start in Sri Lanka?")
+        self.assertEqual(fourth.turn.active_phase, "flight_selection")
+        confirmed = service.confirm_flight(
+            fourth.session,
+            selected_flight={"price": 300, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 310000},
+        )
+        self.assertEqual(confirmed.turn.assistant_reply, "Where should the trip start in Sri Lanka?")
 
-        fifth = service.process_turn("colombo to badulla 3 days", fourth.session)
+        fifth = service.process_turn("colombo to badulla 3 days", confirmed.session)
         self.assertEqual(fifth.session.trip_requirements.origin, "colombo")
         self.assertEqual(fifth.session.trip_requirements.destination, "badulla")
         self.assertEqual(fifth.session.trip_requirements.duration, "3 days")
@@ -233,7 +260,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 flight_passengers=2,
                 flight_cabin_class="economy",
                 total_budget_lkr=400000,
-            )
+            ),
+            flight_confirmed=True,
         )
 
         response = service.process_turn("from colombo to badulla for 4 days", session)
@@ -259,7 +287,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
         response = service.process_turn("500000", session)
 
         self.assertEqual(response.session.trip_requirements.total_budget_lkr, 500000.0)
-        self.assertEqual(response.turn.assistant_reply, "Where should the trip start in Sri Lanka?")
+        self.assertEqual(response.turn.active_phase, "flight_selection")
+        self.assertIn("Choose a flight option", response.turn.assistant_reply)
         self.assertEqual(response.turn.missing_fields, ["origin", "destination", "duration"])
 
     def test_llm_cannot_skip_budget_to_ask_route_after_flights(self) -> None:
@@ -273,7 +302,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 flight_departure_date="2026-06-20",
                 flight_passengers=1,
                 flight_cabin_class="economy",
-            )
+            ),
+            flight_confirmed=True,
         )
 
         response = service.process_turn("ok", session)
@@ -290,7 +320,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 flight_origin_input="Dubai",
                 flight_departure_date="2026-07-20",
                 flight_cabin_class="economy",
-            )
+            ),
+            flight_confirmed=True,
         )
 
         response = service.process_turn("two", session)
@@ -359,7 +390,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 flight_passengers=2,
                 flight_cabin_class="economy",
                 total_budget_lkr=500000.0,
-            )
+            ),
+            flight_confirmed=True,
         )
 
         response = service.process_turn("colombo", session)
@@ -382,7 +414,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 total_budget_lkr=500000.0,
                 origin="colombo",
                 destination="badulla",
-            )
+            ),
+            flight_confirmed=True,
         )
 
         response = service.process_turn("4", session)
@@ -409,6 +442,7 @@ class TravelIntakeServiceTests(unittest.TestCase):
                 ConversationTurn(role="user", content="I want a quiet hill country trip."),
                 ConversationTurn(role="assistant", content="Where should the trip start in Sri Lanka?"),
             ],
+            flight_confirmed=True,
         )
         service.process_turn("the same place we discussed", session)
 
@@ -425,7 +459,12 @@ class TravelIntakeServiceTests(unittest.TestCase):
 
         first = service.process_turn("from Dubai, 2026 July 20, 2 passengers, economy")
         second = service.process_turn("400000 lkr", first.session)
-        service.process_turn("the place we talked about", second.session)
+        confirmed = service.confirm_flight(
+            second.session,
+            selected_flight={"price": 300, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 310000},
+        )
+        service.process_turn("the place we talked about", confirmed.session)
 
         self.assertGreaterEqual(len(chain.payloads), 1)
         trip_payloads_after_budget = [
@@ -465,7 +504,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
             "My total budget is 500000 LKR. I want to travel from Colombo to Badulla for 4 days."
         )
 
-        self.assertTrue(response.turn.is_complete)
+        self.assertFalse(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "flight_selection")
         self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
         self.assertEqual(response.session.trip_requirements.origin, "Colombo")
         self.assertEqual(response.session.trip_requirements.destination, "Badulla")
@@ -479,9 +519,9 @@ class TravelIntakeServiceTests(unittest.TestCase):
             "budget 500000 lkr. colombo to badulla for 4 days."
         )
 
-        self.assertTrue(response.turn.is_complete)
-        self.assertEqual(response.turn.active_phase, "complete")
-        self.assertEqual(response.session.active_phase, "complete")
+        self.assertFalse(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "flight_selection")
+        self.assertEqual(response.session.active_phase, "flight_selection")
         self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
         self.assertEqual(response.session.trip_requirements.flight_departure_date, "2026-07-20")
         self.assertEqual(response.session.trip_requirements.flight_passengers, 1)
@@ -490,7 +530,13 @@ class TravelIntakeServiceTests(unittest.TestCase):
         self.assertEqual(response.session.trip_requirements.origin, "colombo")
         self.assertEqual(response.session.trip_requirements.destination, "badulla")
         self.assertEqual(response.session.trip_requirements.duration, "4 days")
-        self.assertIn("from Colombo to Badulla", response.turn.assistant_reply)
+        confirmed = service.confirm_flight(
+            response.session,
+            selected_flight={"price": 300, "currency": "USD"},
+            flight_budget_handoff={"remaining_budget_lkr": 410000},
+        )
+        self.assertTrue(confirmed.turn.is_complete)
+        self.assertEqual(confirmed.turn.active_phase, "complete")
 
     def test_full_brief_plain_android_text_input_completes(self) -> None:
         service = TravelIntakeService(chain=None, use_llm=False)
@@ -500,7 +546,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
             "budget 500000 lkr from Colombo to Badulla for 4 days"
         )
 
-        self.assertTrue(response.turn.is_complete)
+        self.assertFalse(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "flight_selection")
         self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
         self.assertEqual(response.session.trip_requirements.flight_departure_date, "2026-07-20")
         self.assertEqual(response.session.trip_requirements.flight_passengers, 1)
@@ -518,8 +565,8 @@ class TravelIntakeServiceTests(unittest.TestCase):
             "Trip starts in Colombo, ends in Badulla, for 4 days."
         )
 
-        self.assertTrue(response.turn.is_complete)
-        self.assertEqual(response.turn.active_phase, "complete")
+        self.assertFalse(response.turn.is_complete)
+        self.assertEqual(response.turn.active_phase, "flight_selection")
         self.assertEqual(response.session.trip_requirements.flight_origin, "DXB")
         self.assertEqual(response.session.trip_requirements.flight_departure_date, "2026-07-20")
         self.assertEqual(response.session.trip_requirements.flight_passengers, 1)

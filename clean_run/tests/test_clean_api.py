@@ -78,6 +78,7 @@ class CleanApiTests(unittest.TestCase):
         self.assertIn("/chat", paths)
         self.assertIn("/plan", paths)
         self.assertIn("/flights/search", paths)
+        self.assertIn("/flights/confirm", paths)
         self.assertIn("/sessions/{session_id}/refresh-intelligence", paths)
         self.assertIn("/sessions/{session_id}/emotion-checkins", paths)
         self.assertIn("/sessions/{session_id}/emotion-targets", paths)
@@ -142,6 +143,96 @@ class CleanApiTests(unittest.TestCase):
         self.assertEqual(payload["budget_handoff"]["remaining_budget_lkr"], 403700.0)
         self.assertEqual(flight_service.preferences.passengers, 2)
         self.assertEqual(flight_service.preferences.total_budget_lkr, 500000)
+
+    def test_flight_confirmation_is_the_only_gate_into_trip_intake(self) -> None:
+        client = TestClient(app)
+        session = {
+            "trip_requirements": {
+                "needs_flights": True,
+                "flight_origin_input": "Dubai",
+                "flight_origin": "DXB",
+                "flight_departure_date": "2026-07-20",
+                "flight_passengers": 1,
+                "flight_cabin_class": "economy",
+                "total_budget_lkr": 500000,
+            },
+            "history": [],
+            "active_phase": "flight_selection",
+            "flight_confirmed": False,
+        }
+
+        missing_choice = client.post("/flights/confirm", json={"session": session})
+        self.assertEqual(missing_choice.status_code, 422)
+
+        selected = {"price": 300, "currency": "USD", "airline": "UL"}
+        response = client.post(
+            "/flights/confirm",
+            json={"session": session, "selected_flight": selected},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["turn"]["active_phase"], "trip")
+        self.assertFalse(payload["turn"]["is_complete"])
+        self.assertEqual(payload["turn"]["assistant_reply"], "Where should the trip start in Sri Lanka?")
+        self.assertTrue(payload["session"]["flight_confirmed"])
+        self.assertEqual(payload["session"]["selected_flight"], selected)
+        self.assertEqual(
+            payload["session"]["flight_budget_handoff"]["selected_flight_budget_lkr_estimated"],
+            90000.0,
+        )
+        self.assertEqual(
+            payload["session"]["flight_budget_handoff"]["remaining_budget_lkr"],
+            410000.0,
+        )
+
+    def test_flight_confirmation_rejects_incomplete_flight_intake(self) -> None:
+        client = TestClient(app)
+        response = client.post(
+            "/flights/confirm",
+            json={
+                "session": {
+                    "trip_requirements": {"needs_flights": True, "flight_origin": "DXB"},
+                    "history": [],
+                    "active_phase": "flight",
+                },
+                "selected_flight": {"price": 300, "currency": "USD"},
+            },
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertIn("Flight intake is incomplete", response.json()["detail"])
+
+    def test_flight_confirmation_can_explicitly_continue_without_live_fare(self) -> None:
+        client = TestClient(app)
+        response = client.post(
+            "/flights/confirm",
+            json={
+                "session": {
+                    "trip_requirements": {
+                        "needs_flights": True,
+                        "flight_origin": "DXB",
+                        "flight_departure_date": "2026-07-20",
+                        "flight_passengers": 1,
+                        "flight_cabin_class": "economy",
+                        "total_budget_lkr": 500000,
+                    },
+                    "history": [],
+                    "active_phase": "flight_selection",
+                },
+                "continue_without_live_fare": True,
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertTrue(payload["session"]["flight_confirmed"])
+        self.assertIsNone(payload["session"]["selected_flight"])
+        self.assertEqual(
+            payload["session"]["flight_budget_handoff"]["remaining_budget_lkr"],
+            500000.0,
+        )
+        self.assertEqual(payload["turn"]["active_phase"], "trip")
 
     def test_emotion_checkin_endpoint_accepts_only_structured_result(self) -> None:
         repository = FakeEmotionRepository()

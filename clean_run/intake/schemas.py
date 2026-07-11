@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-IntakePhase = Literal["flight", "trip", "complete"]
+IntakePhase = Literal["flight", "flight_selection", "trip", "complete"]
 
 
 class TripRequirements(BaseModel):
@@ -99,6 +99,9 @@ class ChatSessionState(BaseModel):
     trip_requirements: TripRequirements = Field(default_factory=TripRequirements)
     history: list[ConversationTurn] = Field(default_factory=list)
     active_phase: IntakePhase = "flight"
+    flight_confirmed: bool = False
+    selected_flight: dict[str, Any] | None = None
+    flight_budget_handoff: dict[str, Any] | None = None
 
 
 class ChatResponse(BaseModel):

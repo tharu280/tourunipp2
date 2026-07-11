@@ -184,6 +184,7 @@ export default function FlightOptions({
   onContinue,
   onBack,
   error,
+  busy = false,
 }) {
   const req = session?.trip_requirements || {};
   const options = normalizeFlightOptions(flightPlan);
@@ -298,8 +299,13 @@ export default function FlightOptions({
           className="flight-sticky-btn"
           onClick={onContinue}
           type="button"
+          disabled={busy}
         >
-          Use selected flight
+          {busy
+            ? "Confirming flight…"
+            : selected
+              ? "Use selected flight"
+              : "Continue without live fare"}
         </button>
       </div>
     </div>

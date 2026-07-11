@@ -624,16 +624,26 @@ def _find_trip_missing_fields(details: TripRequirements) -> list[str]:
     return [field for field in TRIP_FIELD_ORDER if field in _find_missing_fields(details)]
 
 
-def _current_intake_stage(details: TripRequirements) -> IntakePhase:
+def _current_intake_stage(
+    details: TripRequirements,
+    *,
+    flight_confirmed: bool = False,
+) -> IntakePhase:
     if _find_flight_missing_fields(details):
         return "flight"
+    if not flight_confirmed:
+        return "flight_selection"
     if _find_trip_missing_fields(details):
         return "trip"
     return "complete"
 
 
-def _find_active_phase_missing_fields(details: TripRequirements) -> list[str]:
-    stage = _current_intake_stage(details)
+def _find_active_phase_missing_fields(
+    details: TripRequirements,
+    *,
+    flight_confirmed: bool = False,
+) -> list[str]:
+    stage = _current_intake_stage(details, flight_confirmed=flight_confirmed)
     if stage == "flight":
         return _find_flight_missing_fields(details)
     if stage == "trip":
@@ -1296,10 +1306,41 @@ class TravelIntakeService:
         active_session = ChatSessionState(
             trip_requirements=required_flight_details,
             history=incoming_session.history,
-            active_phase=_current_intake_stage(required_flight_details),
+            active_phase=_current_intake_stage(
+                required_flight_details,
+                flight_confirmed=incoming_session.flight_confirmed,
+            ),
+            flight_confirmed=incoming_session.flight_confirmed,
+            selected_flight=incoming_session.selected_flight,
+            flight_budget_handoff=incoming_session.flight_budget_handoff,
         )
         current_missing_fields = _find_missing_fields(active_session.trip_requirements)
-        current_phase = _current_intake_stage(active_session.trip_requirements)
+        current_phase = _current_intake_stage(
+            active_session.trip_requirements,
+            flight_confirmed=active_session.flight_confirmed,
+        )
+
+        if current_phase == "flight_selection":
+            assistant_reply = "Please choose a flight option and confirm it before we plan your Sri Lanka route."
+            updated_session = active_session.model_copy(
+                update={
+                    "history": [
+                        *active_session.history,
+                        ConversationTurn(role="user", content=user_message),
+                        ConversationTurn(role="assistant", content=assistant_reply),
+                    ]
+                }
+            )
+            return ChatResponse(
+                session=updated_session,
+                turn=ChatTurnResult(
+                    assistant_reply=assistant_reply,
+                    extracted_trip_requirements=active_session.trip_requirements,
+                    active_phase="flight_selection",
+                    missing_fields=current_missing_fields,
+                    is_complete=False,
+                ),
+            )
 
         merged_requirements = active_session.trip_requirements
         started_phase = current_phase
@@ -1323,6 +1364,9 @@ class TravelIntakeService:
                             ConversationTurn(role="assistant", content=assistant_reply),
                         ],
                         active_phase=current_phase,
+                        flight_confirmed=active_session.flight_confirmed,
+                        selected_flight=active_session.selected_flight,
+                        flight_budget_handoff=active_session.flight_budget_handoff,
                     ),
                     turn=ChatTurnResult(
                         assistant_reply=assistant_reply,
@@ -1335,7 +1379,11 @@ class TravelIntakeService:
             merged_requirements = _merge_trip_requirements(merged_requirements, flight_requirements)
 
         # Check trip info if flight is complete or bypassed
-        if not _find_flight_missing_fields(merged_requirements) and _find_trip_missing_fields(merged_requirements):
+        if (
+            active_session.flight_confirmed
+            and not _find_flight_missing_fields(merged_requirements)
+            and _find_trip_missing_fields(merged_requirements)
+        ):
             trip_requirements, trip_llm_out = self._trip_bot.extract(
                 user_message=user_message,
                 details=merged_requirements,
@@ -1352,6 +1400,9 @@ class TravelIntakeService:
                             ConversationTurn(role="assistant", content=assistant_reply),
                         ],
                         active_phase=current_phase,
+                        flight_confirmed=active_session.flight_confirmed,
+                        selected_flight=active_session.selected_flight,
+                        flight_budget_handoff=active_session.flight_budget_handoff,
                     ),
                     turn=ChatTurnResult(
                         assistant_reply=assistant_reply,
@@ -1365,8 +1416,14 @@ class TravelIntakeService:
 
         merged_requirements = _require_flights(merged_requirements)
         missing_fields = _find_missing_fields(merged_requirements)
-        active_phase = _current_intake_stage(merged_requirements)
-        active_phase_missing_fields = _find_active_phase_missing_fields(merged_requirements)
+        active_phase = _current_intake_stage(
+            merged_requirements,
+            flight_confirmed=active_session.flight_confirmed,
+        )
+        active_phase_missing_fields = _find_active_phase_missing_fields(
+            merged_requirements,
+            flight_confirmed=active_session.flight_confirmed,
+        )
 
         # Pick up the LLM conversational reply if the LLM ran (prefer it over hardcoded prompts)
         llm_conv_reply: str | None = None
@@ -1379,7 +1436,9 @@ class TravelIntakeService:
             if raw and str(raw).strip():
                 llm_conv_reply = str(raw).strip()
 
-        if missing_fields:
+        if active_phase == "flight_selection":
+            assistant_reply = "Your flight details are ready. Choose a flight option to continue."
+        elif missing_fields:
             if _looks_like_greeting(user_message) and not active_session.history:
                 assistant_reply = _format_greeting_reply()
             else:
@@ -1396,7 +1455,7 @@ class TravelIntakeService:
             extracted_trip_requirements=merged_requirements,
             active_phase=active_phase,
             missing_fields=missing_fields,
-            is_complete=not missing_fields,
+            is_complete=active_phase == "complete",
         )
         updated_session = ChatSessionState(
             trip_requirements=merged_requirements,
@@ -1406,5 +1465,55 @@ class TravelIntakeService:
                 ConversationTurn(role="assistant", content=assistant_reply),
             ],
             active_phase=active_phase,
+            flight_confirmed=active_session.flight_confirmed,
+            selected_flight=active_session.selected_flight,
+            flight_budget_handoff=active_session.flight_budget_handoff,
         )
         return ChatResponse(session=updated_session, turn=turn)
+
+    def confirm_flight(
+        self,
+        session: ChatSessionState,
+        *,
+        selected_flight: dict[str, object] | None,
+        flight_budget_handoff: dict[str, object] | None,
+    ) -> ChatResponse:
+        details = _require_flights(session.trip_requirements)
+        flight_missing = _find_flight_missing_fields(details)
+        if flight_missing:
+            raise ValueError(
+                "Flight intake is incomplete: " + ", ".join(flight_missing)
+            )
+
+        missing_fields = _find_missing_fields(details)
+        active_phase = _current_intake_stage(details, flight_confirmed=True)
+        active_missing = _find_active_phase_missing_fields(
+            details,
+            flight_confirmed=True,
+        )
+        if missing_fields:
+            assistant_reply = _format_missing_reply(details, active_missing or missing_fields)
+        else:
+            assistant_reply = _format_completion_reply(details)
+
+        updated_session = ChatSessionState(
+            trip_requirements=details,
+            history=[
+                *session.history,
+                ConversationTurn(role="assistant", content=assistant_reply),
+            ],
+            active_phase=active_phase,
+            flight_confirmed=True,
+            selected_flight=selected_flight,
+            flight_budget_handoff=flight_budget_handoff,
+        )
+        return ChatResponse(
+            session=updated_session,
+            turn=ChatTurnResult(
+                assistant_reply=assistant_reply,
+                extracted_trip_requirements=details,
+                active_phase=active_phase,
+                missing_fields=missing_fields,
+                is_complete=active_phase == "complete",
+            ),
+        )

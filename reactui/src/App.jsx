@@ -9,6 +9,7 @@ import PlanDashboard from "./components/PlanDashboard";
 import {
   chatApi,
   flightSearchApi,
+  flightConfirmApi,
   planApi,
   dashboardApi,
 } from "./api";
@@ -54,7 +55,6 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [flightPlan, setFlightPlan] = useState(null);
   const [selectedFlightIdx, setSelectedFlightIdx] = useState(0);
-  const [pendingTripReply, setPendingTripReply] = useState("");
   const [plan, setPlan] = useState(null);
   const [dashboardData, setDashboardData] = useState(null);
 
@@ -113,7 +113,6 @@ export default function App() {
     setSession(null);
     setFlightPlan(null);
     setSelectedFlightIdx(0);
-    setPendingTripReply("");
     setPlan(null);
     setDashboardData(null);
   }
@@ -146,19 +145,17 @@ export default function App() {
   }
 
   /* ── 2. Flight search ───────────────────────────────────────── */
-  async function runFlightSearch(nextSession, tripReply) {
+  async function runFlightSearch(nextSession) {
     setScreen("flightLoading");
     setError("");
     try {
       const payload = await flightSearchApi(buildFlightSearchRequest(nextSession));
       setFlightPlan(payload);
       setSelectedFlightIdx(0);
-      setPendingTripReply(tripReply || "Great! Where should the trip start in Sri Lanka?");
       setScreen("flightOptions");
     } catch (err) {
       setFlightPlan(null);
       setSelectedFlightIdx(0);
-      setPendingTripReply(tripReply || "Great! Where should the trip start in Sri Lanka?");
       setError("Flight search failed — you can still continue to plan your trip.");
       setScreen("flightOptions");
     }
@@ -180,10 +177,10 @@ export default function App() {
       const turn = payload.turn || {};
       setSession(nextSession);
       if (isTripHandoff(turn)) {
-        // The backend's first trip question is the handoff payload. Do not
-        // render it in flight chat before the user sees and selects a flight.
+        // Flight intake stops at selection; trip intake remains locked until
+        // the user confirms an option on the next screen.
         setBusy(false);
-        await runFlightSearch(nextSession, turn.assistant_reply);
+        await runFlightSearch(nextSession);
         return;
       }
       if (turn.assistant_reply) {
@@ -197,16 +194,32 @@ export default function App() {
   }
 
   /* ── 4. Continue to trip chat ───────────────────────────────── */
-  function continueToTrip() {
+  async function continueToTrip() {
+    if (busy) return;
     setInput("");
     setError("");
-    setTripMessages([
-      makeMsg(
-        "assistant",
-        pendingTripReply || "Great! Where should your Sri Lanka trip start?"
-      ),
-    ]);
-    setScreen("tripChat");
+    setBusy(true);
+    try {
+      const payload = await flightConfirmApi({
+        session,
+        selected_flight: selectedFlight,
+        continue_without_live_fare: !selectedFlight,
+      });
+      const nextSession = payload.session;
+      const turn = payload.turn || {};
+      setSession(nextSession);
+      setTripMessages([
+        makeMsg(
+          "assistant",
+          turn.assistant_reply || "Great! Where should your Sri Lanka trip start?"
+        ),
+      ]);
+      setScreen("tripChat");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setBusy(false);
+    }
   }
 
   /* ── 5. Plan generation ─────────────────────────────────────── */
@@ -314,6 +327,7 @@ export default function App() {
         selectedIndex={selectedFlightIdx}
         setSelectedIndex={setSelectedFlightIdx}
         onContinue={continueToTrip}
+        busy={busy}
         onBack={reset}
         error={error}
       />

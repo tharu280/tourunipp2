@@ -31,6 +31,8 @@ export const chatApi = (body) => request("POST", "/chat", body);
 
 export const flightSearchApi = (body) => request("POST", "/flights/search", body);
 
+export const flightConfirmApi = (body) => request("POST", "/flights/confirm", body);
+
 export const planApi = (body) => request("POST", "/plan", body);
 
 export const dashboardApi = (sessionId) =>

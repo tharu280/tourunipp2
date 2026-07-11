@@ -78,6 +78,12 @@ class FlightSearchRequest(BaseModel):
     currency: str = "USD"
 
 
+class FlightConfirmRequest(BaseModel):
+    session: ChatSessionState
+    selected_flight: dict[str, Any] | None = None
+    continue_without_live_fare: bool = False
+
+
 class PlanRequest(BaseModel):
     origin: str
     destination: str
@@ -395,6 +401,33 @@ async def search_flights(req: FlightSearchRequest) -> dict[str, Any]:
             status_code=500,
             detail=f"Flight search failed: {safe_error_detail(exc, feature='Flight search')}",
         ) from exc
+
+
+@app.post("/flights/confirm")
+async def confirm_flight(req: FlightConfirmRequest) -> dict[str, Any]:
+    if req.selected_flight is None and not req.continue_without_live_fare:
+        raise HTTPException(
+            status_code=422,
+            detail="Select a flight or explicitly continue without a live fare.",
+        )
+
+    handoff = _estimate_flight_cost_lkr(
+        req.selected_flight,
+        total_budget_lkr=req.session.trip_requirements.total_budget_lkr,
+    )
+    try:
+        response = get_intake_service().confirm_flight(
+            req.session,
+            selected_flight=req.selected_flight,
+            flight_budget_handoff=handoff,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+    return {
+        "session": response.session.model_dump(),
+        "turn": response.turn.model_dump(),
+    }
 
 
 @app.post("/plan")

@@ -143,9 +143,7 @@ export function buildPlanRequest(session, selectedFlight, flightPlan) {
 }
 
 export function isTripHandoff(turn) {
-  // We should trigger flight search when the backend transitions the active_phase to "trip"
-  // or if the whole intake is complete.
-  return turn?.active_phase === "trip" || turn?.is_complete === true;
+  return turn?.active_phase === "flight_selection";
 }
 
 export function getSessionId(plan) {
@@ -1107,4 +1105,3 @@ export function getRoadAlertsForMap(plan) {
     lastUpdated: road.last_updated || null,
   };
 }
-
