@@ -229,6 +229,9 @@ export default function StartOfDayCheckin({ plan, session }) {
                         <span>{place.activity_type || place.category}</span>
                         <span>◷ {place.duration || "1–2 hrs"}</span>
                         <span>⌖ {place.distance_km} km</span>
+                        {place.hobby_matches?.length > 0 && (
+                          <span className="interest-match-chip">Matches {place.hobby_matches.join(" + ")}</span>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -47,6 +47,31 @@ class EmotionPlacesTests(unittest.TestCase):
         self.assertTrue(places[0]["top_pick"])
         self.assertIn("Arts", places[0]["why_for_you"])
 
+    def test_selected_food_interest_outranks_generic_happy_attraction(self) -> None:
+        elements = [
+            {
+                "type": "node",
+                "id": 10,
+                "lat": 6.9275,
+                "lon": 79.8615,
+                "tags": {"name": "Generic Landmark", "tourism": "attraction"},
+            },
+            {
+                "type": "node",
+                "id": 11,
+                "lat": 6.9290,
+                "lon": 79.8630,
+                "tags": {"name": "Local Food House", "amenity": "restaurant"},
+            },
+        ]
+
+        places = rank_places(elements, 6.9271, 79.8612, "happy", ["Food"])
+
+        self.assertEqual(places[0]["name"], "Local Food House")
+        self.assertEqual(places[0]["hobby_matches"], ["Food"])
+        self.assertTrue(places[0]["interest_match"])
+        self.assertFalse(places[1]["interest_match"])
+
     def test_nearby_tips_use_session_origin_and_do_not_persist_places(self) -> None:
         session = {
             "plan": {

@@ -1945,6 +1945,10 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
   font-weight: 650;
 }
 .smart-pick-meta span:first-child { background: #edf7f4; color: var(--brand-primary); }
+.smart-pick-meta .interest-match-chip {
+  background: #fff4d9;
+  color: #8a5b00;
+}
 .smart-pick-description {
   margin: 13px 0;
   color: var(--text-secondary);

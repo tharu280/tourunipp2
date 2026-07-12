@@ -179,14 +179,14 @@ def build_overpass_query(
             f'nwr["historic"~"^(monument|memorial|ruins|archaeological_site|castle)$"]["name"]({bbox})'
         )
     if "restaurant" in preferred:
-        selectors.append(f'nwr["amenity"="restaurant"]["name"]({bbox})')
+        selectors.append(f'nwr["amenity"~"^(restaurant|fast_food)$"]["name"]({bbox})')
     if "sport" in preferred:
         selectors.append(f'nwr["leisure"~"^(sports_centre|stadium|pitch)$"]["name"]({bbox})')
     if "wellness" in preferred:
         selectors.append(f'nwr["leisure"~"^(fitness_centre|spa)$"]["name"]({bbox})')
     if "shopping" in preferred:
-        selectors.append(f'nwr["shop"~"^(mall|department_store|gift|craft)$"]["name"]({bbox})')
-    return "[out:json][timeout:25];(" + ";".join(selectors) + ";);out center tags 120;"
+        selectors.append(f'nwr["shop"~"^(mall|department_store|gift|craft|clothes|books|jewelry|souvenir)$"]["name"]({bbox})')
+    return "[out:json][timeout:25];(" + ";".join(selectors) + ";);out center tags 300;"
 
 
 def fetch_overpass_places(
@@ -239,7 +239,7 @@ def _category(tags: dict[str, str]) -> str | None:
         return "waterfall"
     if amenity == "cafe":
         return "cafe"
-    if amenity == "restaurant":
+    if amenity in {"restaurant", "fast_food"}:
         return "restaurant"
     if amenity in {"theatre", "arts_centre", "music_venue"}:
         return "culture"
@@ -247,7 +247,7 @@ def _category(tags: dict[str, str]) -> str | None:
         return "sport"
     if leisure in {"fitness_centre", "spa"}:
         return "wellness"
-    if tags.get("shop") in {"mall", "department_store", "gift", "craft"}:
+    if tags.get("shop") in {"mall", "department_store", "gift", "craft", "clothes", "books", "jewelry", "souvenir"}:
         return "shopping"
     if tags.get("historic"):
         return "historic"
@@ -293,7 +293,7 @@ def rank_places(
         hobby_matches = [hobby for hobby in selected_hobbies if category in HOBBY_PROFILES[hobby]]
         # An explicit hobby is a strong preference, while mood suitability
         # still determines ordering among equally relevant places.
-        score = 100 - preference_rank * 12 + min(len(hobby_matches), 2) * 28 - min(distance, 20) * 2
+        score = 100 - preference_rank * 12 + min(len(hobby_matches), 2) * 75 - min(distance, 20) * 2
         reason = CATEGORY_REASONS[category]
         if hobby_matches:
             reason += f" and matches {', '.join(hobby_matches)}"
@@ -305,6 +305,7 @@ def rank_places(
                 "distance_km": round(distance, 1),
                 "reason": reason,
                 "hobby_matches": hobby_matches,
+                "interest_match": bool(hobby_matches),
                 "latitude": place_lat,
                 "longitude": place_lng,
                 "map_url": f"https://www.openstreetmap.org/?mlat={place_lat}&mlon={place_lng}#map=16/{place_lat}/{place_lng}",
@@ -312,7 +313,16 @@ def rank_places(
                 **activity_copy,
             }
         )
-    ranked.sort(key=lambda place: (-place["score"], place["distance_km"], place["name"]))
+    # When the user selected interests, matching places must lead the result.
+    # Mood-only places remain useful fallbacks after exact interest matches.
+    ranked.sort(
+        key=lambda place: (
+            0 if place["interest_match"] or not selected_hobbies else 1,
+            -place["score"],
+            place["distance_km"],
+            place["name"],
+        )
+    )
     selected = ranked[:limit]
     for index, place in enumerate(selected):
         place["top_pick"] = index == 0
