@@ -28,8 +28,8 @@ export default function StartOfDayCheckin({ plan, session }) {
   const tripDates = plan?.trip_dates || plan?.plan_overview?.trip_dates || [];
   const totalDays = tripDates.length || plan?.plan_overview?.trip_days || plan?.trip_requirements?.duration_days || 1;
   const daysArray = Array.from({ length: totalDays }, (_, i) => i + 1);
-
-  if (!sessionId) return null;
+  const storageState = plan?.session_storage || plan?.plan_overview?.session_storage;
+  const sessionReady = Boolean(sessionId) && storageState?.saved !== false;
 
   const handlePhotoSelect = async (e) => {
     const file = e.target.files?.[0];
@@ -73,8 +73,17 @@ export default function StartOfDayCheckin({ plan, session }) {
         <h2 className="d-card-title">Today's travel readiness</h2>
       </div>
       <div className="d-card-body" style={{ padding: "16px 20px 20px" }}>
+        {!sessionReady && (
+          <div className="mood-checkin-unavailable" role="status">
+            <p className="mood-checkin-unavailable-title">Mood recommendations are temporarily unavailable</p>
+            <p>
+              This trip was not saved to its session, so a mood result cannot be attached safely yet.
+              Restore session storage and generate a new plan to enable photo check-ins.
+            </p>
+          </div>
+        )}
         
-        {status === "idle" && (
+        {sessionReady && status === "idle" && (
           <div className="mood-checkin-idle">
             <p className="mood-checkin-desc">
               Use a quick photo to personalize today’s advice.
@@ -112,21 +121,21 @@ export default function StartOfDayCheckin({ plan, session }) {
           </div>
         )}
 
-        {status === "loading" && (
+        {sessionReady && status === "loading" && (
           <div className="mood-checkin-loading">
             <div className="spinner"></div>
             <p>Reading your mood and checking the day ahead…</p>
           </div>
         )}
 
-        {status === "error" && (
+        {sessionReady && status === "error" && (
           <div className="mood-checkin-error">
             <p>{result || "Mood check failed. Please try again."}</p>
             <button className="btn-secondary" onClick={resetState}>Retry</button>
           </div>
         )}
 
-        {status === "success" && result && (
+        {sessionReady && status === "success" && result && (
           <div className="mood-checkin-result">
             <div className="mood-result-header">
               <div className="mood-badge">

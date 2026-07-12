@@ -2017,6 +2017,24 @@ vercel-live-feedback,
   color: var(--text-2);
   margin-bottom: 12px;
 }
+.mood-checkin-unavailable {
+  padding: 14px 16px;
+  border: 1px solid #ead9b7;
+  border-radius: 14px;
+  background: #fffaf0;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.mood-checkin-unavailable p {
+  margin: 0;
+}
+.mood-checkin-unavailable-title {
+  margin-bottom: 4px !important;
+  color: var(--text-1);
+  font-size: 14px;
+  font-weight: 700;
+}
 .mood-checkin-controls {
   display: flex;
   flex-direction: row;
