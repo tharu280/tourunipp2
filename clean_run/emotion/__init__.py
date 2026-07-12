@@ -8,6 +8,7 @@ from .service import (
     build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
 )
+from .places import build_nearby_emotion_tips
 
 __all__ = [
     "attach_location_context",
@@ -16,4 +17,5 @@ __all__ = [
     "build_emotion_summary",
     "build_start_of_day_mood_recommendation",
     "sanitize_emotion_checkin",
+    "build_nearby_emotion_tips",
 ]

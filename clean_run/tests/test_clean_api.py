@@ -238,7 +238,13 @@ class CleanApiTests(unittest.TestCase):
         repository = FakeEmotionRepository()
         client = TestClient(app)
 
-        with patch("clean_run.api.get_session_repository", return_value=repository):
+        with (
+            patch("clean_run.api.get_session_repository", return_value=repository),
+            patch(
+                "clean_run.api.build_nearby_emotion_tips",
+                return_value={"status": "available", "recommendations": []},
+            ),
+        ):
             response = client.post(
                 "/sessions/session-emotion/emotion-checkins",
                 json={
@@ -266,12 +272,19 @@ class CleanApiTests(unittest.TestCase):
         self.assertTrue(payload["checkin"]["location_context"]["within_checkin_radius"])
         self.assertIn("emotion_summary", payload)
         self.assertIn("recommendation", payload)
+        self.assertIn("nearby_tips", payload)
 
     def test_start_of_day_emotion_checkin_returns_day_ahead_recommendation(self) -> None:
         repository = FakeEmotionRepository()
         client = TestClient(app)
 
-        with patch("clean_run.api.get_session_repository", return_value=repository):
+        with (
+            patch("clean_run.api.get_session_repository", return_value=repository),
+            patch(
+                "clean_run.api.build_nearby_emotion_tips",
+                return_value={"status": "available", "recommendations": []},
+            ),
+        ):
             response = client.post(
                 "/sessions/session-emotion/emotion-checkins",
                 json={
@@ -282,6 +295,7 @@ class CleanApiTests(unittest.TestCase):
                     "top_predictions": [{"class_name": "neutral", "probability": 0.74}],
                     "model_version": "rafdb5_local_tflite",
                     "local_inference": True,
+                    "hobbies": ["History", "Photography"],
                 },
             )
 
@@ -293,6 +307,42 @@ class CleanApiTests(unittest.TestCase):
         self.assertEqual(payload["recommendation"]["day_label"], "Day 2")
         self.assertIn("Royal Botanical Gardens", payload["recommendation"]["day_context"]["attractions"])
         self.assertFalse(payload["privacy"]["raw_image_stored"])
+        self.assertEqual(payload["checkin"]["hobbies"], ["History", "Photography"])
+        self.assertIn("nearby_tips", payload)
+
+    def test_image_emotion_checkin_accepts_hobbies_and_returns_nearby_tips(self) -> None:
+        repository = FakeEmotionRepository()
+        client = TestClient(app)
+        classification = {
+            "emotion_label": "happy",
+            "emotion_confidence": 0.91,
+            "top_predictions": [{"class_name": "happy", "probability": 0.91}],
+            "model_version": "rafdb5_tflite_v1",
+        }
+        nearby = {
+            "status": "available",
+            "location": {"name": "Colombo", "source": "trip_start"},
+            "recommendations": [{"name": "Viharamahadevi Park"}],
+        }
+
+        with (
+            patch("clean_run.api.get_session_repository", return_value=repository),
+            patch("clean_run.api.classify_image_bytes", return_value=classification),
+            patch("clean_run.api.build_nearby_emotion_tips", return_value=nearby) as tips,
+        ):
+            response = client.post(
+                "/sessions/session-emotion/emotion-checkins/image",
+                files={"image": ("face.jpg", b"fake-image", "image/jpeg")},
+                data={"day": "1", "hobbies": '["Nature", "Music"]'},
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["checkin"]["emotion_label"], "happy")
+        self.assertEqual(payload["checkin"]["hobbies"], ["Nature", "Music"])
+        self.assertEqual(payload["nearby_tips"]["recommendations"][0]["name"], "Viharamahadevi Park")
+        self.assertFalse(payload["privacy"]["raw_image_stored"])
+        tips.assert_called_once()
 
     def test_emotion_targets_endpoint_returns_mobile_geofence_targets(self) -> None:
         repository = FakeEmotionRepository()

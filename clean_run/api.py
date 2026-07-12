@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 import re
 from datetime import date
@@ -20,6 +21,7 @@ from clean_run.emotion import (
     build_emotion_summary,
     build_start_of_day_mood_recommendation,
     sanitize_emotion_checkin,
+    build_nearby_emotion_tips,
 )
 from clean_run.emotion.inference import classify_image_bytes
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
@@ -136,6 +138,19 @@ class EmotionCheckinRequest(BaseModel):
     top_predictions: list[EmotionTopPrediction] = Field(default_factory=list)
     model_version: str = "rafdb5_local_tflite"
     local_inference: bool = True
+    hobbies: list[str] = Field(default_factory=list)
+
+
+def _parse_hobbies(value: str | None) -> list[str]:
+    if not value:
+        return []
+    try:
+        parsed = json.loads(value)
+    except json.JSONDecodeError:
+        parsed = [item.strip() for item in value.split(",")]
+    if not isinstance(parsed, list):
+        return []
+    return [str(item).strip() for item in parsed if str(item).strip()]
 
 
 def _cors_origins() -> list[str]:
@@ -588,11 +603,19 @@ async def add_emotion_checkin(session_id: str, req: EmotionCheckinRequest) -> di
     if not saved:
         raise HTTPException(status_code=404, detail="Session not found.")
 
+    nearby_tips = await asyncio.to_thread(
+        build_nearby_emotion_tips,
+        session_document,
+        checkin.get("emotion_label", "neutral"),
+        req.hobbies,
+    )
+
     return {
         "session_id": session_id,
         "checkin": checkin,
         "recommendation": recommendation,
         "emotion_summary": emotion_summary,
+        "nearby_tips": nearby_tips,
         "privacy": {
             "raw_image_received_by_backend": False,
             "raw_image_stored": False,
@@ -608,6 +631,7 @@ async def add_emotion_checkin_image(
     image: UploadFile,
     day: int = Form(...),
     checkin_type: str = Form("start_of_day"),
+    hobbies: str = Form("[]"),
 ) -> dict[str, Any]:
     repository = get_session_repository()
     if repository is None:
@@ -631,11 +655,13 @@ async def add_emotion_checkin_image(
             detail=f"Emotion inference failed: {safe_error_detail(exc, feature='Emotion inference')}",
         ) from exc
 
+    selected_hobbies = _parse_hobbies(hobbies)
     checkin_data = {
         "checkin_type": checkin_type,
         "day": day,
         **classification,
         "local_inference": False,
+        "hobbies": selected_hobbies,
     }
 
     checkin = sanitize_emotion_checkin(checkin_data)
@@ -670,11 +696,19 @@ async def add_emotion_checkin_image(
     if not saved:
         raise HTTPException(status_code=404, detail="Session not found.")
 
+    nearby_tips = await asyncio.to_thread(
+        build_nearby_emotion_tips,
+        session_document,
+        checkin.get("emotion_label", "neutral"),
+        selected_hobbies,
+    )
+
     return {
         "session_id": session_id,
         "checkin": checkin,
         "recommendation": recommendation,
         "emotion_summary": emotion_summary,
+        "nearby_tips": nearby_tips,
         "privacy": {
             "raw_image_received_by_backend": True,
             "raw_image_stored": False,

@@ -464,6 +464,11 @@ def sanitize_emotion_checkin(checkin: dict[str, Any]) -> dict[str, Any]:
         "model_version": checkin.get("model_version") or "rafdb5_local_tflite",
         "local_inference": bool(checkin.get("local_inference", True)),
         "raw_image_stored": False,
+        "hobbies": [
+            str(item).strip()
+            for item in (checkin.get("hobbies") or [])
+            if str(item).strip()
+        ],
     }
     if user_lat is not None and user_lng is not None:
         sanitized["user_location"] = {

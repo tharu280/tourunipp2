@@ -21,6 +21,7 @@ import {
   titleCase,
 } from "../helpers";
 import { refreshIntelApi } from "../api";
+import StartOfDayCheckin from "./StartOfDayCheckin";
 
 const SRI_LANKA_CENTER = [7.8731, 80.7718];
 
@@ -30,6 +31,7 @@ const MODES = [
   { id: "crowd",   label: "Crowd" },
   { id: "weather", label: "Weather" },
   { id: "roads",   label: "Roads" },
+  { id: "tips",    label: "Tips" },
 ];
 
 /* ── Colour helpers ───────────────────────────────────────────────── */
@@ -608,7 +610,7 @@ function RoadsPanel({ roadData }) {
    MAIN COMPONENT
    ══════════════════════════════════════════════════════════════════ */
 
-export default function TripMapModule({ plan, dashboardData }) {
+export default function TripMapModule({ plan, dashboardData, session }) {
   const [activeMode,    setActiveMode]    = useState("route");
   const [refreshing,    setRefreshing]    = useState(false);
   const [refreshStatus, setRefreshStatus] = useState(null);
@@ -662,7 +664,7 @@ export default function TripMapModule({ plan, dashboardData }) {
         </div>
 
         {/* Refresh button */}
-        <button
+        {activeMode !== "tips" && <button
           className={`map-refresh-btn${refreshing ? " spinning" : ""}${refreshStatus === "done" ? " done" : ""}${refreshStatus === "error" ? " err" : ""}`}
           onClick={handleRefresh}
           type="button"
@@ -678,11 +680,11 @@ export default function TripMapModule({ plan, dashboardData }) {
           </svg>
           {refreshStatus === "done"  && <span className="map-refresh-label">Updated</span>}
           {refreshStatus === "error" && <span className="map-refresh-label">Failed</span>}
-        </button>
+        </button>}
       </div>
 
       {/* ── Leaflet map ── */}
-      <div className="map-card" aria-label={`${activeMode} map`}>
+      {activeMode !== "tips" && <div className="map-card" aria-label={`${activeMode} map`}>
         <MapContainer
           center={center}
           zoom={8}
@@ -726,7 +728,11 @@ export default function TripMapModule({ plan, dashboardData }) {
             <span>Attraction location data not resolved</span>
           </div>
         )}
-      </div>
+      </div>}
+
+      {activeMode === "tips" && (
+        <StartOfDayCheckin plan={plan} session={session} />
+      )}
 
       {/* ── Below-map panels ── */}
       {activeMode === "crowd" && (
