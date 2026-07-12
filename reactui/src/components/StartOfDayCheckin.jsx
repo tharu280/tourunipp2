@@ -3,13 +3,22 @@ import { startOfDayMoodCheckinApi, startOfDayMoodCheckinImageApi } from "../api"
 
 const EMOTIONS = [
   { id: "happy", emoji: "😊", label: "Happy" },
+  { id: "surprise", emoji: "😲", label: "Surprise" },
   { id: "neutral", emoji: "😐", label: "Neutral" },
-  { id: "sad", emoji: "😔", label: "Sad" },
-  { id: "anger", emoji: "😠", label: "Angry" },
-  { id: "surprise", emoji: "😲", label: "Surprised" },
+  { id: "sad", emoji: "😢", label: "Sad" },
+  { id: "anger", emoji: "😠", label: "Anger" },
 ];
 
-const HOBBIES = ["History", "Photography", "Music", "Nature", "Art & culture", "Food & cafes", "Walking"];
+const HOBBIES = [
+  { id: "Nature", icon: "🌿", label: "Nature" },
+  { id: "Culture", icon: "🏛️", label: "Culture" },
+  { id: "Food", icon: "🍜", label: "Food" },
+  { id: "Photography", icon: "📸", label: "Photography" },
+  { id: "Sports", icon: "⚽", label: "Sports" },
+  { id: "Wellness", icon: "🧘", label: "Wellness" },
+  { id: "Arts", icon: "🎨", label: "Arts" },
+  { id: "Shopping", icon: "🛍️", label: "Shopping" },
+];
 
 function emotionEmoji(value) {
   return EMOTIONS.find((item) => item.id === value)?.emoji || "😐";
@@ -20,7 +29,6 @@ function titleCase(value) {
 }
 
 export default function StartOfDayCheckin({ plan, session }) {
-  const [inputMode, setInputMode] = useState("photo");
   const [selectedEmotion, setSelectedEmotion] = useState("happy");
   const [selectedHobbies, setSelectedHobbies] = useState([]);
   const [selectedDay, setSelectedDay] = useState(1);
@@ -44,20 +52,20 @@ export default function StartOfDayCheckin({ plan, session }) {
   }
 
   function storeResponse(response) {
-    setResult({
-      recommendation: response.recommendation,
-      nearbyTips: response.nearby_tips,
-      checkin: response.checkin,
-    });
+    setResult({ recommendation: response.recommendation, nearbyTips: response.nearby_tips, checkin: response.checkin });
     setStatus("success");
+  }
+
+  function beginRequest() {
+    setStatus("loading");
+    setError("");
+    setResult(null);
   }
 
   async function handlePhotoSelect(event) {
     const file = event.target.files?.[0];
     if (!file || !sessionReady) return;
-    setStatus("loading");
-    setError("");
-    setResult(null);
+    beginRequest();
     const formData = new FormData();
     formData.append("image", file);
     formData.append("day", selectedDay);
@@ -75,9 +83,7 @@ export default function StartOfDayCheckin({ plan, session }) {
 
   async function submitManualEmotion() {
     if (!sessionReady) return;
-    setStatus("loading");
-    setError("");
-    setResult(null);
+    beginRequest();
     try {
       storeResponse(await startOfDayMoodCheckinApi(sessionId, {
         day: selectedDay,
@@ -103,14 +109,15 @@ export default function StartOfDayCheckin({ plan, session }) {
 
   const recommendation = result?.recommendation;
   const nearbyTips = result?.nearbyTips;
+  const resultEmotion = recommendation?.current_emotion || selectedEmotion;
 
   return (
     <section className="tips-panel" aria-labelledby="tips-title">
       <header className="tips-heading">
         <div>
-          <span className="tips-kicker">Personalized nearby ideas</span>
-          <h2 id="tips-title">What would feel good today?</h2>
-          <p>Suggestions are centered around <strong>{startLocation}</strong>, your trip start.</p>
+          <span className="tips-kicker">Personalized activity finder</span>
+          <h2 id="tips-title">Tips for your day</h2>
+          <p>Recommendations start near <strong>{startLocation}</strong>, your trip’s starting point.</p>
         </div>
         <label className="tips-day-select">
           <span>Plan for</span>
@@ -127,26 +134,36 @@ export default function StartOfDayCheckin({ plan, session }) {
         </div>
       )}
 
-      {sessionReady && status !== "success" && (
-        <>
-          <div className="tips-input-tabs" role="tablist" aria-label="Mood input method">
-            <button type="button" className={inputMode === "photo" ? "active" : ""} onClick={() => setInputMode("photo")}>Use a photo</button>
-            <button type="button" className={inputMode === "manual" ? "active" : ""} onClick={() => setInputMode("manual")}>Choose a mood</button>
-          </div>
+      {sessionReady && status === "idle" && (
+        <div className="tips-preferences">
+          <section className="tips-choice-section">
+            <div className="tips-choice-heading">
+              <h3>Your interests <small>(select all that apply)</small></h3>
+            </div>
+            <div className="interest-grid">
+              {HOBBIES.map((hobby) => (
+                <button
+                  type="button"
+                  key={hobby.id}
+                  className={selectedHobbies.includes(hobby.id) ? "selected" : ""}
+                  onClick={() => toggleHobby(hobby.id)}
+                  aria-pressed={selectedHobbies.includes(hobby.id)}
+                >
+                  <span>{hobby.icon}</span>
+                  <small>{hobby.label}</small>
+                </button>
+              ))}
+            </div>
+          </section>
 
-          {inputMode === "photo" ? (
-            <div className="tips-photo-panel">
-              <div className="tips-photo-icon" aria-hidden="true">⌁</div>
-              <div>
-                <h3>Quick mood check</h3>
-                <p>Your photo is analyzed by the deployed emotion model and is never stored.</p>
-              </div>
-              <input ref={fileInputRef} type="file" accept="image/*" capture="user" onChange={handlePhotoSelect} hidden />
-              <button type="button" className="tips-primary-button" onClick={() => fileInputRef.current?.click()} disabled={status === "loading"}>
-                Take or choose photo
+          <section className="tips-choice-section mood-choice-section">
+            <div className="tips-choice-heading mood-heading-row">
+              <h3>How are you feeling?</h3>
+              <button type="button" className="photo-mood-button" onClick={() => fileInputRef.current?.click()}>
+                <span aria-hidden="true">📷</span> Check with photo
               </button>
             </div>
-          ) : (
+            <input ref={fileInputRef} type="file" accept="image/*" capture="user" onChange={handlePhotoSelect} hidden />
             <div className="emotion-grid" aria-label="Choose your current mood">
               {EMOTIONS.map((emotion) => (
                 <button
@@ -161,31 +178,20 @@ export default function StartOfDayCheckin({ plan, session }) {
                 </button>
               ))}
             </div>
-          )}
+          </section>
 
-          <div className="tips-hobbies">
-            <div className="tips-section-label">What are you into?</div>
-            <div className="hobby-chips">
-              {HOBBIES.map((hobby) => (
-                <button type="button" key={hobby} className={selectedHobbies.includes(hobby) ? "selected" : ""} onClick={() => toggleHobby(hobby)} aria-pressed={selectedHobbies.includes(hobby)}>
-                  {hobby}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {inputMode === "manual" && (
-            <button type="button" className="tips-primary-button tips-submit" onClick={submitManualEmotion} disabled={status === "loading"}>
-              Find ideas near {startLocation}
-            </button>
-          )}
-        </>
+          <button type="button" className="tips-primary-button tips-submit" onClick={submitManualEmotion}>
+            Get smart picks
+            <span aria-hidden="true">→</span>
+          </button>
+          <p className="tips-privacy-note">Photos are analyzed securely for emotion only and are never stored.</p>
+        </div>
       )}
 
       {status === "loading" && (
         <div className="mood-checkin-loading" role="status">
           <div className="spinner" />
-          <p>Reading the day ahead and finding nearby matches…</p>
+          <p>Matching your mood, interests, and nearby places…</p>
         </div>
       )}
 
@@ -198,55 +204,66 @@ export default function StartOfDayCheckin({ plan, session }) {
 
       {status === "success" && recommendation && (
         <div className="tips-results">
-          <div className="tips-result-hero">
-            <div className="mood-badge">
-              <span className="mood-icon">{emotionEmoji(recommendation.current_emotion)}</span>
-              <span className="mood-label">
-                {titleCase(recommendation.current_emotion)}
-                {result?.checkin?.model_version !== "manual_user_selection" && ` · ${Math.round((recommendation.confidence || 0) * 100)}%`}
-              </span>
+          <section className="smart-picks-banner">
+            <span className="smart-picks-emoji">{emotionEmoji(resultEmotion)}</span>
+            <div>
+              <h3>{nearbyTips?.headline || "Smart Picks For You"}</h3>
+              <p>Based on your {titleCase(resultEmotion).toLowerCase()} mood{nearbyTips?.hobbies?.length ? ` and ${nearbyTips.hobbies.join(", ")}` : ""}</p>
             </div>
             <span className={`mood-risk-badge risk-${recommendation.risk_level}`}>{titleCase(recommendation.risk_level)} risk</span>
-            <h3>{recommendation.summary}</h3>
-            <p>{recommendation.day_ahead_prediction}</p>
-          </div>
+          </section>
 
-          <div className="tips-advice-grid">
-            <article><span>Recommended plan</span><p>{recommendation.recommendation}</p></article>
-            <article><span>Best timing</span><p>{recommendation.timing_adjustment}</p></article>
-            <article><span>Comfort actions</span><p>{(recommendation.comfort_actions || []).join(" · ") || "Keep a comfortable pace."}</p></article>
-            <article><span>Fallback</span><p>{recommendation.fallback_plan}</p></article>
-          </div>
-
-          <div className="nearby-tips-section">
-            <div className="nearby-tips-heading">
-              <div>
-                <span className="tips-kicker">OpenStreetMap matches</span>
-                <h3>Nearby around {nearbyTips?.location?.name || startLocation}</h3>
-              </div>
-              <span>{nearbyTips?.recommendations?.length || 0} places</span>
+          {nearbyTips?.status === "available" && nearbyTips.recommendations?.length > 0 ? (
+            <div className="smart-pick-list">
+              {nearbyTips.recommendations.map((place, index) => (
+                <article className={`smart-pick-card${place.top_pick ? " top-pick" : ""}`} key={`${place.name}-${index}`}>
+                  <div className="smart-pick-card-top">
+                    <span className="smart-pick-label">💚 {place.recommendation_label || "Good Pick"}</span>
+                    {place.top_pick && <span className="top-pick-label">🏆 Top Pick</span>}
+                  </div>
+                  <div className="smart-pick-title-row">
+                    <span className="smart-pick-icon" aria-hidden="true">{place.icon || "✨"}</span>
+                    <div>
+                      <h4>{place.name}</h4>
+                      <div className="smart-pick-meta">
+                        <span>{place.activity_type || place.category}</span>
+                        <span>◷ {place.duration || "1–2 hrs"}</span>
+                        <span>⌖ {place.distance_km} km</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="smart-pick-description">{place.description || place.reason}</p>
+                  <div className="smart-pick-why">
+                    <span>Why this is for you</span>
+                    <p>{place.why_for_you || place.reason}</p>
+                  </div>
+                  <footer className="smart-pick-footer">
+                    <span>◷ Best time: {place.best_time || "Flexible"}</span>
+                    {place.solo_friendly && <span>♙ Solo friendly</span>}
+                    <a href={place.map_url} target="_blank" rel="noreferrer">Open map ↗</a>
+                  </footer>
+                </article>
+              ))}
             </div>
-            {nearbyTips?.summary && <p className="nearby-summary">{nearbyTips.summary}</p>}
-            {nearbyTips?.status === "available" && nearbyTips.recommendations?.length > 0 ? (
-              <div className="nearby-tip-list">
-                {nearbyTips.recommendations.map((place, index) => (
-                  <a className="nearby-tip-card" href={place.map_url} target="_blank" rel="noreferrer" key={`${place.name}-${index}`}>
-                    <span className="nearby-tip-index">{index + 1}</span>
-                    <span className="nearby-tip-copy">
-                      <strong>{place.name}</strong>
-                      <small>{place.category} · {place.distance_km} km</small>
-                      <p>{place.reason}</p>
-                    </span>
-                    <span className="nearby-tip-arrow" aria-hidden="true">↗</span>
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <div className="nearby-unavailable">{nearbyTips?.message || "No nearby matches were found this time."}</div>
-            )}
-          </div>
+          ) : (
+            <div className="nearby-unavailable">{nearbyTips?.message || "No nearby matches were found this time."}</div>
+          )}
 
-          <button type="button" className="tips-reset-button" onClick={reset}>Try another mood</button>
+          <details className="trip-readiness-details">
+            <summary>See today’s travel-readiness advice</summary>
+            <div className="trip-readiness-content">
+              <h4>{recommendation.summary}</h4>
+              <p>{recommendation.day_ahead_prediction}</p>
+              <dl>
+                <div><dt>Recommended plan</dt><dd>{recommendation.recommendation}</dd></div>
+                <div><dt>Best timing</dt><dd>{recommendation.timing_adjustment}</dd></div>
+                <div><dt>Comfort</dt><dd>{(recommendation.comfort_actions || []).join(" · ") || "Keep a comfortable pace."}</dd></div>
+                <div><dt>Fallback</dt><dd>{recommendation.fallback_plan}</dd></div>
+              </dl>
+            </div>
+          </details>
+
+          <button type="button" className="tips-reset-button" onClick={reset}>Update mood or interests</button>
         </div>
       )}
     </section>

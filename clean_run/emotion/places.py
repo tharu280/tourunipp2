@@ -50,11 +50,12 @@ MOOD_PROFILES: dict[str, dict[str, Any]] = {
 HOBBY_PROFILES: dict[str, list[str]] = {
     "Photography": ["viewpoint", "garden", "waterfall", "attraction", "historic"],
     "Nature": ["nature_reserve", "garden", "park", "waterfall", "viewpoint"],
-    "History": ["museum", "historic", "attraction"],
-    "Art & culture": ["museum", "historic", "attraction", "culture"],
-    "Music": ["culture", "cafe", "attraction"],
-    "Food & cafes": ["cafe", "garden", "park"],
-    "Walking": ["park", "garden", "nature_reserve", "viewpoint"],
+    "Culture": ["museum", "historic", "attraction", "culture"],
+    "Food": ["cafe", "restaurant"],
+    "Sports": ["sport"],
+    "Wellness": ["wellness", "garden", "park"],
+    "Arts": ["museum", "culture"],
+    "Shopping": ["shopping"],
 }
 
 CATEGORY_REASONS = {
@@ -68,7 +69,52 @@ CATEGORY_REASONS = {
     "attraction": "an engaging local experience",
     "historic": "a meaningful cultural stop at an easy pace",
     "culture": "a creative local setting connected to arts or music",
+    "restaurant": "a local food experience with time to recharge",
+    "sport": "an active setting that can channel your energy",
+    "wellness": "a slower wellbeing-focused break",
+    "shopping": "a relaxed place to browse local finds",
 }
+
+CATEGORY_ACTIVITY_META = {
+    "park": {"icon": "🌿", "activity_type": "Nature walk", "duration": "1–2 hrs", "best_time": "Morning"},
+    "garden": {"icon": "🌺", "activity_type": "Garden escape", "duration": "1–2 hrs", "best_time": "Morning"},
+    "nature_reserve": {"icon": "🦜", "activity_type": "Nature therapy", "duration": "2–3 hrs", "best_time": "Early morning"},
+    "viewpoint": {"icon": "📸", "activity_type": "Scenic reset", "duration": "1–2 hrs", "best_time": "Late afternoon"},
+    "waterfall": {"icon": "💧", "activity_type": "Nature therapy", "duration": "1–2 hrs", "best_time": "Morning"},
+    "cafe": {"icon": "☕", "activity_type": "Slow break", "duration": "45–90 min", "best_time": "Flexible"},
+    "museum": {"icon": "🏛️", "activity_type": "History & culture", "duration": "1–2 hrs", "best_time": "Late morning"},
+    "attraction": {"icon": "✨", "activity_type": "Local experience", "duration": "1–2 hrs", "best_time": "Morning"},
+    "historic": {"icon": "🏺", "activity_type": "Heritage discovery", "duration": "1–2 hrs", "best_time": "Morning"},
+    "culture": {"icon": "🎶", "activity_type": "Arts & music", "duration": "1–2 hrs", "best_time": "Late afternoon"},
+    "restaurant": {"icon": "🍜", "activity_type": "Food experience", "duration": "1–2 hrs", "best_time": "Lunch or dinner"},
+    "sport": {"icon": "⚽", "activity_type": "Active break", "duration": "1–2 hrs", "best_time": "Late afternoon"},
+    "wellness": {"icon": "🧘", "activity_type": "Wellness break", "duration": "1–2 hrs", "best_time": "Flexible"},
+    "shopping": {"icon": "🛍️", "activity_type": "Local shopping", "duration": "1–2 hrs", "best_time": "Late morning"},
+}
+
+MOOD_PICK_META = {
+    "anger": {"label": "Calm Pick", "headline": "Mood Recovery Activities", "mood_need": "a quieter pace and room to reset"},
+    "sad": {"label": "Mood Booster", "headline": "Mood Recovery Activities", "mood_need": "a gentle change of scene without too much pressure"},
+    "neutral": {"label": "Fresh Pick", "headline": "Smart Picks For You", "mood_need": "something engaging that adds interest to the day"},
+    "happy": {"label": "Energy Match", "headline": "Smart Picks For You", "mood_need": "an activity that makes good use of your positive energy"},
+    "surprise": {"label": "Grounding Pick", "headline": "Balanced Picks For You", "mood_need": "an interesting but grounded activity"},
+    "uncertain": {"label": "Easy Pick", "headline": "Gentle Picks For You", "mood_need": "a flexible, low-pressure option"},
+}
+
+
+def _activity_copy(name: str, category: str, emotion: str, hobby_matches: list[str]) -> dict[str, Any]:
+    activity = CATEGORY_ACTIVITY_META[category]
+    mood = MOOD_PICK_META.get(emotion, MOOD_PICK_META["neutral"])
+    why = f"This {activity['activity_type'].lower()} offers {mood['mood_need']}."
+    if hobby_matches:
+        why += f" It also matches your interest in {', '.join(hobby_matches)}."
+    return {
+        **activity,
+        "recommendation_label": mood["label"],
+        "description": f"Spend a little time at {name} for {CATEGORY_REASONS[category]}.",
+        "why_for_you": why,
+        "solo_friendly": True,
+    }
 
 
 def normalize_hobbies(hobbies: list[str] | None) -> list[str]:
@@ -132,6 +178,14 @@ def build_overpass_query(
         selectors.append(
             f'nwr["historic"~"^(monument|memorial|ruins|archaeological_site|castle)$"]["name"]({bbox})'
         )
+    if "restaurant" in preferred:
+        selectors.append(f'nwr["amenity"="restaurant"]["name"]({bbox})')
+    if "sport" in preferred:
+        selectors.append(f'nwr["leisure"~"^(sports_centre|stadium|pitch)$"]["name"]({bbox})')
+    if "wellness" in preferred:
+        selectors.append(f'nwr["leisure"~"^(fitness_centre|spa)$"]["name"]({bbox})')
+    if "shopping" in preferred:
+        selectors.append(f'nwr["shop"~"^(mall|department_store|gift|craft)$"]["name"]({bbox})')
     return "[out:json][timeout:25];(" + ";".join(selectors) + ";);out center tags 120;"
 
 
@@ -185,8 +239,16 @@ def _category(tags: dict[str, str]) -> str | None:
         return "waterfall"
     if amenity == "cafe":
         return "cafe"
+    if amenity == "restaurant":
+        return "restaurant"
     if amenity in {"theatre", "arts_centre", "music_venue"}:
         return "culture"
+    if leisure in {"sports_centre", "stadium", "pitch"}:
+        return "sport"
+    if leisure in {"fitness_centre", "spa"}:
+        return "wellness"
+    if tags.get("shop") in {"mall", "department_store", "gift", "craft"}:
+        return "shopping"
     if tags.get("historic"):
         return "historic"
     return None
@@ -235,6 +297,7 @@ def rank_places(
         reason = CATEGORY_REASONS[category]
         if hobby_matches:
             reason += f" and matches {', '.join(hobby_matches)}"
+        activity_copy = _activity_copy(name, category, emotion, hobby_matches)
         ranked.append(
             {
                 "name": name,
@@ -246,10 +309,14 @@ def rank_places(
                 "longitude": place_lng,
                 "map_url": f"https://www.openstreetmap.org/?mlat={place_lat}&mlon={place_lng}#map=16/{place_lat}/{place_lng}",
                 "score": round(score, 2),
+                **activity_copy,
             }
         )
     ranked.sort(key=lambda place: (-place["score"], place["distance_km"], place["name"]))
-    return ranked[:limit]
+    selected = ranked[:limit]
+    for index, place in enumerate(selected):
+        place["top_pick"] = index == 0
+    return selected
 
 
 def _trip_start(session_document: dict[str, Any]) -> dict[str, Any] | None:
@@ -312,6 +379,7 @@ def build_nearby_emotion_tips(
         "location": location,
         "hobbies": selected_hobbies,
         "summary": profile["intro"],
+        "headline": MOOD_PICK_META.get(emotion, MOOD_PICK_META["neutral"])["headline"],
         "recommendations": recommendations,
         "message": None if recommendations else "No suitable named places were found within 3 km.",
         "disclaimer": "These are wellbeing-oriented activity suggestions, not medical advice.",

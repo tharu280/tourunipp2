@@ -22,7 +22,7 @@ class EmotionPlacesTests(unittest.TestCase):
         self.assertNotIn("7.290600", query)
         self.assertIn('"tourism"', query)
 
-    def test_music_hobby_boosts_a_cultural_place(self) -> None:
+    def test_arts_hobby_boosts_a_cultural_place(self) -> None:
         elements = [
             {
                 "type": "node",
@@ -39,9 +39,13 @@ class EmotionPlacesTests(unittest.TestCase):
                 "tags": {"name": "City View", "tourism": "viewpoint"},
             },
         ]
-        places = rank_places(elements, 7.2906, 80.6337, "neutral", ["Music"])
+        places = rank_places(elements, 7.2906, 80.6337, "neutral", ["Arts"])
         self.assertEqual(places[0]["name"], "Kandy Music Hall")
-        self.assertEqual(places[0]["hobby_matches"], ["Music"])
+        self.assertEqual(places[0]["hobby_matches"], ["Arts"])
+        self.assertEqual(places[0]["activity_type"], "Arts & music")
+        self.assertEqual(places[0]["recommendation_label"], "Fresh Pick")
+        self.assertTrue(places[0]["top_pick"])
+        self.assertIn("Arts", places[0]["why_for_you"])
 
     def test_nearby_tips_use_session_origin_and_do_not_persist_places(self) -> None:
         session = {
@@ -63,13 +67,15 @@ class EmotionPlacesTests(unittest.TestCase):
             }
         ]
         with patch("clean_run.emotion.places.fetch_overpass_places", return_value=elements) as fetch:
-            result = build_nearby_emotion_tips(session, "neutral", ["History"])
+            result = build_nearby_emotion_tips(session, "neutral", ["Culture"])
 
         self.assertEqual(result["status"], "available")
         self.assertEqual(result["location"]["name"], "Colombo")
         self.assertEqual(result["location"]["source"], "trip_start")
         self.assertEqual(result["recommendations"][0]["name"], "History Museum")
-        fetch.assert_called_once_with(6.9271, 79.8612, "neutral", ["History"])
+        self.assertEqual(result["headline"], "Smart Picks For You")
+        self.assertEqual(result["recommendations"][0]["best_time"], "Late morning")
+        fetch.assert_called_once_with(6.9271, 79.8612, "neutral", ["Culture"])
 
 
 if __name__ == "__main__":
