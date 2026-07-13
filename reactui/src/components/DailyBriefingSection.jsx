@@ -131,6 +131,43 @@ function StaySummary({ accommodation, costs }) {
   );
 }
 
+function DayGlance({ briefing }) {
+  const weather = briefing.weather || {};
+  const roads = briefing.roads || {};
+  return (
+    <div className="daily-glance" aria-label={`Day ${briefing.day} conditions at a glance`}>
+      <div className="daily-glance-item">
+        <span>Crowd</span>
+        <strong>{briefing.crowd?.score != null ? `${Math.round(briefing.crowd.score)}/100` : "—"}</strong>
+        <StatusPill level={briefing.crowd?.risk_level} />
+      </div>
+      <div className="daily-glance-item">
+        <span>Weather</span>
+        <strong>{weather.condition || "Unavailable"}</strong>
+        <StatusPill level={weather.risk_level} />
+      </div>
+      <div className="daily-glance-item">
+        <span>Roads</span>
+        <strong>{roads.route_alert_count ? `${roads.route_alert_count} alert${roads.route_alert_count === 1 ? "" : "s"}` : "Clear"}</strong>
+        <StatusPill level={roads.risk_level} />
+      </div>
+    </div>
+  );
+}
+
+function OvernightStrip({ accommodation }) {
+  return (
+    <div className="daily-overnight-strip">
+      <div>
+        <span className="daily-eyebrow">Tonight</span>
+        <strong>{accommodation?.name || "No overnight stay planned"}</strong>
+        {accommodation?.location && <small>{accommodation.location}</small>}
+      </div>
+      {accommodation?.price_label && <span className="daily-price">{accommodation.price_label}</span>}
+    </div>
+  );
+}
+
 function DailyBriefingCard({ briefing, defaultOpen }) {
   const routeDistance = formatDistanceKm(briefing.route?.distance_km);
   const routeDuration = formatDuration(briefing.route?.duration_seconds);
@@ -152,28 +189,7 @@ function DailyBriefingCard({ briefing, defaultOpen }) {
 
       <div className="daily-briefing-body">
         <p className="daily-overview">{briefing.summary}</p>
-
-        <div className="daily-signal-grid">
-          <div className="daily-signal-card">
-            <div className="daily-signal-heading">
-              <div>
-                <span className="daily-eyebrow">Crowd outlook</span>
-                <strong>
-                  {briefing.crowd?.score != null
-                    ? `${Math.round(briefing.crowd.score)}/100 relative pressure`
-                    : "Estimate unavailable"}
-                </strong>
-              </div>
-              <StatusPill level={briefing.crowd?.risk_level} />
-            </div>
-            <p>
-              {briefing.crowd?.preferred_visit_window
-                ? `Preferred visit window: ${titleCase(briefing.crowd.preferred_visit_window)}.`
-                : "Use the attraction guidance below for timing."}
-            </p>
-          </div>
-          <WeatherSummary weather={briefing.weather} />
-        </div>
+        <DayGlance briefing={briefing} />
 
         <div className="daily-block-heading">
           <div>
@@ -183,19 +199,37 @@ function DailyBriefingCard({ briefing, defaultOpen }) {
           <span>{briefing.attractions?.length || 0} stops</span>
         </div>
         <AttractionList attractions={briefing.attractions} />
+        <OvernightStrip accommodation={briefing.accommodation} />
 
-        <RoadsSummary roads={briefing.roads} />
-        <StaySummary accommodation={briefing.accommodation} costs={briefing.costs} />
-
-        <div className="daily-action-panel">
-          <span className="daily-eyebrow">Recommended plan</span>
-          <ol>
-            {(briefing.recommendations || []).map((recommendation, index) => (
-              <li key={`${briefing.day}-recommendation-${index}`}>{recommendation}</li>
-            ))}
-          </ol>
-          <div className="daily-fallback"><b>Fallback:</b> {briefing.fallback_plan}</div>
-        </div>
+        <details className="daily-more-details">
+          <summary>Weather, roads, costs and backup plan</summary>
+          <div className="daily-more-content">
+            <div className="daily-signal-grid">
+              <div className="daily-signal-card">
+                <div className="daily-signal-heading">
+                  <div>
+                    <span className="daily-eyebrow">Crowd outlook</span>
+                    <strong>{briefing.crowd?.score != null ? `${Math.round(briefing.crowd.score)}/100 relative pressure` : "Estimate unavailable"}</strong>
+                  </div>
+                  <StatusPill level={briefing.crowd?.risk_level} />
+                </div>
+                <p>{briefing.crowd?.preferred_visit_window ? `Preferred visit window: ${titleCase(briefing.crowd.preferred_visit_window)}.` : "Use the attraction guidance above for timing."}</p>
+              </div>
+              <WeatherSummary weather={briefing.weather} />
+            </div>
+            <RoadsSummary roads={briefing.roads} />
+            <StaySummary accommodation={briefing.accommodation} costs={briefing.costs} />
+            <div className="daily-action-panel">
+              <span className="daily-eyebrow">Recommended plan</span>
+              <ol>
+                {(briefing.recommendations || []).map((recommendation, index) => (
+                  <li key={`${briefing.day}-recommendation-${index}`}>{recommendation}</li>
+                ))}
+              </ol>
+              <div className="daily-fallback"><b>Fallback:</b> {briefing.fallback_plan}</div>
+            </div>
+          </div>
+        </details>
       </div>
     </details>
   );

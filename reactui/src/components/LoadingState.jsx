@@ -7,11 +7,14 @@ export default function LoadingState({ title, detail, steps = [] }) {
       <h1 className="loading-title">{title}</h1>
       <p className="loading-detail">{detail}</p>
       {steps.length > 0 && (
-        <div className="loading-steps" aria-label="Loading steps">
+        <div className="loading-progress" aria-hidden="true"><span /></div>
+      )}
+      {steps.length > 0 && (
+        <ol className="loading-steps" aria-label="Planning progress">
           {steps.map((step, i) => (
-            <span key={i} className="loading-step">{step}</span>
+            <li key={i} className="loading-step"><span>{i + 1}</span>{step}</li>
           ))}
-        </div>
+        </ol>
       )}
     </main>
   );

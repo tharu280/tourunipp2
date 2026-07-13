@@ -4005,3 +4005,502 @@ h4,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ================================================================
+   MOBILE CLARITY PASS
+   Preserve the planner data while reducing first-view density.
+   ================================================================ */
+
+/* Loading is a status view, not a menu of disabled actions. */
+.loading-screen {
+  min-height: 100dvh;
+  padding: max(64px, 12vh) 28px 48px;
+  gap: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(29, 158, 117, 0.1), transparent 30%),
+    #08100d;
+}
+
+.loading-spinner-wrap {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 0 0 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(29, 158, 117, 0.08);
+  box-shadow: 0 0 44px rgba(29, 158, 117, 0.13);
+}
+
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  border-width: 2px;
+}
+
+.loading-title {
+  max-width: 520px;
+  margin: 0;
+  color: #edf8f2;
+  font-size: clamp(27px, 6vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+}
+
+.loading-detail {
+  max-width: 470px;
+  margin: 14px 0 30px;
+  color: #92ad9e;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.loading-progress {
+  overflow: hidden;
+  width: min(100%, 360px);
+  height: 3px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: #193026;
+}
+
+.loading-progress span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #20a77d, #65d8ad);
+  animation: loading-sweep 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes loading-sweep {
+  from { transform: translateX(-30%); }
+  to { transform: translateX(170%); }
+}
+
+.loading-steps {
+  display: flex;
+  width: min(100%, 390px);
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.loading-step {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #678575;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  animation: loading-label 4s ease-in-out infinite;
+}
+
+.loading-step > span {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  place-items: center;
+  border: 1px solid #284739;
+  border-radius: 50%;
+  color: #8aa896;
+  font-size: 8px;
+}
+
+.loading-step:nth-child(2) { animation-delay: 1s; }
+.loading-step:nth-child(3) { animation-delay: 2s; }
+.loading-step:nth-child(4) { animation-delay: 3s; }
+
+@keyframes loading-label {
+  0%, 24%, 100% { color: #678575; }
+  8%, 16% { color: #67d8ad; }
+}
+
+/* Overall conditions now read as one compact summary. */
+.conditions-card {
+  padding: 0;
+}
+
+.conditions-header {
+  margin: 0;
+  padding: 15px 16px 10px;
+  border: 0;
+  background: transparent;
+}
+
+.conditions-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  padding: 0 10px 12px;
+  background: transparent;
+}
+
+.condition-pill {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  justify-content: start;
+  gap: 2px 7px;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.condition-pill + .condition-pill {
+  border-left: 1px solid #20382c;
+}
+
+.condition-dot {
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 7px;
+  height: 7px;
+  box-shadow: none;
+}
+
+.condition-label {
+  overflow: hidden;
+  color: #8da999;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.condition-value {
+  color: #e8f5ef;
+  font-size: 12px;
+}
+
+.conditions-details {
+  border-top: 1px solid #20382c;
+}
+
+.conditions-details summary {
+  padding: 11px 16px;
+  color: #86a694;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+  list-style-position: inside;
+}
+
+.conditions-detail-list {
+  display: grid;
+  gap: 9px;
+  padding: 0 16px 14px;
+}
+
+.conditions-detail-list p {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  margin: 0;
+  color: #9ab4a5;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.conditions-detail-list b { color: #dcece4; }
+
+/* Daily cards use progressive disclosure rather than nested card stacks. */
+.d-card-header {
+  padding: 16px;
+}
+
+.d-card-title {
+  font-size: clamp(20px, 4vw, 27px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.daily-briefing-list {
+  gap: 8px;
+  padding: 0 10px 12px;
+}
+
+.daily-briefing-summary {
+  min-height: 76px;
+  padding: 11px 13px;
+}
+
+.daily-number {
+  width: 42px;
+  height: 48px;
+  border-radius: 9px;
+}
+
+.daily-number b { font-size: 20px; }
+.daily-summary-copy h3 { font-size: 16px; font-weight: 650; }
+.daily-summary-copy p { color: #8aa896; }
+
+.daily-briefing-body {
+  gap: 12px;
+  padding: 0 14px 14px;
+}
+
+.daily-overview {
+  margin: 0;
+  padding: 13px 0 0;
+  border: 0;
+  background: transparent;
+  color: #a1b9ac;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.daily-glance {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border-block: 1px solid #20382c;
+}
+
+.daily-glance-item {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+  padding: 11px 9px;
+}
+
+.daily-glance-item + .daily-glance-item { border-left: 1px solid #20382c; }
+.daily-glance-item > span:first-child { color: #789887; font-size: 9px; font-weight: 750; text-transform: uppercase; }
+.daily-glance-item > strong { overflow: hidden; color: #e8f5ef; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.daily-glance-item .daily-status { justify-self: start; min-height: 20px; padding: 3px 7px; font-size: 8px; }
+
+.daily-block-heading {
+  margin-top: 2px;
+  align-items: center;
+}
+
+.daily-block-heading h3 { margin-top: 2px; font-size: 15px; font-weight: 650; }
+.daily-block-heading > span { color: #789887; }
+
+.daily-attraction-list {
+  gap: 0;
+  border-block: 1px solid #20382c;
+}
+
+.daily-attraction {
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px 2px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.daily-attraction + .daily-attraction { border-top: 1px solid #1b3026; }
+
+.daily-attraction-index {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.daily-attraction-title-row { align-items: center; }
+.daily-attraction h4 { font-size: 13px; font-weight: 650; }
+.daily-attraction-title-row .daily-status { flex: 0 0 auto; min-height: 22px; padding: 4px 7px; font-size: 8px; }
+.daily-attraction p { margin-top: 5px; color: #8da999; font-size: 11px; line-height: 1.42; }
+.daily-attraction-meta { margin-top: 6px; color: #5bcfa3; font-size: 9px; }
+
+.daily-overnight-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid #20382c;
+}
+
+.daily-overnight-strip > div { min-width: 0; }
+.daily-overnight-strip strong,
+.daily-overnight-strip small { display: block; }
+.daily-overnight-strip strong { overflow: hidden; margin-top: 3px; color: #e8f5ef; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.daily-overnight-strip small { margin-top: 2px; color: #789887; font-size: 9px; }
+.daily-overnight-strip .daily-price { flex: 0 0 auto; margin: 0; font-size: 12px; }
+
+.daily-more-details {
+  overflow: hidden;
+  border: 1px solid #20382c;
+  border-radius: 10px;
+  background: #0c1813;
+}
+
+.daily-more-details > summary {
+  padding: 11px 12px;
+  color: #8fac9c;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+  list-style-position: inside;
+}
+
+.daily-more-content {
+  display: grid;
+  gap: 10px;
+  padding: 0 10px 10px;
+}
+
+.daily-more-content .daily-signal-card {
+  padding: 11px;
+  border-color: #20382c;
+  border-radius: 9px;
+  background: #10251b;
+}
+
+.daily-more-content .daily-signal-heading strong { font-size: 12px; }
+.daily-more-content .daily-signal-card > p { color: #91ac9d; font-size: 10px; }
+.daily-more-content .daily-action-panel { padding: 12px; border-radius: 9px; }
+
+/* Tips inherit one dark surface and readable text instead of light-theme remnants. */
+.tips-panel {
+  padding: clamp(14px, 3vw, 20px);
+  border: 1px solid #20382c;
+  background: #0f2219;
+  box-shadow: none;
+}
+
+.tips-heading h2,
+.smart-picks-banner h3,
+.smart-pick-title-row h4,
+.trip-readiness-content h4 {
+  color: #e8f5ef;
+}
+
+.tips-heading p,
+.smart-picks-banner p,
+.smart-pick-description,
+.smart-pick-footer,
+.trip-readiness-content > p,
+.trip-readiness-content dd {
+  color: #91ac9d;
+}
+
+.smart-picks-banner {
+  padding: 13px;
+  border: 1px solid #2b5b46;
+  border-left: 3px solid #28b889;
+  border-radius: 11px;
+  background: linear-gradient(120deg, rgba(29, 158, 117, 0.12), #10251b 60%);
+  box-shadow: none;
+}
+
+.smart-picks-emoji {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: #142e22;
+  font-size: 23px;
+}
+
+.smart-pick-card {
+  padding: 14px;
+  border-radius: 12px;
+  background: #0f2219;
+}
+
+.smart-pick-meta span {
+  background: #182b22;
+  color: #9bb6a7;
+}
+
+.smart-pick-meta span:first-child {
+  background: rgba(29, 158, 117, 0.13);
+  color: #65d8ad;
+}
+
+.smart-pick-meta .interest-match-chip {
+  background: rgba(242, 184, 75, 0.12);
+  color: #f2c86f;
+}
+
+.smart-pick-description {
+  margin: 11px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.smart-pick-why {
+  padding: 11px 12px;
+  border-left-color: #28b889;
+  border-radius: 0 8px 8px 0;
+  background: #13281e;
+}
+
+.smart-pick-why span { color: #779787; }
+.smart-pick-why p { color: #c4dbcf; font-style: normal; }
+
+.trip-readiness-details {
+  border-color: #20382c;
+  border-radius: 10px;
+  background: #0c1813;
+}
+
+.trip-readiness-details summary { color: #65d8ad; }
+.tips-reset-button { color: #65d8ad; }
+
+/* Keep supporting copy readable without competing with headings. */
+.itinerary-attractions,
+.itinerary-km,
+.daily-summary-copy p,
+.daily-overview,
+.daily-attraction p,
+.daily-overnight-strip small,
+.tips-heading p,
+.smart-picks-banner p,
+.smart-pick-description,
+.smart-pick-footer,
+.trip-readiness-content > p,
+.trip-readiness-content dd {
+  color: rgba(211, 229, 220, 0.72);
+}
+
+.condition-label,
+.daily-glance-item > span:first-child,
+.daily-block-heading > span,
+.smart-pick-why span {
+  color: rgba(173, 203, 188, 0.72);
+}
+
+@media (max-width: 620px) {
+  .loading-screen { justify-content: center; padding-inline: 24px; }
+  .loading-steps { gap: 7px; }
+  .loading-step { flex-direction: column; gap: 5px; font-size: 8px; text-align: center; }
+
+  .dashboard-content { padding-inline: 7px; }
+  .conditions-card { border-radius: 11px; }
+  .condition-pill { padding-inline: 7px; }
+
+  .daily-briefing-list { padding-inline: 6px; }
+  .daily-briefing-summary { grid-template-columns: 42px minmax(0, 1fr) auto 12px; gap: 8px; }
+  .daily-briefing-body { padding-inline: 12px; }
+  .daily-signal-grid,
+  .daily-stay-cost-grid { grid-template-columns: 1fr; }
+  .daily-attraction-title-row { gap: 6px; }
+  .daily-attraction-title-row .daily-status { max-width: 86px; white-space: normal; }
+
+  .tips-panel { border-radius: 11px; }
+  .smart-picks-banner { grid-template-columns: auto minmax(0, 1fr); }
+  .smart-picks-banner .mood-risk-badge { grid-column: 2; justify-self: start; }
+  .smart-pick-card-top { margin-bottom: 10px; }
+}

@@ -165,28 +165,31 @@ export default function PlanDashboard({
               {conditions.overall || "Good"}
             </span>
           </div>
-          <div className="conditions-row" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div className="conditions-row">
             {[
               { label: "Crowd", value: conditions.crowd, detail: getCrowdIntelPanel(viewPlan, dashboardData)?.helperSummary || (conditions.crowd === "high" ? "Busy on route" : "Normal crowd levels") },
               { label: "Weather", value: conditions.weather, detail: getWeatherSegmentPoints(viewPlan).filter(s => s.status !== "unavailable" && s.riskLevel !== "unknown").length === 0 ? "Forecast unavailable this far ahead" : (conditions.weather === "high" ? "High risk of rain or storms" : conditions.weather === "medium" ? "Moderate rain risk or cloudy" : "Likely clear, good for travel") },
               { label: "Roads", value: conditions.roads, detail: getRoadAlertsForMap(viewPlan).totalNearRoute === 0 && getRoadAlertsForMap(viewPlan).criticalCount === 0 ? "No active warnings" : `${getRoadAlertsForMap(viewPlan).totalNearRoute} RoadLK alert${getRoadAlertsForMap(viewPlan).totalNearRoute === 1 ? "" : "s"}, ${getRoadAlertsForMap(viewPlan).criticalCount} active critical` },
             ].map((c) => (
-              <div key={c.label} className="condition-pill" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: "10px 14px", height: 'auto', gap: 4 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <div className={`condition-dot ${conditionClass(c.value)}`} aria-hidden="true" />
-                    <span className="condition-label">{c.label}</span>
-                  </div>
-                  <span className="condition-value">{titleCase(c.value) || "—"}</span>
-                </div>
-                {c.detail && (
-                  <div style={{ fontSize: 13, color: "var(--text-2)", paddingLeft: 18, lineHeight: 1.4, textAlign: 'left', fontStyle: "italic" }}>
-                    {c.detail}
-                  </div>
-                )}
+              <div key={c.label} className="condition-pill">
+                <div className={`condition-dot ${conditionClass(c.value)}`} aria-hidden="true" />
+                <span className="condition-label">{c.label}</span>
+                <span className="condition-value">{titleCase(c.value) || "—"}</span>
               </div>
             ))}
           </div>
+          <details className="conditions-details">
+            <summary>What affects these conditions?</summary>
+            <div className="conditions-detail-list">
+              {[
+                { label: "Crowd", detail: getCrowdIntelPanel(viewPlan, dashboardData)?.helperSummary || (conditions.crowd === "high" ? "Busy on route" : "Normal crowd levels") },
+                { label: "Weather", detail: getWeatherSegmentPoints(viewPlan).filter(s => s.status !== "unavailable" && s.riskLevel !== "unknown").length === 0 ? "Forecast unavailable this far ahead" : (conditions.weather === "high" ? "High risk of rain or storms" : conditions.weather === "medium" ? "Moderate rain risk or cloud" : "Likely clear and suitable for travel") },
+                { label: "Roads", detail: getRoadAlertsForMap(viewPlan).totalNearRoute === 0 && getRoadAlertsForMap(viewPlan).criticalCount === 0 ? "No active warnings" : `${getRoadAlertsForMap(viewPlan).totalNearRoute} RoadLK alert${getRoadAlertsForMap(viewPlan).totalNearRoute === 1 ? "" : "s"}, ${getRoadAlertsForMap(viewPlan).criticalCount} active critical` },
+              ].map((item) => (
+                <p key={item.label}><b>{item.label}</b><span>{item.detail}</span></p>
+              ))}
+            </div>
+          </details>
         </div>
 
         {/* ── Complete day-by-day plan ── */}
