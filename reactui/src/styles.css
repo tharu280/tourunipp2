@@ -2,7 +2,7 @@
    TourUni — Ultra-Premium Apple iOS Style Design System
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
 
 :root {
   /* iOS System Colors */
@@ -2635,3 +2635,1373 @@ vercel-live-feedback,
   border-radius: 8px;
 }
 .mt-3 { margin-top: 12px; }
+
+/* ── Day-by-day route briefing ── */
+.daily-briefing-list {
+  display: grid;
+  gap: 12px;
+  padding: 0 16px 18px;
+}
+
+.daily-briefing {
+  overflow: hidden;
+  border: 1px solid var(--separator-light);
+  border-radius: 20px;
+  background: var(--ios-surface);
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.045);
+}
+
+.daily-briefing-summary {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto 18px;
+  align-items: center;
+  gap: 12px;
+  min-height: 92px;
+  padding: 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.daily-briefing-summary::-webkit-details-marker { display: none; }
+
+.daily-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+.daily-number span {
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.daily-number b {
+  margin-top: 1px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.daily-summary-copy { min-width: 0; }
+.daily-summary-copy > span,
+.daily-eyebrow {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+.daily-summary-copy h3 {
+  overflow: hidden;
+  margin: 2px 0;
+  font-size: 17px;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.daily-summary-copy p {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.daily-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.daily-status-low { background: #e3f7ed; color: #08774f; }
+.daily-status-medium { background: #fff2d6; color: #a85b00; }
+.daily-status-high { background: #ffe7e7; color: #c52c35; }
+.daily-status-unknown { background: #eef0f3; color: #6b7280; }
+
+.daily-chevron {
+  color: var(--text-tertiary);
+  font-size: 20px;
+  transition: transform 180ms ease;
+}
+
+.daily-briefing[open] .daily-chevron { transform: rotate(180deg); }
+
+.daily-briefing-body {
+  display: grid;
+  gap: 14px;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--separator-light);
+}
+
+.daily-overview {
+  padding-top: 14px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.daily-signal-grid,
+.daily-stay-cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.daily-signal-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(7, 95, 85, 0.09);
+  border-radius: 16px;
+  background: #f7faf9;
+}
+
+.daily-signal-card > strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.daily-signal-card > p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.daily-signal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.daily-signal-heading strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.daily-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.daily-metrics b { color: var(--text-primary); font-size: 13px; }
+
+.daily-block-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.daily-block-heading h3 { margin-top: 3px; font-size: 17px; }
+.daily-block-heading > span { color: var(--text-secondary); font-size: 11px; }
+
+.daily-attraction-list { display: grid; gap: 8px; }
+
+.daily-attraction {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--separator-light);
+  border-radius: 15px;
+}
+
+.daily-attraction-index {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--brand-light);
+  color: var(--brand-primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.daily-attraction-copy { min-width: 0; }
+.daily-attraction-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.daily-attraction h4 { font-size: 14px; line-height: 1.3; }
+.daily-attraction p {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.daily-attraction-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 8px;
+  color: var(--brand-primary);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.daily-road-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+  list-style: none;
+}
+.daily-road-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 7px;
+  border-top: 1px solid var(--separator-light);
+  font-size: 11px;
+}
+.daily-road-list li span { color: var(--text-secondary); text-align: right; }
+
+.daily-price {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 800;
+}
+.daily-cost-lines {
+  display: grid;
+  gap: 5px;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.daily-cost-lines span { display: flex; justify-content: space-between; gap: 8px; }
+.daily-cost-lines b { color: var(--text-primary); }
+.daily-cost-note { font-size: 9px !important; }
+
+.daily-action-panel {
+  padding: 15px;
+  border-radius: 16px;
+  background: var(--brand-primary);
+  color: #fff;
+}
+.daily-action-panel .daily-eyebrow { color: rgba(255, 255, 255, 0.62); }
+.daily-action-panel ol {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0 18px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.daily-fallback {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 11px;
+  line-height: 1.45;
+}
+.daily-empty {
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--ios-bg);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+@media (max-width: 620px) {
+  .daily-briefing-list { padding-inline: 10px; }
+  .daily-briefing-summary {
+    grid-template-columns: 44px minmax(0, 1fr) auto 14px;
+    gap: 9px;
+    padding: 13px;
+  }
+  .daily-number { width: 44px; height: 52px; }
+  .daily-signal-grid,
+  .daily-stay-cost-grid { grid-template-columns: 1fr; }
+  .daily-attraction-title-row { align-items: flex-start; }
+  .daily-attraction-title-row .daily-status { white-space: normal; text-align: center; }
+}
+
+/* ================================================================
+   CLIENT DESIGN LANGUAGE — DARK TOURISM INTELLIGENCE
+   Final visual layer only. Existing component behavior is unchanged.
+   ================================================================ */
+
+:root {
+  --ios-bg: #0a0f0e;
+  --ios-surface: #0f2219;
+  --ios-surface-grouped: #0d1a15;
+  --brand-primary: #1d9e75;
+  --brand-gradient: linear-gradient(135deg, #1d9e75 0%, #0f6e56 100%);
+  --brand-light: rgba(29, 158, 117, 0.14);
+  --primary-color: #49c89d;
+  --text-primary: #e8f5ef;
+  --text-secondary: #93b5a4;
+  --text-tertiary: #527362;
+  --separator: #20382c;
+  --separator-light: rgba(162, 201, 181, 0.1);
+  --shadow-card: 0 18px 44px rgba(0, 0, 0, 0.2);
+  --shadow-btn: 0 10px 28px rgba(29, 158, 117, 0.2);
+  --font: 'DM Sans', sans-serif;
+  --font-display: 'Syne', sans-serif;
+
+  /* Aliases used by inline component styles. */
+  --bg-1: #0a0f0e;
+  --bg-2: #0f2219;
+  --bg-3: #12291f;
+  --bg-primary: #0a0f0e;
+  --bg-secondary: #0f2219;
+  --bg-tertiary: #12291f;
+  --surface: #0f2219;
+  --border-color: #20382c;
+  --accent-primary: #1d9e75;
+  --text-1: #e8f5ef;
+  --text-2: #93b5a4;
+  --text-3: #527362;
+}
+
+html {
+  background: var(--ios-bg);
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(circle at 85% -10%, rgba(29, 158, 117, 0.14), transparent 30rem),
+    var(--ios-bg);
+  color: var(--text-primary);
+}
+
+::selection {
+  color: #f4fff9;
+  background: rgba(29, 158, 117, 0.55);
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #49c89d;
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+.chat-nav-title,
+.flight-nav-title,
+.dashboard-nav-title,
+.d-card-title,
+.conditions-title,
+.loading-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+/* Welcome */
+.gs-screen {
+  background: #07100c;
+}
+
+.gs-hero {
+  background-position: center 58%;
+  filter: saturate(0.74) contrast(1.08) brightness(0.72);
+}
+
+.gs-overlay-top {
+  height: 42%;
+  background: linear-gradient(to bottom, rgba(4, 12, 8, 0.72), rgba(4, 12, 8, 0));
+}
+
+.gs-overlay-bottom {
+  height: 78%;
+  background: linear-gradient(to top, #07100c 4%, rgba(7, 16, 12, 0.9) 40%, rgba(7, 16, 12, 0));
+}
+
+.gs-top-nav {
+  width: min(100%, 560px);
+  margin-inline: auto;
+  padding-inline: 22px;
+}
+
+.gs-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(159, 211, 184, 0.24);
+  background: rgba(8, 24, 16, 0.58);
+  color: #dff7eb;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.gs-content {
+  width: min(100%, 560px);
+  margin-inline: auto;
+  padding-inline: clamp(24px, 7vw, 42px);
+  padding-bottom: calc(max(28px, var(--safe-bottom)) + 18px);
+}
+
+.gs-text-container {
+  margin-bottom: 30px;
+}
+
+.gs-pre-title {
+  margin-bottom: -2px;
+  color: #b4cfbf;
+  font-family: var(--font-display);
+  font-size: clamp(23px, 6vw, 34px);
+  font-weight: 500;
+}
+
+.gs-title {
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(54px, 16vw, 78px);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+}
+
+.gs-subtitle {
+  color: #b9d0c3;
+  font-size: clamp(16px, 4vw, 19px);
+  font-weight: 400;
+}
+
+.gs-highlight {
+  color: #65d8ad;
+}
+
+.gs-cta {
+  min-height: 64px;
+  border: 1px solid rgba(104, 216, 173, 0.4);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(29, 158, 117, 0.96), rgba(15, 110, 86, 0.98));
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gs-trust-line {
+  color: #789886;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* Shared application shells */
+.chat-screen,
+.flight-screen,
+.loading-screen,
+.dashboard-screen {
+  background:
+    radial-gradient(circle at 100% 0, rgba(29, 158, 117, 0.09), transparent 26rem),
+    var(--ios-bg);
+  color: var(--text-primary);
+}
+
+.chat-screen,
+.flight-screen {
+  width: min(100%, 760px);
+  margin-inline: auto;
+  border-inline: 1px solid rgba(147, 181, 164, 0.08);
+}
+
+.chat-nav,
+.flight-nav,
+.dashboard-nav {
+  border-color: var(--separator);
+  background: rgba(10, 15, 14, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.chat-nav-title,
+.flight-nav-title,
+.dashboard-nav-title {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.chat-nav-back,
+.flight-nav-back,
+.dashboard-nav-back,
+.dashboard-nav-share {
+  color: #65d8ad;
+}
+
+.chat-nav-reset {
+  color: #65d8ad !important;
+}
+
+/* Conversation */
+.chat-messages {
+  padding-inline: clamp(18px, 5vw, 34px);
+  background-image:
+    linear-gradient(rgba(29, 158, 117, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 158, 117, 0.018) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bubble {
+  max-width: min(82%, 520px);
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  box-shadow: none;
+}
+
+.bubble.assistant {
+  border: 1px solid #20382c;
+  border-bottom-left-radius: 4px;
+  background: #0f2219;
+  color: #dcefe5;
+}
+
+.bubble.user {
+  border: 1px solid rgba(93, 215, 170, 0.24);
+  border-bottom-right-radius: 4px;
+  background: #126f58;
+  color: #f3fff9;
+}
+
+.bubble-time {
+  color: #4d705e;
+  font-size: 10px;
+}
+
+.thinking-bubble {
+  border: 1px solid #20382c;
+  background: #0f2219;
+  box-shadow: none;
+}
+
+.thinking-bubble .dot {
+  background: #49c89d;
+}
+
+.quick-chips {
+  border-color: var(--separator);
+  background: rgba(10, 15, 14, 0.92);
+}
+
+.quick-chip,
+.hobby-chips button {
+  border: 1px solid #294638;
+  background: #101c17;
+  color: #a9c9b8;
+  box-shadow: none;
+}
+
+.quick-chip:hover,
+.quick-chip:active {
+  border-color: #1d9e75;
+  background: rgba(29, 158, 117, 0.13);
+  color: #e8f5ef;
+}
+
+.chat-composer {
+  border-color: var(--separator);
+  background: rgba(10, 15, 14, 0.96);
+}
+
+.composer-row {
+  border: 1px solid #294638;
+  border-radius: 14px;
+  background: #101c17;
+  box-shadow: none;
+}
+
+.composer-row:focus-within {
+  border-color: #1d9e75;
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.1);
+}
+
+.composer-textarea {
+  color: #e8f5ef;
+}
+
+.composer-textarea::placeholder {
+  color: #527362;
+}
+
+.composer-send {
+  background: var(--brand-gradient);
+  color: white;
+  box-shadow: none;
+}
+
+.chat-error {
+  border: 1px solid rgba(226, 75, 74, 0.34);
+  background: rgba(226, 75, 74, 0.1);
+  color: #ffaaa9;
+}
+
+/* Loading */
+.loading-screen {
+  gap: 11px;
+}
+
+.loading-spinner-wrap {
+  width: 72px;
+  height: 72px;
+  border: 1px solid #294638;
+  background: #0f2219;
+  box-shadow: 0 0 40px rgba(29, 158, 117, 0.12);
+}
+
+.loading-spinner {
+  border-color: #294638;
+  border-top-color: #49c89d;
+}
+
+.loading-title {
+  color: #e8f5ef;
+  font-size: clamp(25px, 5vw, 34px);
+}
+
+.loading-detail {
+  max-width: 440px;
+  color: #7fa18f;
+}
+
+.loading-step {
+  border: 1px solid #20382c;
+  border-radius: 8px;
+  background: #0f1c16;
+  color: #8fb5a2;
+}
+
+/* Flight selection */
+.flight-content {
+  padding: 22px clamp(16px, 5vw, 34px) 130px;
+}
+
+.flight-nav-sub,
+.flight-section-label {
+  color: #6f9380;
+}
+
+.flight-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.flight-card {
+  border: 1px solid #20382c;
+  border-radius: 14px;
+  background: #0f2219;
+  box-shadow: none;
+}
+
+.flight-card:hover {
+  border-color: #31523f;
+  transform: translateY(-1px);
+}
+
+.flight-card.selected {
+  border-color: #1d9e75;
+  background: linear-gradient(145deg, rgba(29, 158, 117, 0.13), #0f2219 48%);
+  box-shadow: 0 0 0 1px rgba(29, 158, 117, 0.12);
+}
+
+.flight-badge {
+  border-radius: 6px;
+  background: rgba(29, 158, 117, 0.18);
+  color: #6cdfb5;
+}
+
+.airline-logo {
+  border: 1px solid #294638;
+  background: #0b1611;
+}
+
+.airline-name,
+.flight-price,
+.flight-port {
+  color: #e8f5ef;
+}
+
+.flight-price-note,
+.flight-port-time,
+.flight-duration,
+.flight-stops-label {
+  color: #789887;
+}
+
+.flight-line {
+  background: #31523f;
+}
+
+.flight-booking-link {
+  border-color: #20382c;
+  color: #65d8ad;
+}
+
+.flight-sticky-bar {
+  border-color: var(--separator);
+  background: rgba(10, 15, 14, 0.94);
+  backdrop-filter: blur(20px);
+}
+
+.flight-sticky-btn {
+  border-radius: 10px;
+  background: var(--brand-gradient);
+  box-shadow: var(--shadow-btn);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Results dashboard */
+.dashboard-screen {
+  min-height: 100dvh;
+}
+
+.dashboard-content {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  padding: 14px clamp(12px, 2.5vw, 28px) 64px;
+}
+
+.dashboard-nav {
+  box-shadow: 0 1px 0 var(--separator);
+}
+
+.dashboard-nav-sub {
+  color: #6f9380;
+}
+
+.trip-map-module,
+.map-card,
+.conditions-card,
+.d-card,
+.daily-briefing,
+.mood-checkin-card,
+.nearby-tips-section,
+.smart-pick-card {
+  border: 1px solid #20382c;
+  border-radius: 14px;
+  background: #0f2219;
+  box-shadow: var(--shadow-card);
+}
+
+.map-module-header,
+.map-mode-tabs {
+  border-color: var(--separator);
+  background: #0d1a15;
+}
+
+.map-mode-tabs {
+  padding: 4px;
+  border: 1px solid #20382c;
+  border-radius: 10px;
+}
+
+.map-mode-tab {
+  min-height: 37px;
+  border-radius: 7px;
+  color: #789887;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.map-mode-tab.active {
+  background: #1d9e75;
+  color: #f4fff9;
+  box-shadow: none;
+}
+
+.map-refresh-btn {
+  border: 1px solid #294638;
+  background: #101c17;
+  color: #8fb5a2;
+}
+
+.map-panel,
+.map-panel-body,
+.map-panel-header,
+.map-panel-suggestion-item,
+.map-no-data-overlay {
+  border-color: #20382c;
+  background-color: #0f2219;
+  color: var(--text-primary);
+}
+
+.map-panel-title,
+.map-panel-suggestion-title {
+  color: #e8f5ef;
+}
+
+.map-panel-disclaimer,
+.map-panel-suggestion-body,
+.map-refresh-label {
+  color: #789887;
+}
+
+.leaflet-container {
+  background: #0d1713;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.58) saturate(0.58) contrast(1.14) hue-rotate(82deg);
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-attribution {
+  border-color: #294638 !important;
+  background: rgba(10, 15, 14, 0.88) !important;
+  color: #9fc4b0 !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #0f2219 !important;
+  color: #e8f5ef !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border: 1px solid #31523f;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35) !important;
+}
+
+.conditions-card,
+.d-card {
+  overflow: hidden;
+}
+
+.conditions-header,
+.d-card-header {
+  border-color: var(--separator);
+  background: #10251b;
+}
+
+.conditions-title,
+.d-card-title {
+  color: #e8f5ef;
+}
+
+.conditions-overall,
+.condition-pill,
+.risk-low,
+.risk-medium,
+.risk-high,
+.daily-status,
+.mood-risk-badge,
+.crowd-risk-badge,
+.road-severity-pill {
+  border: 1px solid currentColor;
+  background: transparent;
+  font-weight: 700;
+}
+
+.condition-pill,
+.condition-label,
+.budget-label {
+  color: #789887;
+}
+
+.condition-value,
+.budget-amount {
+  color: #e8f5ef;
+}
+
+.conditions-row,
+.budget-row,
+.itinerary-row,
+.road-alert-row,
+.alert-item {
+  border-color: var(--separator-light);
+}
+
+.d-card-body {
+  background: #0f2219;
+}
+
+.d-card-link,
+.daily-price,
+.accom-price,
+.flight-booking-link {
+  color: #65d8ad;
+}
+
+/* Daily briefing and itinerary */
+.daily-briefing-list {
+  gap: 9px;
+}
+
+.daily-briefing {
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.daily-briefing-summary {
+  border-color: #20382c;
+  background: #10251b;
+}
+
+.daily-briefing[open] .daily-briefing-summary {
+  border-bottom-color: #294638;
+  background: linear-gradient(120deg, rgba(29, 158, 117, 0.12), #10251b 46%);
+}
+
+.daily-number,
+.itinerary-badge {
+  border: 1px solid #2d604a;
+  border-radius: 10px;
+  background: #123b2b;
+  color: #dff7eb;
+}
+
+.daily-eyebrow,
+.itinerary-label,
+.daily-metrics,
+.itinerary-meta,
+.itinerary-distance,
+.itinerary-attrs-muted {
+  color: #789887;
+}
+
+.daily-summary-copy h3,
+.daily-block-heading,
+.daily-signal-heading,
+.daily-attraction h4,
+.itinerary-info h4,
+.itinerary-attrs {
+  color: #e8f5ef;
+}
+
+.daily-briefing-body {
+  border-color: #20382c;
+  background: #0d1a15;
+}
+
+.daily-overview,
+.daily-signal-card,
+.daily-attraction,
+.daily-empty {
+  border: 1px solid #20382c;
+  background: #0f2219;
+}
+
+.daily-attraction-index {
+  background: rgba(29, 158, 117, 0.16);
+  color: #65d8ad;
+}
+
+.daily-action-panel {
+  border: 1px solid rgba(100, 216, 173, 0.28);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #123b2b, #0f2c21);
+}
+
+.daily-action-panel .daily-eyebrow,
+.daily-action-panel ol,
+.daily-fallback {
+  color: #cce8da;
+}
+
+.itinerary-row {
+  background: transparent;
+}
+
+.itinerary-row:hover {
+  background: rgba(29, 158, 117, 0.06);
+}
+
+/* Accommodation, flight and budget */
+.accom-card,
+.flight-summary-card {
+  border: 1px solid #20382c;
+  background: #10251b;
+  box-shadow: none;
+}
+
+.accom-thumb {
+  background: #142e22;
+}
+
+.accom-name,
+.fs-airline,
+.fs-price,
+.budget-progress-label strong {
+  color: #e8f5ef;
+}
+
+.accom-location,
+.accom-stars,
+.fs-route,
+.fs-date,
+.fs-price-note,
+.budget-progress-label {
+  color: #789887;
+}
+
+.accom-day-tag {
+  background: rgba(29, 158, 117, 0.14);
+  color: #65d8ad;
+}
+
+.fs-view-btn {
+  border: 1px solid #2b5b46;
+  background: rgba(29, 158, 117, 0.1);
+  color: #65d8ad;
+}
+
+.budget-progress-bar {
+  background: #172a21;
+}
+
+.budget-progress-fill {
+  background: linear-gradient(90deg, #1d9e75, #67d8ad);
+}
+
+/* Crowd, weather, roads, heatmaps and alerts */
+.crowd-intensity-banner,
+.crowd-intel-cell,
+.crowd-reason-chip,
+.heatmap-block,
+.loc-heat-item,
+.alert-item,
+.road-alert-row,
+.weather-seg-row {
+  border: 1px solid #20382c;
+  background: #10251b;
+}
+
+.crowd-intensity-label-text,
+.crowd-intel-cell-label,
+.heat-day,
+.heat-corridor,
+.loc-heat-meta,
+.alert-body,
+.road-alert-meta,
+.weather-seg-label {
+  color: #789887;
+}
+
+.crowd-intensity-value,
+.crowd-intel-cell-value,
+.crowd-risk-label,
+.heat-score,
+.loc-heat-name,
+.loc-heat-score,
+.alert-title,
+.road-alert-name,
+.weather-seg-temp {
+  color: #e8f5ef;
+}
+
+.crowd-reason-chip {
+  color: #9fc4b0;
+}
+
+.heat-cell {
+  border-color: #294638;
+  background: #0e1c16;
+}
+
+.heat-windows {
+  color: #65d8ad;
+}
+
+.crowd-suggestions li,
+.nearby-tip-card {
+  border: 1px solid #294638;
+  background: rgba(29, 158, 117, 0.07);
+  color: #b9d4c5;
+}
+
+.road-alert-dot,
+.weather-seg-dot,
+.condition-dot {
+  box-shadow: 0 0 0 4px rgba(29, 158, 117, 0.08);
+}
+
+/* Mood and personalized tips */
+.mood-checkin-card,
+.nearby-tips-section {
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.tips-panel,
+.tips-preferences {
+  color: var(--text-primary);
+}
+
+.tips-choice-section {
+  border: 1px solid #20382c;
+  background: #10251b;
+  box-shadow: none;
+}
+
+.tips-choice-heading h3,
+.tips-choice-heading h3 small {
+  color: #e8f5ef;
+}
+
+.tips-choice-heading h3 small,
+.tips-privacy-note {
+  color: #789887;
+}
+
+.mood-checkin-idle,
+.mood-checkin-result,
+.mood-checkin-unavailable,
+.mood-day-ahead,
+.nearby-summary,
+.smart-pick-description {
+  border: 1px solid #20382c;
+  background: #10251b;
+  color: #b9d4c5;
+}
+
+.mood-heading-row h3,
+.mood-result-header,
+.nearby-tips-heading,
+.smart-pick-card h3 {
+  color: #e8f5ef;
+}
+
+.mood-upload-btn,
+.photo-mood-button {
+  border: 1px solid #2d604a;
+  border-radius: 9px;
+  background: #123b2b;
+  color: #dff7eb;
+}
+
+.interest-grid button,
+.emotion-grid button {
+  border: 1px solid #294638;
+  background: #101c17;
+  color: #9fc4b0;
+}
+
+.interest-grid button[aria-pressed='true'],
+.emotion-grid button[aria-pressed='true'] {
+  border-color: #1d9e75;
+  background: rgba(29, 158, 117, 0.15);
+  color: #e8f5ef;
+}
+
+.smart-pick-card {
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.smart-pick-card:first-child {
+  border-color: #1d9e75;
+  background: linear-gradient(145deg, rgba(29, 158, 117, 0.12), #0f2219 45%);
+}
+
+.smart-pick-label,
+.mood-badge {
+  background: rgba(29, 158, 117, 0.15);
+  color: #65d8ad;
+}
+
+.nearby-tip-index,
+.smart-pick-icon {
+  background: #123b2b;
+  color: #65d8ad;
+}
+
+.smart-pick-footer,
+.mood-checkin-desc,
+.mood-checkin-privacy,
+.nearby-tip-copy {
+  color: #789887;
+}
+
+/* Semantic statuses stay readable on dark surfaces. */
+.risk-low,
+.daily-status-low,
+.mood-risk-badge.low {
+  color: #65d8ad;
+  background: rgba(29, 158, 117, 0.08);
+}
+
+.risk-medium,
+.daily-status-medium,
+.mood-risk-badge.medium {
+  color: #f2b84b;
+  background: rgba(239, 159, 39, 0.08);
+}
+
+.risk-high,
+.daily-status-high,
+.mood-risk-badge.high {
+  color: #ff8f8e;
+  background: rgba(226, 75, 74, 0.08);
+}
+
+@media (min-width: 760px) {
+  .gs-content {
+    justify-content: flex-end;
+  }
+
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+  }
+
+  .dashboard-content > * {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-content > .conditions-card,
+  .dashboard-content > .mood-checkin-card {
+    grid-column: span 6;
+  }
+
+  .d-card-body {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .chat-screen,
+  .flight-screen {
+    border-inline: 0;
+  }
+
+  .chat-nav,
+  .flight-nav,
+  .dashboard-nav {
+    min-height: 60px;
+  }
+
+  .chat-messages {
+    padding: 18px 15px;
+  }
+
+  .bubble {
+    max-width: 88%;
+    font-size: 14px;
+  }
+
+  .quick-chips {
+    padding-inline: 14px;
+  }
+
+  .quick-chip {
+    min-height: 35px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .chat-composer {
+    padding: 10px 12px calc(10px + var(--safe-bottom));
+  }
+
+  .composer-row {
+    min-height: 52px;
+  }
+
+  .flight-content {
+    padding: 16px 12px 116px;
+  }
+
+  .flight-card {
+    border-radius: 12px;
+  }
+
+  .dashboard-content {
+    padding: 9px 8px 44px;
+  }
+
+  .trip-map-module,
+  .map-card,
+  .conditions-card,
+  .d-card,
+  .daily-briefing,
+  .mood-checkin-card,
+  .nearby-tips-section {
+    border-radius: 12px;
+  }
+
+  .map-mode-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    min-width: 0;
+  }
+
+  .map-mode-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-mode-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 4px;
+    font-size: 0.68rem;
+    letter-spacing: -0.01em;
+  }
+
+  .conditions-header,
+  .d-card-header {
+    padding: 14px 15px;
+  }
+
+  .conditions-row {
+    align-items: flex-start;
+  }
+
+  .daily-briefing-list {
+    padding-inline: 8px;
+  }
+
+  .daily-briefing-summary {
+    border-radius: 10px;
+  }
+
+  .accom-card {
+    min-width: min(76vw, 250px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

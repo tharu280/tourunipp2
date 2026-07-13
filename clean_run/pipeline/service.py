@@ -18,6 +18,7 @@ from clean_run.postprocess import (
     ItineraryService,
     TravelWindowsService,
     assemble_plan,
+    build_daily_briefings,
     build_package_explanation,
     estimate_transport_cost_for_route,
 )
@@ -173,6 +174,7 @@ class CleanRunPipelineService:
                             "travel_windows",
                             "itinerary_guidance",
                             "package_explanation",
+                            "daily_briefings",
                         ],
                     },
                 },
@@ -187,6 +189,7 @@ class CleanRunPipelineService:
         route_data["sampled_points"] = recommended_route.get("sampled_points", [])
         refreshed_plan["route_data"] = route_data
         refreshed_plan["package_explanation"] = build_package_explanation(refreshed_plan)
+        refreshed_plan["daily_briefings"] = build_daily_briefings(refreshed_plan)
 
         plan_updates = {
             key: refreshed_plan[key]
@@ -202,6 +205,7 @@ class CleanRunPipelineService:
                 "itinerary_markdown",
                 "itinerary_source",
                 "package_explanation",
+                "daily_briefings",
                 "intelligence_refresh",
             ]
         }
@@ -409,6 +413,7 @@ class CleanRunPipelineService:
             warnings=warnings,
         )
         plan_payload["package_explanation"] = build_package_explanation(plan_payload)
+        plan_payload["daily_briefings"] = build_daily_briefings(plan_payload)
         plan_payload["session_id"] = session_id
         plan_payload["session_storage"] = {
             "enabled": self.session_repository is not None,

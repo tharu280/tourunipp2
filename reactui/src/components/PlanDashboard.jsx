@@ -1,5 +1,6 @@
 import TripMapModule from "./TripMapModule";
 import ItinerarySection from "./ItinerarySection";
+import DailyBriefingSection from "./DailyBriefingSection";
 import AccommodationSection from "./AccommodationSection";
 import FlightSummary from "./FlightSummary";
 import BudgetSummary from "./BudgetSummary";
@@ -188,9 +189,13 @@ export default function PlanDashboard({
           </div>
         </div>
 
-        {/* ── Itinerary ── */}
-        <Section title="Itinerary" id="itinerary-section">
-          <ItinerarySection plan={viewPlan} />
+        {/* ── Complete day-by-day plan ── */}
+        <Section title="Your trip, day by day" id="daily-briefing-section">
+          {viewPlan?.daily_briefings?.length ? (
+            <DailyBriefingSection plan={viewPlan} />
+          ) : (
+            <ItinerarySection plan={viewPlan} />
+          )}
         </Section>
 
         {/* ── Accommodation ── */}

@@ -166,6 +166,7 @@ class SessionLoaderService:
             },
             "budget": plan.get("budget_summary", {}),
             "package_explanation": plan.get("package_explanation", {}),
+            "daily_briefings": plan.get("daily_briefings", []),
             "intelligence_refresh": plan.get("intelligence_refresh", {}),
             "emotion": document.get("emotion_summary", {}),
             "transport_cost": plan.get("transport_cost", {}),
@@ -210,6 +211,7 @@ class SessionLoaderService:
                 "duration_text": plan.get("duration_text"),
                 "budget_summary": plan.get("budget_summary", {}),
                 "package_explanation": plan.get("package_explanation", {}),
+                "daily_briefings": plan.get("daily_briefings", []),
                 "intelligence_refresh": plan.get("intelligence_refresh", {}),
                 "flight_summary": (plan.get("flight_plan") or {}).get("cheapest_result"),
                 "crowd_summary": {

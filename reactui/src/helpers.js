@@ -172,6 +172,10 @@ export function mergePlanWithDashboard(plan, dashboardData) {
     package_explanation:
       dashboardData.package_explanation ||
       plan?.package_explanation,
+    daily_briefings:
+      dashboardData.daily_briefings ||
+      plan?.daily_briefings ||
+      [],
     transport_cost:
       dashboardData.transport_cost ||
       plan?.transport_cost,
@@ -227,6 +231,10 @@ export function getRouteSegments(plan) {
     plan?.route?.recommended_route?.route_data?.segments ||
     []
   );
+}
+
+export function getDailyBriefings(plan) {
+  return Array.isArray(plan?.daily_briefings) ? plan.daily_briefings : [];
 }
 
 function toLatLng(point) {

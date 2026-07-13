@@ -262,6 +262,8 @@ class CleanPipelineTests(unittest.TestCase):
         self.assertEqual(payload["package_explanation"]["mode"], "read_only")
         self.assertFalse(payload["package_explanation"]["package_mutation"]["allowed"])
         self.assertIn("budget_fit", payload["package_explanation"]["components"])
+        self.assertEqual(len(payload["daily_briefings"]), 1)
+        self.assertEqual(payload["daily_briefings"][0]["day"], 1)
         self.assertIsNone(places_service.last_nightly_budget_lkr)
 
     def test_pipeline_divides_total_budget_across_overnight_stays(self) -> None:
