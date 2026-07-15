@@ -197,6 +197,11 @@ def fetch_overpass_places(
     radius_meters: int = SEARCH_RADIUS_METERS,
 ) -> list[dict[str, Any]]:
     query = build_overpass_query(latitude, longitude, emotion, hobbies, radius_meters)
+    return fetch_overpass_query(query)
+
+
+def fetch_overpass_query(query: str) -> list[dict[str, Any]]:
+    """Run a bounded Overpass query against the configured fallback mirrors."""
     payload = urllib.parse.urlencode({"data": query}).encode()
     errors: list[str] = []
     for endpoint in OVERPASS_URLS:

@@ -38,7 +38,13 @@ Main API entrypoint:
 - `GET /sessions/{session_id}/dashboard`
 - `GET /sessions/{session_id}/chatbot-context`
 - `POST /sessions/{session_id}/refresh-intelligence`
+- `POST /sessions/{session_id}/contextual-alternatives`
 - `POST /sessions/{session_id}/emotion-checkins`
+
+Contextual alternatives are generated on demand for planned attractions affected
+by crowd or weather risk. They are ranked using weather suitability, crowd-relief
+potential, distance, user interests, and OpenStreetMap metadata quality. Results
+are temporary recommendations and do not modify the session or itinerary.
 
 Emotion check-ins are opt-in and privacy-safe by contract. The mobile app should
 run the CNN locally and send only `emotion_label`, confidence, top predictions,

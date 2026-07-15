@@ -28,6 +28,7 @@ from clean_run.flights.service import FlightSearchPreferences, FlightSearchServi
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
 from clean_run.planner_pipeline import TripPlanOptions, build_trip_plan, refresh_trip_intelligence
+from clean_run.recommendations import build_contextual_alternatives
 from clean_run.storage import SessionLoaderService, build_session_repository_from_env
 
 
@@ -113,6 +114,16 @@ class RefreshIntelligenceRequest(BaseModel):
     include_crowd: bool = True
     include_roadlk: bool = True
     response_mode: str = Field(default="slim", pattern="^(slim|full)$")
+
+
+class ContextualAlternativesRequest(BaseModel):
+    day: int | None = Field(default=None, ge=1)
+    attraction_id: str | None = None
+    interests: list[str] = Field(default_factory=list)
+    radius_meters: int = Field(default=5_000, ge=1_000, le=8_000)
+    limit_per_attraction: int = Field(default=3, ge=1, le=5)
+    max_attractions: int = Field(default=6, ge=1, le=12)
+    force: bool = False
 
 
 class EmotionTopPrediction(BaseModel):
@@ -561,6 +572,34 @@ async def refresh_session_intelligence(
         "updated_fields": payload.get("updated_fields", []),
         "plan": _slim_plan_payload(payload.get("plan") or {}),
     }
+
+
+@app.post("/sessions/{session_id}/contextual-alternatives")
+async def get_contextual_alternatives(
+    session_id: str,
+    req: ContextualAlternativesRequest | None = None,
+) -> dict[str, Any]:
+    """Generate temporary alternatives without changing the saved itinerary."""
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+
+    session_document = repository.get_session(session_id)
+    if session_document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+
+    active_req = req or ContextualAlternativesRequest()
+    return await asyncio.to_thread(
+        build_contextual_alternatives,
+        session_document,
+        day=active_req.day,
+        attraction_id=active_req.attraction_id,
+        interests=active_req.interests,
+        radius_meters=active_req.radius_meters,
+        limit_per_attraction=active_req.limit_per_attraction,
+        max_attractions=active_req.max_attractions,
+        force=active_req.force,
+    )
 
 
 @app.post("/sessions/{session_id}/emotion-checkins")

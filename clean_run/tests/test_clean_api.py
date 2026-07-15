@@ -80,6 +80,7 @@ class CleanApiTests(unittest.TestCase):
         self.assertIn("/flights/search", paths)
         self.assertIn("/flights/confirm", paths)
         self.assertIn("/sessions/{session_id}/refresh-intelligence", paths)
+        self.assertIn("/sessions/{session_id}/contextual-alternatives", paths)
         self.assertIn("/sessions/{session_id}/emotion-checkins", paths)
         self.assertIn("/sessions/{session_id}/emotion-targets", paths)
 
