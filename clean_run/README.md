@@ -28,11 +28,37 @@ Required environment variables are loaded from deployment secrets, `.env`, or
 - `MONGODB_URI`
 - `MONGODB_DATABASE`
 - `MONGODB_COLLECTION`
+- `JWT_SECRET` (at least 32 random characters)
+
+Authentication settings:
+
+- `JWT_ISSUER=touruni-api`
+- `JWT_AUDIENCE=touruni-pwa`
+- `ACCESS_TOKEN_MINUTES=15`
+- `REFRESH_TOKEN_DAYS=30`
+- `REFRESH_COOKIE_NAME=touruni_refresh_token`
+- `COOKIE_SECURE=true` in hosted HTTPS environments
+
+Generate a production JWT secret with:
+
+```bash
+openssl rand -hex 32
+```
+
+The same MongoDB database is used for `users`, `refresh_tokens`, and the configured
+trip-session collection. Passwords are Argon2 hashes. Access tokens are short-lived
+JWTs kept in frontend memory, while rotating refresh tokens are stored only in a
+secure HTTP-only browser cookie and as SHA-256 hashes in MongoDB.
 
 Main API entrypoint:
 
 - `GET /health`
 - `POST /chat`
+- `POST /auth/signup`
+- `POST /auth/login`
+- `POST /auth/refresh`
+- `POST /auth/logout`
+- `GET /auth/me`
 - `POST /plan`
 - `GET /sessions/{session_id}`
 - `GET /sessions/{session_id}/dashboard`
@@ -40,6 +66,10 @@ Main API entrypoint:
 - `POST /sessions/{session_id}/refresh-intelligence`
 - `POST /sessions/{session_id}/contextual-alternatives`
 - `POST /sessions/{session_id}/emotion-checkins`
+
+When `/plan` receives a valid bearer access token, the saved trip session is tagged
+with the authenticated `user_id`. Existing anonymous planner calls remain compatible
+during this first authentication phase.
 
 Contextual alternatives are generated on demand for planned attractions affected
 by crowd or weather risk. They are ranked using weather suitability, crowd-relief

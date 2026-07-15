@@ -83,6 +83,11 @@ class CleanApiTests(unittest.TestCase):
         self.assertIn("/sessions/{session_id}/contextual-alternatives", paths)
         self.assertIn("/sessions/{session_id}/emotion-checkins", paths)
         self.assertIn("/sessions/{session_id}/emotion-targets", paths)
+        self.assertIn("/auth/signup", paths)
+        self.assertIn("/auth/login", paths)
+        self.assertIn("/auth/refresh", paths)
+        self.assertIn("/auth/logout", paths)
+        self.assertIn("/auth/me", paths)
 
     def test_error_details_redact_api_keys(self) -> None:
         detail = safe_error_detail(

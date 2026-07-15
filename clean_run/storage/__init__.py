@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .mongo_client import build_mongo_collection_from_env
+from .mongo_client import build_mongo_collection_from_env, build_mongo_database_from_env
 from .session_loader import SessionLoaderService
 from .session_repository import SessionRepository
 
@@ -14,6 +14,7 @@ def build_session_repository_from_env() -> SessionRepository | None:
 
 __all__ = [
     "build_mongo_collection_from_env",
+    "build_mongo_database_from_env",
     "build_session_repository_from_env",
     "SessionLoaderService",
     "SessionRepository",

@@ -13,13 +13,12 @@ load_dotenv(PROJECT_ROOT / "atlas-credentials.env")
 load_dotenv(PACKAGE_ROOT / "atlas-credentials.env")
 load_dotenv(PROJECT_ROOT / ".env")
 
-def build_mongo_collection_from_env() -> Any | None:
+def build_mongo_database_from_env() -> Any | None:
     mongo_uri = os.getenv("MONGODB_URI") or os.getenv("MONGO_URI")
     if not mongo_uri:
         return None
 
     database_name = os.getenv("MONGODB_DATABASE", "tourunipp2")
-    collection_name = os.getenv("MONGODB_COLLECTION", "trip_sessions")
 
     try:
         from pymongo import MongoClient
@@ -37,5 +36,12 @@ def build_mongo_collection_from_env() -> Any | None:
         client_options["tlsCAFile"] = certifi.where()
 
     client = MongoClient(mongo_uri, **client_options)
-    database = client[database_name]
+    return client[database_name]
+
+
+def build_mongo_collection_from_env() -> Any | None:
+    database = build_mongo_database_from_env()
+    if database is None:
+        return None
+    collection_name = os.getenv("MONGODB_COLLECTION", "trip_sessions")
     return database[collection_name]

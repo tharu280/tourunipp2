@@ -36,7 +36,7 @@ const ShieldIcon = () => (
   </svg>
 );
 
-export default function GetStarted({ onStart }) {
+export default function GetStarted({ onStart, onProfile, user }) {
   return (
     <main className="gs-screen animate-slide-up" id="screen-get-started">
       <div
@@ -53,8 +53,8 @@ export default function GetStarted({ onStart }) {
         <button className="gs-icon-btn" aria-label="Menu" type="button">
           <MenuIcon />
         </button>
-        <button className="gs-icon-btn" aria-label="Profile" type="button">
-          <ProfileIcon />
+        <button className="gs-icon-btn" aria-label={user ? "Open account" : "Sign in"} type="button" onClick={onProfile}>
+          {user ? <span className="gs-user-initial">{user.name?.charAt(0)?.toUpperCase() || "T"}</span> : <ProfileIcon />}
         </button>
       </div>
 

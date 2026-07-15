@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 
 import GetStarted from "./components/GetStarted";
+import AuthScreen from "./components/AuthScreen";
+import AccountScreen from "./components/AccountScreen";
 import ChatIntake from "./components/ChatIntake";
 import LoadingState from "./components/LoadingState";
 import FlightOptions from "./components/FlightOptions";
@@ -12,6 +14,11 @@ import {
   flightConfirmApi,
   planApi,
   dashboardApi,
+  signupApi,
+  loginApi,
+  refreshAuthApi,
+  logoutApi,
+  setAccessToken,
 } from "./api";
 
 import {
@@ -42,7 +49,12 @@ export default function App() {
   // ── Screen state machine ──────────────────────────────────────
   const [screen, setScreen] = useState("welcome");
   //  welcome | booting | flightChat | flightLoading |
-  //  flightOptions | tripChat | planning | results
+  //  flightOptions | tripChat | planning | results | auth | account
+
+  // ── Authentication ───────────────────────────────────────────
+  const [authStatus, setAuthStatus] = useState("checking");
+  const [authUser, setAuthUser] = useState(null);
+  const [authBusy, setAuthBusy] = useState(false);
 
   // ── Chat state ────────────────────────────────────────────────
   const [flightMessages, setFlightMessages] = useState([]);
@@ -65,8 +77,36 @@ export default function App() {
   }, [flightPlan, selectedFlightIdx]);
 
   useEffect(() => {
+    let cancelled = false;
+
+    async function restoreAccount() {
+      try {
+        const payload = await refreshAuthApi();
+        if (cancelled) return;
+        setAccessToken(payload.access_token);
+        setAuthUser(payload.user);
+        setAuthStatus("authenticated");
+      } catch {
+        if (cancelled) return;
+        setAccessToken(null);
+        setAuthUser(null);
+        setAuthStatus("guest");
+      }
+    }
+
+    restoreAccount();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     const sessionId = new URLSearchParams(window.location.search).get("session_id");
-    if (!sessionId) return;
+    if (!sessionId || authStatus === "checking") return;
+    if (authStatus !== "authenticated") {
+      setScreen("auth");
+      return;
+    }
 
     let cancelled = false;
     async function loadDashboardSession() {
@@ -94,15 +134,13 @@ export default function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [authStatus]);
 
   /* ── Helpers ────────────────────────────────────────────────── */
-  function reset() {
+  function resetPlannerState() {
     const url = new URL(window.location);
     url.searchParams.delete("session_id");
     window.history.replaceState({}, document.title, url);
-    sessionStorage.clear();
-    localStorage.clear();
 
     setScreen("welcome");
     setFlightMessages([]);
@@ -115,6 +153,41 @@ export default function App() {
     setSelectedFlightIdx(0);
     setPlan(null);
     setDashboardData(null);
+  }
+
+  function startAuthenticatedPlanner() {
+    if (authStatus !== "authenticated") {
+      setScreen("auth");
+      return;
+    }
+    handleStart();
+  }
+
+  async function submitAuth({ mode, name, email, password }) {
+    const payload = mode === "signup"
+      ? await signupApi({ name: name.trim(), email: email.trim(), password })
+      : await loginApi({ email: email.trim(), password });
+
+    setAccessToken(payload.access_token);
+    setAuthUser(payload.user);
+    setAuthStatus("authenticated");
+
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    if (!sessionId) await handleStart();
+  }
+
+  async function logout() {
+    if (authBusy) return;
+    setAuthBusy(true);
+    try {
+      await logoutApi();
+      setAccessToken(null);
+      setAuthUser(null);
+      setAuthStatus("guest");
+      resetPlannerState();
+    } finally {
+      setAuthBusy(false);
+    }
   }
 
   /* ── 1. Get Started → boot chat ─────────────────────────────── */
@@ -275,8 +348,44 @@ export default function App() {
 
   /* ── Screen router ──────────────────────────────────────────── */
 
+  if (authStatus === "checking") {
+    return (
+      <LoadingState
+        title="Opening TourUni…"
+        detail="Restoring your secure session."
+        steps={["Account", "Planner"]}
+      />
+    );
+  }
+
+  if (screen === "auth") {
+    return (
+      <AuthScreen
+        onBack={() => setScreen("welcome")}
+        onSubmit={submitAuth}
+      />
+    );
+  }
+
+  if (screen === "account") {
+    return (
+      <AccountScreen
+        user={authUser}
+        onBack={() => setScreen("welcome")}
+        onLogout={logout}
+        busy={authBusy}
+      />
+    );
+  }
+
   if (screen === "welcome") {
-    return <GetStarted onStart={handleStart} />;
+    return (
+      <GetStarted
+        onStart={startAuthenticatedPlanner}
+        onProfile={() => setScreen(authUser ? "account" : "auth")}
+        user={authUser}
+      />
+    );
   }
 
   if (screen === "booting") {
@@ -328,7 +437,7 @@ export default function App() {
         setSelectedIndex={setSelectedFlightIdx}
         onContinue={continueToTrip}
         busy={busy}
-        onBack={reset}
+        onBack={resetPlannerState}
         error={error}
       />
     );
@@ -341,7 +450,7 @@ export default function App() {
         dashboardData={dashboardData}
         selectedFlight={selectedFlight}
         session={session}
-        onReset={reset}
+        onReset={resetPlannerState}
       />
     );
   }
@@ -358,8 +467,8 @@ export default function App() {
       onSend={isTrip ? sendTripMessage : sendFlightMessage}
       busy={busy}
       error={error}
-      onBack={isTrip ? continueToTrip : reset}
-      onReset={reset}
+      onBack={isTrip ? continueToTrip : resetPlannerState}
+      onReset={resetPlannerState}
     />
   );
 }

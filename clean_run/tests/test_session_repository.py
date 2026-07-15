@@ -42,12 +42,30 @@ class SessionRepositoryTests(unittest.TestCase):
         )
 
         self.assertEqual(session_id, "session-123")
-        self.assertEqual(len(collection.index_calls), 5)
+        self.assertEqual(len(collection.index_calls), 6)
         saved = collection.documents["session-123"]
         self.assertEqual(saved["trip_requirements"]["destination"], "Kandy")
         self.assertEqual(saved["plan"]["route_data"]["route_id"], "route_1")
         self.assertIn("future_advice", saved)
         self.assertIn("dashboard_cache", saved)
+
+    def test_assign_session_owner_links_saved_plan_to_user(self) -> None:
+        collection = FakeCollection()
+        repository = SessionRepository(collection)
+        repository.save_planned_session(
+            session_id="session-owned",
+            trip_requirements={"origin": "Colombo", "destination": "Kandy"},
+            chat_history=[],
+            plan={"route_data": {}},
+        )
+
+        assigned = repository.assign_session_owner(
+            session_id="session-owned",
+            user_id="user-123",
+        )
+
+        self.assertTrue(assigned)
+        self.assertEqual(collection.documents["session-owned"]["user_id"], "user-123")
 
     def test_save_planned_session_preserves_created_at_on_update(self) -> None:
         collection = FakeCollection()

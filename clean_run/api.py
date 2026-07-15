@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, UploadFile, Form
+from fastapi import FastAPI, Header, HTTPException, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -24,6 +24,7 @@ from clean_run.emotion import (
     build_nearby_emotion_tips,
 )
 from clean_run.emotion.inference import classify_image_bytes
+from clean_run.auth import auth_router, optional_authenticated_user_id
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
@@ -361,6 +362,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth_router)
+
 
 @app.get("/")
 async def root() -> dict[str, Any]:
@@ -457,7 +460,10 @@ async def confirm_flight(req: FlightConfirmRequest) -> dict[str, Any]:
 
 
 @app.post("/plan")
-async def plan(req: PlanRequest) -> dict[str, Any]:
+async def plan(
+    req: PlanRequest,
+    authorization: str | None = Header(default=None),
+) -> dict[str, Any]:
     try:
         trip_start_date = date.fromisoformat(req.start_date)
     except ValueError as exc:
@@ -492,6 +498,12 @@ async def plan(req: PlanRequest) -> dict[str, Any]:
             status_code=500,
             detail=f"Planning failed: {safe_error_detail(exc, feature='Planning')}",
         ) from exc
+
+    user_id = optional_authenticated_user_id(authorization)
+    session_id = plan_payload.get("session_id")
+    repository = get_session_repository()
+    if user_id and session_id and repository is not None:
+        repository.assign_session_owner(session_id=session_id, user_id=user_id)
 
     if req.response_mode == "full":
         return plan_payload

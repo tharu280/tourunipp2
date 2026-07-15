@@ -1,20 +1,21 @@
 # reactui
 
-Proper Vite + React frontend for `tourunipp2`.
+Vite + React PWA for `tourunipp2`.
 
 What it does:
 
-- talks to the backend `POST /chat` endpoint
-- keeps the returned session state between turns
-- shows missing fields live
-- shows a structured session table while the planner collects data
+- account creation and sign-in with a secure refresh cookie
+- separate flight and trip intake stages
+- flight selection, route planning, maps, crowd/weather/road views, and tips
+- saved-session dashboard loading
 
 How to run:
 
 1. Start the backend from `/Users/dilshantharushika/Desktop/routemvp/tourunipp2`
 
 ```bash
-python3 api.py
+JWT_SECRET="$(openssl rand -hex 32)" COOKIE_SECURE=false \
+  uvicorn clean_run.api:app --host 127.0.0.1 --port 7860
 ```
 
 2. Install frontend dependencies
@@ -39,7 +40,21 @@ Default backend URL:
 
 - `http://127.0.0.1:7860`
 
-You can change the API base URL in the UI itself if needed.
+Set `VITE_API_BASE_URL=http://127.0.0.1:7860` for local development.
+
+Production uses the same-origin `/api` path by default. `vercel.json` proxies that
+path to Railway so mobile Safari treats the HTTP-only authentication cookie as a
+first-party cookie. On Vercel, remove an old direct Railway value for
+`VITE_API_BASE_URL` or set it exactly to `/api`, then redeploy.
+
+Required Railway additions:
+
+```text
+JWT_SECRET=<output of openssl rand -hex 32>
+COOKIE_SECURE=true
+```
+
+Do not set `COOKIE_DOMAIN`. Keep the existing MongoDB variables in Railway.
 
 Build:
 

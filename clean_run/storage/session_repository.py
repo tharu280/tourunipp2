@@ -16,6 +16,7 @@ class SessionRepository:
         self.collection.create_index("session_id", unique=True)
         self.collection.create_index("created_at")
         self.collection.create_index("updated_at")
+        self.collection.create_index("user_id")
         self.collection.create_index("trip_requirements.destination")
         self.collection.create_index("trip_requirements.flight_departure_date")
         self._indexes_ensured = True
@@ -68,6 +69,20 @@ class SessionRepository:
             upsert=True,
         )
         return effective_session_id
+
+    def assign_session_owner(self, *, session_id: str, user_id: str) -> bool:
+        self.ensure_indexes()
+        result = self.collection.update_one(
+            {"session_id": session_id},
+            {
+                "$set": {
+                    "user_id": user_id,
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                }
+            },
+            upsert=False,
+        )
+        return bool(getattr(result, "matched_count", 0))
 
     def get_session(self, session_id: str) -> dict[str, Any] | None:
         return self.collection.find_one({"session_id": session_id})
