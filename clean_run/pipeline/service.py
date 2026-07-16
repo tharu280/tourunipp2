@@ -14,6 +14,7 @@ from clean_run.enrich import (
     WeatherEnrichmentService,
 )
 from clean_run.intake.service import TravelIntakeService
+from clean_run.notifications import build_condition_update_events
 from clean_run.postprocess import (
     ItineraryService,
     TravelWindowsService,
@@ -190,6 +191,12 @@ class CleanRunPipelineService:
         refreshed_plan["route_data"] = route_data
         refreshed_plan["package_explanation"] = build_package_explanation(refreshed_plan)
         refreshed_plan["daily_briefings"] = build_daily_briefings(refreshed_plan)
+        condition_updates = build_condition_update_events(
+            session_id=session_id,
+            previous_plan=old_plan,
+            current_plan=refreshed_plan,
+            user_id=document.get("user_id"),
+        )
 
         plan_updates = {
             key: refreshed_plan[key]
@@ -216,6 +223,15 @@ class CleanRunPipelineService:
         )
         if not updated:
             return None
+        created_updates = self.session_repository.add_condition_notifications(
+            session_id=session_id,
+            notifications=condition_updates,
+        )
+        unread_updates = self.session_repository.get_condition_notifications(
+            session_id=session_id,
+            unread_only=True,
+            limit=100,
+        ) or []
 
         return {
             "session_id": session_id,
@@ -223,6 +239,11 @@ class CleanRunPipelineService:
             "changed_package": False,
             "updated_fields": list(plan_updates.keys()),
             "plan": refreshed_plan,
+            "condition_updates": created_updates,
+            "notification_summary": {
+                "created_count": len(created_updates),
+                "unread_count": len(unread_updates),
+            },
         }
 
     def run(

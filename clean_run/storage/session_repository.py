@@ -61,6 +61,7 @@ class SessionRepository:
             },
             "emotion_checkins": existing.get("emotion_checkins") or [],
             "emotion_summary": existing.get("emotion_summary") or {},
+            "condition_notifications": existing.get("condition_notifications") or [],
         }
 
         self.collection.update_one(
@@ -83,6 +84,128 @@ class SessionRepository:
             upsert=False,
         )
         return bool(getattr(result, "matched_count", 0))
+
+    def add_condition_notifications(
+        self,
+        *,
+        session_id: str,
+        notifications: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        """Append unseen condition events and keep a bounded session history."""
+        self.ensure_indexes()
+        existing = self.collection.find_one({"session_id": session_id})
+        if existing is None:
+            return []
+
+        stored = list(existing.get("condition_notifications") or [])
+        known_keys = {
+            item.get("dedupe_key")
+            for item in stored
+            if isinstance(item, dict) and item.get("dedupe_key")
+        }
+        created: list[dict[str, Any]] = []
+        for item in notifications:
+            event = dict(item)
+            dedupe_key = event.get("dedupe_key")
+            if dedupe_key and dedupe_key in known_keys:
+                continue
+            event["notification_id"] = event.get("notification_id") or str(uuid.uuid4())
+            event["read"] = bool(event.get("read", False))
+            stored.append(event)
+            created.append(event)
+            if dedupe_key:
+                known_keys.add(dedupe_key)
+
+        if not created:
+            return []
+
+        self.collection.update_one(
+            {"session_id": session_id},
+            {
+                "$set": {
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                    "condition_notifications": stored[-100:],
+                }
+            },
+            upsert=False,
+        )
+        return created
+
+    def get_condition_notifications(
+        self,
+        *,
+        session_id: str,
+        unread_only: bool = False,
+        limit: int = 50,
+    ) -> list[dict[str, Any]] | None:
+        document = self.collection.find_one({"session_id": session_id})
+        if document is None:
+            return None
+        notifications = [
+            dict(item)
+            for item in document.get("condition_notifications") or []
+            if isinstance(item, dict) and (not unread_only or not item.get("read"))
+        ]
+        notifications.sort(key=lambda item: item.get("created_at") or "", reverse=True)
+        return notifications[: max(1, min(int(limit), 100))]
+
+    def mark_condition_notification_read(
+        self,
+        *,
+        session_id: str,
+        notification_id: str,
+    ) -> bool:
+        self.ensure_indexes()
+        document = self.collection.find_one({"session_id": session_id})
+        if document is None:
+            return False
+        notifications = list(document.get("condition_notifications") or [])
+        matched = False
+        for item in notifications:
+            if isinstance(item, dict) and item.get("notification_id") == notification_id:
+                item["read"] = True
+                item["read_at"] = datetime.now(timezone.utc).isoformat()
+                matched = True
+                break
+        if not matched:
+            return False
+        self.collection.update_one(
+            {"session_id": session_id},
+            {
+                "$set": {
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                    "condition_notifications": notifications,
+                }
+            },
+            upsert=False,
+        )
+        return True
+
+    def mark_all_condition_notifications_read(self, *, session_id: str) -> int | None:
+        self.ensure_indexes()
+        document = self.collection.find_one({"session_id": session_id})
+        if document is None:
+            return None
+        notifications = list(document.get("condition_notifications") or [])
+        read_at = datetime.now(timezone.utc).isoformat()
+        changed = 0
+        for item in notifications:
+            if isinstance(item, dict) and not item.get("read"):
+                item["read"] = True
+                item["read_at"] = read_at
+                changed += 1
+        if changed:
+            self.collection.update_one(
+                {"session_id": session_id},
+                {
+                    "$set": {
+                        "updated_at": read_at,
+                        "condition_notifications": notifications,
+                    }
+                },
+                upsert=False,
+            )
+        return changed
 
     def get_session(self, session_id: str) -> dict[str, Any] | None:
         return self.collection.find_one({"session_id": session_id})

@@ -7,6 +7,7 @@ import BudgetSummary from "./BudgetSummary";
 import CrowdIntelligenceSection from "./CrowdIntelligenceSection";
 import HeatmapSection from "./HeatmapSection";
 import AlertsSection from "./AlertsSection";
+import TripUpdatesSection from "./TripUpdatesSection";
 import {
   getOverallConditions,
   mergePlanWithDashboard,
@@ -75,6 +76,9 @@ export default function PlanDashboard({
   selectedFlight,
   session,
   onReset,
+  onReadConditionUpdate,
+  onReadAllConditionUpdates,
+  onIntelligenceRefreshed,
 }) {
   const req = session?.trip_requirements || {};
   const viewPlan = mergePlanWithDashboard(plan, dashboardData);
@@ -154,8 +158,19 @@ export default function PlanDashboard({
 
       <div className="dashboard-content">
 
+        <TripUpdatesSection
+          updates={dashboardData?.condition_updates}
+          onReadUpdate={onReadConditionUpdate}
+          onReadAll={onReadAllConditionUpdates}
+        />
+
         {/* ── Trip Map Module (Route / Crowd / Weather / Roads) ── */}
-        <TripMapModule plan={viewPlan} dashboardData={dashboardData} session={session} />
+        <TripMapModule
+          plan={viewPlan}
+          dashboardData={dashboardData}
+          session={session}
+          onIntelligenceRefreshed={onIntelligenceRefreshed}
+        />
 
         {/* ── Overall Conditions pill row ── */}
         <div className="conditions-card">

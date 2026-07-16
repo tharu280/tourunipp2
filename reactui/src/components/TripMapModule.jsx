@@ -610,7 +610,12 @@ function RoadsPanel({ roadData }) {
    MAIN COMPONENT
    ══════════════════════════════════════════════════════════════════ */
 
-export default function TripMapModule({ plan, dashboardData, session }) {
+export default function TripMapModule({
+  plan,
+  dashboardData,
+  session,
+  onIntelligenceRefreshed,
+}) {
   const [activeMode,    setActiveMode]    = useState("route");
   const [refreshing,    setRefreshing]    = useState(false);
   const [refreshStatus, setRefreshStatus] = useState(null);
@@ -630,7 +635,8 @@ export default function TripMapModule({ plan, dashboardData, session }) {
     setRefreshing(true);
     setRefreshStatus(null);
     try {
-      await refreshIntelApi(sessionId);
+      const response = await refreshIntelApi(sessionId);
+      await onIntelligenceRefreshed?.(response);
       setRefreshStatus("done");
     } catch {
       setRefreshStatus("error");

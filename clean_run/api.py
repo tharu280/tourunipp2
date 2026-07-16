@@ -187,6 +187,18 @@ def get_session_repository():
     return build_session_repository_from_env()
 
 
+def _ensure_session_access(
+    document: dict[str, Any],
+    authorization: str | None,
+) -> None:
+    """Require the owning account for user-linked sessions; allow legacy sessions."""
+    owner_id = document.get("user_id")
+    if not owner_id:
+        return
+    if authenticated_user_id(authorization) != owner_id:
+        raise HTTPException(status_code=403, detail="This trip belongs to another account.")
+
+
 @lru_cache(maxsize=1)
 def get_flight_search_service() -> FlightSearchService:
     return FlightSearchService()
@@ -555,6 +567,75 @@ async def get_session_chatbot_context(session_id: str) -> dict[str, Any]:
     return payload
 
 
+@app.get("/sessions/{session_id}/condition-notifications")
+async def get_condition_notifications(
+    session_id: str,
+    unread_only: bool = False,
+    limit: int = 50,
+    authorization: str | None = Header(default=None),
+) -> dict[str, Any]:
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+    document = repository.get_session(session_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+    _ensure_session_access(document, authorization)
+
+    items = repository.get_condition_notifications(
+        session_id=session_id,
+        unread_only=unread_only,
+        limit=limit,
+    ) or []
+    all_items = document.get("condition_notifications") or []
+    return {
+        "session_id": session_id,
+        "items": items,
+        "unread_count": sum(1 for item in all_items if isinstance(item, dict) and not item.get("read")),
+        "total_count": sum(1 for item in all_items if isinstance(item, dict)),
+    }
+
+
+@app.post("/sessions/{session_id}/condition-notifications/read-all")
+async def mark_all_condition_notifications_read(
+    session_id: str,
+    authorization: str | None = Header(default=None),
+) -> dict[str, Any]:
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+    document = repository.get_session(session_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+    _ensure_session_access(document, authorization)
+
+    changed_count = repository.mark_all_condition_notifications_read(session_id=session_id)
+    return {"session_id": session_id, "status": "ok", "changed_count": changed_count or 0}
+
+
+@app.post("/sessions/{session_id}/condition-notifications/{notification_id}/read")
+async def mark_condition_notification_read(
+    session_id: str,
+    notification_id: str,
+    authorization: str | None = Header(default=None),
+) -> dict[str, Any]:
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+    document = repository.get_session(session_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+    _ensure_session_access(document, authorization)
+
+    changed = repository.mark_condition_notification_read(
+        session_id=session_id,
+        notification_id=notification_id,
+    )
+    if not changed:
+        raise HTTPException(status_code=404, detail="Trip update not found.")
+    return {"session_id": session_id, "notification_id": notification_id, "status": "ok"}
+
+
 @app.get("/sessions/{session_id}/emotion-targets")
 async def get_session_emotion_targets(session_id: str) -> dict[str, Any]:
     repository = get_session_repository()
@@ -603,6 +684,8 @@ async def refresh_session_intelligence(
         "status": payload.get("status"),
         "changed_package": payload.get("changed_package", False),
         "updated_fields": payload.get("updated_fields", []),
+        "condition_updates": payload.get("condition_updates", []),
+        "notification_summary": payload.get("notification_summary", {}),
         "plan": _slim_plan_payload(payload.get("plan") or {}),
     }
 

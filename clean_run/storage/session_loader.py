@@ -110,6 +110,22 @@ def _build_time_heatmap_cells(crowd_signals: dict[str, Any]) -> list[dict[str, A
     return cells
 
 
+def _condition_updates_payload(document: dict[str, Any]) -> dict[str, Any]:
+    items = [
+        dict(item)
+        for item in document.get("condition_notifications") or []
+        if isinstance(item, dict)
+    ]
+    items.sort(key=lambda item: item.get("created_at") or "", reverse=True)
+    unread_count = sum(1 for item in items if not item.get("read"))
+    return {
+        "items": items[:50],
+        "unread_count": unread_count,
+        "total_count": len(items),
+        "latest_created_at": items[0].get("created_at") if items else None,
+    }
+
+
 @dataclass
 class SessionLoaderService:
     session_repository: SessionRepository | None
@@ -168,6 +184,7 @@ class SessionLoaderService:
             "package_explanation": plan.get("package_explanation", {}),
             "daily_briefings": plan.get("daily_briefings", []),
             "intelligence_refresh": plan.get("intelligence_refresh", {}),
+            "condition_updates": _condition_updates_payload(document),
             "emotion": document.get("emotion_summary", {}),
             "transport_cost": plan.get("transport_cost", {}),
             "flight": plan.get("flight_plan", {}),
@@ -213,6 +230,7 @@ class SessionLoaderService:
                 "package_explanation": plan.get("package_explanation", {}),
                 "daily_briefings": plan.get("daily_briefings", []),
                 "intelligence_refresh": plan.get("intelligence_refresh", {}),
+                "condition_updates": _condition_updates_payload(document),
                 "flight_summary": (plan.get("flight_plan") or {}).get("cheapest_result"),
                 "crowd_summary": {
                     "risk_level": crowd_signals.get("risk_level"),

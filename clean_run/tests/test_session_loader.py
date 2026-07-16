@@ -42,6 +42,20 @@ def _sample_document() -> dict:
             "latest_recommendation": {"risk_level": "low"},
             "raw_images_stored": False,
         },
+        "condition_notifications": [
+            {
+                "notification_id": "notice-read",
+                "created_at": "2026-06-21T00:08:00Z",
+                "title": "Older update",
+                "read": True,
+            },
+            {
+                "notification_id": "notice-unread",
+                "created_at": "2026-06-21T00:09:00Z",
+                "title": "Conditions changed",
+                "read": False,
+            },
+        ],
         "plan": {
             "trip_days": 3,
             "trip_dates": ["2026-06-25", "2026-06-26", "2026-06-27"],
@@ -158,6 +172,8 @@ class SessionLoaderTests(unittest.TestCase):
         self.assertEqual(payload["crowd"]["risk_level"], "high")
         self.assertEqual(payload["emotion"]["latest"]["emotion_label"], "happy")
         self.assertEqual(payload["daily_briefings"][0]["location_label"], "Colombo")
+        self.assertEqual(payload["condition_updates"]["unread_count"], 1)
+        self.assertEqual(payload["condition_updates"]["items"][0]["notification_id"], "notice-unread")
         self.assertEqual(payload["dashboard_cache"]["location_heatmap_points"][0]["label"], "Colombo")
         self.assertEqual(payload["dashboard_cache"]["time_heatmap_cells"][0]["window"], "early_morning")
 
@@ -174,6 +190,7 @@ class SessionLoaderTests(unittest.TestCase):
         self.assertEqual(payload["trip_summary"]["crowd_summary"]["risk_level"], "high")
         self.assertEqual(payload["trip_summary"]["emotion_summary"]["latest"]["emotion_label"], "happy")
         self.assertEqual(payload["trip_summary"]["daily_briefings"][0]["day"], 1)
+        self.assertEqual(payload["trip_summary"]["condition_updates"]["unread_count"], 1)
         self.assertEqual(payload["recommended_route"]["segments"][0]["top_attractions"][0]["display_name"], "Gangaramaya Temple")
         self.assertEqual(payload["chat_history"][0]["message"], "Plan Colombo to Kandy")
 

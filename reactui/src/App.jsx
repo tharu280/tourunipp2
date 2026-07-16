@@ -19,6 +19,8 @@ import {
   refreshAuthApi,
   logoutApi,
   latestSessionApi,
+  markConditionNotificationReadApi,
+  markAllConditionNotificationsReadApi,
   setAccessToken,
 } from "./api";
 
@@ -406,6 +408,53 @@ export default function App() {
     }
   }
 
+  function updateConditionFeed(markRead) {
+    setDashboardData((current) => {
+      if (!current?.condition_updates) return current;
+      const items = current.condition_updates.items || [];
+      const nextItems = items.map((item) =>
+        markRead(item) ? { ...item, read: true } : item,
+      );
+      return {
+        ...current,
+        condition_updates: {
+          ...current.condition_updates,
+          items: nextItems,
+          unread_count: nextItems.filter((item) => !item.read).length,
+        },
+      };
+    });
+  }
+
+  async function readConditionUpdate(notificationId) {
+    const sessionId = dashboardData?.session_id || getSessionId(plan) || latestSessionId;
+    if (!sessionId || !notificationId) return;
+    try {
+      await markConditionNotificationReadApi(sessionId, notificationId);
+      updateConditionFeed((item) => item.notification_id === notificationId);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function readAllConditionUpdates() {
+    const sessionId = dashboardData?.session_id || getSessionId(plan) || latestSessionId;
+    if (!sessionId) return;
+    try {
+      await markAllConditionNotificationsReadApi(sessionId);
+      updateConditionFeed(() => true);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function reloadDashboardAfterIntelligenceRefresh() {
+    const sessionId = dashboardData?.session_id || getSessionId(plan) || latestSessionId;
+    if (!sessionId) return;
+    const refreshedDashboard = await dashboardApi(sessionId);
+    setDashboardData(refreshedDashboard);
+  }
+
   /* ── Screen router ──────────────────────────────────────────── */
 
   if (authStatus === "checking") {
@@ -512,6 +561,9 @@ export default function App() {
         selectedFlight={selectedFlight}
         session={session}
         onReset={startNewPlanner}
+        onReadConditionUpdate={readConditionUpdate}
+        onReadAllConditionUpdates={readAllConditionUpdates}
+        onIntelligenceRefreshed={reloadDashboardAfterIntelligenceRefresh}
       />
     );
   }

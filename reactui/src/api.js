@@ -78,6 +78,24 @@ export const emotionTargetsApi = (sessionId) =>
 export const refreshIntelApi = (sessionId) =>
   request("POST", `/sessions/${sessionId}/refresh-intelligence`);
 
+export const conditionNotificationsApi = (
+  sessionId,
+  { unreadOnly = false, limit = 50 } = {},
+) =>
+  request(
+    "GET",
+    `/sessions/${sessionId}/condition-notifications?unread_only=${unreadOnly}&limit=${limit}`,
+  );
+
+export const markConditionNotificationReadApi = (sessionId, notificationId) =>
+  request(
+    "POST",
+    `/sessions/${sessionId}/condition-notifications/${encodeURIComponent(notificationId)}/read`,
+  );
+
+export const markAllConditionNotificationsReadApi = (sessionId) =>
+  request("POST", `/sessions/${sessionId}/condition-notifications/read-all`);
+
 export const emotionCheckinApi = (sessionId, body) =>
   request("POST", `/sessions/${sessionId}/emotion-checkins`, body);
 

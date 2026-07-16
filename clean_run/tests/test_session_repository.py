@@ -156,6 +156,75 @@ class SessionRepositoryTests(unittest.TestCase):
         self.assertFalse(document["emotion_summary"]["raw_images_stored"])
         self.assertEqual(document["emotion_summary"]["latest_recommendation"]["risk_level"], "low")
 
+    def test_condition_notifications_are_deduplicated_and_can_be_marked_read(self) -> None:
+        collection = FakeCollection()
+        repository = SessionRepository(collection)
+        repository.save_planned_session(
+            session_id="session-alerts",
+            trip_requirements={"origin": "Colombo", "destination": "Galle"},
+            chat_history=[],
+            plan={"daily_briefings": []},
+        )
+        event = {
+            "notification_id": "notice-1",
+            "dedupe_key": "same-change",
+            "created_at": "2026-07-19T12:00:00+00:00",
+            "read": False,
+            "title": "Day 1 conditions changed",
+        }
+
+        first = repository.add_condition_notifications(
+            session_id="session-alerts",
+            notifications=[event],
+        )
+        duplicate = repository.add_condition_notifications(
+            session_id="session-alerts",
+            notifications=[event],
+        )
+
+        self.assertEqual(len(first), 1)
+        self.assertEqual(duplicate, [])
+        self.assertEqual(len(repository.get_condition_notifications(session_id="session-alerts") or []), 1)
+        self.assertTrue(
+            repository.mark_condition_notification_read(
+                session_id="session-alerts",
+                notification_id="notice-1",
+            )
+        )
+        self.assertEqual(
+            repository.get_condition_notifications(
+                session_id="session-alerts",
+                unread_only=True,
+            ),
+            [],
+        )
+
+    def test_plan_resave_preserves_condition_notifications(self) -> None:
+        collection = FakeCollection()
+        repository = SessionRepository(collection)
+        repository.save_planned_session(
+            session_id="session-preserve-alerts",
+            trip_requirements={"origin": "Colombo"},
+            chat_history=[],
+            plan={"daily_briefings": []},
+        )
+        repository.add_condition_notifications(
+            session_id="session-preserve-alerts",
+            notifications=[{"notification_id": "notice-1", "dedupe_key": "key-1", "read": False}],
+        )
+
+        repository.save_planned_session(
+            session_id="session-preserve-alerts",
+            trip_requirements={"origin": "Colombo", "destination": "Kandy"},
+            chat_history=[],
+            plan={"daily_briefings": [{"day": 1}]},
+        )
+
+        self.assertEqual(
+            collection.documents["session-preserve-alerts"]["condition_notifications"][0]["notification_id"],
+            "notice-1",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
