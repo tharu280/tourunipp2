@@ -64,6 +64,8 @@ export const flightConfirmApi = (body) => request("POST", "/flights/confirm", bo
 
 export const planApi = (body) => request("POST", "/plan", body);
 
+export const latestSessionApi = () => request("GET", "/sessions/latest");
+
 export const dashboardApi = (sessionId) =>
   request("GET", `/sessions/${sessionId}/dashboard`);
 

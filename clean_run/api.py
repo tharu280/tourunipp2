@@ -24,7 +24,7 @@ from clean_run.emotion import (
     build_nearby_emotion_tips,
 )
 from clean_run.emotion.inference import classify_image_bytes
-from clean_run.auth import auth_router, optional_authenticated_user_id
+from clean_run.auth import auth_router, authenticated_user_id, optional_authenticated_user_id
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
@@ -508,6 +508,27 @@ async def plan(
     if req.response_mode == "full":
         return plan_payload
     return _slim_plan_payload(plan_payload)
+
+
+@app.get("/sessions/latest")
+async def get_latest_session(
+    authorization: str | None = Header(default=None),
+) -> dict[str, Any]:
+    user_id = authenticated_user_id(authorization)
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+
+    document = repository.get_latest_session_for_user(user_id)
+    if document is None:
+        return {"session_id": None}
+
+    return {
+        "session_id": document.get("session_id"),
+        "status": document.get("status"),
+        "updated_at": document.get("updated_at"),
+        "trip_requirements": document.get("trip_requirements", {}),
+    }
 
 
 @app.get("/sessions/{session_id}")

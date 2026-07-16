@@ -18,8 +18,22 @@ class FakeCollection:
         self.index_calls.append((key, kwargs))
         return key
 
-    def find_one(self, query: dict):
-        return self.documents.get(query.get("session_id"))
+    def find_one(self, query: dict, sort=None):
+        if "session_id" in query:
+            return self.documents.get(query["session_id"])
+
+        matches = [
+            document
+            for document in self.documents.values()
+            if all(document.get(key) == value for key, value in query.items())
+        ]
+        if sort:
+            for key, direction in reversed(sort):
+                matches.sort(
+                    key=lambda document: document.get(key) or "",
+                    reverse=direction < 0,
+                )
+        return matches[0] if matches else None
 
     def update_one(self, query: dict, update: dict, upsert: bool = False):
         session_id = query.get("session_id")
@@ -66,6 +80,32 @@ class SessionRepositoryTests(unittest.TestCase):
 
         self.assertTrue(assigned)
         self.assertEqual(collection.documents["session-owned"]["user_id"], "user-123")
+
+    def test_get_latest_session_for_user_returns_most_recent_owned_plan(self) -> None:
+        collection = FakeCollection()
+        repository = SessionRepository(collection)
+        for session_id in ("older", "newer", "someone-else"):
+            repository.save_planned_session(
+                session_id=session_id,
+                trip_requirements={"origin": "Colombo", "destination": "Kandy"},
+                chat_history=[],
+                plan={"route_data": {}},
+            )
+
+        collection.documents["older"].update(
+            {"user_id": "user-123", "updated_at": "2026-07-14T10:00:00+00:00"}
+        )
+        collection.documents["newer"].update(
+            {"user_id": "user-123", "updated_at": "2026-07-15T10:00:00+00:00"}
+        )
+        collection.documents["someone-else"].update(
+            {"user_id": "user-999", "updated_at": "2026-07-16T10:00:00+00:00"}
+        )
+
+        latest = repository.get_latest_session_for_user("user-123")
+
+        self.assertIsNotNone(latest)
+        self.assertEqual(latest["session_id"], "newer")
 
     def test_save_planned_session_preserves_created_at_on_update(self) -> None:
         collection = FakeCollection()

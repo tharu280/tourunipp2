@@ -36,7 +36,7 @@ const ShieldIcon = () => (
   </svg>
 );
 
-export default function GetStarted({ onStart, onProfile, user }) {
+export default function GetStarted({ onStart, onProfile, user, hasSavedTrip = false }) {
   return (
     <main className="gs-screen animate-slide-up" id="screen-get-started">
       <div
@@ -75,7 +75,7 @@ export default function GetStarted({ onStart, onProfile, user }) {
           type="button"
         >
           <span className="gs-cta-icon-left"><AiSparkleIcon /></span>
-          <span className="gs-cta-text">Get started</span>
+          <span className="gs-cta-text">{hasSavedTrip ? "Continue trip" : "Get started"}</span>
           <span className="gs-cta-icon-right"><ArrowRightIcon /></span>
         </button>
 

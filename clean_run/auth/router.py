@@ -78,6 +78,13 @@ def optional_authenticated_user_id(authorization: str | None) -> str | None:
     return str(user["user_id"])
 
 
+def authenticated_user_id(authorization: str | None) -> str:
+    user_id = optional_authenticated_user_id(authorization)
+    if user_id is None:
+        raise HTTPException(status_code=401, detail="Authentication is required.")
+    return user_id
+
+
 @router.post("/signup", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
 def signup(req: SignupRequest, response: Response):
     service = _service()

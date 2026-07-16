@@ -18,6 +18,7 @@ import {
   loginApi,
   refreshAuthApi,
   logoutApi,
+  latestSessionApi,
   setAccessToken,
 } from "./api";
 
@@ -55,6 +56,7 @@ export default function App() {
   const [authStatus, setAuthStatus] = useState("checking");
   const [authUser, setAuthUser] = useState(null);
   const [authBusy, setAuthBusy] = useState(false);
+  const [latestSessionId, setLatestSessionId] = useState(null);
 
   // ── Chat state ────────────────────────────────────────────────
   const [flightMessages, setFlightMessages] = useState([]);
@@ -85,11 +87,20 @@ export default function App() {
         if (cancelled) return;
         setAccessToken(payload.access_token);
         setAuthUser(payload.user);
+        try {
+          const latest = await latestSessionApi();
+          if (cancelled) return;
+          setLatestSessionId(latest.session_id || null);
+        } catch {
+          if (cancelled) return;
+          setLatestSessionId(null);
+        }
         setAuthStatus("authenticated");
       } catch {
         if (cancelled) return;
         setAccessToken(null);
         setAuthUser(null);
+        setLatestSessionId(null);
         setAuthStatus("guest");
       }
     }
@@ -122,6 +133,7 @@ export default function App() {
           trip_requirements: dash.trip_requirements || {},
           plan_overview: dash.plan_overview || {},
         });
+        setLatestSessionId(dash.session_id);
         setScreen("results");
       } catch (err) {
         if (cancelled) return;
@@ -137,10 +149,31 @@ export default function App() {
   }, [authStatus]);
 
   /* ── Helpers ────────────────────────────────────────────────── */
-  function resetPlannerState() {
+  function putSessionInUrl(sessionId) {
     const url = new URL(window.location);
-    url.searchParams.delete("session_id");
+    if (sessionId) url.searchParams.set("session_id", sessionId);
+    else url.searchParams.delete("session_id");
     window.history.replaceState({}, document.title, url);
+  }
+
+  async function openSavedSession(sessionId) {
+    setScreen("sessionLoading");
+    setError("");
+    const dash = await dashboardApi(sessionId);
+    setDashboardData(dash);
+    setSession({ trip_requirements: dash.trip_requirements || {} });
+    setPlan({
+      session_id: dash.session_id,
+      trip_requirements: dash.trip_requirements || {},
+      plan_overview: dash.plan_overview || {},
+    });
+    setLatestSessionId(dash.session_id);
+    putSessionInUrl(dash.session_id);
+    setScreen("results");
+  }
+
+  function resetPlannerState() {
+    putSessionInUrl(null);
 
     setScreen("welcome");
     setFlightMessages([]);
@@ -155,12 +188,25 @@ export default function App() {
     setDashboardData(null);
   }
 
-  function startAuthenticatedPlanner() {
+  async function startNewPlanner() {
+    resetPlannerState();
+    await handleStart();
+  }
+
+  async function startAuthenticatedPlanner() {
     if (authStatus !== "authenticated") {
       setScreen("auth");
       return;
     }
-    handleStart();
+    if (latestSessionId) {
+      try {
+        await openSavedSession(latestSessionId);
+        return;
+      } catch {
+        setLatestSessionId(null);
+      }
+    }
+    await handleStart();
   }
 
   async function submitAuth({ mode, name, email, password }) {
@@ -170,10 +216,21 @@ export default function App() {
 
     setAccessToken(payload.access_token);
     setAuthUser(payload.user);
+    let latestId = null;
+    try {
+      const latest = await latestSessionApi();
+      latestId = latest.session_id || null;
+    } catch {
+      latestId = null;
+    }
+    setLatestSessionId(latestId);
     setAuthStatus("authenticated");
 
     const sessionId = new URLSearchParams(window.location.search).get("session_id");
-    if (!sessionId) await handleStart();
+    if (!sessionId) {
+      if (latestId) await openSavedSession(latestId);
+      else await handleStart();
+    }
   }
 
   async function logout() {
@@ -183,6 +240,7 @@ export default function App() {
       await logoutApi();
       setAccessToken(null);
       setAuthUser(null);
+      setLatestSessionId(null);
       setAuthStatus("guest");
       resetPlannerState();
     } finally {
@@ -306,6 +364,8 @@ export default function App() {
       // Fetch dashboard enrichment
       const sessionId = getSessionId(payload);
       if (sessionId) {
+        setLatestSessionId(sessionId);
+        putSessionInUrl(sessionId);
         try {
           const dash = await dashboardApi(sessionId);
           setDashboardData(dash);
@@ -384,6 +444,7 @@ export default function App() {
         onStart={startAuthenticatedPlanner}
         onProfile={() => setScreen(authUser ? "account" : "auth")}
         user={authUser}
+        hasSavedTrip={Boolean(latestSessionId)}
       />
     );
   }
@@ -450,7 +511,7 @@ export default function App() {
         dashboardData={dashboardData}
         selectedFlight={selectedFlight}
         session={session}
-        onReset={resetPlannerState}
+        onReset={startNewPlanner}
       />
     );
   }

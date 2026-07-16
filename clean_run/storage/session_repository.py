@@ -87,6 +87,13 @@ class SessionRepository:
     def get_session(self, session_id: str) -> dict[str, Any] | None:
         return self.collection.find_one({"session_id": session_id})
 
+    def get_latest_session_for_user(self, user_id: str) -> dict[str, Any] | None:
+        self.ensure_indexes()
+        return self.collection.find_one(
+            {"user_id": user_id},
+            sort=[("updated_at", -1)],
+        )
+
     def update_session_intelligence(
         self,
         *,
