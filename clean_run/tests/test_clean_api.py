@@ -83,6 +83,8 @@ class CleanApiTests(unittest.TestCase):
         self.assertIn("/sessions/{session_id}/contextual-alternatives", paths)
         self.assertIn("/sessions/{session_id}/emotion-checkins", paths)
         self.assertIn("/sessions/{session_id}/emotion-targets", paths)
+        self.assertIn("/internal/scheduled/refresh-conditions", paths)
+        self.assertIn("/internal/scheduled/mood-reminders", paths)
         self.assertIn("/auth/signup", paths)
         self.assertIn("/auth/login", paths)
         self.assertIn("/auth/refresh", paths)

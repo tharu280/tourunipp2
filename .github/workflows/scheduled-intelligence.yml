@@ -1,0 +1,77 @@
+name: Scheduled trip intelligence
+
+on:
+  schedule:
+    # 05:47 and 17:47 in Asia/Colombo. GitHub cron expressions use UTC.
+    - cron: "17 0,12 * * *"
+    # The backend limits reminders to active trip days between 08:00 and 20:00.
+    - cron: "37 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      job:
+        description: Scheduled job to run
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - conditions
+          - mood
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-trip-intelligence
+  cancel-in-progress: false
+
+jobs:
+  refresh-conditions:
+    if: >-
+      ${{
+        (github.event_name == 'schedule' && github.event.schedule == '17 0,12 * * *') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.job == 'all' || inputs.job == 'conditions'))
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Refresh crowd, weather, and road intelligence
+        env:
+          API_BASE_URL: ${{ secrets.SCHEDULER_API_BASE_URL }}
+          CRON_SECRET: ${{ secrets.SCHEDULER_CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          test -n "$API_BASE_URL"
+          test -n "$CRON_SECRET"
+          API_BASE_URL="${API_BASE_URL%/}"
+          curl --fail --show-error --silent \
+            --retry 2 --retry-all-errors --max-time 600 \
+            -X POST "$API_BASE_URL/internal/scheduled/refresh-conditions" \
+            -H "Content-Type: application/json" \
+            -H "X-Cron-Secret: $CRON_SECRET" \
+            --data '{"limit":100,"departure_time":"08:00","include_gemini":false}'
+
+  queue-mood-reminders:
+    if: >-
+      ${{
+        (github.event_name == 'schedule' && github.event.schedule == '37 */2 * * *') ||
+        (github.event_name == 'workflow_dispatch' && (inputs.job == 'all' || inputs.job == 'mood'))
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Queue mood check-in reminders
+        env:
+          API_BASE_URL: ${{ secrets.SCHEDULER_API_BASE_URL }}
+          CRON_SECRET: ${{ secrets.SCHEDULER_CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          test -n "$API_BASE_URL"
+          test -n "$CRON_SECRET"
+          API_BASE_URL="${API_BASE_URL%/}"
+          curl --fail --show-error --silent \
+            --retry 2 --retry-all-errors --max-time 120 \
+            -X POST "$API_BASE_URL/internal/scheduled/mood-reminders" \
+            -H "Content-Type: application/json" \
+            -H "X-Cron-Secret: $CRON_SECRET" \
+            --data '{"limit":100}'

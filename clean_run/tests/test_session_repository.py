@@ -9,10 +9,20 @@ class FakeUpdateResult:
     matched_count = 1
 
 
+class FakeCursor(list):
+    def sort(self, key: str, direction: int):
+        super().sort(key=lambda document: document.get(key) or "", reverse=direction < 0)
+        return self
+
+    def limit(self, value: int):
+        del self[value:]
+        return self
+
+
 class FakeCollection:
     def __init__(self) -> None:
         self.documents: dict[str, dict] = {}
-        self.index_calls: list[tuple[str, dict]] = []
+        self.index_calls: list[tuple[object, dict]] = []
 
     def create_index(self, key: str, **kwargs):
         self.index_calls.append((key, kwargs))
@@ -35,6 +45,19 @@ class FakeCollection:
                 )
         return matches[0] if matches else None
 
+    def find(self, query: dict):
+        matches = []
+        for document in self.documents.values():
+            status_values = query.get("status", {}).get("$in", [])
+            if status_values and document.get("status") not in status_values:
+                continue
+            if not document.get("user_id"):
+                continue
+            if not (document.get("plan") or {}).get("trip_dates"):
+                continue
+            matches.append(document)
+        return FakeCursor(matches)
+
     def update_one(self, query: dict, update: dict, upsert: bool = False):
         session_id = query.get("session_id")
         existing = self.documents.get(session_id, {})
@@ -56,7 +79,7 @@ class SessionRepositoryTests(unittest.TestCase):
         )
 
         self.assertEqual(session_id, "session-123")
-        self.assertEqual(len(collection.index_calls), 6)
+        self.assertEqual(len(collection.index_calls), 7)
         saved = collection.documents["session-123"]
         self.assertEqual(saved["trip_requirements"]["destination"], "Kandy")
         self.assertEqual(saved["plan"]["route_data"]["route_id"], "route_1")
@@ -224,6 +247,23 @@ class SessionRepositoryTests(unittest.TestCase):
             collection.documents["session-preserve-alerts"]["condition_notifications"][0]["notification_id"],
             "notice-1",
         )
+
+    def test_list_scheduled_sessions_returns_only_owned_dated_plans(self) -> None:
+        collection = FakeCollection()
+        repository = SessionRepository(collection)
+        for session_id in ("eligible", "anonymous", "undated"):
+            repository.save_planned_session(
+                session_id=session_id,
+                trip_requirements={"origin": "Colombo", "destination": "Kandy"},
+                chat_history=[],
+                plan={"trip_dates": ["2026-07-20"] if session_id != "undated" else []},
+            )
+        collection.documents["eligible"]["user_id"] = "user-1"
+        collection.documents["undated"]["user_id"] = "user-1"
+
+        sessions = repository.list_scheduled_sessions(limit=10)
+
+        self.assertEqual([item["session_id"] for item in sessions], ["eligible"])
 
 
 if __name__ == "__main__":

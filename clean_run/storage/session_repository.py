@@ -19,6 +19,7 @@ class SessionRepository:
         self.collection.create_index("user_id")
         self.collection.create_index("trip_requirements.destination")
         self.collection.create_index("trip_requirements.flight_departure_date")
+        self.collection.create_index([("status", 1), ("user_id", 1), ("plan.trip_dates", 1)])
         self._indexes_ensured = True
 
     def save_planned_session(
@@ -216,6 +217,19 @@ class SessionRepository:
             {"user_id": user_id},
             sort=[("updated_at", -1)],
         )
+
+    def list_scheduled_sessions(self, *, limit: int = 100) -> list[dict[str, Any]]:
+        """Return bounded, user-owned trip candidates for scheduler-side filtering."""
+        self.ensure_indexes()
+        cursor = self.collection.find(
+            {
+                "status": {"$in": sorted(["planned", "refreshed", "active"])},
+                "user_id": {"$exists": True, "$ne": None},
+                "plan.trip_dates": {"$exists": True, "$ne": []},
+            }
+        )
+        cursor = cursor.sort("updated_at", -1).limit(max(1, min(int(limit), 500)))
+        return list(cursor)
 
     def update_session_intelligence(
         self,

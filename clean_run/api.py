@@ -4,7 +4,8 @@ import asyncio
 import json
 import os
 import re
-from datetime import date
+import secrets
+from datetime import date, datetime, timezone
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -28,6 +29,11 @@ from clean_run.auth import auth_router, authenticated_user_id, optional_authenti
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
+from clean_run.notifications import (
+    SchedulerSettings,
+    queue_mood_reminders,
+    run_condition_refresh_batch,
+)
 from clean_run.planner_pipeline import TripPlanOptions, build_trip_plan, refresh_trip_intelligence
 from clean_run.recommendations import build_contextual_alternatives
 from clean_run.storage import SessionLoaderService, build_session_repository_from_env
@@ -117,6 +123,16 @@ class RefreshIntelligenceRequest(BaseModel):
     response_mode: str = Field(default="slim", pattern="^(slim|full)$")
 
 
+class ScheduledRefreshRequest(BaseModel):
+    limit: int = Field(default=100, ge=1, le=500)
+    departure_time: str = "08:00"
+    include_gemini: bool = False
+
+
+class ScheduledReminderRequest(BaseModel):
+    limit: int = Field(default=100, ge=1, le=500)
+
+
 class ContextualAlternativesRequest(BaseModel):
     day: int | None = Field(default=None, ge=1)
     attraction_id: str | None = None
@@ -185,6 +201,14 @@ def get_session_loader() -> SessionLoaderService:
 @lru_cache(maxsize=1)
 def get_session_repository():
     return build_session_repository_from_env()
+
+
+def _require_cron_secret(value: str | None) -> None:
+    configured = os.getenv("CRON_SECRET")
+    if not configured:
+        raise HTTPException(status_code=503, detail="Scheduled jobs are not configured.")
+    if not value or not secrets.compare_digest(value, configured):
+        raise HTTPException(status_code=401, detail="Invalid scheduler credentials.")
 
 
 def _ensure_session_access(
@@ -394,6 +418,7 @@ async def health() -> dict[str, Any]:
         "gemini_key_configured": bool(os.getenv("GEMINI_API_KEY")),
         "weather_api_key_configured": bool(os.getenv("WEATHER_API_KEY")),
         "mongodb_uri_configured": bool(os.getenv("MONGODB_URI")),
+        "scheduled_jobs_configured": bool(os.getenv("CRON_SECRET")),
     }
 
 
@@ -688,6 +713,76 @@ async def refresh_session_intelligence(
         "notification_summary": payload.get("notification_summary", {}),
         "plan": _slim_plan_payload(payload.get("plan") or {}),
     }
+
+
+@app.post("/internal/scheduled/refresh-conditions")
+async def scheduled_refresh_conditions(
+    req: ScheduledRefreshRequest | None = None,
+    x_cron_secret: str | None = Header(default=None, alias="X-Cron-Secret"),
+) -> dict[str, Any]:
+    """Refresh mutable trip intelligence for active or near-future saved trips."""
+    _require_cron_secret(x_cron_secret)
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+
+    active_req = req or ScheduledRefreshRequest()
+    documents = await asyncio.to_thread(
+        repository.list_scheduled_sessions,
+        limit=active_req.limit,
+    )
+    options = TripPlanOptions(
+        include_gemini=active_req.include_gemini,
+        include_roadlk=True,
+        include_weather=True,
+        include_crowd=True,
+    )
+
+    async def refresh_one(session_id: str) -> dict[str, Any] | None:
+        return await asyncio.to_thread(
+            refresh_trip_intelligence,
+            session_id=session_id,
+            departure_time=active_req.departure_time,
+            options=options,
+        )
+
+    payload = await run_condition_refresh_batch(
+        documents,
+        refresh_one=refresh_one,
+        now=datetime.now(timezone.utc),
+        settings=SchedulerSettings.from_env(),
+    )
+    for failure in payload.get("failures") or []:
+        failure["error"] = safe_error_detail(
+            failure.get("error") or "Unknown refresh failure.",
+            feature="Scheduled intelligence refresh",
+        )
+    return payload
+
+
+@app.post("/internal/scheduled/mood-reminders")
+async def scheduled_mood_reminders(
+    req: ScheduledReminderRequest | None = None,
+    x_cron_secret: str | None = Header(default=None, alias="X-Cron-Secret"),
+) -> dict[str, Any]:
+    """Queue opt-in mood check-in prompts; this never runs image inference."""
+    _require_cron_secret(x_cron_secret)
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+
+    active_req = req or ScheduledReminderRequest()
+    documents = await asyncio.to_thread(
+        repository.list_scheduled_sessions,
+        limit=active_req.limit,
+    )
+    return await asyncio.to_thread(
+        queue_mood_reminders,
+        repository,
+        documents,
+        now=datetime.now(timezone.utc),
+        settings=SchedulerSettings.from_env(),
+    )
 
 
 @app.post("/sessions/{session_id}/contextual-alternatives")

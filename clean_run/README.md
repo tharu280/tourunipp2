@@ -81,6 +81,53 @@ run the CNN locally and send only `emotion_label`, confidence, top predictions,
 attraction metadata, and timestamp. Raw images are not accepted or stored by the
 backend.
 
+## Scheduled intelligence refresh
+
+The workflow in `.github/workflows/scheduled-intelligence.yml` calls two protected
+backend jobs:
+
+- Crowd, weather, RoadLK, daily briefings, and condition-change notifications are
+  refreshed at 05:47 and 17:47 Asia/Colombo.
+- Mood check-in reminders are evaluated every two hours. The backend creates one
+  deduplicated reminder per slot only while a signed-in user's trip is active and
+  only between 08:00 and 20:00 Asia/Colombo. It never runs the emotion model without
+  a user-submitted photo or emotion.
+
+The condition refresh does not replace routes, flights, accommodation, or planned
+attractions. It refreshes intelligence and generates recommendations/notifications
+for the existing itinerary.
+
+Configure the same long random value as `CRON_SECRET` on Railway and as the GitHub
+Actions repository secret `SCHEDULER_CRON_SECRET`. Also add this GitHub repository
+secret:
+
+```text
+SCHEDULER_API_BASE_URL=https://tourunipp2-production.up.railway.app
+```
+
+Use **Actions > Scheduled trip intelligence > Run workflow** to verify each job
+manually. GitHub scheduled workflows run from the default branch and may start a
+few minutes late during periods of high Actions load.
+
+The mood records are immediately available as in-app notifications and already
+contain a push-ready title, body, and navigation payload. Actual iOS/Android system
+notifications still require storing Expo push tokens and adding a push-delivery
+worker when the React Native app is built.
+
+Manual endpoint checks:
+
+```bash
+curl -X POST "$API_BASE_URL/internal/scheduled/refresh-conditions" \
+  -H "Content-Type: application/json" \
+  -H "X-Cron-Secret: $CRON_SECRET" \
+  --data '{"limit":100,"include_gemini":false}'
+
+curl -X POST "$API_BASE_URL/internal/scheduled/mood-reminders" \
+  -H "Content-Type: application/json" \
+  -H "X-Cron-Secret: $CRON_SECRET" \
+  --data '{"limit":100}'
+```
+
 Goal:
 
 - rebuild the backend in smaller verified steps
