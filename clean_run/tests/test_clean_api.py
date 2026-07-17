@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import unittest
 from unittest.mock import patch
 
@@ -98,6 +99,17 @@ class CleanApiTests(unittest.TestCase):
         )
         self.assertIn("[redacted]", detail)
         self.assertNotIn("AIzaExample", detail)
+
+    def test_scheduled_endpoint_rejects_invalid_cron_secret(self) -> None:
+        client = TestClient(app)
+        with patch.dict(os.environ, {"CRON_SECRET": "correct-secret"}):
+            response = client.post(
+                "/internal/scheduled/mood-reminders",
+                headers={"X-Cron-Secret": "wrong-secret"},
+                json={"limit": 1},
+            )
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json()["detail"], "Invalid scheduler credentials.")
 
     def test_flight_search_endpoint_returns_options(self) -> None:
         class FakeFlightSearchService:
