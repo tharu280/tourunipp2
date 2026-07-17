@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { startOfDayMoodCheckinApi, startOfDayMoodCheckinImageApi } from "../api";
+import useRepeatingDemoTask from "../hooks/useRepeatingDemoTask";
 
 const EMOTIONS = [
   { id: "happy", emoji: "😊", label: "Happy" },
@@ -35,7 +36,11 @@ export default function StartOfDayCheckin({ plan, session }) {
   const [status, setStatus] = useState("idle");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
+  const [autoMoodPrompt, setAutoMoodPrompt] = useState(false);
+  const [promptSequence, setPromptSequence] = useState(0);
   const fileInputRef = useRef(null);
+  const preferencesRef = useRef(null);
+  const statusRef = useRef(status);
 
   const sessionId = session?.session_id || plan?.session_id || plan?.session_storage?.session_id;
   const storageState = plan?.session_storage || plan?.plan_overview?.session_storage;
@@ -45,6 +50,10 @@ export default function StartOfDayCheckin({ plan, session }) {
   const days = Array.from({ length: totalDays }, (_, index) => index + 1);
   const startLocation = plan?.origin_resolved?.name || plan?.trip_requirements?.origin || "your trip start";
 
+  useEffect(() => {
+    statusRef.current = status;
+  }, [status]);
+
   function toggleHobby(hobby) {
     setSelectedHobbies((current) =>
       current.includes(hobby) ? current.filter((item) => item !== hobby) : [...current, hobby]
@@ -53,10 +62,12 @@ export default function StartOfDayCheckin({ plan, session }) {
 
   function storeResponse(response) {
     setResult({ recommendation: response.recommendation, nearbyTips: response.nearby_tips, checkin: response.checkin });
+    statusRef.current = "success";
     setStatus("success");
   }
 
   function beginRequest() {
+    statusRef.current = "loading";
     setStatus("loading");
     setError("");
     setResult(null);
@@ -77,6 +88,7 @@ export default function StartOfDayCheckin({ plan, session }) {
       setError(message.toLowerCase().includes("face")
         ? "I couldn’t find a face clearly. Try a brighter, front-facing photo."
         : "The mood check could not be completed. Please try again.");
+      statusRef.current = "error";
       setStatus("error");
     }
   }
@@ -96,16 +108,40 @@ export default function StartOfDayCheckin({ plan, session }) {
       }));
     } catch {
       setError("The mood check could not be completed. Please try again.");
+      statusRef.current = "error";
       setStatus("error");
     }
   }
 
   function reset() {
+    statusRef.current = "idle";
     setStatus("idle");
     setResult(null);
     setError("");
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
+
+  function requestMoodInput() {
+    if (statusRef.current === "loading") return;
+
+    if (statusRef.current !== "idle") {
+      statusRef.current = "idle";
+      setStatus("idle");
+      setResult(null);
+      setError("");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+
+    setPromptSequence((current) => current + 1);
+    window.requestAnimationFrame(() => {
+      preferencesRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+
+  const moodPromptCountdown = useRepeatingDemoTask({
+    enabled: autoMoodPrompt && sessionReady,
+    onTick: requestMoodInput,
+  });
 
   const recommendation = result?.recommendation;
   const nearbyTips = result?.nearbyTips;
@@ -119,12 +155,24 @@ export default function StartOfDayCheckin({ plan, session }) {
           <h2 id="tips-title">Tips for your day</h2>
           <p>Recommendations start near <strong>{startLocation}</strong>, your trip’s starting point.</p>
         </div>
-        <label className="tips-day-select">
-          <span>Plan for</span>
-          <select value={selectedDay} onChange={(event) => setSelectedDay(Number(event.target.value))}>
-            {days.map((day) => <option key={day} value={day}>Day {day}</option>)}
-          </select>
-        </label>
+        <div className="tips-heading-actions">
+          <label className="tips-day-select">
+            <span>Plan for</span>
+            <select value={selectedDay} onChange={(event) => setSelectedDay(Number(event.target.value))}>
+              {days.map((day) => <option key={day} value={day}>Day {day}</option>)}
+            </select>
+          </label>
+          <button
+            type="button"
+            className={`tips-demo-toggle${autoMoodPrompt ? " active" : ""}`}
+            onClick={() => setAutoMoodPrompt((current) => !current)}
+            disabled={!sessionReady}
+            aria-pressed={autoMoodPrompt}
+          >
+            <span className="tips-demo-toggle-dot" aria-hidden="true" />
+            {autoMoodPrompt ? `Mood check · ${moodPromptCountdown}s` : "Demo mood checks"}
+          </button>
+        </div>
       </header>
 
       {!sessionReady && (
@@ -135,7 +183,16 @@ export default function StartOfDayCheckin({ plan, session }) {
       )}
 
       {sessionReady && status === "idle" && (
-        <div className="tips-preferences">
+        <div className="tips-preferences" ref={preferencesRef}>
+          {autoMoodPrompt && (
+            <div className="tips-demo-prompt" key={promptSequence} role="status">
+              <span aria-hidden="true">😊</span>
+              <div>
+                <strong>How are you feeling right now?</strong>
+                <small>Choose an emotion or take a photo. The next demo check appears in {moodPromptCountdown}s.</small>
+              </div>
+            </div>
+          )}
           <section className="tips-choice-section">
             <div className="tips-choice-heading">
               <h3>Your interests <small>(select all that apply)</small></h3>

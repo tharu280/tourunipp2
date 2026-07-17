@@ -2061,6 +2061,19 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 }
 .map-refresh-btn.done  { color: #059669; background: rgba(16, 185, 129, 0.1); }
 .map-refresh-btn.err   { color: #DC2626; background: rgba(239, 68, 68, 0.08); }
+.map-refresh-btn.map-auto-refresh.active {
+  width: 68px;
+  gap: 5px;
+  color: #ffffff;
+  background: var(--brand-primary);
+  box-shadow: 0 5px 18px rgba(7, 95, 85, 0.28);
+}
+.map-auto-refresh-countdown {
+  min-width: 24px;
+  font-size: 10px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
 .map-refresh-label {
   position: absolute;
   bottom: -18px;
@@ -2076,6 +2089,74 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 @keyframes spinRefresh {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+.tips-heading-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.tips-demo-toggle {
+  display: flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid var(--separator);
+  border-radius: 11px;
+  background: var(--ios-bg);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.tips-demo-toggle.active {
+  border-color: rgba(40, 184, 137, 0.55);
+  background: rgba(40, 184, 137, 0.12);
+  color: #65d8ad;
+}
+
+.tips-demo-toggle-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tips-demo-toggle.active .tips-demo-toggle-dot {
+  box-shadow: 0 0 0 4px rgba(40, 184, 137, 0.12);
+  animation: demoPulse 1.6s ease-in-out infinite;
+}
+
+.tips-demo-prompt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  border: 1px solid rgba(40, 184, 137, 0.32);
+  border-radius: 13px;
+  background: rgba(40, 184, 137, 0.08);
+  animation: demoPromptIn 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tips-demo-prompt > span { font-size: 24px; }
+.tips-demo-prompt strong,
+.tips-demo-prompt small { display: block; }
+.tips-demo-prompt strong { color: var(--text-primary); font-size: 13px; }
+.tips-demo-prompt small { margin-top: 2px; color: var(--text-secondary); font-size: 10px; line-height: 1.4; }
+
+@keyframes demoPulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.86); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes demoPromptIn {
+  from { opacity: 0; transform: translateY(-7px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Map card stays as-is but also fits in the module ── */

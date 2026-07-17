@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -22,6 +22,7 @@ import {
 } from "../helpers";
 import { refreshIntelApi } from "../api";
 import StartOfDayCheckin from "./StartOfDayCheckin";
+import useRepeatingDemoTask from "../hooks/useRepeatingDemoTask";
 
 const SRI_LANKA_CENTER = [7.8731, 80.7718];
 
@@ -619,6 +620,9 @@ export default function TripMapModule({
   const [activeMode,    setActiveMode]    = useState("route");
   const [refreshing,    setRefreshing]    = useState(false);
   const [refreshStatus, setRefreshStatus] = useState(null);
+  const [autoRefresh,   setAutoRefresh]   = useState(false);
+  const refreshInFlightRef = useRef(false);
+  const refreshStatusTimerRef = useRef(null);
 
   const polyline        = useMemo(() => getPolyline(plan), [plan]);
   const stops           = useMemo(() => getStops(plan), [plan]);
@@ -631,7 +635,8 @@ export default function TripMapModule({
   /* Manual refresh handler */
   async function handleRefresh() {
     const sessionId = plan?.session_id;
-    if (!sessionId || refreshing) return;
+    if (!sessionId || refreshInFlightRef.current) return;
+    refreshInFlightRef.current = true;
     setRefreshing(true);
     setRefreshStatus(null);
     try {
@@ -641,10 +646,21 @@ export default function TripMapModule({
     } catch {
       setRefreshStatus("error");
     } finally {
+      refreshInFlightRef.current = false;
       setRefreshing(false);
-      setTimeout(() => setRefreshStatus(null), 3000);
+      window.clearTimeout(refreshStatusTimerRef.current);
+      refreshStatusTimerRef.current = window.setTimeout(() => setRefreshStatus(null), 3000);
     }
   }
+
+  const refreshCountdown = useRepeatingDemoTask({
+    enabled: autoRefresh && Boolean(plan?.session_id),
+    onTick: handleRefresh,
+  });
+
+  useEffect(() => () => {
+    window.clearTimeout(refreshStatusTimerRef.current);
+  }, []);
 
   const noCrowdPoints = crowdPoints.length === 0;
 
@@ -669,14 +685,15 @@ export default function TripMapModule({
           ))}
         </div>
 
-        {/* Refresh button */}
+        {/* Demonstration refresh switch */}
         {activeMode !== "tips" && <button
-          className={`map-refresh-btn${refreshing ? " spinning" : ""}${refreshStatus === "done" ? " done" : ""}${refreshStatus === "error" ? " err" : ""}`}
-          onClick={handleRefresh}
+          className={`map-refresh-btn map-auto-refresh${autoRefresh ? " active" : ""}${refreshing ? " spinning" : ""}${refreshStatus === "done" ? " done" : ""}${refreshStatus === "error" ? " err" : ""}`}
+          onClick={() => setAutoRefresh((current) => !current)}
           type="button"
-          disabled={refreshing}
-          aria-label="Refresh intelligence"
-          title="Refresh crowd and road intelligence"
+          disabled={!plan?.session_id}
+          aria-label={autoRefresh ? "Stop 30 second intelligence refresh" : "Start 30 second intelligence refresh"}
+          aria-pressed={autoRefresh}
+          title={autoRefresh ? "Stop demo refresh" : "Refresh intelligence every 30 seconds"}
         >
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 10a7 7 0 0 1 12-4.9" />
@@ -684,6 +701,7 @@ export default function TripMapModule({
             <polyline points="15 5 15 10 10 10" />
             <polyline points="5 15 5 10 10 10" />
           </svg>
+          {autoRefresh && <span className="map-auto-refresh-countdown">{refreshCountdown}s</span>}
           {refreshStatus === "done"  && <span className="map-refresh-label">Updated</span>}
           {refreshStatus === "error" && <span className="map-refresh-label">Failed</span>}
         </button>}
@@ -736,9 +754,9 @@ export default function TripMapModule({
         )}
       </div>}
 
-      {activeMode === "tips" && (
+      <div hidden={activeMode !== "tips"}>
         <StartOfDayCheckin plan={plan} session={session} />
-      )}
+      </div>
 
       {/* ── Below-map panels ── */}
       {activeMode === "crowd" && (
