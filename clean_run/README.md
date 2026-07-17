@@ -90,8 +90,9 @@ backend jobs:
   refreshed at 05:47 and 17:47 Asia/Colombo.
 - Mood check-in reminders are evaluated every two hours. The backend creates one
   deduplicated reminder per slot only while a signed-in user's trip is active and
-  only between 08:00 and 20:00 Asia/Colombo. It never runs the emotion model without
-  a user-submitted photo or emotion.
+  only between 08:00 and 20:00 Asia/Colombo. Reminders remain disabled until the
+  user completes their first manual photo or emotion check-in. The scheduler never
+  runs the emotion model without a user-submitted photo or emotion.
 
 The condition refresh does not replace routes, flights, accommodation, or planned
 attractions. It refreshes intelligence and generates recommendations/notifications

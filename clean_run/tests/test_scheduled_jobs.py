@@ -83,8 +83,10 @@ class ScheduledJobTests(unittest.IsolatedAsyncioTestCase):
 
     def test_mood_reminder_is_active_trip_daytime_only(self) -> None:
         now = datetime(2026, 7, 20, 4, 37, tzinfo=timezone.utc)  # 10:07 in Colombo.
+        document = trip_document()
+        document["emotion_checkins"] = [{"timestamp": "2026-07-20T02:00:00+00:00"}]
         reminder = build_mood_checkin_reminder(
-            trip_document(),
+            document,
             now=now,
             settings=self.settings,
         )
@@ -96,11 +98,19 @@ class ScheduledJobTests(unittest.IsolatedAsyncioTestCase):
         overnight = datetime(2026, 7, 19, 20, 0, tzinfo=timezone.utc)  # 01:30 in Colombo.
         self.assertIsNone(
             build_mood_checkin_reminder(
-                trip_document(),
+                document,
                 now=overnight,
                 settings=self.settings,
             )
         )
+
+    def test_mood_reminder_waits_for_first_manual_checkin(self) -> None:
+        reminder = build_mood_checkin_reminder(
+            trip_document(),
+            now=datetime(2026, 7, 20, 4, 37, tzinfo=timezone.utc),
+            settings=self.settings,
+        )
+        self.assertIsNone(reminder)
 
     def test_recent_checkin_suppresses_same_slot_reminder(self) -> None:
         document = trip_document()
@@ -115,15 +125,17 @@ class ScheduledJobTests(unittest.IsolatedAsyncioTestCase):
     def test_mood_reminders_are_deduplicated_per_two_hour_slot(self) -> None:
         repository = FakeReminderRepository()
         now = datetime(2026, 7, 20, 4, 37, tzinfo=timezone.utc)
+        document = trip_document()
+        document["emotion_checkins"] = [{"timestamp": "2026-07-20T02:00:00+00:00"}]
         first = queue_mood_reminders(
             repository,
-            [trip_document()],
+            [document],
             now=now,
             settings=self.settings,
         )
         second = queue_mood_reminders(
             repository,
-            [trip_document()],
+            [document],
             now=now,
             settings=self.settings,
         )

@@ -99,6 +99,14 @@ def _has_checkin_in_current_slot(
     return False
 
 
+def _has_completed_mood_checkin(document: dict[str, Any]) -> bool:
+    """Scheduled reminders are opt-in only after the user's first check-in."""
+    return any(
+        isinstance(checkin, dict)
+        for checkin in document.get("emotion_checkins") or []
+    )
+
+
 def build_mood_checkin_reminder(
     document: dict[str, Any],
     *,
@@ -111,6 +119,8 @@ def build_mood_checkin_reminder(
         return None
     window = trip_window(document)
     if window is None:
+        return None
+    if not _has_completed_mood_checkin(document):
         return None
 
     local_now = now.astimezone(ZoneInfo(settings.timezone_name))
