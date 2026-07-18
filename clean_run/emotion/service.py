@@ -155,10 +155,13 @@ def build_emotion_checkin_targets(session_document: dict[str, Any]) -> dict[str,
 
     plan = session_document.get("plan") or {}
     targets = _iter_plan_attractions(plan)
+    emotion_checkins = list(session_document.get("emotion_checkins") or [])
     return {
         "session_id": session_document.get("session_id"),
         "target_count": len(targets),
         "targets": targets,
+        "emotion_checkins": emotion_checkins,
+        "emotion_summary": session_document.get("emotion_summary") or {},
         "mobile_flow": {
             "geofence_on_device": True,
             "raw_image_upload_required": False,

@@ -19,6 +19,16 @@ class FakeEmotionRepository:
             return None
         return {
             "session_id": session_id,
+            "emotion_checkins": [
+                {
+                    "attraction_id": "gangaramaya",
+                    "attraction_name": "Gangaramaya Temple",
+                    "day": 1,
+                    "emotion_label": "neutral",
+                    "emotion_confidence": 0.75,
+                }
+            ],
+            "emotion_summary": {"trend": "stable", "recovery_status": "unknown"},
             "plan": {
                 "road_alerts": {"risk_level": "medium", "critical_count": 0, "total_deduplicated": 1},
                 "crowd_signals": {"risk_level": "medium", "signal_score": 45},
@@ -353,13 +363,23 @@ class CleanApiTests(unittest.TestCase):
             response = client.post(
                 "/sessions/session-emotion/emotion-checkins/image",
                 files={"image": ("face.jpg", b"fake-image", "image/jpeg")},
-                data={"day": "1", "hobbies": '["Nature", "Music"]'},
+                data={
+                    "day": "1",
+                    "checkin_type": "attraction",
+                    "attraction_id": "gangaramaya",
+                    "attraction_name": "Gangaramaya Temple",
+                    "latitude": "6.9167",
+                    "longitude": "79.8562",
+                    "hobbies": '["Nature", "Music"]',
+                },
             )
 
         self.assertEqual(response.status_code, 200)
         payload = response.json()
         self.assertEqual(payload["checkin"]["emotion_label"], "happy")
         self.assertEqual(payload["checkin"]["hobbies"], ["Nature", "Music"])
+        self.assertEqual(payload["checkin"]["attraction_id"], "gangaramaya")
+        self.assertTrue(payload["checkin"]["location_context"]["matched_planned_attraction"])
         self.assertEqual(payload["nearby_tips"]["recommendations"][0]["name"], "Viharamahadevi Park")
         self.assertFalse(payload["privacy"]["raw_image_stored"])
         tips.assert_called_once()
@@ -375,6 +395,8 @@ class CleanApiTests(unittest.TestCase):
         payload = response.json()
         self.assertEqual(payload["target_count"], 2)
         self.assertEqual(payload["targets"][0]["attraction_id"], "gangaramaya")
+        self.assertEqual(payload["emotion_checkins"][0]["emotion_label"], "neutral")
+        self.assertEqual(payload["emotion_summary"]["trend"], "stable")
         self.assertTrue(payload["mobile_flow"]["local_tflite_inference_required"])
 
 

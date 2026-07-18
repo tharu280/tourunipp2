@@ -5096,3 +5096,349 @@ h4,
   .trip-update-meta { align-items: flex-start; }
   .trip-update-severity { margin-left: 0; }
 }
+
+/* Simulated mood journey: planned checkpoints stand in for GPS during demos. */
+.mood-journey-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.mood-journey-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.mood-journey-heading > div {
+  min-width: 0;
+}
+
+.mood-journey-heading h2 {
+  margin: 4px 0 5px;
+}
+
+.mood-journey-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: 14px;
+}
+
+.mood-journey-map,
+.mood-journey-map-empty {
+  min-height: 318px;
+  overflow: hidden;
+  border: 1px solid #294638;
+  border-radius: 16px;
+  background: #091711;
+}
+
+.mood-journey-map {
+  position: relative;
+  isolation: isolate;
+}
+
+.mood-journey-map .leaflet-container {
+  background: #091711;
+  font-family: inherit;
+}
+
+.mood-journey-map-empty {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #91ac9d;
+  text-align: center;
+}
+
+.mood-map-caption {
+  position: absolute;
+  z-index: 500;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(101, 216, 173, 0.22);
+  border-radius: 11px;
+  background: rgba(8, 24, 17, 0.88);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+  color: #e8f5ef;
+  backdrop-filter: blur(12px);
+}
+
+.mood-map-caption strong {
+  font-size: 12px;
+}
+
+.mood-map-caption span {
+  color: #91ac9d;
+  font-size: 10px;
+  text-align: right;
+}
+
+.mood-route-marker {
+  border: 0;
+  background: transparent;
+}
+
+.mood-route-marker > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 2px solid rgba(232, 245, 239, 0.9);
+  border-radius: 50%;
+  background: #17372a;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.38);
+  color: #e8f5ef;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mood-route-marker-visited > span {
+  background: #dff8ee;
+  color: #0d4735;
+  font-size: 18px;
+}
+
+.mood-route-marker-current > span {
+  border-color: #d6ff87;
+  background: #1dae82;
+  color: #061d14;
+  animation: mood-checkpoint-pulse 1.8s ease-out infinite;
+}
+
+.mood-route-marker-future > span {
+  border-color: rgba(145, 172, 157, 0.72);
+  background: rgba(9, 23, 17, 0.9);
+  color: #91ac9d;
+}
+
+@keyframes mood-checkpoint-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214, 255, 135, 0.4), 0 7px 18px rgba(0, 0, 0, 0.38); }
+  55% { box-shadow: 0 0 0 10px rgba(214, 255, 135, 0), 0 7px 18px rgba(0, 0, 0, 0.38); }
+}
+
+.mood-recovery-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #294638;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #10271d, #0a1913);
+}
+
+.mood-recovery-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mood-recovery-heading span {
+  color: #65d8ad;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.mood-recovery-heading h3 {
+  margin: 4px 0 0;
+  color: #e8f5ef;
+  font-size: 18px;
+}
+
+.mood-recovery-heading strong {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #182b22;
+  color: #9bb6a7;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.mood-recovery-heading strong.improved { background: rgba(80, 227, 179, 0.13); color: #65d8ad; }
+.mood-recovery-heading strong.declined { background: rgba(255, 123, 130, 0.12); color: #ff9ba1; }
+
+.mood-recovery-card svg {
+  width: 100%;
+  min-height: 150px;
+  margin: 10px 0 6px;
+  overflow: visible;
+}
+
+.mood-graph-grid {
+  stroke: rgba(145, 172, 157, 0.16);
+  stroke-width: 0.7;
+}
+
+.mood-graph-line {
+  fill: none;
+  stroke: url(#moodTrend);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.mood-graph-point {
+  fill: #0d251b;
+  stroke: #b9ef73;
+  stroke-width: 2;
+}
+
+.mood-recovery-card svg text {
+  font-size: 9px;
+}
+
+.mood-history-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 6px;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.mood-history-list::-webkit-scrollbar { display: none; }
+
+.mood-history-list span {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid #294638;
+  border-radius: 999px;
+  color: #c4dbcf;
+  font-size: 9px;
+}
+
+.mood-history-empty {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  margin: 10px 0 6px;
+  color: #91ac9d;
+  font-size: 11px;
+  text-align: center;
+}
+
+.mood-recovery-card > small {
+  margin-top: auto;
+  color: #688979;
+  font-size: 8px;
+}
+
+.mood-checkpoint-nav {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid #294638;
+  border-radius: 13px;
+  background: #0b1b14;
+}
+
+.mood-checkpoint-nav button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid #31523f;
+  border-radius: 10px;
+  color: #b8d5c6;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.mood-checkpoint-nav button:disabled {
+  opacity: 0.35;
+}
+
+.mood-checkpoint-nav label {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.mood-checkpoint-nav label > span {
+  color: #789887;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mood-checkpoint-nav select {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #31523f;
+  border-radius: 10px;
+  outline: none;
+  background: #10251b;
+  color: #e8f5ef;
+  font: 700 11px/1.2 inherit;
+}
+
+.mood-current-stop {
+  padding: 14px 16px;
+  border-left: 3px solid #45d7aa;
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(90deg, rgba(29, 174, 130, 0.12), rgba(16, 37, 27, 0.72));
+}
+
+.mood-current-stop span {
+  color: #65d8ad;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.mood-current-stop h3 {
+  margin: 4px 0 2px;
+  color: #e8f5ef;
+  font-size: 18px;
+}
+
+.mood-current-stop p {
+  margin: 0;
+  color: #91ac9d;
+  font-size: 10px;
+}
+
+.mood-result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.mood-result-actions .tips-primary-button,
+.mood-result-actions .tips-reset-button {
+  width: auto;
+  min-height: 42px;
+  margin: 0;
+  padding-inline: 16px;
+}
+
+@media (max-width: 760px) {
+  .mood-journey-heading { flex-direction: column; }
+  .mood-journey-heading .tips-demo-toggle { align-self: stretch; justify-content: center; }
+  .mood-journey-overview { grid-template-columns: 1fr; }
+  .mood-journey-map { min-height: 290px; }
+  .mood-recovery-card svg { min-height: 125px; }
+}
+
+@media (max-width: 520px) {
+  .mood-map-caption { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .mood-map-caption span { text-align: left; }
+  .mood-checkpoint-nav { grid-template-columns: 1fr 1fr; }
+  .mood-checkpoint-nav label { grid-column: 1 / -1; grid-row: 1; }
+  .mood-result-actions { align-items: stretch; flex-direction: column-reverse; }
+  .mood-result-actions .tips-primary-button,
+  .mood-result-actions .tips-reset-button { width: 100%; }
+}

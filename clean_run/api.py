@@ -858,6 +858,7 @@ async def add_emotion_checkin(session_id: str, req: EmotionCheckinRequest) -> di
         session_document,
         checkin.get("emotion_label", "neutral"),
         req.hobbies,
+        checkin=checkin,
     )
 
     return {
@@ -882,6 +883,10 @@ async def add_emotion_checkin_image(
     day: int = Form(...),
     checkin_type: str = Form("start_of_day"),
     hobbies: str = Form("[]"),
+    attraction_id: str | None = Form(default=None),
+    attraction_name: str | None = Form(default=None),
+    latitude: float | None = Form(default=None),
+    longitude: float | None = Form(default=None),
 ) -> dict[str, Any]:
     repository = get_session_repository()
     if repository is None:
@@ -909,10 +914,18 @@ async def add_emotion_checkin_image(
     checkin_data = {
         "checkin_type": checkin_type,
         "day": day,
+        "attraction_id": attraction_id,
+        "attraction_name": attraction_name,
         **classification,
         "local_inference": False,
         "hobbies": selected_hobbies,
     }
+    if latitude is not None and longitude is not None:
+        checkin_data["user_location"] = {
+            "latitude": latitude,
+            "longitude": longitude,
+            "accuracy_meters": 0,
+        }
 
     checkin = sanitize_emotion_checkin(checkin_data)
     checkin = attach_location_context(
@@ -951,6 +964,7 @@ async def add_emotion_checkin_image(
         session_document,
         checkin.get("emotion_label", "neutral"),
         selected_hobbies,
+        checkin=checkin,
     )
 
     return {

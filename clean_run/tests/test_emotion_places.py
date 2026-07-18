@@ -102,6 +102,32 @@ class EmotionPlacesTests(unittest.TestCase):
         self.assertEqual(result["recommendations"][0]["best_time"], "Late morning")
         fetch.assert_called_once_with(6.9271, 79.8612, "neutral", ["Culture"])
 
+    def test_nearby_tips_prefer_selected_checkpoint_coordinates(self) -> None:
+        session = {
+            "plan": {
+                "origin_resolved": {
+                    "name": "Colombo",
+                    "lat": 6.9271,
+                    "lng": 79.8612,
+                }
+            }
+        }
+        checkin = {
+            "attraction_name": "Temple of the Sacred Tooth Relic",
+            "user_location": {"latitude": 7.2936, "longitude": 80.6413},
+        }
+        with patch("clean_run.emotion.places.fetch_overpass_places", return_value=[]) as fetch:
+            result = build_nearby_emotion_tips(
+                session,
+                "neutral",
+                ["Culture"],
+                checkin=checkin,
+            )
+
+        self.assertEqual(result["location"]["name"], "Temple of the Sacred Tooth Relic")
+        self.assertEqual(result["location"]["source"], "emotion_checkin")
+        fetch.assert_called_once_with(7.2936, 80.6413, "neutral", ["Culture"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -15,6 +15,16 @@ from clean_run.emotion.service import (
 def _sample_session() -> dict:
     return {
         "session_id": "session-emotion",
+        "emotion_checkins": [
+            {
+                "attraction_id": "temple-tooth",
+                "attraction_name": "Temple of the Sacred Tooth Relic",
+                "day": 1,
+                "emotion_label": "happy",
+                "emotion_confidence": 0.9,
+            }
+        ],
+        "emotion_summary": {"trend": "stable", "recovery_status": "positive"},
         "plan": {
             "road_alerts": {"risk_level": "medium", "critical_count": 0, "total_deduplicated": 2},
             "crowd_signals": {"risk_level": "medium", "signal_score": 48},
@@ -105,6 +115,8 @@ class EmotionServiceTests(unittest.TestCase):
         target = targets["targets"][0]
         self.assertEqual(target["attraction_id"], "temple-tooth")
         self.assertEqual(target["latitude"], 7.2936)
+        self.assertEqual(targets["emotion_checkins"][0]["emotion_label"], "happy")
+        self.assertEqual(targets["emotion_summary"]["recovery_status"], "positive")
         self.assertTrue(targets["mobile_flow"]["geofence_on_device"])
 
     def test_location_context_matches_nearby_planned_attraction(self) -> None:

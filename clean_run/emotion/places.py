@@ -349,14 +349,32 @@ def _trip_start(session_document: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+def _checkin_location(checkin: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not checkin:
+        return None
+    user_location = checkin.get("user_location") or {}
+    latitude = user_location.get("latitude", user_location.get("lat"))
+    longitude = user_location.get("longitude", user_location.get("lng"))
+    if latitude is None or longitude is None:
+        return None
+    return {
+        "name": checkin.get("attraction_name") or "Current checkpoint",
+        "latitude": float(latitude),
+        "longitude": float(longitude),
+        "source": "emotion_checkin",
+    }
+
+
 def build_nearby_emotion_tips(
     session_document: dict[str, Any],
     emotion: str,
     hobbies: list[str] | None = None,
     limit: int = 5,
+    *,
+    checkin: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     selected_hobbies = normalize_hobbies(hobbies)
-    location = _trip_start(session_document)
+    location = _checkin_location(checkin) or _trip_start(session_document)
     if location is None:
         return {
             "status": "unavailable",
