@@ -8,7 +8,7 @@ import secrets
 from datetime import date, datetime, timezone
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Header, HTTPException, UploadFile, Form
@@ -24,6 +24,7 @@ from clean_run.emotion import (
     sanitize_emotion_checkin,
     build_nearby_emotion_tips,
 )
+from clean_run.intake.assistant import handle_assistant_chat
 from clean_run.emotion.inference import classify_image_bytes
 from clean_run.auth import auth_router, authenticated_user_id, optional_authenticated_user_id
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
@@ -76,6 +77,27 @@ def safe_error_detail(exc: Exception | str, *, feature: str) -> str:
 class ChatRequest(BaseModel):
     message: str = Field(description="Latest user message.")
     session: ChatSessionState | None = Field(default=None)
+
+
+class ChatResponsePayload(BaseModel):
+    message: str
+    is_complete: bool
+    requires_field: str | None = None
+    session_id: str | None = None
+
+
+class AssistantHistoryMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(min_length=1, max_length=4_000)
+
+
+class AssistantRequest(BaseModel):
+    message: str = Field(min_length=1, max_length=4_000)
+    history: list[AssistantHistoryMessage] = Field(default_factory=list, max_length=20)
+
+
+class AssistantResponse(BaseModel):
+    answer: str
 
 
 class FlightSearchRequest(BaseModel):
@@ -590,6 +612,40 @@ async def get_session_chatbot_context(session_id: str) -> dict[str, Any]:
     if payload is None:
         raise HTTPException(status_code=404, detail="Session not found.")
     return payload
+
+
+@app.post("/sessions/{session_id}/assistant", response_model=AssistantResponse)
+async def ask_assistant(
+    session_id: str,
+    request: AssistantRequest,
+    authorization: str | None = Header(default=None),
+) -> AssistantResponse:
+    repository = get_session_repository()
+    if repository is None:
+        raise HTTPException(status_code=503, detail="Session storage is not configured.")
+    document = repository.get_session(session_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Session not found.")
+    _ensure_session_access(document, authorization)
+
+    context_payload = get_session_loader().get_chatbot_context(session_id)
+    if context_payload is None:
+        raise HTTPException(status_code=404, detail="Session context not found.")
+
+    try:
+        history = [item.model_dump() for item in request.history]
+        answer = await asyncio.to_thread(
+            handle_assistant_chat,
+            request.message,
+            history,
+            context_payload,
+        )
+        return AssistantResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(
+            status_code=502,
+            detail=safe_error_detail(e, feature="Trip assistant"),
+        ) from e
 
 
 @app.get("/sessions/{session_id}/condition-notifications")

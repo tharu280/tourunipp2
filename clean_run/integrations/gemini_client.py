@@ -142,3 +142,56 @@ def generate_markdown_text(
     if not text:
         raise RuntimeError("Gemini returned no text content.")
     return text
+
+def generate_chat_response(
+    *,
+    messages: list[dict[str, Any]],
+    system_instruction: str | None = None,
+    temperature: float = 0.35,
+    timeout: int = 90,
+) -> str:
+    headers = {
+        "Content-Type": "application/json",
+        "x-goog-api-key": get_gemini_api_key(),
+    }
+
+    formatted_contents = []
+    for m in messages:
+        role = "user" if m["role"] == "user" else "model"
+        formatted_contents.append({
+            "role": role,
+            "parts": [{"text": m["content"]}]
+        })
+
+    payload = {
+        "contents": formatted_contents,
+        "generationConfig": {
+            "temperature": temperature,
+        },
+    }
+    if system_instruction:
+        payload["systemInstruction"] = {
+            "parts": [{"text": system_instruction}],
+        }
+
+    response = requests.post(
+        GEMINI_URL,
+        headers=headers,
+        json=payload,
+        timeout=timeout,
+    )
+    response.raise_for_status()
+
+    data = response.json()
+    candidates = data.get("candidates", [])
+    if not candidates:
+        raise RuntimeError("Gemini returned no candidates.")
+
+    parts = candidates[0].get("content", {}).get("parts", [])
+    if not parts:
+        raise RuntimeError("Gemini returned no content parts.")
+
+    text = parts[0].get("text")
+    if not text:
+        raise RuntimeError("Gemini returned no text content.")
+    return text
