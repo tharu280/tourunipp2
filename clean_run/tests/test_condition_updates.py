@@ -68,6 +68,11 @@ class ConditionUpdateTests(unittest.TestCase):
         self.assertEqual(event["location_label"], "Galle")
         self.assertEqual(event["attraction"]["name"], "Galle Fort")
         self.assertTrue(event["recommendation"]["alternative_search_recommended"])
+        self.assertIn("Rain probability is now 82%", event["message"])
+        self.assertIn("Relative crowd pressure is now 68/100", event["message"])
+        self.assertIn("2 nearby alert(s)", event["message"])
+        self.assertIn("TourUni update for Day 1, near Galle", event["speech_text"])
+        self.assertIn("Recommended action: Visit the sheltered museum first", event["speech_text"])
         self.assertTrue(event["push"]["eligible"])
         self.assertEqual(event["push"]["data"]["screen"], "trip_updates")
 

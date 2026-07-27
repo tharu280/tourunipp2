@@ -122,6 +122,24 @@ def _change_summary(signal: str, previous: str, current: str, current_value: Any
     return f"{signal.title()} risk changed from {previous} to {current}."
 
 
+def _spoken_briefing(
+    *,
+    day: int,
+    location: str,
+    changes: list[dict[str, Any]],
+    action: str,
+) -> str:
+    signal_summary = " ".join(
+        str(item.get("summary") or "").strip()
+        for item in changes
+        if str(item.get("summary") or "").strip()
+    )
+    return (
+        f"TourUni update for Day {day}, near {location}. "
+        f"{signal_summary} Recommended action: {action}"
+    ).strip()
+
+
 def build_condition_update_events(
     *,
     session_id: str,
@@ -216,7 +234,14 @@ def build_condition_update_events(
         )
         action = _primary_action(current, fallback=fallback_action)
         title = f"Day {day} conditions changed"
-        message = f"{location} now has higher {signal_text} pressure. {changes[0]['summary']}"
+        change_summary = " ".join(str(item["summary"]) for item in changes)
+        message = f"{location} now has higher {signal_text} pressure. {change_summary}"
+        speech_text = _spoken_briefing(
+            day=day,
+            location=str(location),
+            changes=changes,
+            action=action,
+        )
         notification_id = str(uuid.uuid4())
         alternative_lookup = bool({"weather", "crowd"} & set(signals)) and bool(attraction_name)
 
@@ -238,6 +263,7 @@ def build_condition_update_events(
                 },
                 "title": title,
                 "message": message,
+                "speech_text": speech_text,
                 "changes": changes,
                 "recommendation": {
                     "headline": "Recommended adjustment",
