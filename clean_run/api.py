@@ -27,6 +27,7 @@ from clean_run.emotion import (
 from clean_run.intake.assistant import handle_assistant_chat
 from clean_run.emotion.inference import classify_image_bytes
 from clean_run.auth import auth_router, authenticated_user_id, optional_authenticated_user_id
+from clean_run.admin_api import admin_router
 from clean_run.flights.service import FlightSearchPreferences, FlightSearchService
 from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
@@ -421,6 +422,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(admin_router)
 
 
 @app.get("/")

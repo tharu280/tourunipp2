@@ -298,3 +298,12 @@ class SessionRepository:
             upsert=False,
         )
         return bool(getattr(result, "matched_count", 0))
+
+    def list_all_sessions(self, *, skip: int = 0, limit: int = 100) -> list[dict[str, Any]]:
+        self.ensure_indexes()
+        cursor = self.collection.find({}).sort("updated_at", -1).skip(skip).limit(max(1, min(int(limit), 500)))
+        return list(cursor)
+
+    def delete_session(self, session_id: str) -> bool:
+        result = self.collection.delete_one({"session_id": session_id})
+        return bool(getattr(result, "deleted_count", 0))
