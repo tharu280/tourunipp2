@@ -32,6 +32,7 @@ from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
 from clean_run.notifications import (
     SchedulerSettings,
+    notifications_router,
     queue_mood_reminders,
     run_condition_refresh_batch,
 )
@@ -426,6 +427,9 @@ app.include_router(auth_router)
 # ── IoT device management & telemetry routes (new — do not remove existing routes above) ──
 app.include_router(iot_devices_router)
 app.include_router(iot_router)
+# The mobile app has been calling POST /notifications/register since the IoT
+# screens shipped; the route only exists now.
+app.include_router(notifications_router)
 
 
 @app.get("/")

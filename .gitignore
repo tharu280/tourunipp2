@@ -6,6 +6,12 @@
 atlas-credentials.env
 **/atlas-credentials.env
 
+# Firebase / GCP service account keys — never commit.
+firebase-service-account.json
+**/firebase-service-account.json
+*-firebase-adminsdk-*.json
+**/*service-account*.json
+
 __pycache__/
 *.py[cod]
 *$py.class

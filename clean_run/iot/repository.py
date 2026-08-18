@@ -8,7 +8,12 @@ Collections used (all in database tourunipp2):
 SECURITY RULES:
     - Users can only read/write devices they own (owner_user_id check on every query)
     - registration_secret is one-time-use: consumed and cleared on first registration
-    - device_id is a server-assigned UUID, never reused after deletion
+    - device_secret is long-lived: it is how the ESP32 itself authenticates its
+      telemetry POSTs, so it survives registration (unlike registration_secret)
+      and is never returned to the mobile app
+    - device_id defaults to a server-assigned UUID, but provisioning may pass the
+      device's hardware MAC instead so the firmware can derive it without an NVM
+      write step (see scripts/provision_device.py)
 """
 from __future__ import annotations
 
@@ -38,22 +43,34 @@ def create_device_registration_ticket(
     *,
     label: str,
     owner_user_id: str,
+    device_id: str | None = None,
 ) -> dict[str, Any]:
     """Create a pending device slot with a one-time registration secret.
 
     Called by an admin / provisioning tool (not directly by the mobile app).
-    The secret is printed onto a QR code and consumed on first use.
+    The registration_secret is printed onto a QR code and consumed on first use.
+
+    device_id defaults to a fresh UUID. Provisioning passes the device's
+    MAC-derived id (``ESP32-MAC-<MAC>``) instead, so the firmware can compute the
+    same value from its own MAC at boot with no NVM write step — see
+    computeDeviceId() in the esp32-main sketch.
+
+    The returned device_secret is what the ESP32 sends as X-Device-Secret on
+    every telemetry POST. Unlike registration_secret it is long-lived and is
+    never handed to the mobile app.
     """
     db = _db()
-    device_id = str(uuid.uuid4())
-    # 32-byte URL-safe secret — never stored in QR permanently
+    device_id = device_id or str(uuid.uuid4())
+    # 32-byte URL-safe secrets — registration is one-time, device is long-lived
     registration_secret = secrets.token_urlsafe(32)
+    device_secret = secrets.token_urlsafe(32)
 
     doc = {
         "device_id": device_id,
         "label": label,
         "owner_user_id": owner_user_id,
         "registration_secret": registration_secret,  # one-time; cleared after use
+        "device_secret": device_secret,  # long-lived; survives registration
         "registered": False,
         "created_at": _now_iso(),
         "registered_at": None,
@@ -63,6 +80,7 @@ def create_device_registration_ticket(
     return {
         "device_id": device_id,
         "registration_secret": registration_secret,
+        "device_secret": device_secret,
         "label": label,
         "owner_user_id": owner_user_id,
     }
@@ -114,14 +132,21 @@ def register_device(
 
     result.pop("_id", None)
     result.pop("registration_secret", None)  # extra safety
+    result.pop("device_secret", None)  # belongs to the device, never to the app
     return result
+
+
+# Projection shared by every user-facing device read. Both secrets are excluded:
+# registration_secret is consumed at claim time, and device_secret belongs to the
+# ESP32 alone — the mobile app has no use for either.
+_PUBLIC_DEVICE_FIELDS = {"_id": 0, "registration_secret": 0, "device_secret": 0}
 
 
 def list_devices_for_user(user_id: str) -> list[dict[str, Any]]:
     db = _db()
     cursor = db["iot_devices"].find(
         {"owner_user_id": user_id, "registered": True},
-        {"_id": 0, "registration_secret": 0},
+        _PUBLIC_DEVICE_FIELDS,
     )
     return list(cursor)
 
@@ -130,8 +155,38 @@ def get_device_for_user(device_id: str, user_id: str) -> dict[str, Any] | None:
     db = _db()
     doc = db["iot_devices"].find_one(
         {"device_id": device_id, "owner_user_id": user_id, "registered": True},
-        {"_id": 0, "registration_secret": 0},
+        _PUBLIC_DEVICE_FIELDS,
     )
+    return doc
+
+
+def get_device_by_secret(device_id: str, device_secret: str) -> dict[str, Any] | None:
+    """Authenticate a telemetry POST coming from the ESP32 itself.
+
+    This is the device-side counterpart to authenticated_user_id(): the ESP32
+    holds no user JWT, only the device_secret burned into its secrets.h.
+
+    Returns the device document (secrets stripped) or None if the id is unknown,
+    the device was never claimed, or the secret does not match. Comparison is
+    constant-time so a wrong secret leaks no timing information.
+    """
+    db = _db()
+    doc = db["iot_devices"].find_one({"device_id": device_id})
+    if doc is None:
+        return None
+
+    stored_secret = doc.get("device_secret")
+    if not stored_secret or not secrets.compare_digest(stored_secret, device_secret):
+        return None
+
+    # An unclaimed device has no owner to attribute telemetry to, and its RTDB
+    # subtree has no ownerUid for the rules to check — reject until registered.
+    if not doc.get("registered"):
+        return None
+
+    doc.pop("_id", None)
+    doc.pop("registration_secret", None)
+    doc.pop("device_secret", None)
     return doc
 
 
@@ -144,12 +199,47 @@ def delete_device_for_user(device_id: str, user_id: str) -> bool:
 
 
 def update_device_last_seen(device_id: str) -> None:
-    """Called by device heartbeat. No user-id check — device authenticates via Firebase."""
+    """Refresh last_seen for the device list.
+
+    Two callers, both of which have already established who they are:
+    the mobile heartbeat (checked against the user's JWT) and the ESP32's own
+    telemetry POST (checked against its device_secret). No ownership check here.
+    """
     db = _db()
     db["iot_devices"].update_one(
         {"device_id": device_id},
         {"$set": {"last_seen": _now_iso()}},
     )
+
+
+def record_telemetry_tick(device_id: str, alert_tier: int) -> tuple[int, int]:
+    """Stamp last_seen, advance the sequence, and remember the current tier.
+
+    Returns ``(sequence_num, previous_alert_tier)``.
+
+    One atomic find_one_and_update rather than several round trips: telemetry is
+    the hot path (a POST every 3s per device) and $inc is the only way to get a
+    sequence number that survives a uvicorn reload or a second worker.
+
+    The previous tier is what makes alert history usable. Telemetry arrives every
+    3 seconds, so a driver who stays drowsy for a minute would otherwise generate
+    twenty identical alert rows; the caller logs only on a tier *increase*.
+    Reading the pre-update document (return_document=False) gets the old tier and
+    sets the new one in the same operation, with no read-then-write race.
+    """
+    db = _db()
+    before = db["iot_devices"].find_one_and_update(
+        {"device_id": device_id},
+        {
+            "$set": {"last_seen": _now_iso(), "last_alert_tier": alert_tier},
+            "$inc": {"telemetry_seq": 1},
+        },
+        projection={"_id": 0, "telemetry_seq": 1, "last_alert_tier": 1},
+        return_document=False,  # pre-update doc
+    )
+    if before is None:
+        return 0, 0
+    return int(before.get("telemetry_seq", 0)) + 1, int(before.get("last_alert_tier", 0) or 0)
 
 
 # ── Alert events ──────────────────────────────────────────────────────────────
@@ -215,6 +305,7 @@ def start_trip_session(
     device_id: str,
     owner_user_id: str,
     biometric_verified: bool,
+    planning_session_id: str | None = None,
 ) -> dict[str, Any]:
     db = _db()
     trip_id = str(uuid.uuid4())
@@ -223,6 +314,7 @@ def start_trip_session(
         "device_id": device_id,
         "owner_user_id": owner_user_id,
         "biometric_verified": biometric_verified,
+        "planning_session_id": planning_session_id,
         "started_at": _now_iso(),
         "ended_at": None,
         "status": "active",
@@ -232,6 +324,7 @@ def start_trip_session(
         "trip_id": trip_id,
         "device_id": device_id,
         "started_at": doc["started_at"],
+        "planning_session_id": planning_session_id,
     }
 
 
@@ -280,4 +373,5 @@ def end_trip_session(trip_id: str, owner_user_id: str) -> dict[str, Any] | None:
         "duration_minutes": duration_minutes,
         "total_alerts": total_alerts,
         "max_risk_score": max_risk_score,
+        "planning_session_id": result.get("planning_session_id"),
     }

@@ -12,6 +12,8 @@ Routes:
 """
 from __future__ import annotations
 
+import logging
+
 from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, Field
 
@@ -22,7 +24,10 @@ from .repository import (
     list_devices_for_user,
     register_device,
 )
-from .firebase_admin_service import issue_user_firebase_token
+from . import rtdb_service
+from .firebase_admin_service import firebase_uid_for_user, issue_user_firebase_token
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/devices", tags=["iot-devices"])
 
@@ -107,12 +112,34 @@ def register_device_endpoint(
             ),
         )
 
+    # Publish the ownership record BEFORE handing back a token. The security
+    # rules decide every read of this device's subtree by comparing auth.uid
+    # against meta/ownerUid — without this write the owner authenticates fine
+    # and is then denied everything, which is indistinguishable from a bad token.
+    try:
+        rtdb_service.write_device_meta(
+            req.device_id,
+            label=device.get("label", req.label),
+            owner_uid=firebase_uid_for_user(user_id),
+            registered_at=device.get("registered_at"),
+        )
+    except RuntimeError as exc:
+        # Firebase unconfigured in this env — registration itself still stands,
+        # so don't fail the request, but this device will show no live data
+        # until the meta node exists.
+        logger.warning(
+            "Device %s registered but its RTDB meta could not be written: %s",
+            req.device_id,
+            exc,
+        )
+
     # Issue a Firebase token immediately so the app can start listening
     try:
-        firebase_token = issue_user_firebase_token(user_id, req.device_id)
+        firebase_token = issue_user_firebase_token(user_id)
     except RuntimeError as exc:
         # Firebase not configured in this env — return without token
         # (app will fetch it separately when needed)
+        logger.warning("Firebase token issuance skipped: %s", exc)
         firebase_token = ""
 
     return DeviceRegistrationResponse(
@@ -167,7 +194,12 @@ def get_firebase_token(
     Security:
         - Caller must be authenticated (Bearer JWT)
         - Device must be registered under the caller's account
-        - Token grants read-only access to /devices/{device_id}/** via Firebase Rules
+        - The token grants read-only access to every device whose
+          meta/ownerUid matches this user, enforced by Firebase Rules
+
+    The device_id in the path is still checked for ownership (a 404 here is a
+    clearer signal than a silent permission denial later), but the token itself
+    is no longer scoped to one device — see issue_user_firebase_token().
     """
     user_id = authenticated_user_id(authorization)
 
@@ -177,7 +209,7 @@ def get_firebase_token(
         raise HTTPException(status_code=404, detail="Device not found.")
 
     try:
-        firebase_token = issue_user_firebase_token(user_id, device_id)
+        firebase_token = issue_user_firebase_token(user_id)
     except RuntimeError as exc:
         raise HTTPException(
             status_code=503,

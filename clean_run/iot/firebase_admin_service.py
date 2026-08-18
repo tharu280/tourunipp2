@@ -15,6 +15,7 @@ SECURITY:
 Required env vars:
     FIREBASE_SERVICE_ACCOUNT_JSON   — full service account JSON as a string, OR
     GOOGLE_APPLICATION_CREDENTIALS — path to service account JSON file
+    FIREBASE_DATABASE_URL          — RTDB URL, required by rtdb_service.py
 """
 from __future__ import annotations
 
@@ -53,7 +54,16 @@ def _get_firebase_app():
             )
         cred = credentials.Certificate(sa_path)
 
-    return firebase_admin.initialize_app(cred)
+    # databaseURL is only consulted by db.reference(); minting custom tokens
+    # works without it, which is why its absence went unnoticed while token
+    # issuance was the app's only Firebase feature. rtdb_service.py raises a
+    # clearer error than the SDK's own if it is still missing.
+    options: dict[str, Any] = {}
+    database_url = os.getenv("FIREBASE_DATABASE_URL")
+    if database_url:
+        options["databaseURL"] = database_url
+
+    return firebase_admin.initialize_app(cred, options)
 
 
 def issue_device_firebase_token(
@@ -63,9 +73,18 @@ def issue_device_firebase_token(
 ) -> str:
     """Issue a Firebase custom token for an IoT device.
 
-    The Firebase uid will be `device:{device_id}`.
-    Firebase Security Rules should restrict this uid to write only to
-    /devices/{device_id}/** and read nothing.
+    NOT USED BY THE CURRENT ARCHITECTURE — kept for the Phase-2 experiment only.
+
+    Telemetry today takes the backend-relay path (4g-ec20-integration-plan.md
+    §10.3 Option B): the ESP32 POSTs to /iot/telemetry and the backend writes to
+    RTDB with Admin credentials, which bypass security rules entirely. The device
+    holds no Firebase connection and needs no Firebase token, so nothing calls
+    this. It exists for the day someone tries Option A (device talks TLS straight
+    to Firebase) — do that on a branch, per change-management rule 7.
+
+    The Firebase uid will be `device:{device_id}`. Note that the matching
+    `role == 'iot_device'` write rules were removed from firebase_rules.json as
+    dead code; reinstate them before using this.
 
     Returns the raw custom token string (valid for 1 hour).
     """
@@ -85,12 +104,27 @@ def issue_device_firebase_token(
     return token.decode("utf-8") if isinstance(token, bytes) else token
 
 
-def issue_user_firebase_token(user_id: str, device_id: str) -> str:
-    """Issue a Firebase custom token for a mobile app user to READ a specific device.
+def firebase_uid_for_user(user_id: str) -> str:
+    """The Firebase uid a user's custom token carries.
 
-    Firebase uid will be `user:{user_id}`.
-    Firebase Security Rules grant read access to /devices/{device_id}/** only if
-    the requesting uid owns the device.
+    Written into /devices/{id}/meta/ownerUid at registration, and compared
+    against auth.uid by the security rules. One helper so the two sides cannot
+    drift apart.
+    """
+    return f"user:{user_id}"
+
+
+def issue_user_firebase_token(user_id: str, device_id: str | None = None) -> str:
+    """Issue a Firebase custom token for a mobile app user.
+
+    Firebase uid will be `user:{user_id}`. Read access is decided by the security
+    rules comparing that uid against /devices/{id}/meta/ownerUid, so this one
+    token covers every device the user owns.
+
+    device_id is accepted for call-site compatibility but deliberately NOT put
+    into the claims. It used to be, and that scoped the token to a single device:
+    switching devices in the app's picker forced a fresh token round-trip, and
+    two devices could never be watched at once.
 
     Returns the raw custom token string (valid for 1 hour).
     """
@@ -100,7 +134,6 @@ def issue_user_firebase_token(user_id: str, device_id: str) -> str:
     except ImportError as exc:
         raise RuntimeError("firebase-admin is not installed.") from exc
 
-    uid = f"user:{user_id}"
-    claims = {"role": "mobile_user", "user_id": user_id, "device_id": device_id}
-    token = firebase_auth.create_custom_token(uid, claims)
+    claims = {"role": "mobile_user", "user_id": user_id}
+    token = firebase_auth.create_custom_token(firebase_uid_for_user(user_id), claims)
     return token.decode("utf-8") if isinstance(token, bytes) else token

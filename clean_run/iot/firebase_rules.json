@@ -1,0 +1,76 @@
+// Firebase Realtime Database security rules — Smart Driver Safety
+//
+// Paste into Firebase console -> Realtime Database -> Rules.
+// (The console's editor accepts // comments; a strict JSON parser will not.)
+//
+// ACCESS MODEL
+//   Writes: nobody. Every write comes from the FastAPI backend via the Admin
+//     SDK, which bypasses these rules by design. Leaving all client writes
+//     false means a leaked mobile token cannot forge telemetry.
+//   Reads: the owner only, decided by comparing auth.uid against
+//     /devices/$deviceId/meta/ownerUid. That node is written by
+//     rtdb_service.write_device_meta() at registration — if it is missing, the
+//     owner authenticates fine and is then denied everything.
+//
+// WHY NOT auth.token.device_id
+//   The previous rules gated reads on a device_id claim baked into the user's
+//   custom token, which scoped each token to exactly one device: switching
+//   devices in the app forced a fresh token round-trip and two devices could
+//   never be watched at once. Ownership lives in the data now, so one token
+//   covers every device the user owns.
+//
+// REMOVED
+//   /safetyData/latest — a root node from the WiFi-era firmware. Nothing reads
+//     it and the current firmware no longer writes it.
+//   role == 'iot_device' write rules — dead code. The ESP32 holds no Firebase
+//     connection; it POSTs to /iot/telemetry and the backend relays. Reinstate
+//     only if the Option A (direct-to-Firebase) experiment is ever taken up.
+//
+// NOTE ON .validate
+//   Admin SDK writes bypass validation too, so these do not police the
+//   backend — the real enforcement is TelemetryRequest (Pydantic) plus
+//   normalizer.py at the API boundary. They are kept as an executable
+//   description of the contract, and they do bite if anything is ever written
+//   with a client token.
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "devices": {
+      "$deviceId": {
+        // Cascades to every child: meta, status, safetyData, alerts.
+        ".read": "auth != null && root.child('devices').child($deviceId).child('meta').child('ownerUid').val() === auth.uid",
+        ".write": false,
+
+        "safetyData": {
+          "live": {
+            ".validate": "newData.hasChildren(['riskScore', 'alertTier', 'driver', 'vehicle', 'gps', 'timestampMs'])",
+
+            // 0.0-1.0, not the firmware's 0-100. normalizer.py converts.
+            "riskScore": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 1"
+            },
+            "alertTier": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3"
+            },
+            // Guards the bug this whole node exists to prevent: the firmware
+            // sends millis() (uptime), and the app feeds this field to
+            // new Date(). Anything below this bound is not a real epoch.
+            "timestampMs": {
+              ".validate": "newData.isNumber() && newData.val() > 1700000000000"
+            }
+          },
+
+          "snapshots": {
+            ".indexOn": ["timestampMs"]
+          }
+        },
+
+        "alerts": {
+          ".indexOn": ["timestampMs"]
+        }
+      }
+    }
+  }
+}

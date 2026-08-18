@@ -2,7 +2,7 @@ fastapi==0.115.12
 uvicorn[standard]==0.34.2
 pydantic==2.11.4
 python-dotenv==1.1.0
-requests==2.32.3
+requests==2.34.2
 langchain-core==1.4.3
 langchain-google-genai==4.2.5
 pymongo==4.8.0
@@ -14,3 +14,7 @@ Pillow==10.4.0
 numpy<2
 argon2-cffi==23.1.0
 PyJWT==2.10.1
+# Required by clean_run/iot/firebase_admin_service.py to mint Firebase custom
+# tokens for the mobile app and ESP32 devices. Pulls google-api-core, which
+# requires requests>=2.33.0 (hence the requests pin above).
+firebase-admin==6.5.0

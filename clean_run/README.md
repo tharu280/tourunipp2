@@ -12,7 +12,32 @@ uvicorn clean_run.api:app --host 0.0.0.0 --port 7860
 Do not flatten the contents of `clean_run/` into the hosting root unless you
 also rewrite imports. The package imports are intentionally `clean_run.*`.
 
-Backend-only install:
+## Local development (macOS)
+
+```bash
+cd clean_run
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+grep -v "^tflite-runtime" requirements.txt > /tmp/reqs_no_tflite.txt
+pip install -r /tmp/reqs_no_tflite.txt
+```
+
+`tflite-runtime` has no macOS wheel for Python 3.12+. `emotion/inference.py`
+already falls back gracefully (`tflite_runtime` → `tensorflow.lite` → raises
+only when the emotion-classification endpoint is actually called), so the
+rest of the API works fine without it. Install `tensorflow` instead if you
+need that endpoint locally.
+
+Run it (from the parent directory, so `clean_run.*` imports resolve):
+
+```bash
+cd ..
+./clean_run/.venv/bin/python -m uvicorn clean_run.api:app --host 0.0.0.0 --port 7860 --reload
+curl http://127.0.0.1:7860/health
+```
+
+Backend-only install (deployment, not local dev — see above for local):
 
 ```bash
 python3 -m pip install -r clean_run/requirements.txt
@@ -28,7 +53,10 @@ Required environment variables are loaded from deployment secrets, `.env`, or
 - `MONGODB_URI`
 - `MONGODB_DATABASE`
 - `MONGODB_COLLECTION`
-- `JWT_SECRET` (at least 32 random characters)
+- `JWT_SECRET` (at least 32 random characters — startup raises `AuthConfigurationError` without this)
+- `CRON_SECRET` (required to call `/internal/scheduled/*`)
+- `CORS_ALLOW_ORIGINS` (defaults to `*` if unset)
+- `FLIGHT_USD_TO_LKR_RATE` (defaults to `300` if unset)
 
 Authentication settings:
 
@@ -37,13 +65,18 @@ Authentication settings:
 - `ACCESS_TOKEN_MINUTES=15`
 - `REFRESH_TOKEN_DAYS=30`
 - `REFRESH_COOKIE_NAME=touruni_refresh_token`
-- `COOKIE_SECURE=true` in hosted HTTPS environments
+- `COOKIE_SECURE=true` in hosted HTTPS environments, `false` for plain-HTTP local dev
 
 Generate a production JWT secret with:
 
 ```bash
 openssl rand -hex 32
 ```
+
+**Gotcha:** a quoted `.env` value that isn't actually closed (e.g.
+`WEATHER_API_KEY = "abc123`) makes `python-dotenv` silently skip that line —
+watch for `python-dotenv could not parse statement starting at line N` in
+the startup log.
 
 The same MongoDB database is used for `users`, `refresh_tokens`, and the configured
 trip-session collection. Passwords are Argon2 hashes. Access tokens are short-lived
