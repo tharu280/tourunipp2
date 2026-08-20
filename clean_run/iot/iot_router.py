@@ -4,16 +4,20 @@ Handles device telemetry ingest, alert event logging, trip session lifecycle,
 and device heartbeat.
 
 Routes:
-    POST /iot/telemetry                 — ESP32 telemetry ingest (device auth)
+    POST /iot/telemetry                 — ESP32 telemetry ingest (device auth) — kept as a
+                                           documented fallback; the live path is the ESP32
+                                           writing directly to Firebase, see /iot/device-token
+    POST /iot/device-token               — issue a device-scoped Firebase custom token (device auth)
     POST /iot/alert-events              — log a safety alert event from mobile
     GET  /iot/alert-events              — paginated alert history for a device
     POST /iot/trips/start               — start a trip session (biometric verified)
     POST /iot/trips/{trip_id}/end       — end a trip session and get summary
     POST /iot/device-heartbeat          — device heartbeat (updates last_seen)
 
-Every route requires a valid Bearer JWT EXCEPT /iot/telemetry, which is the one
-caller that has no user session: the ESP32 authenticates with the device_secret
-burned into its firmware. See the X-Device-Secret handling below.
+Every route requires a valid Bearer JWT EXCEPT /iot/telemetry and
+/iot/device-token, the two callers that have no user session: the ESP32
+authenticates with the device_secret burned into its firmware. See the
+X-Device-Secret handling below.
 """
 from __future__ import annotations
 
@@ -26,6 +30,7 @@ from pydantic import BaseModel, Field
 from clean_run.auth import authenticated_user_id
 from clean_run.storage import build_session_repository_from_env
 from . import rtdb_service
+from .firebase_admin_service import issue_device_firebase_token
 from .normalizer import compute_alert_tier, normalize_telemetry
 from .repository import (
     insert_alert_event,
@@ -37,6 +42,8 @@ from .repository import (
     record_telemetry_tick,
     update_device_last_seen,
 )
+
+_DEVICE_TOKEN_TTL_SECONDS = 3600  # matches Firebase custom token lifetime
 
 logger = logging.getLogger(__name__)
 
@@ -105,6 +112,11 @@ class TripSummaryResponse(BaseModel):
 
 class HeartbeatRequest(BaseModel):
     device_id: str = Field(min_length=1, max_length=64)
+
+
+class DeviceTokenResponse(BaseModel):
+    firebase_token: str
+    expires_in: int = _DEVICE_TOKEN_TTL_SECONDS
 
 
 # ── Device telemetry ingest ───────────────────────────────────────────────────
@@ -238,6 +250,40 @@ def ingest_telemetry(
 
 def _iso_from_ms(timestamp_ms: int) -> str:
     return datetime.fromtimestamp(timestamp_ms / 1000, tz=timezone.utc).isoformat()
+
+
+# ── Device Firebase token (direct-to-Firebase telemetry path) ─────────────────
+
+@router.post("/device-token", response_model=DeviceTokenResponse)
+def issue_device_token(
+    x_device_id: str | None = Header(default=None),
+    x_device_secret: str | None = Header(default=None),
+):
+    """Issue a short-lived Firebase custom token for the calling device itself.
+
+    The ESP32 exchanges this for a Firebase ID token (via Firebase's own
+    signInWithCustomToken REST endpoint) and uses that ID token to write
+    /devices/{id}/safetyData/live and /devices/{id}/status directly to RTDB —
+    see firebase_rules.json's `role == 'iot_device'` write rules, which this
+    token's claims (`role`, `device_id`) are what those rules check against.
+
+    Same auth as /iot/telemetry: no user session, device_secret over TLS
+    instead. Devices refresh this well before the 1-hour expiry (the Hub
+    re-fetches ~5 minutes before), so there is no revocation endpoint yet —
+    add one if a device is ever compromised in the field.
+    """
+    if not x_device_id or not x_device_secret:
+        raise HTTPException(
+            status_code=401,
+            detail="X-Device-Id and X-Device-Secret headers are required.",
+        )
+
+    device = get_device_by_secret(x_device_id, x_device_secret)
+    if device is None:
+        raise HTTPException(status_code=401, detail="Device authentication failed.")
+
+    token = issue_device_firebase_token(x_device_id)
+    return DeviceTokenResponse(firebase_token=token, expires_in=_DEVICE_TOKEN_TTL_SECONDS)
 
 
 # ── Alert events ──────────────────────────────────────────────────────────────

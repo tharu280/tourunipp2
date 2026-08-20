@@ -4,34 +4,41 @@
 // (The console's editor accepts // comments; a strict JSON parser will not.)
 //
 // ACCESS MODEL
-//   Writes: nobody. Every write comes from the FastAPI backend via the Admin
-//     SDK, which bypasses these rules by design. Leaving all client writes
-//     false means a leaked mobile token cannot forge telemetry.
+//   Writes:
+//     - The device itself, but ONLY to its own safetyData/live and status
+//       nodes — gated on a Firebase custom token minted by
+//       POST /iot/device-token (claims: role='iot_device', device_id=<id>).
+//       This is the live telemetry path (4g-ec20-integration-plan.md §10.3
+//       Option A): the ESP32 writes RTDB directly over TLS, no backend hop.
+//     - Everything else (meta, alerts, safetyData/snapshots) is backend-only,
+//       written via the Admin SDK, which bypasses these rules by design.
+//       /iot/telemetry (Option B, backend-relay) still works as a documented
+//       fallback and also goes through the Admin SDK.
 //   Reads: the owner only, decided by comparing auth.uid against
 //     /devices/$deviceId/meta/ownerUid. That node is written by
 //     rtdb_service.write_device_meta() at registration — if it is missing, the
 //     owner authenticates fine and is then denied everything.
 //
-// WHY NOT auth.token.device_id
+// WHY NOT auth.token.device_id FOR READS
 //   The previous rules gated reads on a device_id claim baked into the user's
 //   custom token, which scoped each token to exactly one device: switching
 //   devices in the app forced a fresh token round-trip and two devices could
-//   never be watched at once. Ownership lives in the data now, so one token
-//   covers every device the user owns.
+//   never be watched at once. Ownership lives in the data now, so one user
+//   token covers every device the user owns. (The device's own token is a
+//   separate, write-only credential — see above — and is deliberately never
+//   handed to the mobile app.)
 //
 // REMOVED
 //   /safetyData/latest — a root node from the WiFi-era firmware. Nothing reads
 //     it and the current firmware no longer writes it.
-//   role == 'iot_device' write rules — dead code. The ESP32 holds no Firebase
-//     connection; it POSTs to /iot/telemetry and the backend relays. Reinstate
-//     only if the Option A (direct-to-Firebase) experiment is ever taken up.
 //
 // NOTE ON .validate
-//   Admin SDK writes bypass validation too, so these do not police the
-//   backend — the real enforcement is TelemetryRequest (Pydantic) plus
-//   normalizer.py at the API boundary. They are kept as an executable
-//   description of the contract, and they do bite if anything is ever written
-//   with a client token.
+//   Admin SDK writes bypass validation, so these do not police the backend —
+//   but they DO police the device's direct writes now that role=='iot_device'
+//   write rules are live, which is exactly the point: a compromised
+//   device_secret can still only write a well-formed live/status payload for
+//   its own device_id, nothing else. Kept as an executable description of the
+//   contract either way.
 {
   "rules": {
     ".read": false,
@@ -45,18 +52,24 @@
 
         "safetyData": {
           "live": {
+            ".write": "auth != null && auth.token.role === 'iot_device' && auth.token.device_id === $deviceId",
             ".validate": "newData.hasChildren(['riskScore', 'alertTier', 'driver', 'vehicle', 'gps', 'timestampMs'])",
 
-            // 0.0-1.0, not the firmware's 0-100. normalizer.py converts.
+            // 0.0-1.0, not the firmware's 0-100. normalizer.py converts for
+            // the Option B path; the Hub itself does this conversion now for
+            // its direct Option A writes.
             "riskScore": {
               ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 1"
             },
             "alertTier": {
               ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3"
             },
-            // Guards the bug this whole node exists to prevent: the firmware
-            // sends millis() (uptime), and the app feeds this field to
-            // new Date(). Anything below this bound is not a real epoch.
+            // Guards the bug this whole node exists to prevent: an ESP32 with
+            // no RTC could send millis() (uptime), and the app feeds this
+            // field to new Date(). Anything below this bound is not a real
+            // epoch. The direct-write Hub sources this from cellular network
+            // time (AT+CCLK) specifically so it can pass this check without
+            // depending on GPS ever acquiring a fix.
             "timestampMs": {
               ".validate": "newData.isNumber() && newData.val() > 1700000000000"
             }
@@ -65,6 +78,10 @@
           "snapshots": {
             ".indexOn": ["timestampMs"]
           }
+        },
+
+        "status": {
+          ".write": "auth != null && auth.token.role === 'iot_device' && auth.token.device_id === $deviceId"
         },
 
         "alerts": {

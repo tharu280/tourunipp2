@@ -73,18 +73,17 @@ def issue_device_firebase_token(
 ) -> str:
     """Issue a Firebase custom token for an IoT device.
 
-    NOT USED BY THE CURRENT ARCHITECTURE — kept for the Phase-2 experiment only.
+    Called from POST /iot/device-token (iot_router.py). This IS the live
+    architecture now: the ESP32 exchanges this custom token for a Firebase ID
+    token and writes /devices/{id}/safetyData/live + /status directly to RTDB
+    over TLS (4g-ec20-integration-plan.md §10.3 Option A). /iot/telemetry
+    (Option B, backend-relay) is kept as a documented fallback, per
+    change-management rule 7 — it still works, the device just doesn't call it
+    by default anymore.
 
-    Telemetry today takes the backend-relay path (4g-ec20-integration-plan.md
-    §10.3 Option B): the ESP32 POSTs to /iot/telemetry and the backend writes to
-    RTDB with Admin credentials, which bypass security rules entirely. The device
-    holds no Firebase connection and needs no Firebase token, so nothing calls
-    this. It exists for the day someone tries Option A (device talks TLS straight
-    to Firebase) — do that on a branch, per change-management rule 7.
-
-    The Firebase uid will be `device:{device_id}`. Note that the matching
-    `role == 'iot_device'` write rules were removed from firebase_rules.json as
-    dead code; reinstate them before using this.
+    The Firebase uid is `device:{device_id}`. The matching `role == 'iot_device'`
+    write rules are reinstated in firebase_rules.json, scoped to only
+    /devices/$deviceId/safetyData/live and /devices/$deviceId/status.
 
     Returns the raw custom token string (valid for 1 hour).
     """
