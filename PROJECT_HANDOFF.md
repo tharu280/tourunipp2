@@ -767,12 +767,13 @@ The workflow was manually rerun successfully after the secret name was corrected
 
 To pause scheduled jobs, disable the workflow or remove/comment the schedule triggers. Do not intentionally corrupt the secret as an on/off switch.
 
-### 17.2 In-app 30-second demo mode
+### 17.2 In-app demo mode
 
-The client requested demonstrable toggles while the app remains open:
+The client requested demonstrable toggles while the app remains open. See `docs/demo-mode.md` for the full write-up (what it does, how AppState-resume/catch-up behaves, and a manual QA checklist); summary:
 
-- Conditions auto-refresh every 30 seconds when enabled.
+- Conditions auto-refresh every 60 seconds when enabled.
 - Mood prompt/check-in demo can repeat every 30 seconds when enabled.
+- The two are mutually exclusive by design — enabling one disables the other.
 - Turning a toggle off keeps the last displayed state.
 
 This is a foreground UI demonstration loop, not a reliable production background scheduler. React Native apps are suspended in the background, so future real notifications require push infrastructure.

@@ -18,6 +18,14 @@ Tree written:
             live/       overwritten every telemetry POST (~3s)
             snapshots/  push-keys, throttled — history for charts
         alerts/     push-keys, tier >= 1 only
+        commands/   demoMode (bool) — polled by the device itself, not pushed;
+                    the one node this module writes for the device to READ,
+                    not for the app to read
+
+Devices are reclaimable (repository.unclaim_device_for_user) — this whole
+subtree is wiped via clear_device_data() when a device is unclaimed, so a
+future owner starts clean and the previous owner's still-valid Firebase
+token loses read access immediately rather than after up to an hour.
 """
 from __future__ import annotations
 
@@ -84,6 +92,20 @@ def write_device_meta(
     )
 
 
+# ── Remote commands ────────────────────────────────────────────────────────────
+
+def write_demo_mode_command(device_id: str, enabled: bool) -> None:
+    """Live-toggle the device's own GPS/speed demo simulation.
+
+    The firmware only ever writes to RTDB — it has no way to receive a push,
+    so it polls this leaf on its own telemetry cadence
+    (checkDemoModeCommand() in the main-hub sketch). This is the only write
+    path: client writes are disabled everywhere by security rules (see the
+    module docstring), so the app can't set this directly.
+    """
+    _device_ref(device_id, "commands/demoMode").set(enabled)
+
+
 # ── Per-telemetry writes ──────────────────────────────────────────────────────
 
 def write_live(device_id: str, live: dict[str, Any]) -> None:
@@ -121,6 +143,37 @@ def should_snapshot(sequence_num: int) -> bool:
     restart and stays consistent across processes.
     """
     return sequence_num % SNAPSHOT_EVERY_N_TICKS == 0
+
+
+# ── Unclaim-time cleanup ──────────────────────────────────────────────────────
+
+def clear_device_data(device_id: str) -> None:
+    """Wipe live/status/alerts/meta so a re-claimed device starts clean.
+
+    meta is the important one, not just cosmetic: meta/ownerUid is the whole
+    access-control record the security rules check (auth.uid == meta/ownerUid).
+    If it isn't cleared here, the PREVIOUS owner's still-valid Firebase custom
+    token (issued before unclaiming, good for up to an hour) keeps passing
+    that check and can keep reading this device's subtree until either the
+    token expires or the next owner's write_device_meta() call overwrites it —
+    a real, time-bounded authorization leftover, not just stale display data.
+
+    live/snapshots/alerts are wiped so a new owner doesn't briefly see (or, for
+    the append-only alerts node, permanently see) the previous owner's
+    readings before their own device sends fresh telemetry.
+
+    commands/demoMode is force-set to False rather than deleted: the
+    firmware's checkDemoModeCommand() intentionally ignores a missing/null
+    value (leaves whatever it last had), so a plain delete would NOT turn
+    off a demo run the previous owner forgot to stop before handing the
+    device off — an explicit False is the only way to guarantee it.
+    """
+    _device_ref(device_id, "safetyData/live").delete()
+    _device_ref(device_id, "safetyData/snapshots").delete()
+    _device_ref(device_id, "alerts").delete()
+    _device_ref(device_id, "status").delete()
+    _device_ref(device_id, "meta").delete()
+    _device_ref(device_id, "commands/demoMode").set(False)
 
 
 def append_alert(device_id: str, live: dict[str, Any]) -> None:

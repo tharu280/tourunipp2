@@ -5,10 +5,14 @@ Uses authenticated_user_id() from clean_run.auth — same helper used across the
 
 Routes:
     GET  /devices                         — list user's registered devices
-    POST /devices/register                — claim a device with a one-time secret
+    POST /devices/register                — claim a device with its reusable secret
     GET  /devices/{device_id}             — get single device (must be owned)
-    DELETE /devices/{device_id}           — unregister device (must be owned)
+    DELETE /devices/{device_id}           — unclaim device (must be owned) — the
+                                             device record and both secrets survive,
+                                             so the same QR can claim it again later
     GET  /devices/{device_id}/firebase-token — issue 1-hr Firebase custom token
+    POST /devices/{device_id}/demo-mode   — live-toggle the device's own GPS/speed
+                                             demo simulation (real hardware only)
 """
 from __future__ import annotations
 
@@ -19,10 +23,10 @@ from pydantic import BaseModel, Field
 
 from clean_run.auth import authenticated_user_id
 from .repository import (
-    delete_device_for_user,
     get_device_for_user,
     list_devices_for_user,
     register_device,
+    unclaim_device_for_user,
 )
 from . import rtdb_service
 from .firebase_admin_service import firebase_uid_for_user, issue_user_firebase_token
@@ -63,6 +67,10 @@ class FirebaseTokenResponse(BaseModel):
     expires_in: int  # seconds
 
 
+class DemoModeRequest(BaseModel):
+    enabled: bool
+
+
 # ── Endpoints ─────────────────────────────────────────────────────────────────
 
 @router.get("", response_model=dict)
@@ -89,9 +97,10 @@ def register_device_endpoint(
     req: DeviceRegisterRequest,
     authorization: str | None = Header(default=None),
 ):
-    """Claim a device using a one-time registration secret from the QR code.
+    """Claim a device using its reusable registration secret from the QR code.
 
-    The secret is consumed on first use — replaying the same QR code will fail.
+    The secret is NOT consumed — the same QR code can claim this device again
+    in the future, once its current owner unregisters it (DELETE /devices/{id}).
     Returns the device document plus a ready-to-use Firebase token.
     """
     user_id = authenticated_user_id(authorization)
@@ -106,9 +115,9 @@ def register_device_endpoint(
         raise HTTPException(
             status_code=400,
             detail=(
-                "Invalid or already-used registration code. "
-                "Each QR code can only be used once. "
-                "Request a new code from the device admin."
+                "Invalid registration code, or this device is already claimed "
+                "by another account. Ask its current owner to remove it first, "
+                "or request a new code from the device admin."
             ),
         )
 
@@ -175,11 +184,28 @@ def delete_device(
     device_id: str,
     authorization: str | None = Header(default=None),
 ):
-    """Unregister a device. Only the owner can remove their own device."""
+    """Unregister a device. Only the owner can remove their own device.
+
+    This releases ownership rather than deleting the device record — both
+    secrets survive, so the same physical QR sticker can claim it again
+    later with no hardware reflash. From the caller's perspective it's
+    still a delete: the device leaves their list and no further owner-scoped
+    action on it is possible until someone re-claims it.
+    """
     user_id = authenticated_user_id(authorization)
-    deleted = delete_device_for_user(device_id, user_id)
-    if not deleted:
+    unclaimed = unclaim_device_for_user(device_id, user_id)
+    if not unclaimed:
         raise HTTPException(status_code=404, detail="Device not found.")
+
+    try:
+        rtdb_service.clear_device_data(device_id)
+    except RuntimeError as exc:
+        # Firebase unconfigured in this env — the unclaim itself still stands.
+        logger.warning(
+            "Device %s unclaimed but its RTDB data could not be cleared: %s",
+            device_id,
+            exc,
+        )
     # 204 No Content — no body
 
 
@@ -220,3 +246,36 @@ def get_firebase_token(
         firebase_token=firebase_token,
         expires_in=_FIREBASE_TOKEN_TTL_SECONDS,
     )
+
+
+@router.post("/{device_id}/demo-mode", status_code=204)
+def set_demo_mode(
+    device_id: str,
+    req: DemoModeRequest,
+    authorization: str | None = Header(default=None),
+):
+    """Live-toggle Demo Mode on the real physical device.
+
+    Writes to /devices/{id}/commands/demoMode in Firebase RTDB, which the
+    firmware itself polls roughly every telemetry cycle (~3s) — see
+    checkDemoModeCommand() in the main-hub sketch. When on, the device
+    substitutes a simulated GPS location/speed for its real GPS reading
+    while keeping distance and drowsiness data fully real, so the physical
+    buzzer/LEDs/vibration and the app's alert tier genuinely react to a
+    controllable simulated speed — intended for demos/presentations where
+    driving the vehicle isn't possible.
+    """
+    user_id = authenticated_user_id(authorization)
+
+    # Ownership check — same pattern as get_firebase_token above.
+    if get_device_for_user(device_id, user_id) is None:
+        raise HTTPException(status_code=404, detail="Device not found.")
+
+    try:
+        rtdb_service.write_demo_mode_command(device_id, req.enabled)
+    except RuntimeError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Could not update demo mode: {exc}",
+        ) from exc
+    # 204 No Content — no body

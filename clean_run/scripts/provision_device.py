@@ -25,7 +25,12 @@ sync between a bench session and the database.
 Two secrets come out, and they go to different places:
 
     device_secret        -> firmware secrets.h (never leaves the vehicle)
-    registration_secret  -> the QR code the owner scans, once
+    registration_secret  -> the QR code the owner scans
+
+Both are reusable, not one-time: registering a device no longer consumes the
+QR's secret, so the same printed QR keeps working across an unlimited number
+of claim/unclaim cycles (see register_device() in iot/repository.py) — no
+reflash needed if a device is ever unclaimed and re-paired.
 
 Render the QR JSON with any encoder, e.g.:
 
@@ -117,10 +122,13 @@ def main(argv: list[str] | None = None) -> int:
     print()
     print(f'     #define DEVICE_SECRET "{ticket["device_secret"]}"')
     print()
-    print("  2. Encode this as a QR code for the owner to scan (one use only):")
+    print("  2. Encode this as a QR code for the owner to scan:")
     print()
     print(f"     {qr_payload}")
     print()
+    print("  The QR is reusable — the same code can re-pair this device to a")
+    print("  new owner any time after the current owner removes it from their")
+    print("  account. No reflash needed for a re-pair.")
 
     if args.qr_out:
         if _write_qr_png(qr_payload, args.qr_out):
@@ -129,6 +137,7 @@ def main(argv: list[str] | None = None) -> int:
             print("  --qr-out needs the qrcode package: pip install 'qrcode[pil]'")
         print()
 
+    print()
     print("  The device_secret is shown once and is not recoverable from the app.")
     print("=" * 68)
     print()

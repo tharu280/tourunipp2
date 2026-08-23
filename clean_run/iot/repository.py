@@ -7,10 +7,16 @@ Collections used (all in database tourunipp2):
 
 SECURITY RULES:
     - Users can only read/write devices they own (owner_user_id check on every query)
-    - registration_secret is one-time-use: consumed and cleared on first registration
+    - registration_secret is a REUSABLE claim code, not one-time: it survives a
+      claim so the same physical QR sticker can pair the device again after the
+      current owner unregisters it, with no hardware reflash. Claiming is gated
+      purely on `registered: False`, not on secret consumption.
     - device_secret is long-lived: it is how the ESP32 itself authenticates its
-      telemetry POSTs, so it survives registration (unlike registration_secret)
-      and is never returned to the mobile app
+      telemetry POSTs, and is never returned to the mobile app. It survives both
+      registration and unregistration — the physical device never needs reflashing.
+    - "unregistering" a device (see unclaim_device_for_user) releases ownership
+      and resets registered=False; it does NOT delete the Mongo document or
+      either secret. Both are permanent until an operator explicitly re-provisions.
     - device_id defaults to a server-assigned UUID, but provisioning may pass the
       device's hardware MAC instead so the firmware can derive it without an NVM
       write step (see scripts/provision_device.py)
@@ -26,10 +32,32 @@ from typing import Any
 from clean_run.storage.mongo_client import build_mongo_database_from_env
 
 
+_indexes_ensured = False
+
+
+def _ensure_indexes(db) -> None:
+    """Create indexes once per process.
+
+    The device_id unique index is what makes register_device()'s "one document
+    per device" assumption actually true — without it, re-running provisioning
+    for the same MAC could silently leave duplicate documents and find_one()
+    would return whichever Mongo felt like. NOTE: if any duplicate device_id
+    values already exist in the collection, create_index(unique=True) raises on
+    this first call — dedup manually before deploying this change.
+    """
+    global _indexes_ensured
+    if _indexes_ensured:
+        return
+    db["iot_devices"].create_index("device_id", unique=True)
+    db["iot_alert_events"].create_index([("device_id", 1), ("triggered_at", -1)])
+    _indexes_ensured = True
+
+
 def _db():
     db = build_mongo_database_from_env()
     if db is None:
         raise RuntimeError("MongoDB is not configured (MONGODB_URI missing).")
+    _ensure_indexes(db)
     return db
 
 
@@ -45,10 +73,12 @@ def create_device_registration_ticket(
     owner_user_id: str,
     device_id: str | None = None,
 ) -> dict[str, Any]:
-    """Create a pending device slot with a one-time registration secret.
+    """Create a pending device slot with a reusable registration secret.
 
     Called by an admin / provisioning tool (not directly by the mobile app).
-    The registration_secret is printed onto a QR code and consumed on first use.
+    The registration_secret is printed onto a QR code. It is NOT consumed on
+    use — see register_device()'s docstring — so the same QR keeps working
+    across an unlimited number of claim/unclaim cycles.
 
     device_id defaults to a fresh UUID. Provisioning passes the device's
     MAC-derived id (``ESP32-MAC-<MAC>``) instead, so the firmware can compute the
@@ -56,12 +86,11 @@ def create_device_registration_ticket(
     computeDeviceId() in the esp32-main sketch.
 
     The returned device_secret is what the ESP32 sends as X-Device-Secret on
-    every telemetry POST. Unlike registration_secret it is long-lived and is
-    never handed to the mobile app.
+    every telemetry POST. It is long-lived and is never handed to the mobile app.
     """
     db = _db()
     device_id = device_id or str(uuid.uuid4())
-    # 32-byte URL-safe secrets — registration is one-time, device is long-lived
+    # 32-byte URL-safe secrets — both are long-lived and reusable across claims
     registration_secret = secrets.token_urlsafe(32)
     device_secret = secrets.token_urlsafe(32)
 
@@ -69,11 +98,12 @@ def create_device_registration_ticket(
         "device_id": device_id,
         "label": label,
         "owner_user_id": owner_user_id,
-        "registration_secret": registration_secret,  # one-time; cleared after use
+        "registration_secret": registration_secret,  # reusable across claims
         "device_secret": device_secret,  # long-lived; survives registration
         "registered": False,
         "created_at": _now_iso(),
         "registered_at": None,
+        "unregistered_at": None,
         "last_seen": None,
     }
     db["iot_devices"].insert_one(doc)
@@ -93,27 +123,30 @@ def register_device(
     registration_secret: str,
     claiming_user_id: str,
 ) -> dict[str, Any] | None:
-    """Claim a device using the one-time secret.
+    """Claim a device using its reusable registration secret.
 
-    Returns the device document (without secret) on success, None if secret invalid
-    or already consumed.
+    Unlike a one-time ticket, the secret is NOT consumed on success — it stays
+    on the document so the same physical QR sticker can claim the device again
+    after a future unregister (see unclaim_device_for_user). Claiming is gated
+    purely on `registered: False`, so a currently-claimed device correctly
+    rejects a second claim attempt (by the same or another user) until its
+    owner releases it.
 
-    Raises ValueError if device already registered by another user.
+    Returns the device document (without secrets) on success, None if the
+    secret is invalid or the device is already claimed.
     """
     db = _db()
     doc = db["iot_devices"].find_one({"device_id": device_id})
     if doc is None:
         return None
 
-    # Secret must match and not yet consumed
     stored_secret = doc.get("registration_secret")
     if not stored_secret or not secrets.compare_digest(stored_secret, registration_secret):
         return None
-    if doc.get("registered"):
-        # Already registered — could be a replay; reject
-        return None
 
-    # Consume the secret (clear it) and mark registered
+    if doc.get("registered"):
+        return None  # already claimed — could be a replay; reject
+
     result = db["iot_devices"].find_one_and_update(
         {"device_id": device_id, "registration_secret": stored_secret, "registered": False},
         {
@@ -122,8 +155,13 @@ def register_device(
                 "owner_user_id": claiming_user_id,
                 "registered": True,
                 "registered_at": _now_iso(),
+                # Fresh ownership starts clean — a new owner's first tick
+                # shouldn't render a stale alert-tier jump or an ancient
+                # "last seen" left over from whoever had this device before.
+                "last_seen": None,
+                "telemetry_seq": 0,
+                "last_alert_tier": 0,
             },
-            "$unset": {"registration_secret": ""},  # secret is consumed — never stored again
         },
         return_document=True,
     )
@@ -131,7 +169,7 @@ def register_device(
         return None  # race: another request beat us
 
     result.pop("_id", None)
-    result.pop("registration_secret", None)  # extra safety
+    result.pop("registration_secret", None)  # extra safety — never leaves the backend
     result.pop("device_secret", None)  # belongs to the device, never to the app
     return result
 
@@ -190,12 +228,31 @@ def get_device_by_secret(device_id: str, device_secret: str) -> dict[str, Any] |
     return doc
 
 
-def delete_device_for_user(device_id: str, user_id: str) -> bool:
+def unclaim_device_for_user(device_id: str, user_id: str) -> bool:
+    """Release ownership without deleting the device record.
+
+    Both secrets are left untouched — the whole point of the reusable-claim
+    model is that the same QR sticker and the same flashed firmware keep
+    working forever. Only ownership/history fields reset, and only for the
+    caller's own device (owner_user_id must match and registered must be
+    True), so one user can never unclaim another user's device or a device
+    that's already unclaimed.
+
+    Callers should also purge the device's Firebase RTDB subtree via
+    rtdb_service.clear_device_data() — the previous owner's Firebase custom
+    token stays valid for up to an hour after this call, and meta/ownerUid
+    (not this Mongo document) is what RTDB security rules actually check.
+    """
     db = _db()
-    result = db["iot_devices"].delete_one(
-        {"device_id": device_id, "owner_user_id": user_id}
+    result = db["iot_devices"].find_one_and_update(
+        {"device_id": device_id, "owner_user_id": user_id, "registered": True},
+        {
+            "$set": {"registered": False, "unregistered_at": _now_iso()},
+            "$unset": {"owner_user_id": ""},
+        },
+        return_document=True,
     )
-    return result.deleted_count > 0
+    return result is not None
 
 
 def update_device_last_seen(device_id: str) -> None:
@@ -271,7 +328,10 @@ def list_alert_events(
 ) -> dict[str, Any]:
     """Return paginated alert events for a device the user owns.
 
-    Enforces ownership: device must belong to owner_user_id.
+    Enforces ownership: device must belong to owner_user_id. Also scoped to
+    events at or after the device's current registered_at — devices are
+    reclaimable (see register_device()), so without this a new owner would
+    see the previous owner's alert history.
     """
     db = _db()
     # Ownership check
@@ -281,10 +341,15 @@ def list_alert_events(
     if device is None:
         return {"events": [], "total": 0, "has_more": False}
 
-    total = db["iot_alert_events"].count_documents({"device_id": device_id})
+    query: dict[str, Any] = {"device_id": device_id}
+    registered_at = device.get("registered_at")
+    if registered_at:
+        query["triggered_at"] = {"$gte": registered_at}
+
+    total = db["iot_alert_events"].count_documents(query)
     cursor = (
         db["iot_alert_events"]
-        .find({"device_id": device_id}, {"_id": 0})
+        .find(query, {"_id": 0})
         .sort("triggered_at", -1)
         .skip(offset)
         .limit(limit + 1)  # fetch one extra to determine has_more
