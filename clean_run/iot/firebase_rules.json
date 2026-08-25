@@ -18,6 +18,10 @@
 //     /devices/$deviceId/meta/ownerUid. That node is written by
 //     rtdb_service.write_device_meta() at registration — if it is missing, the
 //     owner authenticates fine and is then denied everything.
+//     One exception: the device itself can read its own commands/ node (see
+//     below) — it has to, to poll Demo Mode on/off, and its 'device:{id}'
+//     token never matches ownerUid so the owner-only rule above would
+//     otherwise deny it forever.
 //
 // WHY NOT auth.token.device_id FOR READS
 //   The previous rules gated reads on a device_id claim baked into the user's
@@ -82,6 +86,14 @@
 
         "status": {
           ".write": "auth != null && auth.token.role === 'iot_device' && auth.token.device_id === $deviceId"
+        },
+
+        // The device polls this itself (checkDemoModeCommand()) using its own
+        // 'device:{id}' token, which never matches meta/ownerUid — without this,
+        // the cascading owner-only .read above silently denies every poll and
+        // Demo Mode can never actually turn on, no matter what the app sends.
+        "commands": {
+          ".read": "auth != null && auth.token.role === 'iot_device' && auth.token.device_id === $deviceId"
         },
 
         "alerts": {
