@@ -33,12 +33,14 @@ from clean_run.intake.schemas import ChatSessionState
 from clean_run.intake.service import TravelIntakeService
 from clean_run.notifications import (
     SchedulerSettings,
+    notifications_router,
     queue_mood_reminders,
     run_condition_refresh_batch,
 )
 from clean_run.planner_pipeline import TripPlanOptions, build_trip_plan, refresh_trip_intelligence
 from clean_run.recommendations import build_contextual_alternatives
 from clean_run.storage import SessionLoaderService, build_session_repository_from_env
+from clean_run.iot import admin_iot_router, devices_router as iot_devices_router, iot_router
 
 
 CLEAN_RUN_ROOT = Path(__file__).resolve().parent
@@ -423,6 +425,14 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(admin_router)
+
+# ── IoT device management & telemetry routes (new — do not remove existing routes above) ──
+app.include_router(iot_devices_router)
+app.include_router(iot_router)
+app.include_router(admin_iot_router)  # fleet-wide admin management (/admin/iot)
+# The mobile app has been calling POST /notifications/register since the IoT
+# screens shipped; the route only exists now.
+app.include_router(notifications_router)
 
 
 @app.get("/")
