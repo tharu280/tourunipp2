@@ -40,7 +40,7 @@ from clean_run.notifications import (
 from clean_run.planner_pipeline import TripPlanOptions, build_trip_plan, refresh_trip_intelligence
 from clean_run.recommendations import build_contextual_alternatives
 from clean_run.storage import SessionLoaderService, build_session_repository_from_env
-from clean_run.iot import devices_router as iot_devices_router, iot_router
+from clean_run.iot import admin_iot_router, devices_router as iot_devices_router, iot_router
 
 
 CLEAN_RUN_ROOT = Path(__file__).resolve().parent
@@ -429,6 +429,7 @@ app.include_router(admin_router)
 # ── IoT device management & telemetry routes (new — do not remove existing routes above) ──
 app.include_router(iot_devices_router)
 app.include_router(iot_router)
+app.include_router(admin_iot_router)  # fleet-wide admin management (/admin/iot)
 # The mobile app has been calling POST /notifications/register since the IoT
 # screens shipped; the route only exists now.
 app.include_router(notifications_router)

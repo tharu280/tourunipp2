@@ -40,25 +40,9 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 
-from clean_run.iot.repository import create_device_registration_ticket
-
-_MAC_RE = re.compile(r"^[0-9A-Fa-f]{2}([:-]?[0-9A-Fa-f]{2}){5}$")
-
-
-def device_id_from_mac(mac: str) -> str:
-    """``F4:2D:C9:71:8A:60`` -> ``ESP32-MAC-F42DC9718A60``.
-
-    Mirrors computeDeviceId() in the esp32-main sketch, which uppercases
-    WiFi.macAddress() and strips the colons. Keep the two in step.
-    """
-    if not _MAC_RE.match(mac):
-        raise ValueError(
-            f"{mac!r} is not a MAC address. Expected something like F4:2D:C9:71:8A:60"
-        )
-    return "ESP32-MAC-" + re.sub(r"[:-]", "", mac).upper()
+from clean_run.iot.repository import create_device_registration_ticket, device_id_from_mac
 
 
 def _write_qr_png(payload: str, path: str) -> bool:

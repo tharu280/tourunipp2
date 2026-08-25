@@ -24,6 +24,7 @@ SECURITY RULES:
 from __future__ import annotations
 
 import os
+import re
 import secrets
 import uuid
 from datetime import datetime, timezone
@@ -66,6 +67,24 @@ def _now_iso() -> str:
 
 
 # ── Device management ─────────────────────────────────────────────────────────
+
+_MAC_RE = re.compile(r"^[0-9A-Fa-f]{2}([:-]?[0-9A-Fa-f]{2}){5}$")
+
+
+def device_id_from_mac(mac: str) -> str:
+    """``F4:2D:C9:71:8A:60`` -> ``ESP32-MAC-F42DC9718A60``.
+
+    Mirrors computeDeviceId() in the esp32-main sketch, which uppercases
+    WiFi.macAddress() and strips the colons. Keep the two in step. Shared by
+    scripts/provision_device.py (CLI) and admin_iot_router.py (admin app) so
+    they can't drift apart on the MAC-normalization rule.
+    """
+    if not _MAC_RE.match(mac):
+        raise ValueError(
+            f"{mac!r} is not a MAC address. Expected something like F4:2D:C9:71:8A:60"
+        )
+    return "ESP32-MAC-" + re.sub(r"[:-]", "", mac).upper()
+
 
 def create_device_registration_ticket(
     *,
@@ -440,3 +459,183 @@ def end_trip_session(trip_id: str, owner_user_id: str) -> dict[str, Any] | None:
         "max_risk_score": max_risk_score,
         "planning_session_id": result.get("planning_session_id"),
     }
+
+
+# ── Admin: fleet-wide device management ─────────────────────────────────────────
+# Everything below is intentionally NOT owner-scoped — callers must already be
+# behind verify_admin_token (see admin_iot_router.py). Mirrors the shape of
+# session_repository.list_all_sessions(), the existing precedent in this
+# codebase for an unfiltered admin read.
+
+# Sentinel owner for a freshly-provisioned, not-yet-claimed device. Inert:
+# register_device()'s $set on claim (line ~155 above) fully overwrites
+# owner_user_id with the real claiming user, so this value is never actually
+# read anywhere as a real owner — it only exists so the document has a
+# non-null owner_user_id between provisioning and the first real claim.
+_ADMIN_UNCLAIMED_OWNER = "unclaimed"
+
+
+def list_all_devices(
+    *,
+    skip: int = 0,
+    limit: int = 100,
+    registered: bool | None = None,
+) -> list[dict[str, Any]]:
+    """Fleet-wide device list for admin — every device, every owner.
+
+    Unlike list_devices_for_user(), does not force registered=True: admin
+    needs to see unclaimed pool inventory (provisioned, not yet scanned) too.
+    Pass registered=True/False to filter to one state explicitly.
+    """
+    db = _db()
+    query: dict[str, Any] = {}
+    if registered is not None:
+        query["registered"] = registered
+    cursor = (
+        db["iot_devices"]
+        .find(query, _PUBLIC_DEVICE_FIELDS)
+        .sort("created_at", -1)
+        .skip(skip)
+        .limit(max(1, min(int(limit), 500)))
+    )
+    return list(cursor)
+
+
+def count_all_devices(*, registered: bool | None = None) -> int:
+    db = _db()
+    query: dict[str, Any] = {} if registered is None else {"registered": registered}
+    return db["iot_devices"].count_documents(query)
+
+
+def get_devices_by_ids(device_ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Batch device lookup keyed by device_id.
+
+    Avoids an N+1 query when enriching a page of admin alert/trip rows with
+    each row's device label — one query for the whole page instead of one per
+    row.
+    """
+    db = _db()
+    if not device_ids:
+        return {}
+    cursor = db["iot_devices"].find(
+        {"device_id": {"$in": list(set(device_ids))}}, _PUBLIC_DEVICE_FIELDS
+    )
+    return {d["device_id"]: d for d in cursor}
+
+
+def admin_force_unclaim_device(device_id: str) -> bool:
+    """Admin-initiated unclaim — same effect as unclaim_device_for_user() but
+    without the owner_user_id match, for a support/ops action on any device
+    (e.g. the owner lost access to their account). Both secrets survive, same
+    as the user-initiated path, so the same QR can re-claim the device
+    afterward. Callers must also call rtdb_service.clear_device_data() after
+    this returns True, same as the user-initiated DELETE /devices/{id} path
+    already does.
+    """
+    db = _db()
+    result = db["iot_devices"].find_one_and_update(
+        {"device_id": device_id, "registered": True},
+        {
+            "$set": {"registered": False, "unregistered_at": _now_iso()},
+            "$unset": {"owner_user_id": ""},
+        },
+        return_document=True,
+    )
+    return result is not None
+
+
+# ── Admin: fleet-wide alert events ───────────────────────────────────────────────
+
+def list_all_alert_events(
+    *,
+    limit: int = 50,
+    offset: int = 0,
+    device_id: str | None = None,
+    min_tier: int | None = None,
+) -> dict[str, Any]:
+    """Paginated alert events across every device — the admin equivalent of
+    list_alert_events(), without the owner_user_id gate.
+    """
+    db = _db()
+    query: dict[str, Any] = {}
+    if device_id:
+        query["device_id"] = device_id
+    if min_tier is not None:
+        query["alert_tier"] = {"$gte": min_tier}
+
+    limit = max(1, min(int(limit), 200))
+    total = db["iot_alert_events"].count_documents(query)
+    cursor = (
+        db["iot_alert_events"]
+        .find(query, {"_id": 0})
+        .sort("triggered_at", -1)
+        .skip(offset)
+        .limit(limit + 1)  # fetch one extra to determine has_more
+    )
+    events = list(cursor)
+    has_more = len(events) > limit
+    return {"events": events[:limit], "total": total, "has_more": has_more}
+
+
+# ── Admin: fleet-wide trip sessions ("Records") ──────────────────────────────────
+
+def list_all_trip_sessions(
+    *,
+    limit: int = 50,
+    offset: int = 0,
+    status: str | None = None,
+) -> dict[str, Any]:
+    """Paginated trip history across every device/owner — the admin "Records" feed.
+
+    duration_minutes/total_alerts/max_risk_score are NOT stored on the trip
+    document — end_trip_session() above computes them on the fly and returns
+    them without persisting. Recomputed here per row the same way, so this is
+    one count_documents + one $max aggregate per row on top of the base query.
+    Capped at limit<=100: fine for an admin listing at this fleet's scale, but
+    don't raise the cap without switching to a single aggregation pipeline
+    (a $lookup from trips into alert_events) instead of N+1 per-row queries.
+    """
+    db = _db()
+    query: dict[str, Any] = {} if status is None else {"status": status}
+    limit = max(1, min(int(limit), 100))
+    total = db["iot_trip_sessions"].count_documents(query)
+    cursor = (
+        db["iot_trip_sessions"]
+        .find(query, {"_id": 0})
+        .sort("started_at", -1)
+        .skip(offset)
+        .limit(limit + 1)
+    )
+    trips = list(cursor)
+    has_more = len(trips) > limit
+    trips = trips[:limit]
+
+    for t in trips:
+        started_at = t["started_at"]
+        ended_at = t.get("ended_at")
+        window: dict[str, Any] = {"device_id": t["device_id"], "triggered_at": {"$gte": started_at}}
+
+        if ended_at:
+            window["triggered_at"]["$lte"] = ended_at
+            try:
+                started = datetime.fromisoformat(started_at)
+                ended = datetime.fromisoformat(ended_at)
+                t["duration_minutes"] = round((ended - started).total_seconds() / 60, 1)
+            except Exception:
+                t["duration_minutes"] = None
+        else:
+            t["duration_minutes"] = None  # still active — nothing to measure against yet
+
+        t["total_alerts"] = db["iot_alert_events"].count_documents(window)
+
+        agg = list(
+            db["iot_alert_events"].aggregate(
+                [
+                    {"$match": window},
+                    {"$group": {"_id": None, "max_risk": {"$max": "$risk_score"}}},
+                ]
+            )
+        )
+        t["max_risk_score"] = agg[0]["max_risk"] if agg else None
+
+    return {"trips": trips, "total": total, "has_more": has_more}

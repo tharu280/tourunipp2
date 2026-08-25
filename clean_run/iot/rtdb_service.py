@@ -40,6 +40,8 @@ from .firebase_admin_service import _get_firebase_app
 # firmware's 3s cycle) is plenty for a trip history graph.
 SNAPSHOT_EVERY_N_TICKS = 3
 
+_LIVE_PATH = "safetyData/live"
+
 
 def _db_module():
     """Return firebase_admin.db, after asserting the app can actually reach RTDB.
@@ -110,7 +112,7 @@ def write_demo_mode_command(device_id: str, enabled: bool) -> None:
 
 def write_live(device_id: str, live: dict[str, Any]) -> None:
     """Overwrite the live node the app's onValue() listener is attached to."""
-    _device_ref(device_id, "safetyData/live").set(live)
+    _device_ref(device_id, _LIVE_PATH).set(live)
 
 
 def write_status(device_id: str, *, online: bool, csq: int | None = None) -> None:
@@ -168,7 +170,7 @@ def clear_device_data(device_id: str) -> None:
     off a demo run the previous owner forgot to stop before handing the
     device off — an explicit False is the only way to guarantee it.
     """
-    _device_ref(device_id, "safetyData/live").delete()
+    _device_ref(device_id, _LIVE_PATH).delete()
     _device_ref(device_id, "safetyData/snapshots").delete()
     _device_ref(device_id, "alerts").delete()
     _device_ref(device_id, "status").delete()
@@ -191,3 +193,39 @@ def append_alert(device_id: str, live: dict[str, Any]) -> None:
             "driver": live["driver"],
         }
     )
+
+
+# ── Admin: fleet-wide reads ──────────────────────────────────────────────────────
+# Admin SDK reads bypass firebase_rules.json's owner-only .read rule by design —
+# the same mechanism every write_* function above already relies on. There is no
+# role-based read bypass in the rules themselves (see the module note on why:
+# an admin's own Firebase identity doesn't match any given device's
+# meta/ownerUid), so a fleet-wide view can only be served from the backend.
+
+def read_live(device_id: str) -> dict[str, Any] | None:
+    """Admin SDK read of safetyData/live for one device. None if it has never
+    reported (unclaimed, or claimed but no telemetry has arrived yet)."""
+    return _device_ref(device_id, _LIVE_PATH).get()
+
+
+def read_status(device_id: str) -> dict[str, Any] | None:
+    return _device_ref(device_id, "status").get()
+
+
+def read_fleet_snapshot(device_ids: list[str]) -> dict[str, dict[str, Any]]:
+    """{device_id: {"live": ..., "status": ...}} for every id that has ever
+    reported — ids with neither node written yet are omitted entirely.
+
+    Loops _device_ref per device (2 HTTP round trips each), which is fine at
+    pilot-fleet scale (tens of devices). If the fleet grows into the hundreds,
+    replace this with a single _db_module().reference("/devices").get()
+    whole-tree read filtered in Python instead of parallelizing the loop —
+    fewer round trips, one larger payload.
+    """
+    result: dict[str, dict[str, Any]] = {}
+    for device_id in device_ids:
+        live, status = read_live(device_id), read_status(device_id)
+        if live is None and status is None:
+            continue
+        result[device_id] = {"live": live, "status": status}
+    return result
